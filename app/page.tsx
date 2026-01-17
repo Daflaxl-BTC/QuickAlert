@@ -187,7 +187,7 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-20 sm:pt-28 md:pt-32 pb-12 sm:pb-20">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-16 sm:pt-24 md:pt-28 pb-12 sm:pb-20">
           <div className="max-w-4xl">
             {/* Date Badge */}
             <div className="grid place-items-start mb-8">
