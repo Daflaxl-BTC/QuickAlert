@@ -75,6 +75,7 @@ export default function Impressum() {
               <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Kontakt</h2>
               <div className="space-y-4 text-lg">
                 <p>
+                  <strong>Telefon:</strong> +49 151 19784023<br />
                   <strong>E-Mail:</strong> felix-bredl@gmx.de
                 </p>
               </div>
@@ -181,6 +182,7 @@ export default function Impressum() {
                 Deutschland
               </p>
               <p className="text-lg mb-6">
+                Telefon: +49 151 19784023<br />
                 E-Mail: felix-bredl@gmx.de
               </p>
               <p className="text-lg mb-6">
