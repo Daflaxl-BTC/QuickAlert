@@ -46,6 +46,13 @@ export default function Home() {
               setTimeout(() => {
                 window.location.href = '/warum-nicht-das-warndreieck'
               }, 100)
+            } else {
+              // Im Dark Mode: Sicherstellen dass Dark Mode aktiv bleibt
+              e.preventDefault()
+              setDarkMode(true)
+              setTimeout(() => {
+                window.location.href = '/warum-nicht-das-warndreieck'
+              }, 50)
             }
           }}
           className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 ${darkMode ? 'px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' : 'px-3 py-1.5 sm:px-4 sm:py-2 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
