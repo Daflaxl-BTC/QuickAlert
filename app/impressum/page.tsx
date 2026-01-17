@@ -57,8 +57,8 @@ export default function Impressum() {
                 </p>
                 <p>
                   [Ihre Straße und Hausnummer]<br />
-                  [PLZ] [Ort]<br />
-                  Österreich
+                  80331 München<br />
+                  Deutschland
                 </p>
                 <p>
                   <strong>Geschäftsführer/Inhaber:</strong><br />
@@ -89,8 +89,8 @@ export default function Impressum() {
                 <p>
                   [Ihr Name]<br />
                   [Ihre Straße und Hausnummer]<br />
-                  [PLZ] [Ort]<br />
-                  Österreich
+                  80331 München<br />
+                  Deutschland
                 </p>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Impressum() {
 
               <h3 className="text-2xl font-bold text-[#6B4E3D] mt-6 mb-4">Urheberrecht</h3>
               <p className="text-lg mb-6">
-                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
               </p>
             </div>
 
@@ -151,6 +151,16 @@ export default function Impressum() {
               <p className="text-lg mb-6">
                 Der Einsatz des Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO). Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) umfasst. Die Einwilligung ist jederzeit widerrufbar.
               </p>
+              <p className="text-lg mb-6">
+                <strong>Hoster:</strong><br />
+                Vercel Inc.<br />
+                340 S Lemon Ave #4133<br />
+                Walnut, CA 91789<br />
+                USA
+              </p>
+              <p className="text-lg mb-6">
+                Der Hoster wird die Daten Ihrer Nutzung unserer Website nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.
+              </p>
 
               <h3 className="text-2xl font-bold text-[#6B4E3D] mt-6 mb-4">3. Allgemeine Hinweise und Pflichtinformationen</h3>
               
@@ -169,8 +179,8 @@ export default function Impressum() {
               <p className="text-lg mb-6">
                 QuickAlert e.U.<br />
                 [Ihre Straße und Hausnummer]<br />
-                [PLZ] [Ort]<br />
-                Österreich
+                80331 München<br />
+                Deutschland
               </p>
               <p className="text-lg mb-6">
                 Telefon: [Ihre Telefonnummer]<br />
@@ -238,6 +248,54 @@ export default function Impressum() {
               </ul>
               <p className="text-lg mb-6">
                 Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten – von ihrer Speicherung abgesehen – nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.
+              </p>
+
+              <h4 className="text-xl font-bold text-[#6B4E3D] mt-4 mb-3">Beschwerderecht bei der zuständigen Aufsichtsbehörde</h4>
+              <p className="text-lg mb-6">
+                Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde zu, insbesondere in dem Mitgliedstaat ihres gewöhnlichen Aufenthalts, ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes. Die zuständige Aufsichtsbehörde für Bayern ist:
+              </p>
+              <p className="text-lg mb-6">
+                <strong>Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)</strong><br />
+                Promenade 18<br />
+                91522 Ansbach<br />
+                Deutschland<br />
+                Telefon: +49 (0) 981 53 1300<br />
+                E-Mail: poststelle@lda.bayern.de<br />
+                Website: <a href="https://www.lda.bayern.de" target="_blank" rel="noopener noreferrer" className="text-[#F5A623] hover:underline">www.lda.bayern.de</a>
+              </p>
+
+              <h3 className="text-2xl font-bold text-[#6B4E3D] mt-6 mb-4">4. Datenerfassung auf dieser Website</h3>
+              
+              <h4 className="text-xl font-bold text-[#6B4E3D] mt-4 mb-3">Server-Log-Dateien</h4>
+              <p className="text-lg mb-6">
+                Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+              </p>
+              <ul className="list-disc list-inside text-lg mb-6 space-y-2 ml-4">
+                <li>Browsertyp und Browserversion</li>
+                <li>verwendetes Betriebssystem</li>
+                <li>Referrer URL</li>
+                <li>Hostname des zugreifenden Rechners</li>
+                <li>Uhrzeit der Serveranfrage</li>
+                <li>IP-Adresse</li>
+              </ul>
+              <p className="text-lg mb-6">
+                Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website – hierzu müssen die Server-Log-Files erfasst werden.
+              </p>
+
+              <h4 className="text-xl font-bold text-[#6B4E3D] mt-4 mb-3">Cookies</h4>
+              <p className="text-lg mb-6">
+                Diese Website verwendet keine Cookies oder ähnliche Tracking-Technologien. Es werden keine personenbezogenen Daten durch Cookies erfasst oder gespeichert.
+              </p>
+
+              <h4 className="text-xl font-bold text-[#6B4E3D] mt-4 mb-3">Kontaktaufnahme</h4>
+              <p className="text-lg mb-6">
+                Wenn Sie uns per E-Mail oder Kontaktformular kontaktieren, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+              </p>
+              <p className="text-lg mb-6">
+                Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), sofern diese abgefragt wurde.
+              </p>
+              <p className="text-lg mb-6">
+                Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere gesetzliche Aufbewahrungsfristen – bleiben unberührt.
               </p>
             </div>
           </div>
