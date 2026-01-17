@@ -203,15 +203,15 @@ export default function Home() {
             </div>
 
             {/* Main Headline - GRÖSSERE TEXTE */}
-            <div className="mb-3 sm:mb-5 md:mb-6">
+            <div className={`mb-3 sm:mb-5 md:mb-6 ${darkMode ? 'mt-8 sm:mt-12 md:mt-16' : ''}`}>
               <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9]">
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
-                    {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
+                    {darkMode ? 'gefährlich' : 'Fahre sicher,'}
                   </div>
                   <div className={`${darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
                     {darkMode ? (
-                      '• dunkel'
+                      'dunkel'
                     ) : (
                       <>
                         <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
