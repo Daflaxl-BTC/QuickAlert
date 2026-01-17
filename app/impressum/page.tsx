@@ -56,17 +56,16 @@ export default function Impressum() {
                   <strong>QuickAlert e.U.</strong>
                 </p>
                 <p>
-                  [Ihre Straße und Hausnummer]<br />
-                  80331 München<br />
+                  Scharnhorststr. 46<br />
+                  80992 München<br />
                   Deutschland
                 </p>
                 <p>
                   <strong>Geschäftsführer/Inhaber:</strong><br />
-                  [Ihr Name]
+                  Felix Bredl
                 </p>
                 <p>
-                  <strong>UID-Nummer:</strong> [Ihre UID-Nummer, falls vorhanden]<br />
-                  <strong>Firmenbuchnummer:</strong> [Ihre Firmenbuchnummer, falls eingetragen]
+                  <strong>Hinweis:</strong> Die Firmeneintragung ist aktuell in Vorbereitung. Es erfolgt kein Verkauf vor der Eintragung.
                 </p>
               </div>
             </div>
@@ -76,8 +75,7 @@ export default function Impressum() {
               <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Kontakt</h2>
               <div className="space-y-4 text-lg">
                 <p>
-                  <strong>Telefon:</strong> [Ihre Telefonnummer]<br />
-                  <strong>E-Mail:</strong> [Ihre E-Mail-Adresse]
+                  <strong>E-Mail:</strong> felix-bredl@gmx.de
                 </p>
               </div>
             </div>
@@ -87,9 +85,9 @@ export default function Impressum() {
               <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Verantwortlich für den Inhalt</h2>
               <div className="space-y-4 text-lg">
                 <p>
-                  [Ihr Name]<br />
-                  [Ihre Straße und Hausnummer]<br />
-                  80331 München<br />
+                  Felix Bredl<br />
+                  Scharnhorststr. 46<br />
+                  80992 München<br />
                   Deutschland
                 </p>
               </div>
@@ -178,13 +176,12 @@ export default function Impressum() {
               </p>
               <p className="text-lg mb-6">
                 QuickAlert e.U.<br />
-                [Ihre Straße und Hausnummer]<br />
-                80331 München<br />
+                Scharnhorststr. 46<br />
+                80992 München<br />
                 Deutschland
               </p>
               <p className="text-lg mb-6">
-                Telefon: [Ihre Telefonnummer]<br />
-                E-Mail: [Ihre E-Mail-Adresse]
+                E-Mail: felix-bredl@gmx.de
               </p>
               <p className="text-lg mb-6">
                 Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
