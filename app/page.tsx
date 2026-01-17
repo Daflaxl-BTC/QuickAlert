@@ -181,7 +181,7 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-0 sm:pt-4 md:pt-10 lg:pt-14 pb-12 sm:pb-20">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 -mt-8 sm:-mt-4 md:mt-0 pt-0 sm:pt-4 md:pt-10 lg:pt-14 pb-12 sm:pb-20">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized - weiter nach oben */}
             <div className="grid place-items-start mb-2 sm:mb-4">
@@ -278,10 +278,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll Indicator - Mobile optimized */}
-        <div className={`absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 sm:gap-2 animate-bounce z-20 ${darkMode ? 'bottom-4 sm:bottom-8' : 'bottom-16 sm:bottom-24'}`}>
-          <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white'}`}>SCROLL</span>
-          <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Scroll Indicator - Fixed am unteren Rand, mittig zentriert */}
+        <div className={`fixed left-0 right-0 bottom-6 sm:bottom-8 flex flex-col items-center gap-1 sm:gap-2 animate-bounce z-20 pointer-events-none`}>
+          <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
+          <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
