@@ -183,36 +183,36 @@ export default function Home() {
         {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-12 sm:pt-20 md:pt-24 pb-12 sm:pb-20">
           <div className="max-w-4xl">
-            {/* Date Badge */}
-            <div className="grid place-items-start mb-8">
+            {/* Date Badge - Mobile optimized */}
+            <div className="grid place-items-start mb-4 sm:mb-8">
               <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <div className="relative inline-flex items-center justify-center w-[260px] sm:w-[280px] h-10 sm:h-11 px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
-                  <span className="w-full text-center text-sm sm:text-base font-black text-[#e5e5e5] tracking-wide">Seit 08.05.1968</span>
+                <div className="relative inline-flex items-center justify-center w-[200px] sm:w-[260px] md:w-[280px] h-8 sm:h-10 md:h-11 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
+                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
+                  <span className="w-full text-center text-xs sm:text-sm md:text-base font-black text-[#e5e5e5] tracking-wide">Seit 08.05.1968</span>
                 </div>
               </div>
               <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <div className="relative inline-flex items-center justify-center w-[260px] sm:w-[280px] h-10 sm:h-11 px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
-                  <span className="w-full text-center text-sm sm:text-base font-black text-[#F5E6D3] tracking-wide">NEU 2026</span>
+                <div className="relative inline-flex items-center justify-center w-[200px] sm:w-[260px] md:w-[280px] h-8 sm:h-10 md:h-11 px-4 sm:px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
+                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
+                  <span className="w-full text-center text-xs sm:text-sm md:text-base font-black text-[#F5E6D3] tracking-wide">NEU 2026</span>
                 </div>
               </div>
             </div>
 
             {/* Main Headline - Mobile optimized */}
-            <div className="mb-6 sm:mb-8">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9]">
-                <div className="space-y-2 sm:space-y-4">
-                  <div className={darkMode ? 'text-red-500' : 'text-[#F5E6D3]'}>
+            <div className="mb-4 sm:mb-6 md:mb-8">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] sm:leading-[0.9]">
+                <div className="space-y-1.5 sm:space-y-2 md:space-y-4">
+                  <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
                     {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
                   </div>
-                  <div className={darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'}>
+                  <div className={`${darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
                     {darkMode ? (
                       '• dunkel'
                     ) : (
                       <>
-                        <span className="text-[#F5A623]">helfe</span>
-                        <span className="text-[#F5E6D3]"> sicher</span>
+                        <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
+                        <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
                       </>
                     )}
                   </div>
@@ -221,22 +221,22 @@ export default function Home() {
             </div>
 
             {/* Description - Mobile optimized */}
-            <div className="grid place-items-start mb-8 sm:mb-12 max-w-2xl">
-              <p className={`col-start-1 row-start-1 text-base sm:text-xl md:text-2xl lg:text-3xl leading-relaxed transition-none ${darkMode ? 'opacity-100 text-[#e5e5e5]/80' : 'opacity-0 pointer-events-none'}`}>
+            <div className="grid place-items-start mb-6 sm:mb-8 md:mb-12 max-w-2xl">
+              <p className={`col-start-1 row-start-1 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-100 text-[#e5e5e5]/90' : 'opacity-0 pointer-events-none'}`}>
                 Herkömmliche Warndreiecke: Ein gefährliches Risiko auf der Autobahn.
               </p>
-              <p className={`col-start-1 row-start-1 text-base sm:text-xl md:text-2xl lg:text-3xl leading-relaxed transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/90'}`}>
+              <p className={`col-start-1 row-start-1 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/95'}`}>
                 Das weltweit modernste magnetische LED-Warnlicht. Polizei-Qualität mit elegantem Design, das die Nacht erhellt.
               </p>
             </div>
 
             {/* CTA Buttons - Mobile optimized */}
             <div className="grid place-items-start">
-              <div className={`col-start-1 row-start-1 flex flex-col sm:flex-row gap-3 sm:gap-4 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <a 
                   href="#pricing"
                   onClick={(e) => handleNavClick(e, 'pricing')}
-                  className="group relative px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#8b0000] hover:bg-[#a00000] border-2 border-[#ff4444] font-bold text-sm sm:text-lg overflow-hidden transition-all duration-300 text-[#ffffff]"
+                  className="group relative w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#8b0000] hover:bg-[#a00000] border-2 border-[#ff4444] font-bold text-sm sm:text-lg overflow-hidden transition-all duration-300 text-[#ffffff] text-center"
                   style={{
                     boxShadow: '0 0 30px rgba(139, 0, 0, 0.6)'
                   }}
@@ -249,10 +249,10 @@ export default function Home() {
                   </span>
                 </a>
               </div>
-              <div className={`col-start-1 row-start-1 flex flex-col sm:flex-row gap-3 sm:gap-4 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
                   href="#pricing"
-                  className="group relative px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-lg overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3]"
+                  className="group relative w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-lg overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3] text-center"
                   style={{
                     boxShadow: '0 0 30px rgba(212, 184, 150, 0.4)'
                   }}
@@ -266,7 +266,7 @@ export default function Home() {
                 </a>
                 <a 
                   href="#features"
-                  className="px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-sm sm:text-lg hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3]"
+                  className="w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-sm sm:text-lg hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3] text-center"
                   style={{
                     boxShadow: '0 0 20px rgba(159, 181, 115, 0.4)'
                   }}
