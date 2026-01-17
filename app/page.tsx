@@ -186,8 +186,8 @@ export default function Home() {
         {/* Hero Content - Overlaid to avoid layout shifts - Gleiche Größe für beide Modi */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-8 sm:pb-20 pt-4 sm:pt-12 md:pt-28 lg:pt-32">
           <div className="max-w-4xl">
-            {/* Date Badge - Mobile optimized - weiter nach oben */}
-            <div className="grid place-items-start mb-2 sm:mb-4">
+            {/* Date Badge - Mobile optimized */}
+            <div className="grid place-items-start mb-6 sm:mb-8 md:mb-10">
               <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
