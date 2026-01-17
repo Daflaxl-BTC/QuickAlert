@@ -155,8 +155,8 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1a1a1a]/95"></div>
             </div>
 
-            {/* Warndreieck Image - Small overlay top right - Mobile optimized */}
-            <div className="absolute top-[85vh] sm:top-96 right-4 sm:right-8 z-20 w-48 sm:w-64 md:w-80 lg:w-96">
+            {/* Warndreieck Image - Centered between buttons and next section - Mobile optimized */}
+            <div className="absolute top-[60vh] sm:top-96 left-1/2 transform -translate-x-1/2 sm:left-auto sm:transform-none sm:right-8 z-20 w-48 sm:w-64 md:w-80 lg:w-96">
               <div className="relative rounded-lg overflow-hidden border-2 border-[#4a4a4a] shadow-2xl">
                 <Image
                   src="/Warndreieck.jpg"
