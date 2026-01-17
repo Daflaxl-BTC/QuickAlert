@@ -35,7 +35,7 @@ export default function Home() {
       </button>
 
       {/* Dark Mode Toggle with Warndreieck Link - Mobile optimized */}
-      <div className="fixed right-2 sm:right-4 top-20 sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
+      <div className="fixed right-2 sm:right-4 top-[60vh] sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
         {/* Warndreieck Link with Arrow - Mobile optimized */}
         <Link 
           href="/warum-nicht-das-warndreieck" 
@@ -63,7 +63,7 @@ export default function Home() {
       <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
         <div className="container mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-1.5 sm:py-2">
           <p className={`text-center text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
-            <span className="font-bold">Pro:</span> <span className="hidden sm:inline">EU Zulassung nach IDIADA Real Decreto 2822/1998</span><span className="sm:hidden">EU Zulassung</span>
+            <span className="font-bold">Pro:</span> EU Zulassung nach IDIADA Real Decreto 2822/1998
           </p>
         </div>
       </div>
