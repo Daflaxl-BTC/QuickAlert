@@ -36,26 +36,13 @@ export default function Home() {
 
       {/* Dark Mode Toggle with Warndreieck Link - Mobile optimized */}
       <div className="fixed right-2 sm:right-4 top-[50vh] sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
-        {/* Warndreieck Link with Arrow - Mobile optimized */}
-        <Link 
-          href="/warum-nicht-das-warndreieck" 
+        {/* Warndreieck Link with Arrow - Mobile optimized - Aktiviert nur Dark Mode */}
+        <button
           onClick={(e) => {
-            if (!darkMode) {
-              e.preventDefault()
-              setDarkMode(true)
-              setTimeout(() => {
-                window.location.href = '/warum-nicht-das-warndreieck'
-              }, 100)
-            } else {
-              // Im Dark Mode: Sicherstellen dass Dark Mode aktiv bleibt
-              e.preventDefault()
-              setDarkMode(true)
-              setTimeout(() => {
-                window.location.href = '/warum-nicht-das-warndreieck'
-              }, 50)
-            }
+            e.preventDefault()
+            setDarkMode(true)
           }}
-          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 ${darkMode ? 'px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' : 'px-3 py-1.5 sm:px-4 sm:py-2 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
+          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer ${darkMode ? 'px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' : 'px-3 py-1.5 sm:px-4 sm:py-2 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
           style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {}}
         >
           <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-xs sm:text-base md:text-lg' : 'text-[10px] sm:text-xs md:text-sm font-semibold'}`}>
@@ -71,7 +58,7 @@ export default function Home() {
           <svg className={`group-hover:translate-x-1 transition-transform ${darkMode ? 'w-4 h-4 sm:w-5 sm:h-5 text-[#F5A623]' : 'w-3 h-3 sm:w-4 sm:h-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
-        </Link>
+        </button>
         <DarkModeToggle />
       </div>
       
