@@ -21,11 +21,16 @@ export const metadata: Metadata = {
   description: 'Das moderne magnetische gelbe LED Warnlicht für maximale Sicherheit. Einfach zu montieren, wetterfest und zuverlässig. BASE und PRO Versionen verfügbar.',
   keywords: 'LED Warnlicht, magnetisches Warnlicht, Auto Warnlicht, Pannenlicht, Sicherheitslicht, QuickAlert',
   authors: [{ name: 'QuickAlert' }],
+  metadataBase: new URL('https://quickalert.eu'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'QuickAlert - Magnetisches LED Warnlicht',
     description: 'Das moderne magnetische gelbe LED Warnlicht für maximale Sicherheit',
     type: 'website',
     locale: 'de_DE',
+    url: 'https://quickalert.eu',
     siteName: 'QuickAlert',
   },
   twitter: {
