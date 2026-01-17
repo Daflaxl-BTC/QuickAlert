@@ -23,10 +23,10 @@ export default function Home() {
 
   return (
     <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-[#F5E6D3] text-[#3D2F1F] wood-texture'}`}>
-      {/* Back to Top Arrow - Left Middle */}
+      {/* Back to Top Arrow - Hidden on mobile, visible on desktop */}
       <button 
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`fixed left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full backdrop-blur-md border-2 transition-all duration-300 shadow-xl group hover:scale-110 ${darkMode ? 'bg-[#2d2d2d]/80 border-[#4a4a4a] text-[#e5e5e5] hover:bg-[#3d3d3d]' : 'bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
+        className={`hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full backdrop-blur-md border-2 transition-all duration-300 shadow-xl group hover:scale-110 ${darkMode ? 'bg-[#2d2d2d]/80 border-[#4a4a4a] text-[#e5e5e5] hover:bg-[#3d3d3d]' : 'bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
         style={darkMode ? {boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'} : {boxShadow: '0 0 20px rgba(212, 184, 150, 0.3)'}}
       >
         <svg className="w-6 h-6 transform rotate-180 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,15 +34,15 @@ export default function Home() {
         </svg>
       </button>
 
-      {/* Dark Mode Toggle with Warndreieck Link */}
-      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 flex items-center gap-4">
-        {/* Warndreieck Link with Arrow */}
+      {/* Dark Mode Toggle with Warndreieck Link - Mobile optimized */}
+      <div className="fixed right-2 sm:right-4 top-20 sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
+        {/* Warndreieck Link with Arrow - Mobile optimized */}
         <Link 
           href="/warum-nicht-das-warndreieck" 
-          className={`group flex items-center gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 ${darkMode ? 'px-6 py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' : 'px-4 py-2 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
+          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 ${darkMode ? 'px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' : 'px-3 py-1.5 sm:px-4 sm:py-2 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
           style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {}}
         >
-          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-base sm:text-lg' : 'text-xs sm:text-sm font-semibold'}`}>
+          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-xs sm:text-base md:text-lg' : 'text-[10px] sm:text-xs md:text-sm font-semibold'}`}>
             {darkMode ? (
               <>
                 <span className="text-white">Warum lieber </span>
@@ -52,28 +52,28 @@ export default function Home() {
               </>
             ) : 'WARUM NICHT DAS WARNDREIECK?'}
           </span>
-          <svg className={`group-hover:translate-x-1 transition-transform ${darkMode ? 'w-5 h-5 text-[#F5A623]' : 'w-4 h-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={`group-hover:translate-x-1 transition-transform ${darkMode ? 'w-4 h-4 sm:w-5 sm:h-5 text-[#F5A623]' : 'w-3 h-3 sm:w-4 sm:h-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </Link>
         <DarkModeToggle />
       </div>
       
-      {/* Top Info Bar */}
+      {/* Top Info Bar - Mobile optimized */}
       <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-2">
-          <p className={`text-center text-xs sm:text-sm font-medium transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
-            <span className="font-bold">Pro:</span> EU Zulassung nach IDIADA Real Decreto 2822/1998
+        <div className="container mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-1.5 sm:py-2">
+          <p className={`text-center text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
+            <span className="font-bold">Pro:</span> <span className="hidden sm:inline">EU Zulassung nach IDIADA Real Decreto 2822/1998</span><span className="sm:hidden">EU Zulassung</span>
           </p>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className={`fixed top-[2.5rem] left-0 right-0 z-50 px-6 sm:px-8 lg:px-12 py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`} style={{borderBottomWidth: '2px', borderBottomStyle: 'solid'}}>
+      <nav className={`fixed top-[2.5rem] left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`} style={{borderBottomWidth: '2px', borderBottomStyle: 'solid'}}>
         {/* Logo Links */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Warnleuchte Icon */}
-          <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Strahlen */}
             <path d="M32 4V12" stroke="#F5A623" strokeWidth="3" strokeLinecap="round"/>
             <path d="M32 4V12" stroke="#F5A623" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
@@ -87,7 +87,7 @@ export default function Home() {
             <ellipse cx="32" cy="42" rx="16" ry="6" fill="#4A4A4A"/>
             <ellipse cx="32" cy="40" rx="14" ry="4" fill="#5A5A5A"/>
           </svg>
-          <span className="text-2xl sm:text-3xl font-black font-poppins tracking-tight" style={{ filter: 'drop-shadow(0 0 10px rgba(212, 184, 150, 0.6))' }}>
+          <span className="text-xl sm:text-2xl md:text-3xl font-black font-poppins tracking-tight" style={{ filter: 'drop-shadow(0 0 10px rgba(212, 184, 150, 0.6))' }}>
             <span className={darkMode ? 'text-white' : 'text-white'}>Quick</span>
             <span className="text-[#F5A623]">Alert</span>
           </span>
@@ -117,16 +117,17 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Action Button Right */}
-        <div className="flex items-center gap-4">
+        {/* Action Button Right - Mobile optimized */}
+        <div className="flex items-center gap-2 sm:gap-4">
           <a 
             href="https://www.amazon.de/" 
             target="_blank"
             rel="noopener noreferrer"
-            className={`px-6 py-2.5 rounded-lg font-bold text-sm hover:scale-105 transition-all shadow-lg ${darkMode ? 'bg-[#4a4a4a] text-[#e5e5e5] hover:bg-[#5a5a5a]' : 'bg-[#D4B896] text-[#6B4E3D]'}`}
+            className={`px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm hover:scale-105 transition-all shadow-lg ${darkMode ? 'bg-[#4a4a4a] text-[#e5e5e5] hover:bg-[#5a5a5a]' : 'bg-[#D4B896] text-[#6B4E3D]'}`}
             style={darkMode ? {boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)'} : {boxShadow: '0 0 20px rgba(212, 184, 150, 0.5)'}}
           >
-            JETZT KAUFEN
+            <span className="hidden sm:inline">JETZT KAUFEN</span>
+            <span className="sm:hidden">KAUFEN</span>
           </a>
         </div>
       </nav>
@@ -176,8 +177,8 @@ export default function Home() {
           </>
         )}
 
-        {/* Hero Content - Overlaid to avoid layout shifts */}
-        <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20">
+        {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-24 sm:pt-32 pb-12 sm:pb-20">
           <div className="max-w-4xl">
             {/* Date Badge */}
             <div className="grid place-items-start mb-8">
@@ -195,10 +196,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Main Headline */}
-            <div className="mb-8">
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9]">
-                <div className="space-y-4">
+            {/* Main Headline - Mobile optimized */}
+            <div className="mb-6 sm:mb-8">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.9]">
+                <div className="space-y-2 sm:space-y-4">
                   <div className={darkMode ? 'text-red-500' : 'text-[#F5E6D3]'}>
                     {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
                   </div>
@@ -216,53 +217,53 @@ export default function Home() {
               </h1>
             </div>
 
-            {/* Description */}
-            <div className="grid place-items-start mb-12 max-w-2xl">
-              <p className={`col-start-1 row-start-1 text-xl sm:text-2xl md:text-3xl leading-relaxed transition-none ${darkMode ? 'opacity-100 text-[#e5e5e5]/80' : 'opacity-0 pointer-events-none'}`}>
+            {/* Description - Mobile optimized */}
+            <div className="grid place-items-start mb-8 sm:mb-12 max-w-2xl">
+              <p className={`col-start-1 row-start-1 text-base sm:text-xl md:text-2xl lg:text-3xl leading-relaxed transition-none ${darkMode ? 'opacity-100 text-[#e5e5e5]/80' : 'opacity-0 pointer-events-none'}`}>
                 Herkömmliche Warndreiecke: Ein gefährliches Risiko auf der Autobahn.
               </p>
-              <p className={`col-start-1 row-start-1 text-xl sm:text-2xl md:text-3xl leading-relaxed transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/90'}`}>
+              <p className={`col-start-1 row-start-1 text-base sm:text-xl md:text-2xl lg:text-3xl leading-relaxed transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/90'}`}>
                 Das weltweit modernste magnetische LED-Warnlicht. Polizei-Qualität mit elegantem Design, das die Nacht erhellt.
               </p>
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Mobile optimized */}
             <div className="grid place-items-start">
-              <div className={`col-start-1 row-start-1 flex flex-col sm:flex-row gap-4 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <div className={`col-start-1 row-start-1 flex flex-col sm:flex-row gap-3 sm:gap-4 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <a 
                   href="#pricing"
                   onClick={(e) => handleNavClick(e, 'pricing')}
-                  className="group relative px-10 py-5 rounded-xl bg-[#8b0000] hover:bg-[#a00000] border-2 border-[#ff4444] font-bold text-lg overflow-hidden transition-all duration-300 text-[#ffffff]"
+                  className="group relative px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#8b0000] hover:bg-[#a00000] border-2 border-[#ff4444] font-bold text-sm sm:text-lg overflow-hidden transition-all duration-300 text-[#ffffff]"
                   style={{
                     boxShadow: '0 0 30px rgba(139, 0, 0, 0.6)'
                   }}
                 >
-                  <span className="relative z-10 flex items-center gap-3">
+                  <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                     Abhilfe finden
-                    <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </span>
                 </a>
               </div>
-              <div className={`col-start-1 row-start-1 flex flex-col sm:flex-row gap-4 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <div className={`col-start-1 row-start-1 flex flex-col sm:flex-row gap-3 sm:gap-4 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
                   href="#pricing"
-                  className="group relative px-10 py-5 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-lg overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3]"
+                  className="group relative px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-lg overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3]"
                   style={{
                     boxShadow: '0 0 30px rgba(212, 184, 150, 0.4)'
                   }}
                 >
-                  <span className="relative z-10 flex items-center gap-3">
+                  <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
                     QuickAlert finden
-                    <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </span>
                 </a>
                 <a 
                   href="#features"
-                  className="px-10 py-5 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-lg hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3]"
+                  className="px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-sm sm:text-lg hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3]"
                   style={{
                     boxShadow: '0 0 20px rgba(159, 181, 115, 0.4)'
                   }}
@@ -274,10 +275,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className={`absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-20 ${darkMode ? 'bottom-8' : 'bottom-24'}`}>
-          <span className={`text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white'}`}>SCROLL</span>
-          <svg className={`w-5 h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Scroll Indicator - Mobile optimized */}
+        <div className={`absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1 sm:gap-2 animate-bounce z-20 ${darkMode ? 'bottom-4 sm:bottom-8' : 'bottom-16 sm:bottom-24'}`}>
+          <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white'}`}>SCROLL</span>
+          <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
