@@ -179,30 +179,30 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-4 sm:pt-8 md:pt-16 lg:pt-20 pb-12 sm:pb-20">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-2 sm:pt-6 md:pt-12 lg:pt-16 pb-12 sm:pb-20">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized - weiter nach oben */}
-            <div className="grid place-items-start mb-3 sm:mb-6">
+            <div className="grid place-items-start mb-2 sm:mb-4">
               <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <div className="relative inline-flex items-center justify-center w-[200px] sm:w-[260px] md:w-[280px] h-8 sm:h-10 md:h-11 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
-                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
-                  <span className="w-full text-center text-xs sm:text-sm md:text-base font-black text-[#e5e5e5] tracking-wide">Seit 08.05.1968</span>
+                <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
+                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
+                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#e5e5e5] tracking-wide">Seit 08.05.1968</span>
                 </div>
               </div>
               <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <div className="relative inline-flex items-center justify-center w-[200px] sm:w-[260px] md:w-[280px] h-8 sm:h-10 md:h-11 px-4 sm:px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
-                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
-                  <span className="w-full text-center text-xs sm:text-sm md:text-base font-black text-[#F5E6D3] tracking-wide">NEU 2026</span>
+                <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
+                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
+                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#F5E6D3] tracking-wide">NEU 2026</span>
                 </div>
               </div>
             </div>
 
             {/* Headline und Button nebeneinander - Mobile optimized */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
-              {/* Main Headline - links */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-2 sm:gap-4 md:gap-6 mb-3 sm:mb-5 md:mb-6">
+              {/* Main Headline - links - GRÖSSERE TEXTE */}
               <div className="flex-1">
-                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] sm:leading-[0.9]">
-                  <div className="space-y-1.5 sm:space-y-2 md:space-y-4">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9]">
+                  <div className="space-y-1 sm:space-y-2 md:space-y-3">
                     <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
                       {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
                     </div>
@@ -227,25 +227,25 @@ export default function Home() {
                     e.preventDefault()
                     setDarkMode(true)
                   }}
-                  className="group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer px-3 py-2 sm:px-4 sm:py-2.5 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4] shrink-0"
+                  className="group flex items-center gap-2 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer px-4 py-2.5 sm:px-5 sm:py-3 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4] shrink-0"
                   style={{boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
                 >
-                  <span className="font-bold whitespace-nowrap text-[10px] sm:text-xs md:text-sm font-semibold">
+                  <span className="font-bold whitespace-nowrap text-xs sm:text-sm md:text-base">
                     WARUM NICHT DAS WARNDREIECK?
                   </span>
-                  <svg className="group-hover:translate-x-1 transition-transform w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="group-hover:translate-x-1 transition-transform w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </button>
               )}
             </div>
 
-            {/* Description - Mobile optimized */}
-            <div className="grid place-items-start mb-6 sm:mb-8 md:mb-12 max-w-2xl">
-              <p className={`col-start-1 row-start-1 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-100 text-[#e5e5e5]/90' : 'opacity-0 pointer-events-none'}`}>
+            {/* Description - Mobile optimized - GRÖSSERE TEXTE */}
+            <div className="grid place-items-start mb-5 sm:mb-6 md:mb-10 max-w-2xl">
+              <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-100 text-[#e5e5e5]/90' : 'opacity-0 pointer-events-none'}`}>
                 Herkömmliche Warndreiecke: Ein gefährliches Risiko auf der Autobahn.
               </p>
-              <p className={`col-start-1 row-start-1 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/95'}`}>
+              <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/95'}`}>
                 Das weltweit modernste magnetische LED-Warnlicht. Polizei-Qualität mit elegantem Design, das die Nacht erhellt.
               </p>
             </div>
