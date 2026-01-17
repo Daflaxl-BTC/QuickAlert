@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --quickalert-wood-light: #F5E6D3;
+  --quickalert-wood-medium: #D4B896;
+  --quickalert-wood-dark: #A0825D;
+  --quickalert-wood-darker: #8B6F47;
+  --quickalert-wood-darkest: #6B4E3D;
+  --quickalert-accent-light: #FFD080;
+  --quickalert-accent-medium: #F5A623;
+  --quickalert-accent-dark: #E09000;
+  --quickalert-accent-darker: #CC8000;
+  --quickalert-accent-darkest: #B87000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[#F5E6D3] text-[#3D2F1F];
+}
+
+/* Smooth scrolling for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Warm Wood & Bamboo Glow Effects */
+@layer utilities {
+  .wood-glow {
+    box-shadow: 0 0 20px rgba(212, 184, 150, 0.4),
+                0 0 40px rgba(212, 184, 150, 0.2),
+                0 0 60px rgba(212, 184, 150, 0.1);
+  }
+  
+  .bamboo-glow {
+    box-shadow: 0 0 20px rgba(245, 166, 35, 0.4),
+                0 0 40px rgba(245, 166, 35, 0.2);
+  }
+  
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  /* Wood Texture Pattern */
+  .wood-texture {
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        rgba(160, 130, 93, 0.08) 0px,
+        rgba(139, 111, 71, 0.15) 1px,
+        transparent 1px,
+        transparent 3px,
+        rgba(212, 184, 150, 0.05) 3px,
+        rgba(160, 130, 93, 0.06) 4px,
+        transparent 4px,
+        transparent 6px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(139, 111, 71, 0.12) 0px,
+        rgba(160, 130, 93, 0.08) 1px,
+        transparent 1px,
+        transparent 8px,
+        rgba(212, 184, 150, 0.06) 8px,
+        rgba(160, 130, 93, 0.1) 9px,
+        transparent 9px,
+        transparent 16px,
+        rgba(139, 111, 71, 0.08) 16px,
+        rgba(160, 130, 93, 0.06) 17px,
+        transparent 17px,
+        transparent 24px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(245, 230, 211, 0.8) 0%,
+        rgba(232, 213, 196, 0.9) 50%,
+        rgba(245, 230, 211, 0.8) 100%
+      );
+    background-size: 100% 6px, 100% 100%, 100% 100%;
+    position: relative;
+  }
+
+  .wood-texture::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(ellipse 200px 400px at 20% 50%, rgba(160, 130, 93, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 300px 500px at 60% 50%, rgba(139, 111, 71, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 250px 450px at 80% 50%, rgba(160, 130, 93, 0.15) 0%, transparent 60%),
+      repeating-linear-gradient(
+        5deg,
+        transparent 0px,
+        rgba(139, 111, 71, 0.05) 1px,
+        transparent 2px,
+        transparent 80px
+      );
+    pointer-events: none;
+  }
+
+  /* Bamboo Texture Pattern */
+  .bamboo-texture {
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(245, 166, 35, 0.25) 2px,
+        rgba(245, 166, 35, 0.25) 3px,
+        transparent 3px,
+        transparent 5px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(224, 144, 0, 0.18) 0px,
+        rgba(224, 144, 0, 0.18) 1px,
+        transparent 1px,
+        transparent 3px,
+        rgba(204, 128, 0, 0.15) 3px,
+        rgba(204, 128, 0, 0.15) 4px,
+        transparent 4px,
+        transparent 6px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(199, 216, 160, 0.9) 0%,
+        rgba(181, 200, 138, 0.95) 50%,
+        rgba(199, 216, 160, 0.9) 100%
+      );
+    background-size: 100% 5px, 100% 100%, 100% 100%;
+    position: relative;
+  }
+
+  .bamboo-texture::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 18px,
+        rgba(204, 128, 0, 0.2) 18px,
+        rgba(204, 128, 0, 0.2) 20px,
+        transparent 20px,
+        transparent 38px
+      ),
+      linear-gradient(90deg, rgba(204, 128, 0, 0.15) 0%, transparent 20%, transparent 80%, rgba(204, 128, 0, 0.15) 100%);
+    background-size: 100% 38px, 100% 100%;
+    pointer-events: none;
+  }
+
+  /* Wood Grain SVG Pattern */
+  .wood-grain {
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grain' width='120' height='120' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 50 Q30 45, 60 50 T120 50' stroke='rgba(139,111,71,0.25)' stroke-width='1.5' fill='none'/%3E%3Cpath d='M0 70 Q35 65, 70 70 T120 70' stroke='rgba(160,130,93,0.2)' stroke-width='1.2' fill='none'/%3E%3Cpath d='M0 30 Q25 28, 50 30 T120 30' stroke='rgba(139,111,71,0.18)' stroke-width='1' fill='none'/%3E%3Cpath d='M0 90 Q40 85, 80 90 T120 90' stroke='rgba(160,130,93,0.15)' stroke-width='0.8' fill='none'/%3E%3Cpath d='M0 10 Q20 8, 40 10 T120 10' stroke='rgba(139,111,71,0.12)' stroke-width='0.6' fill='none'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='120' height='120' fill='url(%23grain)'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+    opacity: 0.5;
+  }
+
+  /* Bamboo Segment Pattern */
+  .bamboo-segments {
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 18px,
+        rgba(204, 128, 0, 0.35) 18px,
+        rgba(204, 128, 0, 0.35) 20px,
+        transparent 20px,
+        transparent 22px,
+        rgba(224, 144, 0, 0.25) 22px,
+        rgba(224, 144, 0, 0.25) 24px,
+        transparent 24px,
+        transparent 42px
+      ),
+      linear-gradient(90deg, rgba(184, 112, 0, 0.2) 0%, transparent 10%, transparent 90%, rgba(184, 112, 0, 0.2) 100%);
+    background-size: 100% 42px, 100% 100%;
+  }
+}

@@ -1,0 +1,106 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Glow Effect - Warm amber glow -->
+  <circle cx="60" cy="60" r="58" fill="url(#outerGlow)" opacity="0.5"/>
+  
+  <!-- Background Circle - Deep warm brown -->
+  <circle cx="60" cy="60" r="50" fill="url(#bgGradient)"/>
+  
+  <!-- Inner Ring - Gold accent -->
+  <circle cx="60" cy="60" r="46" fill="none" stroke="url(#ringGradient)" stroke-width="2"/>
+  
+  <!-- LED Ring Effect - Outer glow ring -->
+  <circle cx="60" cy="60" r="42" fill="none" stroke="#F59E0B" stroke-width="3" opacity="0.6">
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Central Warning Light - Stylized beacon -->
+  <g>
+    <!-- Light Base -->
+    <ellipse cx="60" cy="72" rx="18" ry="6" fill="#8B6F47" opacity="0.8"/>
+    <rect x="48" y="58" width="24" height="16" rx="3" fill="url(#baseGradient)"/>
+    
+    <!-- Light Dome -->
+    <path d="M48 58 C48 58, 48 38, 60 30 C72 38, 72 58, 72 58 Z" fill="url(#domeGradient)"/>
+    
+    <!-- Light Shine Effect -->
+    <path d="M52 54 C52 54, 52 42, 60 36 C64 40, 66 48, 66 54 Z" fill="url(#shineGradient)" opacity="0.7"/>
+    
+    <!-- Animated Pulse Light -->
+    <circle cx="60" cy="44" r="8" fill="#FBBF24" opacity="0.9">
+      <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0.5;0.9" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="60" cy="44" r="4" fill="#FEF3C7"/>
+  </g>
+  
+  <!-- Light Rays - 360° effect -->
+  <g opacity="0.85">
+    <!-- Main directional rays -->
+    <line x1="60" y1="8" x2="60" y2="18" stroke="url(#rayGradient)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="60" y1="102" x2="60" y2="112" stroke="url(#rayGradient)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="8" y1="60" x2="18" y2="60" stroke="url(#rayGradient)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="102" y1="60" x2="112" y2="60" stroke="url(#rayGradient)" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Diagonal rays -->
+    <line x1="18" y1="18" x2="26" y2="26" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="102" y1="18" x2="94" y2="26" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="18" y1="102" x2="26" y2="94" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="102" y1="102" x2="94" y2="94" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+    
+    <!-- Additional smaller rays for 360° effect -->
+    <line x1="32" y1="12" x2="36" y2="20" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="88" y1="12" x2="84" y2="20" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="12" y1="32" x2="20" y2="36" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="108" y1="32" x2="100" y2="36" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="12" y1="88" x2="20" y2="84" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="108" y1="88" x2="100" y2="84" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="32" y1="108" x2="36" y2="100" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="88" y1="108" x2="84" y2="100" stroke="#D97706" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  </g>
+  
+  <!-- "Q" Letter hint in negative space -->
+  <circle cx="60" cy="88" r="3" fill="#9FB573"/>
+  
+  <!-- Gradient Definitions -->
+  <defs>
+    <radialGradient id="outerGlow" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#FBBF24" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#F59E0B" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#D97706" stop-opacity="0"/>
+    </radialGradient>
+    
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B4E3D"/>
+      <stop offset="50%" stop-color="#5A4030"/>
+      <stop offset="100%" stop-color="#4A3428"/>
+    </linearGradient>
+    
+    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4B896"/>
+      <stop offset="50%" stop-color="#A0825D"/>
+      <stop offset="100%" stop-color="#D4B896"/>
+    </linearGradient>
+    
+    <linearGradient id="baseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A0825D"/>
+      <stop offset="100%" stop-color="#6B4E3D"/>
+    </linearGradient>
+    
+    <linearGradient id="domeGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#B45309"/>
+      <stop offset="30%" stop-color="#D97706"/>
+      <stop offset="60%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#FBBF24"/>
+    </linearGradient>
+    
+    <linearGradient id="shineGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FBBF24" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FEF3C7" stop-opacity="1"/>
+    </linearGradient>
+    
+    <linearGradient id="rayGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+</svg>
