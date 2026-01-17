@@ -181,10 +181,10 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-12 sm:pt-20 md:pt-24 pb-12 sm:pb-20">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-8 sm:pt-12 md:pt-20 lg:pt-24 pb-12 sm:pb-20">
           <div className="max-w-4xl">
-            {/* Date Badge - Mobile optimized */}
-            <div className="grid place-items-start mb-4 sm:mb-8">
+            {/* Date Badge - Mobile optimized - weiter nach oben */}
+            <div className="grid place-items-start mb-3 sm:mb-6">
               <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="relative inline-flex items-center justify-center w-[200px] sm:w-[260px] md:w-[280px] h-8 sm:h-10 md:h-11 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
@@ -199,25 +199,47 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Main Headline - Mobile optimized */}
-            <div className="mb-4 sm:mb-6 md:mb-8">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] sm:leading-[0.9]">
-                <div className="space-y-1.5 sm:space-y-2 md:space-y-4">
-                  <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
-                    {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
+            {/* Headline und Button nebeneinander - Mobile optimized */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
+              {/* Main Headline - links */}
+              <div className="flex-1">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] sm:leading-[0.9]">
+                  <div className="space-y-1.5 sm:space-y-2 md:space-y-4">
+                    <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
+                      {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
+                    </div>
+                    <div className={`${darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
+                      {darkMode ? (
+                        '• dunkel'
+                      ) : (
+                        <>
+                          <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
+                          <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
+                        </>
+                      )}
+                    </div>
                   </div>
-                  <div className={`${darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
-                    {darkMode ? (
-                      '• dunkel'
-                    ) : (
-                      <>
-                        <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
-                        <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </h1>
+                </h1>
+              </div>
+              
+              {/* WARUM NICHT DAS WARNDREIECK Button - rechts */}
+              {!darkMode && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setDarkMode(true)
+                  }}
+                  className="group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer px-3 py-2 sm:px-4 sm:py-2.5 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4] shrink-0"
+                  style={{boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
+                >
+                  <span className="font-bold whitespace-nowrap text-[10px] sm:text-xs md:text-sm font-semibold">
+                    WARUM NICHT DAS WARNDREIECK?
+                  </span>
+                  <svg className="group-hover:translate-x-1 transition-transform w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
+              )}
             </div>
 
             {/* Description - Mobile optimized */}
