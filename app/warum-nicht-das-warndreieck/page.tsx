@@ -4,9 +4,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useDarkMode } from '@/components/DarkModeProvider'
 import DarkModeToggle from '@/components/DarkModeToggle'
+import { useRouter } from 'next/navigation'
 
 export default function WarumNichtDasWarndreieck() {
-  const { darkMode } = useDarkMode()
+  const { darkMode, setDarkMode } = useDarkMode()
+  const router = useRouter()
 
   return (
     <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-[#F5E6D3] text-[#3D2F1F] wood-texture'}`}>
@@ -64,7 +66,16 @@ export default function WarumNichtDasWarndreieck() {
         </div>
 
         <div className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-          <Link href="/warum-nicht-das-warndreieck" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0] underline' : 'text-[#6B4E3D] hover:text-[#A0825D] underline'}`}>WARUM NICHT DAS WARNDREIECK?</Link>
+          <button 
+            onClick={(e) => {
+              e.preventDefault()
+              setDarkMode(true)
+              router.push('/')
+            }}
+            className={`text-sm font-semibold transition-colors cursor-pointer ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0] underline' : 'text-[#6B4E3D] hover:text-[#A0825D] underline'}`}
+          >
+            WARUM NICHT DAS WARNDREIECK?
+          </button>
           <Link href="/#features" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>FEATURES</Link>
           <Link href="/#pricing" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>PREISE</Link>
           <Link href="/#cta" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>KONTAKT</Link>
