@@ -183,8 +183,8 @@ export default function Home() {
           </>
         )}
 
-        {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
-        <div className={`relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-8 sm:pb-20 ${darkMode ? 'pt-8 sm:pt-16 md:pt-32 lg:pt-36' : '-mt-16 sm:-mt-8 md:mt-0 pt-0 sm:pt-4 md:pt-24 lg:pt-28'}`}>
+        {/* Hero Content - Overlaid to avoid layout shifts - Gleiche Größe für beide Modi */}
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-8 sm:pb-20 pt-4 sm:pt-12 md:pt-28 lg:pt-32">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized - weiter nach oben */}
             <div className="grid place-items-start mb-2 sm:mb-4">
