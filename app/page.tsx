@@ -34,8 +34,8 @@ export default function Home() {
         </svg>
       </button>
 
-      {/* Dark Mode Toggle + Warndreieck Button - Rechts in der Mitte */}
-      <div className="fixed right-3 sm:right-4 top-1/2 transform -translate-y-1/2 z-50 flex flex-row items-center gap-2 sm:gap-3">
+      {/* Dark Mode Toggle + Warndreieck Button - Rechts, weiter unten auf Mobile */}
+      <div className="fixed right-3 sm:right-4 top-[58%] sm:top-1/2 transform -translate-y-1/2 z-50 flex flex-row items-center gap-2 sm:gap-3">
         {/* Warndreieck/QuickAlert Button */}
         <button
           onClick={(e) => {
