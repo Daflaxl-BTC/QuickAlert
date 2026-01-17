@@ -34,29 +34,31 @@ export default function Home() {
         </svg>
       </button>
 
-      {/* Dark Mode Toggle with Warndreieck Link - Mobile optimized */}
+      {/* Dark Mode Toggle with Warndreieck Link - IMMER sichtbar, bleibt beim Scrollen mittig */}
       <div className="fixed right-2 sm:right-4 top-[50vh] sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
-        {/* Warum lieber QuickAlert Button - NUR im Dark Mode sichtbar */}
-        {darkMode && (
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              setDarkMode(false)
-            }}
-            className="group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]"
-            style={{boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'}}
-          >
-            <span className="font-bold whitespace-nowrap text-xs sm:text-base md:text-lg">
-              <span className="text-white">Warum lieber </span>
-              <span className="text-white">Quick</span>
-              <span className="text-[#F5A623]">Alert</span>
-              <span className="text-white"> ?</span>
-            </span>
-            <svg className="group-hover:translate-x-1 transition-transform w-4 h-4 sm:w-5 sm:h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </button>
-        )}
+        {/* Warndreieck/QuickAlert Button - IMMER sichtbar */}
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            setDarkMode(!darkMode)
+          }}
+          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer ${darkMode ? 'px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' : 'px-3 py-2 sm:px-5 sm:py-2.5 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
+          style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
+        >
+          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-xs sm:text-base md:text-lg' : 'text-[10px] sm:text-xs md:text-sm'}`}>
+            {darkMode ? (
+              <>
+                <span className="text-white">Warum lieber </span>
+                <span className="text-white">Quick</span>
+                <span className="text-[#F5A623]">Alert</span>
+                <span className="text-white"> ?</span>
+              </>
+            ) : 'WARUM NICHT DAS WARNDREIECK?'}
+          </span>
+          <svg className={`group-hover:translate-x-1 transition-transform ${darkMode ? 'w-4 h-4 sm:w-5 sm:h-5 text-[#F5A623]' : 'w-3 h-3 sm:w-4 sm:h-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
         <DarkModeToggle />
       </div>
       
@@ -197,47 +199,25 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Headline und Button nebeneinander - Mobile optimized */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-2 sm:gap-4 md:gap-6 mb-3 sm:mb-5 md:mb-6">
-              {/* Main Headline - links - GRÖSSERE TEXTE */}
-              <div className="flex-1">
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9]">
-                  <div className="space-y-1 sm:space-y-2 md:space-y-3">
-                    <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
-                      {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
-                    </div>
-                    <div className={`${darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
-                      {darkMode ? (
-                        '• dunkel'
-                      ) : (
-                        <>
-                          <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
-                          <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
-                        </>
-                      )}
-                    </div>
+            {/* Main Headline - GRÖSSERE TEXTE */}
+            <div className="mb-3 sm:mb-5 md:mb-6">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9]">
+                <div className="space-y-1 sm:space-y-2 md:space-y-3">
+                  <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
+                    {darkMode ? '• gefährlich' : 'Fahre Sicher,'}
                   </div>
-                </h1>
-              </div>
-              
-              {/* WARUM NICHT DAS WARNDREIECK Button - rechts */}
-              {!darkMode && (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setDarkMode(true)
-                  }}
-                  className="group flex items-center gap-2 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer px-4 py-2.5 sm:px-5 sm:py-3 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4] shrink-0"
-                  style={{boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
-                >
-                  <span className="font-bold whitespace-nowrap text-xs sm:text-sm md:text-base">
-                    WARUM NICHT DAS WARNDREIECK?
-                  </span>
-                  <svg className="group-hover:translate-x-1 transition-transform w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </button>
-              )}
+                  <div className={`${darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
+                    {darkMode ? (
+                      '• dunkel'
+                    ) : (
+                      <>
+                        <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
+                        <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </h1>
             </div>
 
             {/* Description - Mobile optimized - GRÖSSERE TEXTE */}
