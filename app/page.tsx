@@ -184,7 +184,7 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 -mt-16 sm:-mt-8 md:mt-0 pt-0 sm:pt-4 md:pt-24 lg:pt-28 pb-8 sm:pb-20">
+        <div className={`relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-8 sm:pb-20 ${darkMode ? 'pt-8 sm:pt-16 md:pt-32 lg:pt-36' : '-mt-16 sm:-mt-8 md:mt-0 pt-0 sm:pt-4 md:pt-24 lg:pt-28'}`}>
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized - weiter nach oben */}
             <div className="grid place-items-start mb-2 sm:mb-4">
@@ -529,7 +529,7 @@ export default function Home() {
             <div className={`inline-block px-6 py-2 rounded-full border mb-6 transition-colors duration-300 ${darkMode ? 'bg-[#4a4a4a]/30 border-[#6a6a6a]/50' : 'bg-[#D4B896]/30 border-[#A0825D]/50'}`}>
               <span className={`text-sm font-bold uppercase tracking-wider transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#6B4E3D]'}`}>Warum QuickAlert?</span>
             </div>
-            <h2 className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 px-2 sm:px-0 transition-colors duration-300 break-words ${darkMode ? 'text-[#e5e5e5]' : 'bg-gradient-to-r from-[#6B4E3D] via-[#A0825D] to-[#6B4E3D] bg-clip-text text-transparent'}`}>
+            <h2 className={`text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 px-4 sm:px-0 transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'bg-gradient-to-r from-[#6B4E3D] via-[#A0825D] to-[#6B4E3D] bg-clip-text text-transparent'}`}>
               Technologie die zählt
             </h2>
           </div>
