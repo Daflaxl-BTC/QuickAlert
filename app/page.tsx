@@ -34,33 +34,37 @@ export default function Home() {
         </svg>
       </button>
 
-      {/* Dark Mode Toggle with Warndreieck Link - IMMER sichtbar, bleibt beim Scrollen mittig */}
-      <div className="fixed right-2 sm:right-4 top-[50vh] sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-row items-center gap-2 sm:gap-4">
-        {/* Warndreieck/QuickAlert Button - IMMER sichtbar */}
-        <button
-          onClick={(e) => {
-            e.preventDefault()
-            setDarkMode(!darkMode)
-          }}
-          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer ${darkMode ? 'px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' : 'px-3 py-2 sm:px-5 sm:py-2.5 bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
-          style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
-        >
-          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-xs sm:text-base md:text-lg' : 'text-[10px] sm:text-xs md:text-sm'}`}>
-            {darkMode ? (
-              <>
-                <span className="text-white">Warum lieber </span>
-                <span className="text-white">Quick</span>
-                <span className="text-[#F5A623]">Alert</span>
-                <span className="text-white"> ?</span>
-              </>
-            ) : 'WARUM NICHT DAS WARNDREIECK?'}
-          </span>
-          <svg className={`group-hover:translate-x-1 transition-transform ${darkMode ? 'w-4 h-4 sm:w-5 sm:h-5 text-[#F5A623]' : 'w-3 h-3 sm:w-4 sm:h-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </button>
+      {/* Dark Mode Toggle - Rechts oben auf Mobile, Mitte rechts auf Desktop */}
+      <div className="fixed right-3 top-20 sm:right-4 sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
         <DarkModeToggle />
       </div>
+      
+      {/* Warndreieck/QuickAlert Button - Unter dem Content auf Mobile, rechts Mitte auf Desktop */}
+      <button
+        onClick={(e) => {
+          e.preventDefault()
+          setDarkMode(!darkMode)
+        }}
+        className={`fixed z-50 group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer
+          ${darkMode 
+            ? 'right-3 top-32 sm:right-4 sm:top-1/2 sm:-translate-y-1/2 px-3 py-2 sm:px-6 sm:py-3 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' 
+            : 'hidden sm:flex right-4 top-1/2 -translate-y-1/2 px-5 py-2.5 bg-[#F5E6D3]/90 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
+        style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
+      >
+        <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-xs sm:text-base md:text-lg' : 'text-xs md:text-sm'}`}>
+          {darkMode ? (
+            <>
+              <span className="text-white">Warum lieber </span>
+              <span className="text-white">Quick</span>
+              <span className="text-[#F5A623]">Alert</span>
+              <span className="text-white"> ?</span>
+            </>
+          ) : 'WARUM NICHT DAS WARNDREIECK?'}
+        </span>
+        <svg className={`group-hover:translate-x-1 transition-transform ${darkMode ? 'w-4 h-4 sm:w-5 sm:h-5 text-[#F5A623]' : 'w-4 h-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </button>
       
       {/* Top Info Bar - Mobile optimized */}
       <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
@@ -168,20 +172,20 @@ export default function Home() {
           </>
         ) : (
           <>
-            {/* Light Mode: Original Background */}
+            {/* Light Mode: Original Background - HELLER */}
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{backgroundImage: "url('/Autounfall.png')"}}
             >
-              {/* Warm Overlay with Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#6B4E3D]/80 via-[#8B6F47]/70 to-[#A0825D]/60"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#6B4E3D]/80"></div>
+              {/* Helleres Overlay - weniger Opacity */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#8B6F47]/50 via-[#A0825D]/40 to-[#C4A87C]/30"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#8B6F47]/50"></div>
             </div>
           </>
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Mobile optimized */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 -mt-8 sm:-mt-4 md:mt-0 pt-0 sm:pt-4 md:pt-10 lg:pt-14 pb-12 sm:pb-20">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 -mt-16 sm:-mt-8 md:mt-0 pt-0 sm:pt-4 md:pt-10 lg:pt-14 pb-8 sm:pb-20">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized - weiter nach oben */}
             <div className="grid place-items-start mb-2 sm:mb-4">
@@ -273,6 +277,17 @@ export default function Home() {
                 >
                   Für Händler
                 </a>
+                {/* Mobile-only: Warndreieck Button */}
+                <button
+                  onClick={() => setDarkMode(true)}
+                  className="sm:hidden w-full px-6 py-2.5 rounded-xl bg-[#F5E6D3]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-xs text-[#6B4E3D] text-center flex items-center justify-center gap-2"
+                  style={{boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
+                >
+                  WARUM NICHT DAS WARNDREIECK?
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
