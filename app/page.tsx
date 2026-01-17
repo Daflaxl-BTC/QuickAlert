@@ -65,17 +65,17 @@ export default function Home() {
         <DarkModeToggle />
       </div>
       
-      {/* Top Info Bar - Mobile optimized */}
+      {/* Top Info Bar - Mobile optimized - GLEICHE HÖHE für beide Modi */}
       <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
-        <div className={`container mx-auto px-3 sm:px-6 md:px-8 lg:px-12 ${darkMode ? 'py-0.5 sm:py-1' : 'py-0 sm:py-0.5'}`}>
+        <div className="container mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-0.5 sm:py-1">
           <p className={`text-center text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
             <span className="font-bold">Pro:</span> EU Zulassung nach IDIADA Real Decreto 2822/1998
           </p>
         </div>
       </div>
 
-      {/* Navigation */}
-      <nav className={`fixed ${darkMode ? 'top-[1.25rem] sm:top-[1.75rem] md:top-[2.5rem]' : 'top-[1rem] sm:top-[1.25rem] md:top-[1.75rem]'} left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-12 ${darkMode ? 'py-1.5 sm:py-2 md:py-3 lg:py-4' : 'py-1 sm:py-1.5 md:py-2 lg:py-3'} flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`} style={{borderBottomWidth: '2px', borderBottomStyle: 'solid'}}>
+      {/* Navigation - GLEICHE POSITION und PADDING für beide Modi */}
+      <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-12 py-1.5 sm:py-2 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`} style={{borderBottomWidth: '2px', borderBottomStyle: 'solid'}}>
         {/* Logo Links */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Warnleuchte Icon */}
