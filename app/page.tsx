@@ -35,7 +35,7 @@ export default function Home() {
       </button>
 
       {/* Dark Mode Toggle with Warndreieck Link - IMMER sichtbar, bleibt beim Scrollen mittig */}
-      <div className="fixed right-2 sm:right-4 top-[50vh] sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
+      <div className="fixed right-2 sm:right-4 top-[50vh] sm:top-1/2 sm:transform sm:-translate-y-1/2 z-50 flex flex-row items-center gap-2 sm:gap-4">
         {/* Warndreieck/QuickAlert Button - IMMER sichtbar */}
         <button
           onClick={(e) => {
