@@ -48,17 +48,25 @@ export default function Impressum() {
           </div>
 
           <div className="space-y-12 text-[#6B4E3D]/90 leading-relaxed">
-            {/* Angaben gemäß § 5 TMG */}
+            {/* Angaben gemäß § 5 TMG / UGB */}
             <div className="p-8 rounded-2xl bg-[#F5E6D3]/80 border-2 border-[#D4B896]/40 shadow-lg wood-texture">
-              <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Angaben gemäß § 5 TMG</h2>
+              <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Impressum</h2>
               <div className="space-y-4 text-lg">
                 <p>
-                  <strong>QuickAlert</strong>
+                  <strong>QuickAlert e.U.</strong>
                 </p>
                 <p>
-                  Musterstraße 123<br />
-                  12345 Musterstadt<br />
-                  Deutschland
+                  [Ihre Straße und Hausnummer]<br />
+                  [PLZ] [Ort]<br />
+                  Österreich
+                </p>
+                <p>
+                  <strong>Geschäftsführer/Inhaber:</strong><br />
+                  [Ihr Name]
+                </p>
+                <p>
+                  <strong>UID-Nummer:</strong> [Ihre UID-Nummer, falls vorhanden]<br />
+                  <strong>Firmenbuchnummer:</strong> [Ihre Firmenbuchnummer, falls eingetragen]
                 </p>
               </div>
             </div>
@@ -68,21 +76,21 @@ export default function Impressum() {
               <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Kontakt</h2>
               <div className="space-y-4 text-lg">
                 <p>
-                  <strong>Telefon:</strong> +49 (0) 123 456789<br />
-                  <strong>E-Mail:</strong> info@quickalert.de
+                  <strong>Telefon:</strong> [Ihre Telefonnummer]<br />
+                  <strong>E-Mail:</strong> [Ihre E-Mail-Adresse]
                 </p>
               </div>
             </div>
 
-            {/* Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV */}
+            {/* Verantwortlich für den Inhalt */}
             <div className="p-8 rounded-2xl bg-[#F5E6D3]/80 border-2 border-[#D4B896]/40 shadow-lg wood-texture">
-              <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+              <h2 className="text-3xl font-black text-[#6B4E3D] mb-6">Verantwortlich für den Inhalt</h2>
               <div className="space-y-4 text-lg">
                 <p>
-                  Max Mustermann<br />
-                  Musterstraße 123<br />
-                  12345 Musterstadt<br />
-                  Deutschland
+                  [Ihr Name]<br />
+                  [Ihre Straße und Hausnummer]<br />
+                  [PLZ] [Ort]<br />
+                  Österreich
                 </p>
               </div>
             </div>
@@ -93,7 +101,7 @@ export default function Impressum() {
               
               <h3 className="text-2xl font-bold text-[#6B4E3D] mt-6 mb-4">Haftung für Inhalte</h3>
               <p className="text-lg mb-6">
-                Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+                Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß den Bestimmungen des österreichischen Rechts für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
               </p>
 
               <h3 className="text-2xl font-bold text-[#6B4E3D] mt-6 mb-4">Haftung für Links</h3>
@@ -103,7 +111,7 @@ export default function Impressum() {
 
               <h3 className="text-2xl font-bold text-[#6B4E3D] mt-6 mb-4">Urheberrecht</h3>
               <p className="text-lg mb-6">
-                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem österreichischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
               </p>
             </div>
 
@@ -159,14 +167,14 @@ export default function Impressum() {
                 Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
               </p>
               <p className="text-lg mb-6">
-                QuickAlert<br />
-                Musterstraße 123<br />
-                12345 Musterstadt<br />
-                Deutschland
+                QuickAlert e.U.<br />
+                [Ihre Straße und Hausnummer]<br />
+                [PLZ] [Ort]<br />
+                Österreich
               </p>
               <p className="text-lg mb-6">
-                Telefon: +49 (0) 123 456789<br />
-                E-Mail: info@quickalert.de
+                Telefon: [Ihre Telefonnummer]<br />
+                E-Mail: [Ihre E-Mail-Adresse]
               </p>
               <p className="text-lg mb-6">
                 Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
