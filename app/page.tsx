@@ -202,22 +202,22 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Main Headline - GRÖSSERE TEXTE - Gleiche Position für beide Modi */}
-            <div className="mb-3 sm:mb-5 md:mb-6">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9]">
+            {/* Main Headline - GRÖSSERE TEXTE - Grid für gleiche Höhe */}
+            <div className="grid place-items-start mb-3 sm:mb-5 md:mb-6">
+              {/* Dark Mode Headline */}
+              <h1 className={`col-start-1 row-start-1 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
-                  <div className={`${darkMode ? 'text-red-500' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
-                    {darkMode ? 'gefährlich' : 'Fahre sicher,'}
-                  </div>
-                  <div className={`${darkMode ? 'text-[#9a9a9a]' : 'text-[#F5E6D3]'} drop-shadow-lg`}>
-                    {darkMode ? (
-                      'dunkel'
-                    ) : (
-                      <>
-                        <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
-                        <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
-                      </>
-                    )}
+                  <div className="text-red-500 drop-shadow-lg">gefährlich</div>
+                  <div className="text-[#9a9a9a] drop-shadow-lg">dunkel</div>
+                </div>
+              </h1>
+              {/* Light Mode Headline */}
+              <h1 className={`col-start-1 row-start-1 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <div className="space-y-1 sm:space-y-2 md:space-y-3">
+                  <div className="text-[#F5E6D3] drop-shadow-lg">Fahre sicher,</div>
+                  <div className="text-[#F5E6D3] drop-shadow-lg">
+                    <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
+                    <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
                   </div>
                 </div>
               </h1>
@@ -233,7 +233,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* CTA Buttons - Mobile optimized */}
+            {/* CTA Buttons - Mobile optimized - BEIDE mit 2 Buttons für gleiche Höhe */}
             <div className="grid place-items-start">
               <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <a 
@@ -251,6 +251,10 @@ export default function Home() {
                     </svg>
                   </span>
                 </a>
+                {/* Unsichtbarer Platzhalter für gleiche Höhe wie Light Mode */}
+                <div className="w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl border-2 border-transparent font-bold text-sm sm:text-lg invisible" aria-hidden="true">
+                  Platzhalter
+                </div>
               </div>
               <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
