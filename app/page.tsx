@@ -184,7 +184,7 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Gleiche Größe für beide Modi */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-8 sm:pb-20 pt-28 sm:pt-32 md:pt-44 lg:pt-52">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-8 sm:pb-16 pt-24 sm:pt-28 md:pt-32 lg:pt-36">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized */}
             <div className="grid place-items-start mb-6 sm:mb-8 md:mb-10">
@@ -233,8 +233,9 @@ export default function Home() {
               </p>
             </div>
 
-            {/* CTA Buttons - Mobile optimized - BEIDE mit 2 Buttons für gleiche Höhe */}
+            {/* CTA Buttons - Mobile optimized */}
             <div className="grid place-items-start">
+              {/* Dark Mode Buttons */}
               <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <a 
                   href="#pricing"
@@ -251,11 +252,8 @@ export default function Home() {
                     </svg>
                   </span>
                 </a>
-                {/* Unsichtbarer Platzhalter für gleiche Höhe wie Light Mode */}
-                <div className="w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl border-2 border-transparent font-bold text-sm sm:text-lg invisible" aria-hidden="true">
-                  Platzhalter
-                </div>
               </div>
+              {/* Light Mode Buttons */}
               <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
                   href="#pricing"
