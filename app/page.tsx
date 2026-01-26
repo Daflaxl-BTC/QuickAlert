@@ -254,24 +254,24 @@ export default function Home() {
                 </a>
               </div>
               {/* Light Mode Buttons */}
-              <div className={`col-start-1 row-start-1 flex flex-col gap-2 sm:gap-2.5 md:gap-3 transition-none w-full ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <div className={`col-start-1 row-start-1 flex flex-col items-start gap-2 sm:gap-2.5 md:gap-3 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
                   href="#pricing"
-                  className="group relative w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-lg overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3] text-center"
+                  className="group relative px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-base overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3]"
                   style={{
                     boxShadow: '0 0 30px rgba(212, 184, 150, 0.4)'
                   }}
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+                  <span className="relative z-10 flex items-center gap-2">
                     QuickAlert finden
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </span>
                 </a>
                 <a 
                   href="#features"
-                  className="w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-sm sm:text-lg hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3] text-center"
+                  className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-sm sm:text-base hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3]"
                   style={{
                     boxShadow: '0 0 20px rgba(159, 181, 115, 0.4)'
                   }}
