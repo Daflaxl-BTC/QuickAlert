@@ -338,8 +338,7 @@ export default function Home() {
                      <div className="text-zinc-500 text-xs mt-2">Schwerverletzte</div>
                    </div>
                    <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Bußgeld</div>
-                     {/* Correct spelling verified: Bußgeld */}
+                     <div className="text-zinc-500 text-sm font-bold tracking-wider mb-2">Bußgeld</div>
                      <div className="text-4xl font-black text-white">30 €</div>
                      <div className="text-zinc-500 text-xs mt-2">+ Haftung</div>
                    </div>
