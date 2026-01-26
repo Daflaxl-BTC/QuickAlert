@@ -139,7 +139,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pb-20 sm:pb-24 md:pb-32">
+      <section className="relative min-h-[105vh] sm:min-h-[110vh] flex items-center overflow-hidden pb-32 sm:pb-36 md:pb-40">
         {darkMode ? (
           <>
             {/* Dark Mode: Warndreieck Background */}
