@@ -295,141 +295,145 @@ export default function Home() {
       {/* Unified Modern Content for both Light and Dark Mode */}
       
       {/* Features Section - Tech Grid */}
-      <section id="features" className={`py-24 sm:py-32 transition-colors duration-300 ${darkMode ? 'bg-[#0f172a]' : 'bg-slate-50'}`}>
+      <section id="features" className={`py-24 sm:py-32 transition-colors duration-300 ${darkMode ? 'bg-zinc-950' : 'bg-gradient-to-b from-white to-zinc-50'}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-            <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-amber-500' : 'text-amber-600'}`}>
+            <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
               Innovation
-                </h2>
-            <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+            </h2>
+            <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
               Technologie, die Leben rettet.
             </h3>
-            <p className={`text-lg sm:text-xl leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-lg sm:text-xl leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
               Das Warndreieck war gestern. QuickAlert ist die intelligente Evolution der Unfallabsicherung.
-                    </p>
-                  </div>
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Feature 1 - Magnet */}
-            <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${darkMode ? 'bg-[#1e293b] border-slate-700 hover:border-amber-500/50 hover:shadow-amber-500/10' : 'bg-white border-slate-200 hover:border-amber-400/50 hover:shadow-amber-500/10 shadow-lg'}`}>
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-colors ${darkMode ? 'bg-slate-800 text-amber-500' : 'bg-amber-50 text-amber-600'}`}>
+            <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-orange-500/50 hover:shadow-orange-500/10' : 'bg-white border-zinc-200 hover:border-orange-500/30 hover:shadow-orange-500/10 shadow-lg shadow-zinc-200/50'}`}>
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
                 🧲
-                  </div>
-              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              </div>
+              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 Fester Halt
               </h4>
-              <p className={`leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Neodym-Magnetsystem, getestet bis 220 km/h. Hält bombenfest auf jedem Stahldach – auch bei Sturm und vorbeifahrenden LKWs.
-                    </p>
-                  </div>
+              </p>
+            </div>
 
             {/* Feature 2 - Battery */}
-            <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${darkMode ? 'bg-[#1e293b] border-slate-700 hover:border-amber-500/50 hover:shadow-amber-500/10' : 'bg-white border-slate-200 hover:border-amber-400/50 hover:shadow-amber-500/10 shadow-lg'}`}>
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-colors ${darkMode ? 'bg-slate-800 text-amber-500' : 'bg-amber-50 text-amber-600'}`}>
+            <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-orange-500/50 hover:shadow-orange-500/10' : 'bg-white border-zinc-200 hover:border-orange-500/30 hover:shadow-orange-500/10 shadow-lg shadow-zinc-200/50'}`}>
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
                 🔋
-                  </div>
-              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              </div>
+              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 30+ Min Power
               </h4>
-              <p className={`leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Hochleistungs-Akku mit USB-C Schnellladung. Immer einsatzbereit für maximale Sicherheit, wenn es darauf ankommt.
               </p>
-                </div>
+            </div>
 
             {/* Feature 3 - GPS (Pro) */}
-            <div className={`group p-8 rounded-3xl border-2 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${darkMode ? 'bg-[#1e293b] border-amber-500/30 hover:border-amber-500 hover:shadow-amber-500/20' : 'bg-white border-amber-200 hover:border-amber-500 hover:shadow-amber-500/20 shadow-lg'}`}>
-              <div className="absolute top-4 right-4">
-                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${darkMode ? 'bg-amber-500 text-black' : 'bg-amber-100 text-amber-700'}`}>
+            <div className={`group p-8 rounded-3xl border-2 relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/80 border-orange-500/30 hover:border-orange-500 hover:shadow-orange-500/20' : 'bg-white border-orange-100 hover:border-orange-500 hover:shadow-orange-500/20 shadow-lg shadow-orange-100'}`}>
+              <div className="absolute top-0 right-0 p-6 opacity-50 group-hover:opacity-100 transition-opacity">
+                <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-orange-500 text-black' : 'bg-orange-100 text-orange-700'}`}>
                   PRO
                 </span>
-                  </div>
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-colors ${darkMode ? 'bg-slate-800 text-amber-500' : 'bg-amber-50 text-amber-600'}`}>
+              </div>
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
                 📡
-                      </div>
-              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              </div>
+              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 GPS + Cloud
               </h4>
-              <p className={`leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Vernetzte Sicherheit. Sendet automatisch Standortdaten an die Cloud. Inklusive 13 Jahre eSIM-Konnektivität.
               </p>
-              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* Problem Section - Reality Check */}
-      <section className={`py-24 sm:py-32 relative overflow-hidden ${darkMode ? 'bg-black' : 'bg-white'}`}>
+      <section className={`py-24 sm:py-32 relative overflow-hidden ${darkMode ? 'bg-black' : 'bg-zinc-900'}`}>
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ 
-          backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, 
+        <div className="absolute inset-0 opacity-[0.1]" style={{ 
+          backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, 
           backgroundSize: '40px 40px' 
         }}></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-red-500' : 'text-red-600'}`}>
+              <h2 className="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-red-500">
                 Das Problem
-            </h2>
-              <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-8 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              </h2>
+              <h3 className="text-4xl sm:text-5xl font-black tracking-tight mb-8 text-white">
                 Alte Lösungen versagen.
               </h3>
               
               <div className="space-y-8">
-                <div className="flex gap-4">
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl ${darkMode ? 'bg-red-500/10 text-red-500' : 'bg-red-50 text-red-600'}`}>
+                <div className="flex gap-5 group">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
                     1
                   </div>
                   <div>
-                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Gefährliches Aufstellen</h4>
-                    <p className={`${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    <h4 className="text-xl font-bold mb-2 text-white">Gefährliches Aufstellen</h4>
+                    <p className="text-zinc-400 leading-relaxed">
                       Um ein Warndreieck korrekt aufzustellen, müssen Sie 200-400m auf der Autobahn laufen. Lebensgefahr durch vorbeirasenden Verkehr.
                     </p>
-              </div>
-            </div>
+                  </div>
+                </div>
 
-                <div className="flex gap-4">
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl ${darkMode ? 'bg-red-500/10 text-red-500' : 'bg-red-50 text-red-600'}`}>
+                <div className="flex gap-5 group">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
                     2
-              </div>
-              <div>
-                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Schlechte Sichtbarkeit</h4>
-                    <p className={`${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2 text-white">Schlechte Sichtbarkeit</h4>
+                    <p className="text-zinc-400 leading-relaxed">
                       Warndreiecke sind passiv. Bei Nebel, Regen oder Dunkelheit werden sie oft zu spät gesehen. 42.415 Auffahrunfälle allein 2024.
                     </p>
-              </div>
-            </div>
+                  </div>
+                </div>
 
-                <div className="flex gap-4">
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl ${darkMode ? 'bg-red-500/10 text-red-500' : 'bg-red-50 text-red-600'}`}>
+                <div className="flex gap-5 group">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
                     3
-                    </div>
+                  </div>
                   <div>
-                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>Rechtliche Falle</h4>
-                    <p className={`${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    <h4 className="text-xl font-bold mb-2 text-white">Rechtliche Falle</h4>
+                    <p className="text-zinc-400 leading-relaxed">
                       Falsch aufgestellt? 30€ Bußgeld und bis zu 50% Mithaftung bei Folgeunfällen.
                     </p>
                   </div>
                 </div>
               </div>
-                </div>
+            </div>
 
-                <div className="relative">
-              <div className={`absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-transparent rounded-[2rem] transform rotate-3 scale-105 blur-2xl`}></div>
-              <div className={`relative rounded-[2rem] overflow-hidden shadow-2xl border ${darkMode ? 'border-slate-800' : 'border-slate-200'}`}>
+            <div className="relative lg:ml-auto w-full max-w-lg">
+              <div className="absolute inset-0 bg-red-500/20 rounded-[2rem] transform rotate-3 scale-105 blur-3xl"></div>
+              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-900 group">
                 <Image
                   src="/Warndreieck.jpg"
                   alt="Gefährliches Warndreieck"
                   width={600}
                   height={800}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                 />
-                <div className={`absolute bottom-0 left-0 right-0 p-8 ${darkMode ? 'bg-slate-900/90' : 'bg-white/95'} backdrop-blur-sm border-t ${darkMode ? 'border-slate-800' : 'border-slate-100'}`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-8">
                   <div className="flex items-center gap-4">
-                    <span className="text-4xl">⚠️</span>
+                    <div className="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center text-3xl shadow-lg shadow-red-900/50">
+                      ⚠️
+                    </div>
                     <div>
-                      <div className={`font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Veraltete Technik</div>
-                      <div className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Stand 1968</div>
+                      <div className="font-bold text-white text-lg">Veraltete Technik</div>
+                      <div className="text-sm text-red-400 font-mono">Stand 1968</div>
                     </div>
                   </div>
                 </div>
@@ -440,28 +444,28 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-[#0f172a]' : 'bg-slate-50'}`}>
+      <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-zinc-50'}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-amber-500' : 'text-amber-600'}`}>
+            <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
               Modelle
             </h2>
-            <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+            <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
               Wähle deine Sicherheit.
             </h3>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* BASE Model */}
-            <div className={`relative p-8 sm:p-12 rounded-[2rem] border transition-all ${darkMode ? 'bg-[#1e293b] border-slate-700' : 'bg-white border-slate-200 shadow-xl'}`}>
-              <div className="mb-8">
-                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>QuickAlert BASE</h4>
-                <div className="flex items-baseline gap-1">
-                  <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>29€</span>
-                  <span className={`text-xl ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>/ einmalig</span>
-                  </div>
-                </div>
 
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+            {/* BASE Model */}
+            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border transition-all duration-300 ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50 hover:shadow-2xl'}`}>
+              <div className="mb-8">
+                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>QuickAlert BASE</h4>
+                <div className="flex items-baseline gap-1">
+                  <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>29€</span>
+                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                </div>
+              </div>
+              
               <ul className="space-y-4 mb-10">
                 {[
                   'ECE R65 zertifizierter LED-Ring',
@@ -471,38 +475,38 @@ export default function Home() {
                   'Kompaktes Handschuhfach-Design'
                 ].map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-slate-700 text-white' : 'bg-slate-100 text-slate-700'}`}>✓</div>
-                    <span className={`${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>{feature}</span>
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-300' : 'bg-zinc-100 text-zinc-600'}`}>✓</div>
+                    <span className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{feature}</span>
                   </li>
                 ))}
-                </ul>
+              </ul>
 
-                <a 
-                  href="https://www.amazon.de/" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                className={`block w-full py-4 px-6 rounded-xl font-bold text-center transition-all ${darkMode ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'}`}
-                >
+              <a 
+                href="https://www.amazon.de/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
+              >
                 BASE Kaufen
-                </a>
+              </a>
             </div>
-            
+
             {/* PRO Model */}
-            <div className={`relative p-8 sm:p-12 rounded-[2rem] border-2 transition-all ${darkMode ? 'bg-[#1e293b] border-amber-500 shadow-[0_0_40px_rgba(245,166,35,0.1)]' : 'bg-white border-amber-400 shadow-[0_0_40px_rgba(245,166,35,0.15)]'}`}>
-              <div className="absolute top-0 right-0 p-6">
-                <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide ${darkMode ? 'bg-amber-500 text-black' : 'bg-amber-100 text-amber-700'}`}>
+            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
+              <div className="absolute top-0 right-0 p-8">
+                <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30' : 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30'}`}>
                   Bestseller
-                  </span>
-                </div>
+                </span>
+              </div>
               
               <div className="mb-8">
-                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>QuickAlert PRO</h4>
+                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>QuickAlert PRO</h4>
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-5xl font-black ${darkMode ? 'text-amber-500' : 'text-amber-600'}`}>49€</span>
-                  <span className={`text-xl ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>/ einmalig</span>
-                  </div>
+                  <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600`}>49€</span>
+                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
                 </div>
-
+              </div>
+              
               <ul className="space-y-4 mb-10">
                 {[
                   'Alle Features vom BASE Modell',
@@ -512,20 +516,20 @@ export default function Home() {
                   'Leitstellen-Anbindung (optional)'
                 ].map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-amber-500 text-black' : 'bg-amber-100 text-amber-700'}`}>✓</div>
-                    <span className={`${darkMode ? 'text-slate-200' : 'text-slate-700'} font-medium`}>{feature}</span>
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-sm`}>✓</div>
+                    <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
                   </li>
                 ))}
-                </ul>
+              </ul>
 
-                <a 
-                  href="https://www.amazon.de/" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                className={`block w-full py-4 px-6 rounded-xl font-bold text-center transition-all shadow-lg ${darkMode ? 'bg-amber-500 hover:bg-amber-400 text-black shadow-amber-500/20' : 'bg-amber-500 hover:bg-amber-600 text-white shadow-amber-500/20'}`}
-                >
+              <a 
+                href="https://www.amazon.de/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-red-600 text-white`}
+              >
                 PRO Kaufen
-                </a>
+              </a>
             </div>
           </div>
         </div>
@@ -536,52 +540,61 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div>
-              <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-amber-500' : 'text-amber-600'}`}>
+              <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
                 Rechtssicherheit
               </h2>
-              <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 Offiziell zugelassen.
               </h3>
-              <p className={`text-lg mb-8 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <p className={`text-lg mb-8 leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Geprüft und zertifiziert nach den strengsten europäischen Standards. Eine Investition in Sicherheit, die anerkannt wird.
               </p>
               
               <div className="space-y-6">
-                <div className={`p-6 rounded-2xl border ${darkMode ? 'bg-[#1e293b] border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                  <h4 className={`text-lg font-bold mb-2 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                    <span className="text-2xl">🇩🇪</span> Deutschland
+                <div className={`p-6 rounded-3xl border transition-colors ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300'}`}>
+                  <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇩🇪</span> Deutschland
                   </h4>
-                  <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                  <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     Zulässig als zusätzliche Sicherheitsmaßnahme. Ergänzt das Warndreieck (§ 53a StVZO) optimal. Empfohlen für maximale Sichtbarkeit.
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-2xl border ${darkMode ? 'bg-[#1e293b] border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                  <h4 className={`text-lg font-bold mb-2 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                    <span className="text-2xl">🇪🇸</span> Spanien
+                <div className={`p-6 rounded-3xl border transition-colors ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300'}`}>
+                  <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇪🇸</span> Spanien
                   </h4>
-                  <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                  <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     Offiziell zugelassen (V16 IDIADA PC21020060). Ersetzt das Warndreieck vollständig. Pflicht ab 2026.
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
-
+            </div>
+            
             <div className="relative flex justify-center">
-              <div className={`absolute inset-0 bg-amber-500/20 blur-[100px] rounded-full`}></div>
-              <div className={`relative w-full max-w-md aspect-[3/4] rounded-2xl border-8 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center ${darkMode ? 'bg-[#1e293b] border-slate-800' : 'bg-white border-slate-100'}`}>
-                <div className="w-24 h-24 rounded-full bg-amber-500/10 flex items-center justify-center mb-6">
-                  <svg className="w-12 h-12 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className={`absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 blur-[100px] rounded-full`}></div>
+              <div className={`relative w-full max-w-md aspect-[3/4] rounded-[2rem] border-8 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center bg-white ${darkMode ? 'border-zinc-800' : 'border-zinc-50'}`}>
+                {/* Certificate Background Pattern */}
+                <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] bg-[length:20px_20px]"></div>
+                
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center mb-8 shadow-xl shadow-orange-500/30 text-white">
+                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  </div>
-                <h4 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>IDIADA Zertifiziert</h4>
-                <div className={`font-mono text-sm mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>No. PC21020060</div>
-                <p className={`text-sm leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                </div>
+                <h4 className="text-3xl font-black mb-2 text-zinc-900">IDIADA</h4>
+                <div className="font-mono text-sm mb-8 text-zinc-500 bg-zinc-100 px-4 py-1 rounded-full">No. PC21020060</div>
+                <p className="text-sm leading-relaxed text-zinc-600 mb-8 max-w-xs mx-auto">
                   Dieses Produkt erfüllt alle Anforderungen des Real Decreto 2822/1998 für V-16 Warnleuchten.
                 </p>
-                <div className="mt-8 pt-8 border-t border-dashed w-full border-slate-300/30">
-                  <span className="text-xs uppercase tracking-widest text-slate-400">Approved</span>
+                <div className="w-full border-t-2 border-dashed border-zinc-200 pt-6 mt-auto">
+                  <div className="flex justify-between items-center px-4">
+                    <div className="text-xs text-zinc-400 uppercase tracking-wider">Status</div>
+                    <div className="text-xs font-bold text-green-600 uppercase tracking-wider flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                      Approved
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -591,15 +604,16 @@ export default function Home() {
 
       {/* CTA Section */}
       <section id="cta" className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-amber-500">
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600 to-red-600">
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:40px_40px]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.2)_100%)]"></div>
         </div>
-
+        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h2 className="text-4xl sm:text-6xl font-black text-white mb-8 tracking-tight">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-8 tracking-tight drop-shadow-lg">
             Nicht warten. <br/>Sicher sein.
-            </h2>
-          <p className="text-xl sm:text-2xl text-amber-100 mb-12 max-w-2xl mx-auto">
+          </h2>
+          <p className="text-xl sm:text-2xl text-orange-100 mb-12 max-w-2xl mx-auto font-medium">
             Rüsten Sie Ihr Fahrzeug jetzt auf den Sicherheitsstandard von morgen auf.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -607,41 +621,41 @@ export default function Home() {
               href="https://www.amazon.de/" 
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-white text-amber-600 rounded-xl font-black text-lg shadow-xl hover:bg-slate-50 hover:scale-105 transition-all"
+              className="px-10 py-5 bg-white text-orange-600 rounded-2xl font-black text-lg shadow-2xl hover:bg-zinc-50 hover:scale-105 transition-all duration-300"
             >
               Jetzt Bestellen
             </a>
-              <a 
-                href="#features" 
-              className="px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/10 transition-all"
-              >
-                Mehr erfahren
-              </a>
+            <a 
+              href="#features"
+              className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-2xl font-bold text-lg hover:bg-white/10 hover:border-white transition-all duration-300"
+            >
+              Mehr erfahren
+            </a>
           </div>
         </div>
       </section>
 
       {/* Modern Footer */}
-      <footer className={`py-12 border-t ${darkMode ? 'bg-[#0f172a] border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+      <footer className={`py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-zinc-50 border-zinc-200'}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-amber-500/30">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-orange-500/20">
                 Q
               </div>
-              <span className={`text-xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                Quick<span className="text-amber-500">Alert</span>
+              <span className={`text-2xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                Quick<span className="text-orange-500">Alert</span>
               </span>
             </div>
             
             <div className="flex flex-wrap justify-center gap-8">
-              <Link href="/impressum" className={`text-sm font-medium hover:text-amber-500 transition-colors ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <Link href="/impressum" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Impressum
               </Link>
-              <Link href="/datenschutz" className={`text-sm font-medium hover:text-amber-500 transition-colors ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <Link href="/datenschutz" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Datenschutz
               </Link>
-              <span className={`text-sm ${darkMode ? 'text-slate-600' : 'text-slate-400'}`}>
+              <span className={`text-sm ${darkMode ? 'text-zinc-600' : 'text-zinc-400'}`}>
                 © 2026 QuickAlert
               </span>
             </div>
