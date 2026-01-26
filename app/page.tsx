@@ -639,8 +639,8 @@ export default function Home() {
               <div className="absolute -right-8 top-6 rotate-45 z-10">
                 <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-800 text-white'}`}>
                   Deutschland
-                </div>
-              </div>
+                    </div>
+                  </div>
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>QuickAlert BASE</h4>
                 <div className="flex items-baseline gap-1">
@@ -680,12 +680,7 @@ export default function Home() {
               <div className="absolute -right-8 top-6 rotate-45 z-10">
                 <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-red-600 text-white">
                   Spanien
-                </div>
-              </div>
-              <div className="absolute top-0 left-0 p-6">
-                <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30' : 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30'}`}>
-                  Bestseller
-                </span>
+                  </div>
                 </div>
 
               <div className="mb-8">
