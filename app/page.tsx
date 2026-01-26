@@ -634,14 +634,20 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
             {/* BASE Model */}
-            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border transition-all duration-300 ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50 hover:shadow-2xl'}`}>
+            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border transition-all duration-300 overflow-hidden ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50 hover:shadow-2xl'}`}>
+              {/* Deutschland Banner */}
+              <div className="absolute -right-8 top-6 rotate-45 z-10">
+                <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-800 text-white'}`}>
+                  🇩🇪 Deutschland
+                    </div>
+                  </div>
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>QuickAlert BASE</h4>
                 <div className="flex items-baseline gap-1">
                   <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>29€</span>
                   <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
-                  </div>
                 </div>
+                    </div>
 
               <ul className="space-y-4 mb-10">
                 {[
@@ -669,13 +675,19 @@ export default function Home() {
             </div>
             
             {/* PRO Model */}
-            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
-              <div className="absolute top-0 right-0 p-8">
+            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
+              {/* Spanien Banner */}
+              <div className="absolute -right-8 top-6 rotate-45 z-10">
+                <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-red-600 text-white">
+                  🇪🇸 Spanien
+                </div>
+                  </div>
+              <div className="absolute top-0 left-0 p-6">
                 <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30' : 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30'}`}>
                   Bestseller
-                  </span>
+                </span>
                 </div>
-              
+
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>QuickAlert PRO</h4>
                 <div className="flex items-baseline gap-1">
