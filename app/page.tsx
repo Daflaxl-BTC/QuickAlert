@@ -507,10 +507,10 @@ export default function Home() {
                 🔋
                 </div>
               <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                30+ Min Power
+                Überall erhältlich
               </h4>
               <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                Hochleistungs-Akku mit USB-C Schnellladung. Immer einsatzbereit für maximale Sicherheit, wenn es darauf ankommt.
+                3x AAA Standard-Batterien – überall erhältlich, sofort einsatzbereit. Keine Ladezeit, maximale Zuverlässigkeit wenn es darauf ankommt.
               </p>
             </div>
 
@@ -649,7 +649,7 @@ export default function Home() {
                   'ECE R65 zertifizierter LED-Ring',
                   'Magnet-Halterung (220 km/h)',
                   'IP65 Wasserdicht & Staubfest',
-                  'USB-C Wiederaufladbar',
+                  '3x AAA Batterien – überall erhältlich',
                   'Kompaktes Handschuhfach-Design'
                 ].map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
