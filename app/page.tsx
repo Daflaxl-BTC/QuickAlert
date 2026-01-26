@@ -292,10 +292,187 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Unified Modern Content for both Light and Dark Mode */}
-      
+      {/* Dark Mode Content - Story Telling Redesigned */}
+      {darkMode && (
+        <div className="bg-black text-zinc-300">
+          {/* Story Intro Section */}
+          <section className="py-24 sm:py-32 relative overflow-hidden">
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]"></div>
+             <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+            <div className="max-w-4xl mx-auto">
+                 <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-12 text-white leading-tight">
+                   Das Warndreieck-<br/>Problem.
+              </h1>
+
+                 <div className="prose prose-xl prose-invert max-w-none">
+                   <h2 className="text-3xl sm:text-4xl font-black text-orange-500 mb-8">
+                  Das vergessene Risiko: Warum das Warndreieck 2026 ein Sicherheitsrisiko ist
+                </h2>
+                   <p className="text-xl leading-relaxed text-zinc-300 mb-8">
+                  Jede Minute 7 Pannen auf deutschen Straßen. Über 3,6 Millionen Mal rückte allein der ADAC 2024 aus – alle 9 Sekunden ein Einsatz. Doch während Autos immer smarter werden, verlassen sich Autofahrer noch auf eine 100 Jahre alte Technologie: das Warndreieck.
+                </p>
+                 </div>
+               </div>
+             </div>
+          </section>
+
+          {/* Statistics Grid */}
+          <section className="py-16 bg-zinc-900/50 border-y border-zinc-800">
+            <div className="container mx-auto px-6 lg:px-12">
+               <div className="max-w-4xl mx-auto">
+                 <h3 className="text-2xl font-bold text-white mb-10">Die Realität in Zahlen (2024)</h3>
+                 <div className="grid sm:grid-cols-2 gap-6">
+                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
+                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Pannen pro Tag</div>
+                     <div className="text-4xl font-black text-white">9.927</div>
+                     <div className="text-zinc-500 text-xs mt-2">Quelle: ADAC</div>
+                   </div>
+                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
+                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Auffahrunfälle</div>
+                     <div className="text-4xl font-black text-red-500">42.415</div>
+                     <div className="text-zinc-500 text-xs mt-2">Deutschlandweit</div>
+                   </div>
+                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
+                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Autobahn NRW</div>
+                     <div className="text-4xl font-black text-white">4.243</div>
+                     <div className="text-zinc-500 text-xs mt-2">Schwerverletzte</div>
+                   </div>
+                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
+                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Bußgeld</div>
+                     <div className="text-4xl font-black text-white">30 €</div>
+                     <div className="text-zinc-500 text-xs mt-2">+ Haftung</div>
+                   </div>
+                 </div>
+               </div>
+            </div>
+          </section>
+
+          {/* Problems Section */}
+          <section className="py-24 sm:py-32">
+            <div className="container mx-auto px-6 lg:px-12">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl sm:text-4xl font-black text-white mb-12">
+                  Warum scheitert das Warndreieck?
+                </h2>
+
+                <div className="grid gap-6">
+                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Zu spät gesehen</h3>
+                    <p className="text-lg text-zinc-400">
+                      Auf Autobahnen muss das Warndreieck 150–400 Meter entfernt stehen. Bei 130 km/h bleiben nachfolgenden Fahrern nur 4–6 Sekunden Reaktionszeit – zu wenig bei Nebel, Regen oder Dunkelheit.
+                    </p>
+                  </div>
+
+                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Lebensbedrohliches Aufstellen</h3>
+                    <p className="text-lg text-zinc-400">
+                      Wer das Dreieck auf der Autobahn platziert, muss aussteigen, 200 Meter zu Fuß gehen – während der Verkehr mit 120+ km/h vorbeibrettert. Jedes Jahr werden Autofahrer dabei verletzt oder getötet.
+                    </p>
+                  </div>
+
+                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Vergessen oder falsch platziert</h3>
+                    <p className="text-lg text-zinc-400">
+                      OLG Hamm bestätigte: Wer das Warndreieck nicht oder falsch aufstellt, trägt 50% Mithaftung bei Auffahrunfällen – selbst bei berechtigtem Notstopp.
+                    </p>
+                  </div>
+
+                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Unsichtbar bei Wind</h3>
+                    <p className="text-lg text-zinc-400">
+                      Warndreiecke kippen um, werden weggeweht oder von LKWs überfahren. Keine 360°-Sichtbarkeit.
+                    </p>
+                  </div>
+                </div>
+                </div>
+            </div>
+          </section>
+
+          {/* Solution & Features */}
+          <section className="py-24 sm:py-32 bg-zinc-900 border-t border-zinc-800">
+            <div className="container mx-auto px-6 lg:px-12">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl sm:text-4xl font-black text-white mb-8">
+                  QuickAlert: Die Lösung für 2026
+                </h2>
+                <p className="text-xl leading-relaxed text-zinc-300 mb-16">
+                  Stellen Sie sich vor: Sie haben eine Panne auf der Autobahn. Statt auszusteigen und 200 Meter zu laufen, drücken Sie einen Knopf. Sofort leuchtet ein gelber 360°-LED-Ring auf Ihrem Dach – sichtbar aus 1 km Entfernung. Nachfolgende Autos sehen Sie 10 Sekunden früher als mit einem Warndreieck.
+                </p>
+
+                {/* Pricing Cards Dark Mode Story Style */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* BASE */}
+                  <div className="p-8 rounded-3xl bg-black border border-zinc-800">
+                    <div className="flex justify-between items-start mb-6">
+                      <h3 className="text-2xl font-bold text-white">BASE</h3>
+                      <span className="text-2xl font-black text-orange-500">29 €</span>
+                    </div>
+                    <ul className="space-y-4 mb-8">
+                      <li className="flex gap-3 text-zinc-400">
+                        <span className="text-orange-500">✓</span> ECE R65 zertifiziert
+                      </li>
+                      <li className="flex gap-3 text-zinc-400">
+                        <span className="text-orange-500">✓</span> 50kg Magnet (220 km/h)
+                      </li>
+                      <li className="flex gap-3 text-zinc-400">
+                        <span className="text-orange-500">✓</span> Sofort einsatzbereit
+                      </li>
+                      <li className="flex gap-3 text-zinc-400">
+                        <span className="text-orange-500">✓</span> 360° Rundumwarnung
+                      </li>
+                    </ul>
+                    <a href="https://www.amazon.de/" className="block w-full py-3 bg-zinc-800 text-white text-center rounded-xl font-bold hover:bg-zinc-700 transition-colors">
+                      BASE Kaufen
+                    </a>
+                </div>
+
+                  {/* PRO */}
+                  <div className="p-8 rounded-3xl bg-black border border-orange-500/50 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 px-4 py-1 bg-orange-500 text-black text-xs font-bold uppercase tracking-wider rounded-bl-xl">Populär</div>
+                    <div className="flex justify-between items-start mb-6">
+                      <h3 className="text-2xl font-bold text-white">PRO</h3>
+                      <span className="text-2xl font-black text-orange-500">49 €</span>
+                  </div>
+                    <ul className="space-y-4 mb-8">
+                      <li className="flex gap-3 text-white font-medium">
+                        <span className="text-orange-500">✓</span> GPS + Cloud-Alarm
+                      </li>
+                      <li className="flex gap-3 text-white font-medium">
+                        <span className="text-orange-500">✓</span> 13 Jahre eSIM inklusive
+                      </li>
+                      <li className="flex gap-3 text-zinc-400">
+                        <span className="text-orange-500">✓</span> Automatische Leitstellen-Info
+                      </li>
+                      <li className="flex gap-3 text-zinc-400">
+                        <span className="text-orange-500">✓</span> Alles vom BASE Modell
+                      </li>
+                    </ul>
+                    <a href="https://www.amazon.de/" className="block w-full py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white text-center rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-orange-500/20">
+                      PRO Kaufen
+                    </a>
+                      </div>
+                    </div>
+
+                <div className="mt-16 p-8 rounded-3xl bg-zinc-900 border border-zinc-800 text-center">
+                   <h3 className="text-2xl font-bold text-white mb-4">Von Polizisten entwickelt</h3>
+                   <p className="text-lg text-zinc-400 mb-6">
+                     Das Warndreieck stammt aus 1925. Moderne Unfallprävention braucht moderne Technologie.
+                   </p>
+                   <p className="text-xl font-bold text-white">
+                     QuickAlert – weil Sekunden Leben retten.
+                   </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        </div>
+      )}
+
+      {/* Light Mode Content - Tech Grid (Existing New Design) */}
+      {!darkMode && (
+      <>
       {/* Features Section - Tech Grid */}
-      <section id="features" className={`py-24 sm:py-32 transition-colors duration-300 ${darkMode ? 'bg-zinc-950' : 'bg-gradient-to-b from-white to-zinc-50'}`}>
+      <section id="features" className={`py-24 sm:py-32 bg-gradient-to-b from-white to-zinc-50`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
@@ -308,7 +485,7 @@ export default function Home() {
               Das Warndreieck war gestern. QuickAlert ist die intelligente Evolution der Unfallabsicherung.
             </p>
           </div>
-
+          
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Feature 1 - Magnet */}
             <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-orange-500/50 hover:shadow-orange-500/10' : 'bg-white border-zinc-200 hover:border-orange-500/30 hover:shadow-orange-500/10 shadow-lg shadow-zinc-200/50'}`}>
@@ -327,7 +504,7 @@ export default function Home() {
             <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-orange-500/50 hover:shadow-orange-500/10' : 'bg-white border-zinc-200 hover:border-orange-500/30 hover:shadow-orange-500/10 shadow-lg shadow-zinc-200/50'}`}>
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
                 🔋
-              </div>
+                </div>
               <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 30+ Min Power
               </h4>
@@ -340,9 +517,9 @@ export default function Home() {
             <div className={`group p-8 rounded-3xl border-2 relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/80 border-orange-500/30 hover:border-orange-500 hover:shadow-orange-500/20' : 'bg-white border-orange-100 hover:border-orange-500 hover:shadow-orange-500/20 shadow-lg shadow-orange-100'}`}>
               <div className="absolute top-0 right-0 p-6 opacity-50 group-hover:opacity-100 transition-opacity">
                 <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-orange-500 text-black' : 'bg-orange-100 text-orange-700'}`}>
-                  PRO
-                </span>
-              </div>
+                        PRO
+                      </span>
+                    </div>
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
                 📡
               </div>
@@ -380,7 +557,7 @@ export default function Home() {
                 <div className="flex gap-5 group">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
                     1
-                  </div>
+                    </div>
                   <div>
                     <h4 className="text-xl font-bold mb-2 text-white">Gefährliches Aufstellen</h4>
                     <p className="text-zinc-400 leading-relaxed">
@@ -388,18 +565,18 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-
+                
                 <div className="flex gap-5 group">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
                     2
-                  </div>
+                    </div>
                   <div>
                     <h4 className="text-xl font-bold mb-2 text-white">Schlechte Sichtbarkeit</h4>
                     <p className="text-zinc-400 leading-relaxed">
                       Warndreiecke sind passiv. Bei Nebel, Regen oder Dunkelheit werden sie oft zu spät gesehen. 42.415 Auffahrunfälle allein 2024.
                     </p>
-                  </div>
                 </div>
+              </div>
 
                 <div className="flex gap-5 group">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
@@ -409,11 +586,11 @@ export default function Home() {
                     <h4 className="text-xl font-bold mb-2 text-white">Rechtliche Falle</h4>
                     <p className="text-zinc-400 leading-relaxed">
                       Falsch aufgestellt? 30€ Bußgeld und bis zu 50% Mithaftung bei Folgeunfällen.
-                    </p>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
             <div className="relative lg:ml-auto w-full max-w-lg">
               <div className="absolute inset-0 bg-red-500/20 rounded-[2rem] transform rotate-3 scale-105 blur-3xl"></div>
@@ -430,17 +607,17 @@ export default function Home() {
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center text-3xl shadow-lg shadow-red-900/50">
                       ⚠️
-                    </div>
+            </div>
                     <div>
                       <div className="font-bold text-white text-lg">Veraltete Technik</div>
                       <div className="text-sm text-red-400 font-mono">Stand 1968</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
+        </div>
+        </div>
+          </div>
+                  </div>
+                </div>
       </section>
 
       {/* Pricing Section */}
@@ -453,7 +630,7 @@ export default function Home() {
             <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
               Wähle deine Sicherheit.
             </h3>
-          </div>
+                      </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
             {/* BASE Model */}
@@ -463,9 +640,9 @@ export default function Home() {
                 <div className="flex items-baseline gap-1">
                   <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>29€</span>
                   <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                  </div>
                 </div>
-              </div>
-              
+
               <ul className="space-y-4 mb-10">
                 {[
                   'ECE R65 zertifizierter LED-Ring',
@@ -479,34 +656,34 @@ export default function Home() {
                     <span className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{feature}</span>
                   </li>
                 ))}
-              </ul>
+                </ul>
 
-              <a 
-                href="https://www.amazon.de/" 
-                target="_blank"
-                rel="noopener noreferrer"
+                <a 
+                  href="https://www.amazon.de/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                 className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
-              >
+                >
                 BASE Kaufen
-              </a>
+                </a>
             </div>
-
+            
             {/* PRO Model */}
             <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
               <div className="absolute top-0 right-0 p-8">
                 <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30' : 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/30'}`}>
                   Bestseller
-                </span>
-              </div>
+                  </span>
+                </div>
               
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>QuickAlert PRO</h4>
                 <div className="flex items-baseline gap-1">
                   <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600`}>49€</span>
                   <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                  </div>
                 </div>
-              </div>
-              
+
               <ul className="space-y-4 mb-10">
                 {[
                   'Alle Features vom BASE Modell',
@@ -520,16 +697,16 @@ export default function Home() {
                     <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
                   </li>
                 ))}
-              </ul>
+                </ul>
 
-              <a 
-                href="https://www.amazon.de/" 
-                target="_blank"
-                rel="noopener noreferrer"
+                <a 
+                  href="https://www.amazon.de/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                 className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-red-600 text-white`}
-              >
+                >
                 PRO Kaufen
-              </a>
+                </a>
             </div>
           </div>
         </div>
@@ -566,11 +743,11 @@ export default function Home() {
                   </h4>
                   <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     Offiziell zugelassen (V16 IDIADA PC21020060). Ersetzt das Warndreieck vollständig. Pflicht ab 2026.
-                  </p>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            
+
             <div className="relative flex justify-center">
               <div className={`absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 blur-[100px] rounded-full`}></div>
               <div className={`relative w-full max-w-md aspect-[3/4] rounded-[2rem] border-8 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center bg-white ${darkMode ? 'border-zinc-800' : 'border-zinc-50'}`}>
@@ -581,7 +758,7 @@ export default function Home() {
                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                </div>
+                  </div>
                 <h4 className="text-3xl font-black mb-2 text-zinc-900">IDIADA</h4>
                 <div className="font-mono text-sm mb-8 text-zinc-500 bg-zinc-100 px-4 py-1 rounded-full">No. PC21020060</div>
                 <p className="text-sm leading-relaxed text-zinc-600 mb-8 max-w-xs mx-auto">
@@ -608,11 +785,11 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:40px_40px]"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.2)_100%)]"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-8 tracking-tight drop-shadow-lg">
             Nicht warten. <br/>Sicher sein.
-          </h2>
+            </h2>
           <p className="text-xl sm:text-2xl text-orange-100 mb-12 max-w-2xl mx-auto font-medium">
             Rüsten Sie Ihr Fahrzeug jetzt auf den Sicherheitsstandard von morgen auf.
           </p>
@@ -625,15 +802,18 @@ export default function Home() {
             >
               Jetzt Bestellen
             </a>
-            <a 
-              href="#features"
+              <a 
+                href="#features" 
               className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-2xl font-bold text-lg hover:bg-white/10 hover:border-white transition-all duration-300"
-            >
-              Mehr erfahren
-            </a>
+              >
+                Mehr erfahren
+              </a>
           </div>
         </div>
       </section>
+
+      </>
+      )}
 
       {/* Modern Footer */}
       <footer className={`py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-zinc-50 border-zinc-200'}`}>
