@@ -527,11 +527,11 @@ export default function Home() {
         <div className="absolute left-0 bottom-12 w-full h-1 bg-gradient-to-r from-transparent via-[#8B6F47]/40 to-transparent"></div>
 
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
-          <div className="text-center mb-20">
+          <div className="text-center mb-20 overflow-visible">
             <div className={`inline-block px-6 py-2 rounded-full border mb-6 transition-colors duration-300 ${darkMode ? 'bg-[#4a4a4a]/30 border-[#6a6a6a]/50' : 'bg-[#D4B896]/30 border-[#A0825D]/50'}`}>
               <span className={`text-sm font-bold uppercase tracking-wider transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#6B4E3D]'}`}>Warum QuickAlert?</span>
             </div>
-            <h2 className={`text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 px-4 sm:px-0 transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'bg-gradient-to-r from-[#6B4E3D] via-[#A0825D] to-[#6B4E3D] bg-clip-text text-transparent'}`}>
+            <h2 className={`text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 px-6 transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'bg-gradient-to-r from-[#6B4E3D] via-[#A0825D] to-[#6B4E3D] bg-clip-text text-transparent'}`}>
               Technologie die zählt
             </h2>
           </div>
