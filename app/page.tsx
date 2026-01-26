@@ -139,7 +139,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden pb-20 sm:pb-24 md:pb-32">
         {darkMode ? (
           <>
             {/* Dark Mode: Warndreieck Background */}
@@ -184,7 +184,7 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Gleiche Größe für beide Modi */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-8 sm:pb-16 pt-24 sm:pt-28 md:pt-32 lg:pt-36">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-16 sm:pb-24 md:pb-32 pt-24 sm:pt-28 md:pt-32 lg:pt-36">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized */}
             <div className="grid place-items-start mb-6 sm:mb-8 md:mb-10">
