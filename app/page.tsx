@@ -187,7 +187,7 @@ export default function Home() {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-24 sm:pb-28 md:pb-32 pt-28 sm:pt-32 md:pt-36 lg:pt-40">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized */}
-            <div className="grid place-items-start mb-6 sm:mb-8 md:mb-10">
+            <div className="grid place-items-start mb-4 sm:mb-5 md:mb-6">
               <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
@@ -224,7 +224,7 @@ export default function Home() {
             </div>
 
             {/* Description - Mobile optimized - GRÖSSERE TEXTE */}
-            <div className="grid place-items-start mb-5 sm:mb-6 md:mb-10 max-w-2xl">
+            <div className="grid place-items-start mb-3 sm:mb-4 md:mb-6 max-w-2xl">
               <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-100 text-[#e5e5e5]/90' : 'opacity-0 pointer-events-none'}`}>
                 Herkömmliche Warndreiecke: Ein gefährliches Risiko auf der Autobahn.
               </p>
@@ -254,7 +254,7 @@ export default function Home() {
                 </a>
               </div>
               {/* Light Mode Buttons */}
-              <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <div className={`col-start-1 row-start-1 flex flex-col gap-2 sm:gap-2.5 md:gap-3 transition-none w-full ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
                   href="#pricing"
                   className="group relative w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-lg overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3] text-center"
