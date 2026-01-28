@@ -535,7 +535,7 @@ export default function Home() {
       </section>
 
       {/* Problem Section - Reality Check */}
-      <section className={`py-24 sm:py-32 relative overflow-hidden ${darkMode ? 'bg-black' : 'bg-zinc-900'}`}>
+      <section className={`py-24 sm:py-32 relative overflow-hidden ${darkMode ? 'bg-gradient-to-br from-zinc-950 via-zinc-900 to-black' : 'bg-zinc-900'}`}>
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-[0.1]" style={{ 
           backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, 
@@ -545,7 +545,7 @@ export default function Home() {
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-3xl p-8 sm:p-10 shadow-[0_25px_80px_rgba(0,0,0,0.7)]">
               <h2 className="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-red-500">
                 Das Problem
               </h2>
