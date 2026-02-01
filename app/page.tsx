@@ -507,7 +507,7 @@ export default function Home() {
                   QuickAlert: Die Lösung für 2026
                 </h2>
                 <p className="text-xl leading-relaxed text-zinc-300 mb-16">
-                  Stellen Sie sich vor: Sie haben eine Panne auf der Autobahn. Statt auszusteigen und 200 Meter zu laufen, drücken Sie einen Knopf. Sofort leuchtet ein gelber 360°-LED-Ring auf Ihrem Dach – sichtbar aus 1 km Entfernung. Nachfolgende Autos sehen Sie 10 Sekunden früher als mit einem Warndreieck.
+                  Stellen Sie sich vor: Sie haben eine Panne auf der Autobahn. Während Sie das gesetzlich vorgeschriebene Warndreieck aufstellen, aktivieren Sie zusätzlich QuickAlert mit einem Knopfdruck. Sofort leuchtet ein gelber 360°-LED-Ring auf Ihrem Dach – sichtbar aus 1 km Entfernung. Nachfolgende Autos sehen Sie deutlich früher als nur mit einem Warndreieck.
                 </p>
 
                 {/* Pricing Cards Dark Mode Story Style */}
@@ -613,7 +613,7 @@ export default function Home() {
               Technologie, die Leben rettet.
             </h3>
             <p className={`text-lg sm:text-xl leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-              Das Warndreieck war gestern. QuickAlert ist die intelligente Evolution der Unfallabsicherung.
+              Das Warndreieck bleibt Pflicht. QuickAlert ist die intelligente Ergänzung für maximale Sicherheit.
             </p>
           </div>
           
@@ -894,7 +894,7 @@ export default function Home() {
                     <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇪🇸</span> Spanien
                   </h4>
                   <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                    Offiziell zugelassen (V16 IDIADA PC21020060). Ersetzt das Warndreieck vollständig. Pflicht ab 2026.
+                    Offiziell zugelassen (V16 IDIADA PC21020060). Ergänzt das Warndreieck optimal für maximale Sicherheit. Zusätzliche Absicherung empfohlen.
                     </p>
                   </div>
                 </div>
