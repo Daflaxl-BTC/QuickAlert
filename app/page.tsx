@@ -4,9 +4,16 @@ import DarkModeToggle from '@/components/DarkModeToggle'
 import { useDarkMode } from '@/components/DarkModeProvider'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
+import PreOrderForm from '@/components/PreOrderForm'
 
 export default function Home() {
   const { darkMode, setDarkMode } = useDarkMode()
+  const darkBadgeRef = useRef<HTMLDivElement>(null)
+  const lightBadgeRef = useRef<HTMLDivElement>(null)
+  const darkHeadlineRef = useRef<HTMLHeadingElement>(null)
+  const lightHeadlineRef = useRef<HTMLHeadingElement>(null)
+  const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     if (darkMode) {
@@ -20,6 +27,125 @@ export default function Home() {
       }, 100)
     }
   }
+
+  // URL-Parameter für Bestätigung/Fehler prüfen
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('confirmed') === 'true') {
+      setNotification({
+        type: 'success',
+        message: 'Ihre E-Mail-Adresse wurde erfolgreich bestätigt! Sie sind jetzt auf unserer Vorbestellungsliste.',
+      })
+      // URL bereinigen
+      window.history.replaceState({}, '', window.location.pathname)
+      // Nach 5 Sekunden ausblenden
+      setTimeout(() => setNotification(null), 5000)
+    } else if (params.get('error')) {
+      const errorType = params.get('error')
+      let message = 'Ein Fehler ist aufgetreten.'
+      if (errorType === 'invalid_token') {
+        message = 'Ungültiger Bestätigungslink. Bitte registrieren Sie sich erneut.'
+      } else if (errorType === 'expired_token') {
+        message = 'Der Bestätigungslink ist abgelaufen. Bitte registrieren Sie sich erneut.'
+      } else if (errorType === 'missing_token') {
+        message = 'Bestätigungslink fehlt.'
+      }
+      setNotification({ type: 'error', message })
+      window.history.replaceState({}, '', window.location.pathname)
+      setTimeout(() => setNotification(null), 5000)
+    }
+  }, [])
+
+  // #region agent log
+  useEffect(() => {
+    const measureBadgeToHeadline = () => {
+      if (darkBadgeRef.current && lightBadgeRef.current && darkHeadlineRef.current && lightHeadlineRef.current) {
+        const darkBadgeRect = darkBadgeRef.current.getBoundingClientRect()
+        const lightBadgeRect = lightBadgeRef.current.getBoundingClientRect()
+        const darkHeadlineRect = darkHeadlineRef.current.getBoundingClientRect()
+        const lightHeadlineRect = lightHeadlineRef.current.getBoundingClientRect()
+        
+        // Messung der tatsächlichen Text-Position (erste Text-Zeile)
+        const darkFirstTextLine = darkHeadlineRef.current.querySelector('div > div:first-child')
+        const lightFirstTextLine = lightHeadlineRef.current.querySelector('div > div:first-child')
+        const darkFirstTextRect = darkFirstTextLine?.getBoundingClientRect()
+        const lightFirstTextRect = lightFirstTextLine?.getBoundingClientRect()
+        
+        const darkBadgeBottom = darkBadgeRect.bottom
+        const lightBadgeBottom = lightBadgeRect.bottom
+        const darkHeadlineTop = darkHeadlineRect.top
+        const lightHeadlineTop = lightHeadlineRect.top
+        const darkTextTop = darkFirstTextRect?.top ?? darkHeadlineTop
+        const lightTextTop = lightFirstTextRect?.top ?? lightHeadlineTop
+        
+        const darkGap = darkHeadlineTop - darkBadgeBottom
+        const lightGap = lightHeadlineTop - lightBadgeBottom
+        const darkTextGap = darkTextTop - darkBadgeBottom
+        const lightTextGap = lightTextTop - lightBadgeBottom
+        
+        const darkStyles = window.getComputedStyle(darkHeadlineRef.current)
+        const lightStyles = window.getComputedStyle(lightHeadlineRef.current)
+        
+        fetch('http://127.0.0.1:7242/ingest/a6beef4a-2bf3-4cec-8e29-df740efe8987', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: 'page.tsx:measureBadgeToHeadline',
+            message: 'Badge to headline spacing measured with text position',
+            data: {
+              darkMode,
+              darkBadgeHeight: darkBadgeRect.height,
+              darkBadgeTop: darkBadgeRect.top,
+              darkBadgeBottom: darkBadgeBottom,
+              lightBadgeHeight: lightBadgeRect.height,
+              lightBadgeTop: lightBadgeRect.top,
+              lightBadgeBottom: lightBadgeBottom,
+              darkHeadlineTop: darkHeadlineTop,
+              lightHeadlineTop: lightHeadlineTop,
+              darkTextTop: darkTextTop,
+              lightTextTop: lightTextTop,
+              textTopDiff: Math.abs(darkTextTop - lightTextTop),
+              darkGap: darkGap,
+              lightGap: lightGap,
+              darkTextGap: darkTextGap,
+              lightTextGap: lightTextGap,
+              gapDiff: Math.abs(darkGap - lightGap),
+              textGapDiff: Math.abs(darkTextGap - lightTextGap),
+              badgeHeightDiff: Math.abs(darkBadgeRect.height - lightBadgeRect.height),
+              badgeTopDiff: Math.abs(darkBadgeRect.top - lightBadgeRect.top),
+              badgeBottomDiff: Math.abs(darkBadgeBottom - lightBadgeBottom),
+              darkLineHeight: darkStyles.lineHeight,
+              lightLineHeight: lightStyles.lineHeight,
+              darkFontSize: darkStyles.fontSize,
+              lightFontSize: lightStyles.fontSize,
+              darkPaddingTop: darkStyles.paddingTop,
+              lightPaddingTop: lightStyles.paddingTop,
+              darkMarginTop: darkStyles.marginTop,
+              lightMarginTop: lightStyles.marginTop
+            },
+            timestamp: Date.now(),
+            sessionId: 'debug-session',
+            runId: 'badge-analysis',
+            hypothesisId: 'D'
+          })
+        }).catch(() => {})
+      }
+    }
+
+    measureBadgeToHeadline()
+    const timeoutId = setTimeout(measureBadgeToHeadline, 50)
+    const timeoutId2 = setTimeout(measureBadgeToHeadline, 150)
+    const timeoutId3 = setTimeout(measureBadgeToHeadline, 300)
+    window.addEventListener('resize', measureBadgeToHeadline)
+    
+    return () => {
+      clearTimeout(timeoutId)
+      clearTimeout(timeoutId2)
+      clearTimeout(timeoutId3)
+      window.removeEventListener('resize', measureBadgeToHeadline)
+    }
+  }, [darkMode])
+  // #endregion
 
   return (
     <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-[#F5E6D3] text-[#3D2F1F] wood-texture'}`}>
@@ -188,13 +314,13 @@ export default function Home() {
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized */}
             <div className="grid place-items-start mb-4 sm:mb-5 md:mb-6">
-              <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <div ref={darkBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
                   <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#e5e5e5] tracking-wide">Seit 08.05.1968</span>
                 </div>
               </div>
-              <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <div ref={lightBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
                   <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#F5E6D3] tracking-wide">NEU 2026</span>
@@ -202,23 +328,23 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Main Headline - GRÖSSERE TEXTE - Grid für gleiche Höhe */}
-            <div className="grid place-items-start mb-3 sm:mb-5 md:mb-6">
-              {/* Dark Mode Headline */}
-              <h1 className={`col-start-1 row-start-1 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <div className="space-y-1 sm:space-y-2 md:space-y-3">
-                  <div className="text-red-500 drop-shadow-lg">gefährlich</div>
-                  <div className="text-[#9a9a9a] drop-shadow-lg">dunkel</div>
-                </div>
-              </h1>
-              {/* Light Mode Headline */}
-              <h1 className={`col-start-1 row-start-1 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+            {/* Main Headline - GRÖSSERE TEXTE - Perfekte Überlagerung für flüssigen Wechsel */}
+            <div className="relative mb-3 sm:mb-5 md:mb-6">
+              {/* Light Mode Headline - Bestimmt die Container-Höhe */}
+              <h1 ref={lightHeadlineRef} className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className="text-[#F5E6D3] drop-shadow-lg">Fahre sicher,</div>
                   <div className="text-[#F5E6D3] drop-shadow-lg">
                     <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
                     <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
                   </div>
+                </div>
+              </h1>
+              {/* Dark Mode Headline - Absolut über der Light Mode Überschrift, leicht nach unten verschoben für perfekte Ausrichtung */}
+              <h1 ref={darkHeadlineRef} className={`absolute top-1 left-0 right-0 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                <div className="space-y-1 sm:space-y-2 md:space-y-3">
+                  <div className="text-red-500 drop-shadow-lg">gefährlich</div>
+                  <div className="text-[#9a9a9a] drop-shadow-lg">dunkel</div>
                 </div>
               </h1>
             </div>
@@ -421,8 +547,18 @@ export default function Home() {
                         <span className="text-orange-500">✓</span> 360° Rundumwarnung
                       </li>
                     </ul>
-                    <a href="https://www.amazon.de/" className="block w-full py-3 bg-zinc-800 text-white text-center rounded-xl font-bold hover:bg-zinc-700 transition-colors">
-                      BASE Kaufen
+                    <a 
+                      href="#preorder"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        const element = document.getElementById('preorder')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' })
+                        }
+                      }}
+                      className="block w-full py-3 bg-zinc-800 text-white text-center rounded-xl font-bold hover:bg-zinc-700 transition-colors"
+                    >
+                      Vorbestellen
                     </a>
                 </div>
 
@@ -447,8 +583,18 @@ export default function Home() {
                         <span className="text-orange-500">✓</span> Alles vom BASE Modell
                       </li>
                     </ul>
-                    <a href="https://www.amazon.de/" className="block w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-center rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-orange-500/20">
-                      PRO Kaufen
+                    <a 
+                      href="#preorder"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        const element = document.getElementById('preorder')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' })
+                        }
+                      }}
+                      className="block w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-center rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-orange-500/20"
+                    >
+                      Vorbestellen
                     </a>
                       </div>
                     </div>
@@ -669,12 +815,17 @@ export default function Home() {
                 </ul>
 
                 <a 
-                  href="https://www.amazon.de/" 
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#preorder"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const element = document.getElementById('preorder')
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }}
                 className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
                 >
-                BASE Kaufen
+                Vorbestellen
                 </a>
             </div>
             
@@ -711,12 +862,17 @@ export default function Home() {
                 </ul>
 
                 <a 
-                  href="https://www.amazon.de/" 
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#preorder"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    const element = document.getElementById('preorder')
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }}
                 className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
                 >
-                PRO Kaufen
+                Vorbestellen
                 </a>
             </div>
           </div>
@@ -806,12 +962,17 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a 
-              href="https://www.amazon.de/" 
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#preorder"
+              onClick={(e) => {
+                e.preventDefault()
+                const element = document.getElementById('preorder')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
               className="px-10 py-5 bg-white text-orange-600 rounded-2xl font-black text-lg shadow-2xl hover:bg-zinc-50 hover:scale-105 transition-all duration-300"
             >
-              Jetzt Bestellen
+              Vorbestellen
             </a>
               <a 
                 href="#features" 
@@ -825,6 +986,76 @@ export default function Home() {
 
       </>
       )}
+
+      {/* Pre-Order Section */}
+      <section id="preorder" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
+            {/* Notification Banner */}
+            {notification && (
+              <div
+                className={`mb-8 p-4 rounded-2xl border-2 ${
+                  notification.type === 'success'
+                    ? darkMode
+                      ? 'bg-green-900/20 border-green-500/50'
+                      : 'bg-green-50 border-green-200'
+                    : darkMode
+                    ? 'bg-red-900/20 border-red-500/50'
+                    : 'bg-red-50 border-red-200'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  {notification.type === 'success' ? (
+                    <svg className="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                  <p className={`text-sm font-medium ${notification.type === 'success' ? 'text-green-700' : 'text-red-700'}`}>
+                    {notification.message}
+                  </p>
+                  <button
+                    onClick={() => setNotification(null)}
+                    className="ml-auto text-zinc-500 hover:text-zinc-700"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            <div className="text-center mb-12">
+              <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-4 ${darkMode ? 'bg-orange-500/20 text-orange-400' : 'bg-orange-100 text-orange-600'}`}>
+                Vorbestellung
+              </span>
+              <h2 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                Seien Sie dabei, wenn es losgeht
+              </h2>
+              <p className={`text-lg leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                Melden Sie sich für unsere Vorbestellungsliste an und erhalten Sie als Erste/r eine Benachrichtigung, sobald QuickAlert verfügbar ist.
+              </p>
+            </div>
+
+            <div className={`p-8 sm:p-12 rounded-3xl border ${darkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50'}`}>
+              <PreOrderForm />
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className={`text-sm ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                Ihre Daten werden nur zur Benachrichtigung verwendet und nicht an Dritte weitergegeben.{' '}
+                <Link href="/datenschutz" className="text-orange-500 hover:underline">
+                  Mehr erfahren
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Modern Footer */}
       <footer className={`py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-zinc-50 border-zinc-200'}`}>
