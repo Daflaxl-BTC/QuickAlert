@@ -24,6 +24,11 @@ jobs:
     
     - name: Build
       run: npm run build
+      env:
+        # Mock Environment Variables für Build (werden nicht verwendet, aber verhindern Fehler)
+        RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 'mock_key_for_build' }}
+        NEXT_PUBLIC_BASE_URL: https://quickalert.eu
+        ADMIN_EMAIL: felix-bredl@gmx.de
     
     - name: Check build
       run: |
