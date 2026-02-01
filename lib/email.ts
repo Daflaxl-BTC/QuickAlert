@@ -3,10 +3,20 @@ import { Resend } from 'resend'
 // Resend Client zur Runtime initialisieren (nicht zur Build-Zeit)
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY
+  console.log('🔍 Prüfe RESEND_API_KEY:', {
+    exists: !!apiKey,
+    length: apiKey?.length || 0,
+    startsWith: apiKey?.substring(0, 3) || 'N/A',
+    allEnvVars: Object.keys(process.env).filter(key => key.includes('RESEND')).join(', ') || 'Keine RESEND Variablen gefunden'
+  })
+  
   if (!apiKey) {
-    console.warn('⚠️ RESEND_API_KEY ist nicht gesetzt! E-Mail-Versand wird nicht funktionieren.')
+    console.error('❌ RESEND_API_KEY ist nicht gesetzt! E-Mail-Versand wird nicht funktionieren.')
+    console.error('📋 Verfügbare Environment Variables:', Object.keys(process.env).filter(key => key.includes('RESEND') || key.includes('EMAIL')))
     return null
   }
+  
+  console.log('✅ RESEND_API_KEY gefunden, erstelle Resend Client')
   return new Resend(apiKey)
 }
 
