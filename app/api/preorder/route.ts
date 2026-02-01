@@ -78,8 +78,12 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error('Error processing preorder:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unbekannter Fehler'
     return NextResponse.json(
-      { error: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.' },
+      { 
+        error: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     )
   }

@@ -73,7 +73,10 @@ export default function PreOrderForm() {
       })
     } catch (error) {
       console.error('Error submitting form:', error)
-      setErrors({ general: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.' })
+      const errorMessage = error instanceof Error ? error.message : 'Netzwerkfehler'
+      setErrors({ 
+        general: `Ein Fehler ist aufgetreten: ${errorMessage}. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.` 
+      })
       setFormState('error')
     }
   }

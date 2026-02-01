@@ -1,6 +1,10 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
+
+if (!process.env.RESEND_API_KEY) {
+  console.warn('⚠️ RESEND_API_KEY ist nicht gesetzt! E-Mail-Versand wird nicht funktionieren.')
+}
 
 export interface PreOrderData {
   name: string
@@ -11,6 +15,10 @@ export interface PreOrderData {
 }
 
 export async function sendConfirmationEmail(data: PreOrderData) {
+  if (!resend) {
+    return { success: false, error: 'RESEND_API_KEY ist nicht konfiguriert' }
+  }
+
   const confirmationUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://quickalert.eu'}/api/preorder/confirm?token=${data.confirmationToken}`
   
   try {
@@ -83,6 +91,10 @@ export async function sendConfirmationEmail(data: PreOrderData) {
 }
 
 export async function sendNotificationEmail(data: PreOrderData) {
+  if (!resend) {
+    return { success: false, error: 'RESEND_API_KEY ist nicht konfiguriert' }
+  }
+
   try {
     await resend.emails.send({
       from: 'QuickAlert <noreply@quickalert.eu>',
@@ -140,6 +152,10 @@ export async function sendNotificationEmail(data: PreOrderData) {
 }
 
 export async function sendConfirmedEmail(data: PreOrderData) {
+  if (!resend) {
+    return { success: false, error: 'RESEND_API_KEY ist nicht konfiguriert' }
+  }
+
   try {
     await resend.emails.send({
       from: 'QuickAlert <noreply@quickalert.eu>',
