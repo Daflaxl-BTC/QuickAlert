@@ -22,6 +22,7 @@ export async function sendConfirmationEmail(data: PreOrderData) {
   const confirmationUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://quickalert.eu'}/api/preorder/confirm?token=${data.confirmationToken}`
   
   try {
+    console.log(`📧 Sende Bestätigungs-E-Mail an: ${data.email}`)
     const result = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <onboarding@resend.dev>',
       to: data.email,
@@ -83,9 +84,10 @@ export async function sendConfirmationEmail(data: PreOrderData) {
       `,
     })
     
-    return { success: true }
+    console.log(`✅ Bestätigungs-E-Mail erfolgreich versendet an: ${data.email}`, result)
+    return { success: true, result }
   } catch (error: any) {
-    console.error('Error sending confirmation email:', error)
+    console.error(`❌ Fehler beim Versenden der Bestätigungs-E-Mail an ${data.email}:`, error)
     const errorMessage = error?.message || error?.toString() || 'Unbekannter Fehler'
     return { success: false, error: errorMessage }
   }

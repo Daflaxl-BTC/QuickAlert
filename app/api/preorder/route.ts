@@ -55,13 +55,19 @@ export async function POST(request: NextRequest) {
     })
 
     // E-Mails senden
+    console.log(`📧 Starte E-Mail-Versand für: ${preOrderData.email}`)
     const [confirmationResult, notificationResult] = await Promise.all([
       sendConfirmationEmail(preOrderData),
       sendNotificationEmail(preOrderData),
     ])
 
+    console.log('📊 E-Mail-Versand Ergebnisse:', {
+      confirmation: confirmationResult.success ? '✅ Erfolgreich' : `❌ Fehler: ${confirmationResult.error}`,
+      notification: notificationResult.success ? '✅ Erfolgreich' : `❌ Fehler: ${notificationResult.error}`,
+    })
+
     if (!confirmationResult.success) {
-      console.error('Failed to send confirmation email:', confirmationResult.error)
+      console.error('❌ Failed to send confirmation email:', confirmationResult.error)
       // Token entfernen wenn E-Mail-Versand fehlschlägt
       tokenStore.delete(confirmationToken)
       
