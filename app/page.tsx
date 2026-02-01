@@ -447,7 +447,7 @@ export default function Home() {
                         <span className="text-orange-500">✓</span> Alles vom BASE Modell
                       </li>
                     </ul>
-                    <a href="https://www.amazon.de/" className="block w-full py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white text-center rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-orange-500/20">
+                    <a href="https://www.amazon.de/" className="block w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-center rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-orange-500/20">
                       PRO Kaufen
                     </a>
                       </div>
@@ -535,56 +535,60 @@ export default function Home() {
       </section>
 
       {/* Problem Section - Reality Check */}
-      <section className={`py-24 sm:py-32 relative overflow-hidden ${darkMode ? 'bg-gradient-to-br from-zinc-950 via-zinc-900 to-black' : 'bg-zinc-900'}`}>
+      <section className={`py-24 sm:py-32 relative overflow-hidden ${darkMode ? 'bg-gradient-to-br from-zinc-950 via-zinc-900 to-black' : 'bg-white'}`}>
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.1]" style={{ 
-          backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, 
-          backgroundSize: '40px 40px' 
-        }}></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        {darkMode && (
+          <>
+            <div className="absolute inset-0 opacity-[0.1]" style={{ 
+              backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, 
+              backgroundSize: '40px 40px' 
+            }}></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+          </>
+        )}
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="bg-zinc-900/70 border border-zinc-800/80 rounded-3xl p-8 sm:p-10 shadow-[0_25px_80px_rgba(0,0,0,0.7)]">
-              <h2 className="text-sm font-bold tracking-[0.2em] uppercase mb-4 text-red-500">
+            <div className={`${darkMode ? 'bg-zinc-900/70 border-zinc-800/80' : 'bg-white border-zinc-200'} rounded-3xl p-8 sm:p-10 shadow-xl`}>
+              <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-red-500' : 'text-red-600'}`}>
                 Das Problem
               </h2>
-              <h3 className="text-4xl sm:text-5xl font-black tracking-tight mb-8 text-white">
+              <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-8 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 Alte Lösungen versagen.
               </h3>
               
               <div className="space-y-8">
                 <div className="flex gap-5 group">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl border transition-all ${darkMode ? 'bg-red-500/10 text-red-500 border-red-500/20 group-hover:bg-red-500 group-hover:text-white' : 'bg-orange-500/10 text-orange-500 border-orange-500/20 group-hover:bg-orange-500 group-hover:text-white'}`}>
                     1
                     </div>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-white">Gefährliches Aufstellen</h4>
-                    <p className="text-zinc-400 leading-relaxed">
+                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>Gefährliches Aufstellen</h4>
+                    <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       Um ein Warndreieck korrekt aufzustellen, müssen Sie 200-400m auf der Autobahn laufen. Lebensgefahr durch vorbeirasenden Verkehr.
                     </p>
                   </div>
                 </div>
                 
                 <div className="flex gap-5 group">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl border transition-all ${darkMode ? 'bg-red-500/10 text-red-500 border-red-500/20 group-hover:bg-red-500 group-hover:text-white' : 'bg-orange-500/10 text-orange-500 border-orange-500/20 group-hover:bg-orange-500 group-hover:text-white'}`}>
                     2
                     </div>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-white">Schlechte Sichtbarkeit</h4>
-                    <p className="text-zinc-400 leading-relaxed">
+                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>Schlechte Sichtbarkeit</h4>
+                    <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       Warndreiecke sind passiv. Bei Nebel, Regen oder Dunkelheit werden sie oft zu spät gesehen. 42.415 Auffahrunfälle allein 2024.
                     </p>
                 </div>
               </div>
 
                 <div className="flex gap-5 group">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all">
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl border transition-all ${darkMode ? 'bg-red-500/10 text-red-500 border-red-500/20 group-hover:bg-red-500 group-hover:text-white' : 'bg-orange-500/10 text-orange-500 border-orange-500/20 group-hover:bg-orange-500 group-hover:text-white'}`}>
                     3
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-white">Rechtliche Falle</h4>
-                    <p className="text-zinc-400 leading-relaxed">
+                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>Rechtliche Falle</h4>
+                    <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       Falsch aufgestellt? 30€ Bußgeld und bis zu 50% Mithaftung bei Folgeunfällen.
                       </p>
                     </div>
@@ -593,8 +597,8 @@ export default function Home() {
               </div>
 
             <div className="relative lg:ml-auto w-full max-w-lg">
-              <div className="absolute inset-0 bg-red-500/20 rounded-[2rem] transform rotate-3 scale-105 blur-3xl"></div>
-              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-900 group">
+              <div className={`absolute inset-0 rounded-[2rem] transform rotate-3 scale-105 blur-3xl ${darkMode ? 'bg-red-500/20' : 'bg-orange-500/10'}`}></div>
+              <div className={`relative rounded-[2rem] overflow-hidden shadow-2xl border ${darkMode ? 'border-zinc-800 bg-zinc-900' : 'border-zinc-200 bg-white'} group`}>
                 <Image
                   src="/Warndreieck.jpg"
                   alt="Gefährliches Warndreieck"
@@ -637,7 +641,7 @@ export default function Home() {
             <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border transition-all duration-300 overflow-hidden ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50 hover:shadow-2xl'}`}>
               {/* Deutschland Banner */}
               <div className="absolute -right-8 top-6 rotate-45 z-10">
-                <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-800 text-white'}`}>
+                <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-600 text-white'}`}>
                   Deutschland
                     </div>
                   </div>
@@ -678,15 +682,15 @@ export default function Home() {
             <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
               {/* Spanien Banner */}
               <div className="absolute -right-8 top-6 rotate-45 z-10">
-                <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-red-600 text-white">
+                <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
                   Spanien
-                  </div>
                 </div>
+              </div>
 
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>QuickAlert PRO</h4>
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600`}>49€</span>
+                  <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>49€</span>
                   <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
                   </div>
                 </div>
@@ -700,7 +704,7 @@ export default function Home() {
                   'Leitstellen-Anbindung (optional)'
                 ].map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-sm`}>✓</div>
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
                     <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
                   </li>
                 ))}
@@ -710,7 +714,7 @@ export default function Home() {
                   href="https://www.amazon.de/" 
                   target="_blank"
                   rel="noopener noreferrer"
-                className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-red-600 text-white`}
+                className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
                 >
                 PRO Kaufen
                 </a>
@@ -756,12 +760,12 @@ export default function Home() {
               </div>
 
             <div className="relative flex justify-center">
-              <div className={`absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-500/20 blur-[100px] rounded-full`}></div>
+              <div className={`absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/20 blur-[100px] rounded-full`}></div>
               <div className={`relative w-full max-w-md aspect-[3/4] rounded-[2rem] border-8 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center bg-white ${darkMode ? 'border-zinc-800' : 'border-zinc-50'}`}>
                 {/* Certificate Background Pattern */}
                 <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] bg-[length:20px_20px]"></div>
                 
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center mb-8 shadow-xl shadow-orange-500/30 text-white">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-8 shadow-xl shadow-orange-500/30 text-white">
                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -788,7 +792,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section id="cta" className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-600 to-red-600">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600">
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:40px_40px]"></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.2)_100%)]"></div>
         </div>
@@ -827,7 +831,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-orange-500/20">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-orange-500/20">
                 Q
               </div>
               <span className={`text-2xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
@@ -835,12 +839,15 @@ export default function Home() {
               </span>
             </div>
             
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-6">
               <Link href="/impressum" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Impressum
               </Link>
               <Link href="/datenschutz" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Datenschutz
+              </Link>
+              <Link href="/agb" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                AGB
               </Link>
               <span className={`text-sm ${darkMode ? 'text-zinc-600' : 'text-zinc-400'}`}>
                 © 2026 QuickAlert

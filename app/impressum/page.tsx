@@ -68,6 +68,10 @@ export default function Impressum() {
                   <span className="font-semibold text-zinc-800">Geschäftsführer/Inhaber:</span><br />
                   Felix Bredl
                 </p>
+                <p className="mt-3">
+                  <span className="font-semibold text-zinc-800">Umsatzsteuer-Identifikationsnummer:</span><br />
+                  <span className="text-zinc-500 italic">Wird nach Gewerbeanmeldung ergänzt</span>
+                </p>
                 <div className="p-4 rounded-2xl bg-orange-50 border border-orange-100">
                   <p className="text-orange-700 text-sm">
                     <span className="font-bold">Hinweis:</span> Die Firmeneintragung ist aktuell in Vorbereitung. Es erfolgt kein Verkauf vor der Eintragung.
@@ -437,7 +441,20 @@ export default function Impressum() {
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-zinc-200 bg-white">
         <div className="max-w-4xl mx-auto text-center text-zinc-500 text-sm">
-          © 2026 QuickAlert e.U. – Alle Rechte vorbehalten.
+          <div className="flex flex-wrap justify-center gap-4 mb-4">
+            <Link href="/impressum" className="hover:text-orange-500 transition-colors">
+              Impressum
+            </Link>
+            <span>•</span>
+            <Link href="/datenschutz" className="hover:text-orange-500 transition-colors">
+              Datenschutz
+            </Link>
+            <span>•</span>
+            <Link href="/agb" className="hover:text-orange-500 transition-colors">
+              AGB
+            </Link>
+          </div>
+          <p>© 2026 QuickAlert e.U. – Alle Rechte vorbehalten.</p>
         </div>
       </footer>
     </main>
