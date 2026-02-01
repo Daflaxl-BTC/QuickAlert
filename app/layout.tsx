@@ -56,9 +56,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/a6beef4a-2bf3-4cec-8e29-df740efe8987',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'layout.tsx:RootLayout',message:'RootLayout rendered',data:{hasChildren:!!children},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E'})}).catch(()=>{});
-  // #endregion
   return (
     <html lang="de" suppressHydrationWarning>
       <body className={`${inter.variable} ${poppins.variable} font-sans`}>

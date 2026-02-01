@@ -1,9 +1,6 @@
 import Link from 'next/link'
 
 export default function Datenschutz() {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/a6beef4a-2bf3-4cec-8e29-df740efe8987',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'datenschutz/page.tsx:Datenschutz',message:'Datenschutz page component rendered',data:{pageLoaded:true},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
-  // #endregion
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900 overflow-x-hidden">
       
