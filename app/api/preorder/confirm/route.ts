@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { tokenStore } from '@/lib/tokenStore'
 import { sendConfirmedEmail } from '@/lib/email'
+import { notifyN8NPreOrderConfirmed } from '@/lib/n8n'
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
@@ -24,6 +25,16 @@ export async function GET(request: NextRequest) {
 
   // Bestätigungs-E-Mail senden
   await sendConfirmedEmail(tokenData.data)
+
+  // n8n Webhook für bestätigte Vorbestellung aufrufen (asynchron, blockiert nicht)
+  notifyN8NPreOrderConfirmed({
+    name: tokenData.data.name,
+    email: tokenData.data.email,
+    product: tokenData.data.product,
+    message: tokenData.data.message,
+  }).catch((error) => {
+    console.error('n8n webhook error (non-blocking):', error)
+  })
 
   // Token entfernen (bereits bestätigt)
   tokenStore.delete(token)

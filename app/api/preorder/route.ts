@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { sendConfirmationEmail, sendNotificationEmail, PreOrderData } from '@/lib/email'
 import { tokenStore, cleanupExpiredTokens } from '@/lib/tokenStore'
+import { notifyN8NPreOrderSubmitted } from '@/lib/n8n'
 import crypto from 'crypto'
 
 const preOrderSchema = z.object({
@@ -71,6 +72,11 @@ export async function POST(request: NextRequest) {
 
     // Cleanup: Alte Tokens entfernen (älter als 24h)
     cleanupExpiredTokens()
+
+    // n8n Webhook aufrufen (asynchron, blockiert nicht)
+    notifyN8NPreOrderSubmitted(preOrderData).catch((error) => {
+      console.error('n8n webhook error (non-blocking):', error)
+    })
 
     return NextResponse.json({
       success: true,
