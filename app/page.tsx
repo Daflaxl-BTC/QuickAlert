@@ -1062,11 +1062,24 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-orange-500/20">
-                Q
-              </div>
-              <span className={`text-2xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                Quick<span className="text-orange-500">Alert</span>
+              {/* Warnleuchte Icon - identisch zum Header */}
+              <svg className="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Strahlen */}
+                <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
+                <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
+                <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-45 32 32)"/>
+                <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(22.5 32 32)"/>
+                <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-22.5 32 32)"/>
+                {/* Glaskuppel */}
+                <path d="M22 38C22 28 24 22 32 22C40 22 42 28 42 38" fill="#F97316"/>
+                <rect x="20" y="22" width="6" height="18" rx="1" fill="white" opacity="0.4"/>
+                {/* Basis */}
+                <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
+                <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
+              </svg>
+              <span className={`text-2xl font-black font-poppins tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                <span className={darkMode ? 'text-white' : 'text-zinc-900'}>Quick</span>
+                <span className="text-orange-500">Alert</span>
               </span>
             </div>
             
