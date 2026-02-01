@@ -585,7 +585,7 @@ export default function Home() {
                     </div>
 
                 <div className="mt-16 p-8 rounded-3xl bg-zinc-900 border border-zinc-800 text-center">
-                   <h3 className="text-2xl font-bold text-white mb-4">Von Polizisten entwickelt</h3>
+                   <h3 className="text-2xl font-bold text-white mb-4">Von Polizisten empfohlen</h3>
                    <p className="text-lg text-zinc-400 mb-6">
                      Das Warndreieck stammt aus 1925. Moderne Unfallprävention braucht moderne Technologie.
                    </p>
