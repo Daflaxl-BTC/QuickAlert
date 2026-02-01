@@ -94,7 +94,7 @@ export default function PreOrderForm() {
             Vielen Dank für Ihre Anmeldung!
           </h3>
           <p className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-            Wir haben Ihnen eine Bestätigungs-E-Mail gesendet. Bitte klicken Sie auf den Link in der E-Mail, um Ihre Vorbestellung abzuschließen.
+            Sie sind jetzt auf unserer Vorbestellungsliste. Wir informieren Sie per E-Mail, sobald QuickAlert verfügbar ist.
           </p>
         </div>
       </div>

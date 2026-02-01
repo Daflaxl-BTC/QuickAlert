@@ -6,8 +6,7 @@ export interface N8NWebhookPayload {
     product: 'BASE' | 'PRO' | 'BOTH'
     message?: string
     timestamp: string
-    confirmationToken?: string
-    confirmed?: boolean
+    confirmed: boolean
   }
 }
 
@@ -58,7 +57,7 @@ export async function notifyN8NPreOrderSubmitted(data: {
   email: string
   product: 'BASE' | 'PRO' | 'BOTH'
   message?: string
-  confirmationToken: string
+  confirmed?: boolean
 }) {
   return sendN8NWebhook(
     {
@@ -66,7 +65,7 @@ export async function notifyN8NPreOrderSubmitted(data: {
       data: {
         ...data,
         timestamp: new Date().toISOString(),
-        confirmed: false,
+        confirmed: data.confirmed ?? true, // Standardmäßig als bestätigt markieren
       },
     },
     process.env.N8N_WEBHOOK_URL

@@ -25,7 +25,6 @@ export interface PreOrderData {
   email: string
   product: 'BASE' | 'PRO' | 'BOTH'
   message?: string
-  confirmationToken: string
 }
 
 export async function sendConfirmationEmail(data: PreOrderData) {

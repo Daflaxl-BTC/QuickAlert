@@ -28,28 +28,13 @@ export default function Home() {
     }
   }
 
-  // URL-Parameter für Bestätigung/Fehler prüfen
+  // URL-Parameter für Fehler prüfen (nur für allgemeine Fehler, keine Token-Fehler mehr)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    if (params.get('confirmed') === 'true') {
-      setNotification({
-        type: 'success',
-        message: 'Ihre E-Mail-Adresse wurde erfolgreich bestätigt! Sie sind jetzt auf unserer Vorbestellungsliste.',
-      })
-      // URL bereinigen
-      window.history.replaceState({}, '', window.location.pathname)
-      // Nach 5 Sekunden ausblenden
-      setTimeout(() => setNotification(null), 5000)
-    } else if (params.get('error')) {
+    if (params.get('error')) {
       const errorType = params.get('error')
       let message = 'Ein Fehler ist aufgetreten.'
-      if (errorType === 'invalid_token') {
-        message = 'Ungültiger Bestätigungslink. Bitte registrieren Sie sich erneut.'
-      } else if (errorType === 'expired_token') {
-        message = 'Der Bestätigungslink ist abgelaufen. Bitte registrieren Sie sich erneut.'
-      } else if (errorType === 'missing_token') {
-        message = 'Bestätigungslink fehlt.'
-      }
+      // Token-Fehler werden nicht mehr angezeigt, da kein Double Opt-In mehr
       setNotification({ type: 'error', message })
       window.history.replaceState({}, '', window.location.pathname)
       setTimeout(() => setNotification(null), 5000)

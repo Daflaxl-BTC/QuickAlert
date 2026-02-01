@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { sendConfirmationEmail, sendNotificationEmail, PreOrderData } from '@/lib/email'
-import { tokenStore, cleanupExpiredTokens } from '@/lib/tokenStore'
+import { sendNotificationEmail, PreOrderData } from '@/lib/email'
 import { notifyN8NPreOrderSubmitted } from '@/lib/n8n'
-import crypto from 'crypto'
 
 const preOrderSchema = z.object({
   name: z.string().min(2, 'Name muss mindestens 2 Zeichen lang sein'),
@@ -16,10 +14,6 @@ const preOrderSchema = z.object({
     message: 'Sie müssen der Datenschutzerklärung zustimmen',
   }),
 })
-
-function generateToken(): string {
-  return crypto.randomBytes(32).toString('hex')
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -34,68 +28,35 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { name, email, product, message, privacyAccepted } = validationResult.data
-
-    // Token generieren
-    const confirmationToken = generateToken()
-    const expiresAt = Date.now() + 24 * 60 * 60 * 1000 // 24 Stunden
+    const { name, email, product, message } = validationResult.data
 
     const preOrderData: PreOrderData = {
       name,
       email,
       product,
       message,
-      confirmationToken,
     }
 
-    // Token speichern
-    tokenStore.set(confirmationToken, {
-      data: preOrderData,
-      expiresAt,
-    })
+    // Benachrichtigungs-E-Mail senden (an Admin)
+    console.log(`📧 Neue Vorbestellung von: ${preOrderData.email}`)
+    const notificationResult = await sendNotificationEmail(preOrderData)
 
-    // E-Mails senden
-    console.log(`📧 Starte E-Mail-Versand für: ${preOrderData.email}`)
-    const [confirmationResult, notificationResult] = await Promise.all([
-      sendConfirmationEmail(preOrderData),
-      sendNotificationEmail(preOrderData),
-    ])
-
-    console.log('📊 E-Mail-Versand Ergebnisse:', {
-      confirmation: confirmationResult.success ? '✅ Erfolgreich' : `❌ Fehler: ${confirmationResult.error}`,
-      notification: notificationResult.success ? '✅ Erfolgreich' : `❌ Fehler: ${notificationResult.error}`,
-    })
-
-    if (!confirmationResult.success) {
-      console.error('❌ Failed to send confirmation email:', confirmationResult.error)
-      // Token entfernen wenn E-Mail-Versand fehlschlägt
-      tokenStore.delete(confirmationToken)
-      
-      // Detaillierte Fehlermeldung für Debugging (nur in Development)
-      const errorDetails = process.env.NODE_ENV === 'development' 
-        ? ` Details: ${confirmationResult.error}` 
-        : ''
-      
-      return NextResponse.json(
-        { 
-          error: 'Fehler beim Versenden der Bestätigungs-E-Mail. Bitte versuchen Sie es später erneut.' + errorDetails,
-          details: process.env.NODE_ENV === 'development' ? confirmationResult.error : undefined
-        },
-        { status: 500 }
-      )
+    if (!notificationResult.success) {
+      console.error('❌ Failed to send notification email:', notificationResult.error)
+      // Fehler wird nicht an den Nutzer weitergegeben, da die Anmeldung trotzdem erfolgreich ist
     }
 
-    // Cleanup: Alte Tokens entfernen (älter als 24h)
-    cleanupExpiredTokens()
-
-    // n8n Webhook aufrufen (asynchron, blockiert nicht)
-    notifyN8NPreOrderSubmitted(preOrderData).catch((error) => {
+    // n8n Webhook aufrufen (als bestätigt markiert, da kein Double Opt-In mehr)
+    notifyN8NPreOrderSubmitted({
+      ...preOrderData,
+      confirmed: true, // Sofort als bestätigt markieren
+    }).catch((error) => {
       console.error('n8n webhook error (non-blocking):', error)
     })
 
     return NextResponse.json({
       success: true,
-      message: 'Vielen Dank! Bitte bestätigen Sie Ihre E-Mail-Adresse, um Ihre Vorbestellung abzuschließen.',
+      message: 'Vielen Dank! Sie sind jetzt auf unserer Vorbestellungsliste.',
     })
   } catch (error) {
     console.error('Error processing preorder:', error)
