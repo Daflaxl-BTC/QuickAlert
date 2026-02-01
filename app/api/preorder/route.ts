@@ -64,8 +64,17 @@ export async function POST(request: NextRequest) {
       console.error('Failed to send confirmation email:', confirmationResult.error)
       // Token entfernen wenn E-Mail-Versand fehlschlägt
       tokenStore.delete(confirmationToken)
+      
+      // Detaillierte Fehlermeldung für Debugging (nur in Development)
+      const errorDetails = process.env.NODE_ENV === 'development' 
+        ? ` Details: ${confirmationResult.error}` 
+        : ''
+      
       return NextResponse.json(
-        { error: 'Fehler beim Versenden der Bestätigungs-E-Mail. Bitte versuchen Sie es später erneut.' },
+        { 
+          error: 'Fehler beim Versenden der Bestätigungs-E-Mail. Bitte versuchen Sie es später erneut.' + errorDetails,
+          details: process.env.NODE_ENV === 'development' ? confirmationResult.error : undefined
+        },
         { status: 500 }
       )
     }

@@ -22,7 +22,7 @@ export async function sendConfirmationEmail(data: PreOrderData) {
   const confirmationUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://quickalert.eu'}/api/preorder/confirm?token=${data.confirmationToken}`
   
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <onboarding@resend.dev>',
       to: data.email,
       subject: 'Bitte bestätigen Sie Ihre Vorbestellung bei QuickAlert',
@@ -84,9 +84,10 @@ export async function sendConfirmationEmail(data: PreOrderData) {
     })
     
     return { success: true }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error sending confirmation email:', error)
-    return { success: false, error }
+    const errorMessage = error?.message || error?.toString() || 'Unbekannter Fehler'
+    return { success: false, error: errorMessage }
   }
 }
 
@@ -145,9 +146,10 @@ export async function sendNotificationEmail(data: PreOrderData) {
     })
     
     return { success: true }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error sending notification email:', error)
-    return { success: false, error }
+    const errorMessage = error?.message || error?.toString() || 'Unbekannter Fehler'
+    return { success: false, error: errorMessage }
   }
 }
 
@@ -203,8 +205,9 @@ export async function sendConfirmedEmail(data: PreOrderData) {
     })
     
     return { success: true }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error sending confirmed email:', error)
-    return { success: false, error }
+    const errorMessage = error?.message || error?.toString() || 'Unbekannter Fehler'
+    return { success: false, error: errorMessage }
   }
 }
