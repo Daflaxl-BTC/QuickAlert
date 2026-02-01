@@ -1,9 +1,13 @@
 import { Resend } from 'resend'
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
-
-if (!process.env.RESEND_API_KEY) {
-  console.warn('⚠️ RESEND_API_KEY ist nicht gesetzt! E-Mail-Versand wird nicht funktionieren.')
+// Resend Client zur Runtime initialisieren (nicht zur Build-Zeit)
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    console.warn('⚠️ RESEND_API_KEY ist nicht gesetzt! E-Mail-Versand wird nicht funktionieren.')
+    return null
+  }
+  return new Resend(apiKey)
 }
 
 export interface PreOrderData {
@@ -15,6 +19,7 @@ export interface PreOrderData {
 }
 
 export async function sendConfirmationEmail(data: PreOrderData) {
+  const resend = getResendClient()
   if (!resend) {
     return { success: false, error: 'RESEND_API_KEY ist nicht konfiguriert' }
   }
@@ -112,6 +117,7 @@ export async function sendConfirmationEmail(data: PreOrderData) {
 }
 
 export async function sendNotificationEmail(data: PreOrderData) {
+  const resend = getResendClient()
   if (!resend) {
     return { success: false, error: 'RESEND_API_KEY ist nicht konfiguriert' }
   }
@@ -174,6 +180,7 @@ export async function sendNotificationEmail(data: PreOrderData) {
 }
 
 export async function sendConfirmedEmail(data: PreOrderData) {
+  const resend = getResendClient()
   if (!resend) {
     return { success: false, error: 'RESEND_API_KEY ist nicht konfiguriert' }
   }
