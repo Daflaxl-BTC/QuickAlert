@@ -23,6 +23,12 @@ export async function sendConfirmationEmail(data: PreOrderData) {
   
   try {
     console.log(`📧 Sende Bestätigungs-E-Mail an: ${data.email}`)
+    
+    // E-Mail-Adresse validieren
+    if (!data.email || !data.email.includes('@')) {
+      throw new Error(`Ungültige E-Mail-Adresse: ${data.email}`)
+    }
+    
     const result = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <onboarding@resend.dev>',
       to: data.email,
@@ -84,10 +90,22 @@ export async function sendConfirmationEmail(data: PreOrderData) {
       `,
     })
     
-    console.log(`✅ Bestätigungs-E-Mail erfolgreich versendet an: ${data.email}`, result)
+    console.log(`✅ Bestätigungs-E-Mail erfolgreich versendet an: ${data.email}`)
+    console.log('📦 Resend Response:', JSON.stringify(result, null, 2))
+    
+    // Prüfen ob Resend einen Fehler zurückgibt
+    if (result.error) {
+      throw new Error(`Resend API Fehler: ${JSON.stringify(result.error)}`)
+    }
+    
     return { success: true, result }
   } catch (error: any) {
     console.error(`❌ Fehler beim Versenden der Bestätigungs-E-Mail an ${data.email}:`, error)
+    console.error('❌ Fehler-Details:', {
+      message: error?.message,
+      stack: error?.stack,
+      response: error?.response,
+    })
     const errorMessage = error?.message || error?.toString() || 'Unbekannter Fehler'
     return { success: false, error: errorMessage }
   }
