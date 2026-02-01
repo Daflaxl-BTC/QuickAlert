@@ -45,7 +45,7 @@ export async function sendConfirmationEmail(data: PreOrderData) {
     }
     
     const result = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <onboarding@resend.dev>',
+      from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <noreply@quickalert.eu>',
       to: data.email,
       subject: 'Bitte bestätigen Sie Ihre Vorbestellung bei QuickAlert',
       html: `
@@ -134,7 +134,7 @@ export async function sendNotificationEmail(data: PreOrderData) {
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <onboarding@resend.dev>',
+      from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <noreply@quickalert.eu>',
       to: process.env.ADMIN_EMAIL || 'felix-bredl@gmx.de',
       subject: `Neue Vorbestellung: ${data.name} - ${data.product}`,
       html: `
@@ -197,7 +197,7 @@ export async function sendConfirmedEmail(data: PreOrderData) {
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <onboarding@resend.dev>',
+      from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <noreply@quickalert.eu>',
       to: data.email,
       subject: 'Ihre Vorbestellung wurde bestätigt - QuickAlert',
       html: `
