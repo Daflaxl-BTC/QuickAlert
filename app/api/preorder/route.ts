@@ -9,7 +9,7 @@ const preOrderSchema = z.object({
   name: z.string().min(2, 'Name muss mindestens 2 Zeichen lang sein'),
   email: z.string().email('Ungültige E-Mail-Adresse'),
   product: z.enum(['BASE', 'PRO', 'BOTH'], {
-    errorMap: () => ({ message: 'Bitte wählen Sie ein Produkt aus' }),
+    message: 'Bitte wählen Sie ein Produkt aus',
   }),
   message: z.string().optional(),
   privacyAccepted: z.boolean().refine((val) => val === true, {
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     const validationResult = preOrderSchema.safeParse(body)
     if (!validationResult.success) {
       return NextResponse.json(
-        { error: 'Ungültige Eingaben', details: validationResult.error.errors },
+        { error: 'Ungültige Eingaben', details: validationResult.error.issues },
         { status: 400 }
       )
     }
