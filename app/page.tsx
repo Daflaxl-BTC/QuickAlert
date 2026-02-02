@@ -195,7 +195,7 @@ export default function Home() {
           <div className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
             <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>FEATURES</a>
             <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>PREISE</a>
-            <a href="#cta" onClick={(e) => handleNavClick(e, 'cta')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>KONTAKT</a>
+            <a href="https://wa.me/4915119784023" target="_blank" rel="noopener noreferrer" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>KONTAKT</a>
           <div className={`flex items-center gap-6 pl-4 border-l transition-colors duration-300 ${darkMode ? 'border-[#4a4a4a]' : 'border-[#D4B896]/40'}`}>
             <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors relative ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>
               BASE
