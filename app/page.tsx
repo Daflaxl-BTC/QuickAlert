@@ -118,30 +118,35 @@ export default function Home() {
       </button>
 
       {/* Dark Mode Toggle + Warndreieck Button - Rechts, weiter unten auf Mobile */}
-      <div className="fixed right-3 sm:right-4 top-[58%] sm:top-1/2 transform -translate-y-1/2 z-50 flex flex-row items-center gap-2 sm:gap-3">
+      <div className="fixed right-2 sm:right-3 md:right-4 top-[58%] sm:top-1/2 transform -translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3">
         {/* Warndreieck/QuickAlert Button */}
         <button
           onClick={(e) => {
             e.preventDefault()
             setDarkMode(!darkMode)
           }}
-          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer
+          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer min-h-[44px] active:scale-95
             ${darkMode 
-              ? 'px-3 py-2 sm:px-5 sm:py-2.5 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' 
-              : 'px-2 py-1.5 sm:px-4 sm:py-2 bg-[#F5E6D3]/90 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
+              ? 'px-3 py-2 sm:px-4 md:px-5 sm:py-2.5 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' 
+              : 'px-2.5 py-2 sm:px-4 sm:py-2 bg-[#F5E6D3]/90 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
           style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
         >
-          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-[10px] sm:text-sm md:text-base' : 'text-[8px] sm:text-xs'}`}>
+          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base' : 'text-[8px] xs:text-[9px] sm:text-xs'}`}>
             {darkMode ? (
               <>
-                <span className="text-white">Warum lieber </span>
+                <span className="hidden sm:inline text-white">Warum lieber </span>
                 <span className="text-white">Quick</span>
                 <span className="text-[#F5A623]">Alert</span>
-                <span className="text-white"> ?</span>
+                <span className="text-white">?</span>
               </>
-            ) : 'WARUM NICHT DAS WARNDREIECK?'}
+            ) : (
+              <>
+                <span className="hidden sm:inline">WARUM NICHT DAS </span>
+                <span>WARNDREIECK?</span>
+              </>
+            )}
           </span>
-          <svg className={`group-hover:translate-x-1 transition-transform ${darkMode ? 'w-3 h-3 sm:w-4 sm:h-4 text-[#F5A623]' : 'w-2.5 h-2.5 sm:w-3 sm:h-3'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={`group-hover:translate-x-1 transition-transform flex-shrink-0 ${darkMode ? 'w-3 h-3 sm:w-4 sm:h-4 text-[#F5A623]' : 'w-2.5 h-2.5 sm:w-3 sm:h-3'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </button>
@@ -150,21 +155,24 @@ export default function Home() {
       
       {/* Top Info Bar - Mobile optimized - IDENTISCH für beide Modi */}
       <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
-        <div className="container mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-0.5 sm:py-1">
-          <div className="flex items-center justify-between">
-            <p className={`text-center flex-1 text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
-              <span className="font-bold">Pro:</span> EU Zulassung nach IDIADA Real Decreto 2822/1998
+        <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-12 py-1 sm:py-1.5">
+          <div className="flex items-center justify-between gap-2">
+            <p className={`text-center flex-1 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 leading-tight ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
+              <span className="font-bold hidden xs:inline">Pro:</span>
+              <span className="font-bold xs:hidden">P:</span>
+              <span className="hidden sm:inline"> EU Zulassung nach IDIADA Real Decreto 2822/1998</span>
+              <span className="sm:hidden"> EU Zulassung IDIADA</span>
             </p>
             {/* Instagram Link - Top Right */}
             <a
               href="https://www.instagram.com/quickalert_germany?igsh=MTh4ZnJiZHV1a2l3dA%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
-              className={`ml-4 p-1.5 sm:p-2 rounded-lg hover:bg-opacity-20 transition-all flex-shrink-0 ${darkMode ? 'hover:bg-white/10' : 'hover:bg-zinc-900/10'}`}
+              className={`ml-2 sm:ml-4 p-1.5 sm:p-2 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center rounded-lg hover:scale-110 active:scale-95 transition-all flex-shrink-0 ${darkMode ? 'bg-white/10 hover:bg-white/20' : 'bg-zinc-900/10 hover:bg-zinc-900/20'}`}
               aria-label="Folgen Sie uns auf Instagram"
             >
               <svg 
-                className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-zinc-300 hover:text-orange-500' : 'text-[#F5E6D3] hover:text-orange-400'}`} 
+                className={`w-5 h-5 sm:w-6 sm:h-6 ${darkMode ? 'text-white hover:text-orange-500' : 'text-[#F5E6D3] hover:text-orange-400'}`} 
                 fill="currentColor" 
                 viewBox="0 0 24 24"
               >
@@ -176,10 +184,10 @@ export default function Home() {
       </div>
 
       {/* Navigation - IDENTISCH für beide Modi */}
-      <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-12 py-1.5 sm:py-2 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`}>
+      <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-3 sm:px-4 md:px-6 lg:px-12 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`}>
         {/* Logo Links */}
-        <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
-          <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Link href="/" className="flex items-center gap-1.5 sm:gap-2 md:gap-3 hover:opacity-80 transition-opacity min-h-[44px]">
+          <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex-shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Strahlen */}
             <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
             <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
@@ -193,7 +201,7 @@ export default function Home() {
             <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
             <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
           </svg>
-          <span className="text-xl sm:text-2xl md:text-3xl font-black font-poppins tracking-tight" style={{ filter: 'drop-shadow(0 0 10px rgba(212, 184, 150, 0.6))' }}>
+          <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black font-poppins tracking-tight" style={{ filter: 'drop-shadow(0 0 10px rgba(212, 184, 150, 0.6))' }}>
             <span className={darkMode ? 'text-white' : 'text-white'}>Quick</span>
             <span className="text-[#F5A623]">Alert</span>
           </span>
@@ -229,7 +237,7 @@ export default function Home() {
             href="https://www.amazon.de/" 
             target="_blank"
             rel="noopener noreferrer"
-            className={`px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-lg font-bold text-xs sm:text-sm hover:scale-105 transition-all shadow-lg ${darkMode ? 'bg-[#4a4a4a] text-[#e5e5e5] hover:bg-[#5a5a5a]' : 'bg-[#D4B896] text-[#6B4E3D]'}`}
+            className={`px-4 py-2.5 sm:px-6 sm:py-3 min-h-[44px] flex items-center justify-center rounded-lg font-bold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all shadow-lg ${darkMode ? 'bg-[#4a4a4a] text-[#e5e5e5] hover:bg-[#5a5a5a]' : 'bg-[#D4B896] text-[#6B4E3D]'}`}
             style={darkMode ? {boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)'} : {boxShadow: '0 0 20px rgba(212, 184, 150, 0.5)'}}
           >
             <span className="hidden sm:inline">JETZT KAUFEN</span>
@@ -284,7 +292,7 @@ export default function Home() {
         )}
 
         {/* Hero Content - Overlaid to avoid layout shifts - Gleiche Größe für beide Modi */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pb-24 sm:pb-28 md:pb-32 pt-28 sm:pt-32 md:pt-36 lg:pt-40">
+        <div className="relative z-10 container mx-auto px-4 sm:px-5 md:px-6 lg:px-12 pb-20 sm:pb-24 md:pb-28 lg:pb-32 pt-24 sm:pt-28 md:pt-32 lg:pt-36 xl:pt-40">
           <div className="max-w-4xl">
             {/* Date Badge - Mobile optimized */}
             <div className="grid place-items-start mb-4 sm:mb-5 md:mb-6">
@@ -340,7 +348,7 @@ export default function Home() {
                 <a 
                   href="#pricing"
                   onClick={(e) => handleNavClick(e, 'pricing')}
-                  className="group relative w-full sm:w-auto px-6 py-3 sm:px-10 sm:py-5 rounded-xl bg-[#8b0000] hover:bg-[#a00000] border-2 border-[#ff4444] font-bold text-sm sm:text-lg overflow-hidden transition-all duration-300 text-[#ffffff] text-center"
+                  className="group relative w-full sm:w-auto px-6 py-3.5 sm:px-10 sm:py-5 min-h-[48px] sm:min-h-[56px] flex items-center justify-center rounded-xl bg-[#8b0000] hover:bg-[#a00000] active:bg-[#700000] border-2 border-[#ff4444] font-bold text-sm sm:text-base md:text-lg overflow-hidden transition-all duration-300 text-[#ffffff] text-center"
                   style={{
                     boxShadow: '0 0 30px rgba(139, 0, 0, 0.6)'
                   }}
@@ -357,7 +365,7 @@ export default function Home() {
               <div className={`col-start-1 row-start-1 flex flex-col items-start gap-2 sm:gap-2.5 md:gap-3 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
                   href="#pricing"
-                  className="group relative px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-base overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] transition-all duration-300 text-[#F5E6D3]"
+                  className="group relative px-5 py-3 sm:px-6 sm:py-3.5 min-h-[48px] sm:min-h-[52px] flex items-center justify-center rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-base overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] active:bg-[#5a4230] transition-all duration-300 text-[#F5E6D3]"
                   style={{
                     boxShadow: '0 0 30px rgba(212, 184, 150, 0.4)'
                   }}
@@ -1070,12 +1078,12 @@ export default function Home() {
       </section>
 
       {/* Modern Footer */}
-      <footer className={`py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-zinc-50 border-zinc-200'}`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-3">
+      <footer className={`py-8 sm:py-10 md:py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-zinc-50 border-zinc-200'}`}>
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+            <div className="flex items-center gap-2 sm:gap-3">
               {/* Warnleuchte Icon - identisch zum Header */}
-              <svg className="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex-shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Strahlen */}
                 <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
                 <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
@@ -1089,13 +1097,13 @@ export default function Home() {
                 <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
                 <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
               </svg>
-              <span className={`text-2xl font-black font-poppins tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+              <span className={`text-xl sm:text-2xl font-black font-poppins tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 <span className={darkMode ? 'text-white' : 'text-zinc-900'}>Quick</span>
                 <span className="text-orange-500">Alert</span>
               </span>
             </div>
             
-            <div className="flex flex-wrap items-center justify-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 text-center">
               <Link href="/impressum" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Impressum
               </Link>
