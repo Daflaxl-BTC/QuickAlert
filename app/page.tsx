@@ -378,7 +378,9 @@ export default function Home() {
                   </span>
                 </a>
                 <a 
-                  href="#features"
+                  href="https://wa.me/4915119784023"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-sm sm:text-base hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3]"
                   style={{
                     boxShadow: '0 0 20px rgba(159, 181, 115, 0.4)'
