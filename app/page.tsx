@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import PreOrderForm from '@/components/PreOrderForm'
-import QuickAlertLogo from '@/components/QuickAlertLogo'
 
 export default function Home() {
   const { darkMode, setDarkMode } = useDarkMode()
@@ -147,30 +146,32 @@ export default function Home() {
           </svg>
         </button>
         <DarkModeToggle />
-        {/* Instagram Link */}
-        <a
-          href="https://www.instagram.com/quickalert_germany?igsh=MTh4ZnJiZHV1a2l3dA%3D%3D&utm_source=qr"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`p-2 rounded-lg hover:bg-opacity-20 transition-all ${darkMode ? 'hover:bg-white/10' : 'hover:bg-zinc-900/10'}`}
-          aria-label="Folgen Sie uns auf Instagram"
-        >
-          <svg 
-            className={`w-5 h-5 sm:w-6 sm:h-6 ${darkMode ? 'text-zinc-300 hover:text-orange-500' : 'text-zinc-700 hover:text-orange-600'}`} 
-            fill="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
       </div>
       
       {/* Top Info Bar - Mobile optimized - IDENTISCH für beide Modi */}
       <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
         <div className="container mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-0.5 sm:py-1">
-          <p className={`text-center text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
-            <span className="font-bold">Pro:</span> EU Zulassung nach IDIADA Real Decreto 2822/1998
-          </p>
+          <div className="flex items-center justify-between">
+            <p className={`text-center flex-1 text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
+              <span className="font-bold">Pro:</span> EU Zulassung nach IDIADA Real Decreto 2822/1998
+            </p>
+            {/* Instagram Link - Top Right */}
+            <a
+              href="https://www.instagram.com/quickalert_germany?igsh=MTh4ZnJiZHV1a2l3dA%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`ml-4 p-1.5 sm:p-2 rounded-lg hover:bg-opacity-20 transition-all flex-shrink-0 ${darkMode ? 'hover:bg-white/10' : 'hover:bg-zinc-900/10'}`}
+              aria-label="Folgen Sie uns auf Instagram"
+            >
+              <svg 
+                className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-zinc-300 hover:text-orange-500' : 'text-[#F5E6D3] hover:text-orange-400'}`} 
+                fill="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -178,7 +179,20 @@ export default function Home() {
       <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-4 sm:px-6 md:px-8 lg:px-12 py-1.5 sm:py-2 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`}>
         {/* Logo Links */}
         <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
-          <QuickAlertLogo className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
+          <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Strahlen */}
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-45 32 32)"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(22.5 32 32)"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-22.5 32 32)"/>
+            {/* Glaskuppel */}
+            <path d="M22 38C22 28 24 22 32 22C40 22 42 28 42 38" fill="#F97316"/>
+            <rect x="20" y="22" width="6" height="18" rx="1" fill="white" opacity="0.4"/>
+            {/* Basis */}
+            <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
+            <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
+          </svg>
           <span className="text-xl sm:text-2xl md:text-3xl font-black font-poppins tracking-tight" style={{ filter: 'drop-shadow(0 0 10px rgba(212, 184, 150, 0.6))' }}>
             <span className={darkMode ? 'text-white' : 'text-white'}>Quick</span>
             <span className="text-[#F5A623]">Alert</span>
