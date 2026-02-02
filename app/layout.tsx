@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: '/quickalert-logo.svg',
+    shortcut: '/quickalert-logo.svg',
+    apple: '/quickalert-logo.svg',
+  },
   openGraph: {
     title: 'QuickAlert - Magnetisches LED Warnlicht',
     description: 'Das moderne magnetische gelbe LED Warnlicht für maximale Sicherheit',
