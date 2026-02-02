@@ -14,6 +14,7 @@ export default function Home() {
   const darkHeadlineRef = useRef<HTMLHeadingElement>(null)
   const lightHeadlineRef = useRef<HTMLHeadingElement>(null)
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     if (darkMode) {
@@ -39,6 +40,23 @@ export default function Home() {
       window.history.replaceState({}, '', window.location.pathname)
       setTimeout(() => setNotification(null), 5000)
     }
+  }, [])
+
+  // Scroll-Handler für Scroll-Indikator - nur im Hero-Bereich anzeigen
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.querySelector('section:first-of-type')
+      if (heroSection) {
+        const heroBottom = heroSection.getBoundingClientRect().bottom
+        // Zeige Scroll-Indikator nur, wenn Hero-Section noch sichtbar ist
+        setShowScrollIndicator(heroBottom > window.innerHeight * 0.3)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   // #region agent log
@@ -68,52 +86,6 @@ export default function Home() {
         const darkTextGap = darkTextTop - darkBadgeBottom
         const lightTextGap = lightTextTop - lightBadgeBottom
         
-        const darkStyles = window.getComputedStyle(darkHeadlineRef.current)
-        const lightStyles = window.getComputedStyle(lightHeadlineRef.current)
-        
-        fetch('http://127.0.0.1:7242/ingest/a6beef4a-2bf3-4cec-8e29-df740efe8987', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            location: 'page.tsx:measureBadgeToHeadline',
-            message: 'Badge to headline spacing measured with text position',
-            data: {
-              darkMode,
-              darkBadgeHeight: darkBadgeRect.height,
-              darkBadgeTop: darkBadgeRect.top,
-              darkBadgeBottom: darkBadgeBottom,
-              lightBadgeHeight: lightBadgeRect.height,
-              lightBadgeTop: lightBadgeRect.top,
-              lightBadgeBottom: lightBadgeBottom,
-              darkHeadlineTop: darkHeadlineTop,
-              lightHeadlineTop: lightHeadlineTop,
-              darkTextTop: darkTextTop,
-              lightTextTop: lightTextTop,
-              textTopDiff: Math.abs(darkTextTop - lightTextTop),
-              darkGap: darkGap,
-              lightGap: lightGap,
-              darkTextGap: darkTextGap,
-              lightTextGap: lightTextGap,
-              gapDiff: Math.abs(darkGap - lightGap),
-              textGapDiff: Math.abs(darkTextGap - lightTextGap),
-              badgeHeightDiff: Math.abs(darkBadgeRect.height - lightBadgeRect.height),
-              badgeTopDiff: Math.abs(darkBadgeRect.top - lightBadgeRect.top),
-              badgeBottomDiff: Math.abs(darkBadgeBottom - lightBadgeBottom),
-              darkLineHeight: darkStyles.lineHeight,
-              lightLineHeight: lightStyles.lineHeight,
-              darkFontSize: darkStyles.fontSize,
-              lightFontSize: lightStyles.fontSize,
-              darkPaddingTop: darkStyles.paddingTop,
-              lightPaddingTop: lightStyles.paddingTop,
-              darkMarginTop: darkStyles.marginTop,
-              lightMarginTop: lightStyles.marginTop
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            runId: 'badge-analysis',
-            hypothesisId: 'D'
-          })
-        }).catch(() => {})
       }
     }
 
@@ -394,13 +366,15 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll Indicator - Fixed am unteren Rand, mittig zentriert */}
-        <div className={`fixed left-0 right-0 bottom-6 sm:bottom-8 flex flex-col items-center gap-1 sm:gap-2 animate-bounce z-20 pointer-events-none`}>
-          <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
-          <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
+        {/* Scroll Indicator - Nur im Hero-Bereich sichtbar */}
+        {showScrollIndicator && (
+          <div className={`fixed left-0 right-0 bottom-6 sm:bottom-8 flex flex-col items-center gap-1 sm:gap-2 animate-bounce z-20 pointer-events-none transition-opacity duration-300`}>
+            <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
+            <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        )}
       </section>
 
       {/* Dark Mode Content - Story Telling Redesigned */}
@@ -509,93 +483,129 @@ export default function Home() {
                 <p className="text-xl leading-relaxed text-zinc-300 mb-16">
                   Stellen Sie sich vor: Sie haben eine Panne auf der Autobahn. Während Sie das gesetzlich vorgeschriebene Warndreieck aufstellen, aktivieren Sie zusätzlich QuickAlert mit einem Knopfdruck. Sofort leuchtet ein gelber 360°-LED-Ring auf Ihrem Dach – sichtbar aus 1 km Entfernung. Nachfolgende Autos sehen Sie deutlich früher als nur mit einem Warndreieck.
                 </p>
+              </div>
+            </div>
+          </section>
 
-                {/* Pricing Cards Dark Mode Story Style */}
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* BASE */}
-                  <div className="p-8 rounded-3xl bg-black border border-zinc-800">
-                    <div className="flex justify-between items-start mb-6">
-                      <h3 className="text-2xl font-bold text-white">BASE</h3>
-                      <span className="text-2xl font-black text-orange-500">29 €</span>
+          {/* Pricing Section - Dark Mode - Identisch zum Light Mode */}
+          <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-zinc-50'}`}>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+                  Modelle
+                </h2>
+                <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                  Wähle deine Sicherheit.
+                </h3>
+              </div>
+
+              {/* Pricing Cards Dark Mode - Identisch zum Light Mode */}
+                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+                  {/* BASE Model */}
+                  <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border transition-all duration-300 overflow-hidden ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700 shadow-xl shadow-zinc-900/50' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50 hover:shadow-2xl'}`}>
+                    {/* Deutschland Banner */}
+                    <div className="absolute -right-8 top-6 rotate-45 z-10">
+                      <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-600 text-white'}`}>
+                        Deutschland
+                      </div>
                     </div>
-                    <ul className="space-y-4 mb-8">
-                      <li className="flex gap-3 text-zinc-400">
-                        <span className="text-orange-500">✓</span> ECE R65 zertifiziert
-                      </li>
-                      <li className="flex gap-3 text-zinc-400">
-                        <span className="text-orange-500">✓</span> 50kg Magnet (220 km/h)
-                      </li>
-                      <li className="flex gap-3 text-zinc-400">
-                        <span className="text-orange-500">✓</span> Sofort einsatzbereit
-                      </li>
-                      <li className="flex gap-3 text-zinc-400">
-                        <span className="text-orange-500">✓</span> 360° Rundumwarnung
-                      </li>
-                    </ul>
-                    <a 
-                      href="#preorder"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        const element = document.getElementById('preorder')
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth' })
-                        }
-                      }}
-                      className="block w-full py-3 bg-zinc-800 text-white text-center rounded-xl font-bold hover:bg-zinc-700 transition-colors"
-                    >
-                      Vorbestellen
-                    </a>
-                </div>
-
-                  {/* PRO */}
-                  <div className="p-8 rounded-3xl bg-black border border-orange-500/50 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 px-4 py-1 bg-orange-500 text-black text-xs font-bold uppercase tracking-wider rounded-bl-xl">Populär</div>
-                    <div className="flex justify-between items-start mb-6">
-                      <h3 className="text-2xl font-bold text-white">PRO</h3>
-                      <span className="text-2xl font-black text-orange-500">49 €</span>
-                  </div>
-                    <ul className="space-y-4 mb-8">
-                      <li className="flex gap-3 text-white font-medium">
-                        <span className="text-orange-500">✓</span> GPS + Cloud-Alarm
-                      </li>
-                      <li className="flex gap-3 text-white font-medium">
-                        <span className="text-orange-500">✓</span> 13 Jahre eSIM inklusive
-                      </li>
-                      <li className="flex gap-3 text-zinc-400">
-                        <span className="text-orange-500">✓</span> Automatische Leitstellen-Info
-                      </li>
-                      <li className="flex gap-3 text-zinc-400">
-                        <span className="text-orange-500">✓</span> Alles vom BASE Modell
-                      </li>
-                    </ul>
-                    <a 
-                      href="#preorder"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        const element = document.getElementById('preorder')
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth' })
-                        }
-                      }}
-                      className="block w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-center rounded-xl font-bold hover:brightness-110 transition-all shadow-lg shadow-orange-500/20"
-                    >
-                      Vorbestellen
-                    </a>
+                    <div className="mb-8">
+                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>QuickAlert BASE</h4>
+                      <div className="flex items-baseline gap-1">
+                        <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>29€</span>
+                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
                       </div>
                     </div>
 
-                <div className="mt-16 p-8 rounded-3xl bg-zinc-900 border border-zinc-800 text-center">
-                   <h3 className="text-2xl font-bold text-white mb-4">Von Polizisten empfohlen</h3>
-                   <p className="text-lg text-zinc-400 mb-6">
-                     Das Warndreieck stammt aus 1925. Moderne Unfallprävention braucht moderne Technologie.
-                   </p>
-                   <p className="text-xl font-bold text-white">
-                     QuickAlert – weil Sekunden Leben retten.
-                   </p>
+                    <ul className="space-y-4 mb-10">
+                      {[
+                        'ECE R65 zertifizierter LED-Ring',
+                        'Magnet-Halterung (220 km/h)',
+                        'IP65 Wasserdicht & Staubfest',
+                        '3x AAA Batterien – überall erhältlich',
+                        'Kompaktes Handschuhfach-Design'
+                      ].map((feature, i) => (
+                        <li key={i} className="flex items-center gap-3">
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-300' : 'bg-zinc-100 text-zinc-600'}`}>✓</div>
+                          <span className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a 
+                      href="#preorder"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        const element = document.getElementById('preorder')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' })
+                        }
+                      }}
+                      className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
+                    >
+                      Vorbestellen
+                    </a>
+                  </div>
+                  
+                  {/* PRO Model */}
+                  <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
+                    {/* Spanien Banner */}
+                    <div className="absolute -right-8 top-6 rotate-45 z-10">
+                      <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+                        Spanien
+                      </div>
+                    </div>
+
+                    <div className="mb-8">
+                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>QuickAlert PRO</h4>
+                      <div className="flex items-baseline gap-1">
+                        <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>49€</span>
+                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                      </div>
+                    </div>
+
+                    <ul className="space-y-4 mb-10">
+                      {[
+                        'Alle Features vom BASE Modell',
+                        'Integriertes GPS-Modul',
+                        'Automatische Cloud-Alarmierung',
+                        '13 Jahre eSIM inklusive',
+                        'Leitstellen-Anbindung (optional)'
+                      ].map((feature, i) => (
+                        <li key={i} className="flex items-center gap-3">
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
+                          <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a 
+                      href="#preorder"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        const element = document.getElementById('preorder')
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' })
+                        }
+                      }}
+                      className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
+                    >
+                      Vorbestellen
+                    </a>
+                  </div>
+                </div>
+
+              <div className="mt-16 p-8 rounded-3xl bg-zinc-900 border border-zinc-800 text-center max-w-5xl mx-auto">
+                <h3 className="text-2xl font-bold text-white mb-4">Von Polizisten empfohlen</h3>
+                <p className="text-lg text-zinc-400 mb-6">
+                  Das Warndreieck stammt aus 1925. Moderne Unfallprävention braucht moderne Technologie.
+                </p>
+                <p className="text-xl font-bold text-white">
+                  QuickAlert – weil Sekunden Leben retten.
+                </p>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         </div>
       )}
 
