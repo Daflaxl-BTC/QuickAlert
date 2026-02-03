@@ -106,25 +106,6 @@ export default function Home() {
 
   return (
     <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-[#F5E6D3] text-[#3D2F1F] wood-texture'}`}>
-      {/* Scroll Indicator - Vollständig fixiert, direkt nach main für maximale Isolation */}
-      {showScrollIndicator && (
-        <div 
-          className={`flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300`}
-          style={{ 
-            position: 'fixed',
-            left: 0,
-            right: 0,
-            bottom: '1.5rem',
-            zIndex: 100,
-          }}
-        >
-          <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
-          <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      )}
-
       {/* Back to Top Arrow - Hidden on mobile, visible on desktop */}
       <button 
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -410,6 +391,18 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Scroll Indicator - Integriert in Hero-Section, höher platziert */}
+        {showScrollIndicator && (
+          <div 
+            className={`absolute left-0 right-0 bottom-16 sm:bottom-20 md:bottom-24 flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300 z-20`}
+          >
+            <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
+            <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        )}
       </section>
 
       {/* Dark Mode Content - Story Telling Redesigned */}
