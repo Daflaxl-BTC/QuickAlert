@@ -106,6 +106,25 @@ export default function Home() {
 
   return (
     <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-[#F5E6D3] text-[#3D2F1F] wood-texture'}`}>
+      {/* Scroll Indicator - Vollständig fixiert, direkt nach main für maximale Isolation */}
+      {showScrollIndicator && (
+        <div 
+          className={`flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300`}
+          style={{ 
+            position: 'fixed',
+            left: 0,
+            right: 0,
+            bottom: '1.5rem',
+            zIndex: 100,
+          }}
+        >
+          <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
+          <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      )}
+
       {/* Back to Top Arrow - Hidden on mobile, visible on desktop */}
       <button 
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -391,16 +410,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Scroll Indicator - Nur im Hero-Bereich sichtbar */}
-        {showScrollIndicator && (
-          <div className={`fixed left-0 right-0 bottom-6 sm:bottom-8 flex flex-col items-center gap-1 sm:gap-2 animate-bounce z-20 pointer-events-none transition-opacity duration-300`}>
-            <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
-            <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        )}
       </section>
 
       {/* Dark Mode Content - Story Telling Redesigned */}
@@ -698,6 +707,21 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          {/* Bedienungsanleitung Download */}
+          <div className="max-w-2xl mx-auto mt-12">
+            <a 
+              href="/QuickAlert/QuickAlert_V16_Bedienungsanleitung.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center gap-3 p-6 rounded-2xl bg-zinc-200 border border-zinc-300 text-zinc-700 font-bold shadow-lg shadow-zinc-200/50 hover:shadow-xl hover:bg-zinc-300 hover:scale-105 transition-all duration-300"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span>Bedienungsanleitung herunterladen (PDF)</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -916,7 +940,7 @@ export default function Home() {
               </p>
               
               <div className="space-y-6">
-                <div className={`p-6 rounded-3xl border transition-colors ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300'}`}>
+                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
                   <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                     <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇩🇪</span> Deutschland
                   </h4>
@@ -925,7 +949,7 @@ export default function Home() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-3xl border transition-colors ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300'}`}>
+                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
                   <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                     <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇪🇸</span> Spanien
                   </h4>
@@ -1114,6 +1138,14 @@ export default function Home() {
               <Link href="/agb" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 AGB
               </Link>
+              <a 
+                href="/QuickAlert/QuickAlert_V16_Bedienungsanleitung.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}
+              >
+                Bedienungsanleitung
+              </a>
               {/* Instagram Link */}
               <a
                 href="https://www.instagram.com/quickalert_germany?igsh=MTh4ZnJiZHV1a2l3dA%3D%3D&utm_source=qr"
