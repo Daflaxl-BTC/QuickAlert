@@ -4,6 +4,17 @@ export default function Datenschutz() {
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900 overflow-x-hidden">
       
+      {/* Zurück-Pfeil oben links */}
+      <Link 
+        href="/"
+        className="fixed top-20 left-4 z-[60] p-3 rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 hover:border-orange-500 text-zinc-700 hover:text-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center min-w-[44px] min-h-[44px]"
+        aria-label="Zurück zur Startseite"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+      </Link>
+      
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-8 lg:px-12 py-6 flex items-center justify-between backdrop-blur-md bg-white/90 border-b border-zinc-200">
         <Link href="/" className="flex items-center gap-2">
