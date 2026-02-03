@@ -1,14 +1,38 @@
 import Link from 'next/link'
-import QuickAlertLogo from '@/components/QuickAlertLogo'
 
 export default function Impressum() {
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900 overflow-x-hidden">
       
+      {/* Zurück-Pfeil oben links */}
+      <Link 
+        href="/"
+        className="fixed top-4 left-4 z-50 p-3 rounded-full bg-white/90 backdrop-blur-md border-2 border-zinc-200 hover:border-orange-500 text-zinc-700 hover:text-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center min-w-[44px] min-h-[44px]"
+        aria-label="Zurück zur Startseite"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+      </Link>
+      
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-8 lg:px-12 py-6 flex items-center justify-between backdrop-blur-md bg-white/90 border-b border-zinc-200">
         <Link href="/" className="flex items-center gap-2">
-          <QuickAlertLogo className="w-8 h-8 sm:w-10 sm:h-10" />
+          {/* Warnleuchte Icon */}
+          <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Strahlen */}
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-45 32 32)"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(22.5 32 32)"/>
+            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-22.5 32 32)"/>
+            {/* Glaskuppel */}
+            <path d="M22 38C22 28 24 22 32 22C40 22 42 28 42 38" fill="#F97316"/>
+            <rect x="20" y="22" width="6" height="18" rx="1" fill="white" opacity="0.4"/>
+            {/* Basis */}
+            <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
+            <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
+          </svg>
           <span className="text-2xl sm:text-3xl font-black font-poppins tracking-tight">
             <span className="text-zinc-900">Quick</span>
             <span className="text-orange-500">Alert</span>
