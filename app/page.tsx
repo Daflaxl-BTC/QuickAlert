@@ -158,8 +158,7 @@ export default function Home() {
         <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-12 py-1 sm:py-1.5">
           <div className="flex items-center justify-between gap-2">
             <p className={`text-center flex-1 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 leading-tight ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
-              <span className="font-bold hidden xs:inline">Pro:</span>
-              <span className="font-bold xs:hidden">P:</span>
+              <span className="font-bold">Pro:</span>
               <span className="hidden sm:inline"> EU Zulassung nach IDIADA Real Decreto 2822/1998</span>
               <span className="sm:hidden"> EU Zulassung IDIADA</span>
             </p>
