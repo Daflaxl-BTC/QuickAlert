@@ -7,7 +7,7 @@ export default function Datenschutz() {
       {/* Zurück-Pfeil oben links */}
       <Link 
         href="/"
-        className="fixed top-20 left-4 z-[60] p-3 rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 hover:border-orange-500 text-zinc-700 hover:text-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center min-w-[44px] min-h-[44px]"
+        className="fixed top-28 left-8 z-[60] p-3 rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 hover:border-orange-500 text-zinc-700 hover:text-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center min-w-[44px] min-h-[44px]"
         aria-label="Zurück zur Startseite"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
