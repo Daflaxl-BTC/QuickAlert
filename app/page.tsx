@@ -4,6 +4,7 @@ import DarkModeToggle from '@/components/DarkModeToggle'
 import LanguageSelector from '@/components/LanguageSelector'
 import { useDarkMode } from '@/components/DarkModeProvider'
 import { useTranslation } from '@/lib/translations/useTranslation'
+import { useLanguage } from '@/components/LanguageProvider'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -12,6 +13,7 @@ import PreOrderForm from '@/components/PreOrderForm'
 export default function Home() {
   const { darkMode, setDarkMode } = useDarkMode()
   const t = useTranslation()
+  const { language } = useLanguage()
   const darkBadgeRef = useRef<HTMLDivElement>(null)
   const lightBadgeRef = useRef<HTMLDivElement>(null)
   const darkHeadlineRef = useRef<HTMLHeadingElement>(null)
@@ -108,7 +110,7 @@ export default function Home() {
   // #endregion
 
   return (
-    <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-[#F5E6D3] text-[#3D2F1F] wood-texture'}`}>
+    <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-white text-[#3D2F1F]'}`}>
       {/* Back to Top Arrow - Hidden on mobile, visible on desktop */}
       <button 
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -175,26 +177,32 @@ export default function Home() {
       </div>
 
       {/* Navigation - IDENTISCH für beide Modi */}
-      <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-3 sm:px-4 md:px-6 lg:px-12 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#F5E6D3]/95 border-[#D4B896]/40 wood-texture'}`}>
+      <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-3 sm:px-4 md:px-6 lg:px-12 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-white/95 border-[#D4B896]/40'}`}>
         {/* Logo Links */}
-        <Link href="/" className="flex items-center gap-1.5 sm:gap-2 md:gap-3 hover:opacity-80 transition-opacity min-h-[44px]">
-          <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex-shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Strahlen */}
-            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
-            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
-            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-45 32 32)"/>
-            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(22.5 32 32)"/>
-            <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-22.5 32 32)"/>
-            {/* Glaskuppel */}
-            <path d="M22 38C22 28 24 22 32 22C40 22 42 28 42 38" fill="#F97316"/>
-            <rect x="20" y="22" width="6" height="18" rx="1" fill="white" opacity="0.4"/>
-            {/* Basis */}
-            <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
-            <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
-          </svg>
-          <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black font-poppins tracking-tight" style={{ filter: 'drop-shadow(0 0 10px rgba(212, 184, 150, 0.6))' }}>
-            <span className={darkMode ? 'text-white' : 'text-white'}>Quick</span>
-            <span className="text-[#F5A623]">Alert</span>
+        <Link href="/" className="group flex items-center gap-1.5 sm:gap-2 md:gap-3 hover:scale-105 transition-all duration-300 min-h-[44px]">
+          <div className="relative">
+            <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex-shrink-0 drop-shadow-lg group-hover:drop-shadow-xl transition-all" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))' }}>
+              {/* Strahlen */}
+              <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
+              <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-45 32 32)"/>
+              <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(22.5 32 32)"/>
+              <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(-22.5 32 32)"/>
+              {/* Glaskuppel */}
+              <path d="M22 38C22 28 24 22 32 22C40 22 42 28 42 38" fill="#F97316"/>
+              <rect x="20" y="22" width="6" height="18" rx="1" fill="white" opacity="0.4"/>
+              {/* Basis */}
+              <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
+              <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
+            </svg>
+          </div>
+          <span className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-black font-poppins tracking-tight ${
+            darkMode 
+              ? 'text-white drop-shadow-lg' 
+              : 'text-zinc-900 drop-shadow-md'
+          }`} style={darkMode ? { filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5))' } : { filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))' }}>
+            <span className={darkMode ? 'text-white' : 'text-zinc-900'}>Quick</span>
+            <span className="text-[#F5A623] drop-shadow-lg" style={{ filter: 'drop-shadow(0 0 8px rgba(245, 166, 35, 0.6))' }}>Alert</span>
           </span>
         </Link>
 
@@ -328,7 +336,7 @@ export default function Home() {
             </div>
 
             {/* Main Headline - GRÖSSERE TEXTE - Perfekte Überlagerung für flüssigen Wechsel */}
-            <div className="relative mb-3 sm:mb-5 md:mb-6">
+            <div className="relative mb-1 sm:mb-2 md:mb-3">
               {/* Light Mode Headline - Bestimmt die Container-Höhe */}
               <h1 ref={lightHeadlineRef} className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
@@ -413,7 +421,11 @@ export default function Home() {
         {/* Scroll Indicator - Integriert in Hero-Section, höher platziert */}
         {showScrollIndicator && (
           <div 
-            className={`absolute left-0 right-0 bottom-16 sm:bottom-20 md:bottom-24 flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300 z-20`}
+            className={`absolute left-0 right-0 flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300 z-20 ${
+              language === 'es' 
+                ? 'bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32' 
+                : 'bottom-2 sm:bottom-4 md:bottom-6'
+            }`}
           >
             <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>{t.hero.scroll}</span>
             <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -539,7 +551,7 @@ export default function Home() {
           </section>
 
           {/* Pricing Section - Dark Mode - Identisch zum Light Mode */}
-          <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-zinc-50'}`}>
+          <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
@@ -664,7 +676,7 @@ export default function Home() {
       {!darkMode && (
       <>
       {/* Features Section - Tech Grid */}
-      <section id="features" className={`py-24 sm:py-32 bg-gradient-to-b from-white to-zinc-50`}>
+      <section id="features" className={`py-24 sm:py-32 bg-white`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
@@ -745,13 +757,7 @@ export default function Home() {
       <section className={`py-24 sm:py-32 relative overflow-hidden ${darkMode ? 'bg-gradient-to-br from-zinc-950 via-zinc-900 to-black' : 'bg-white'}`}>
         {/* Background Pattern */}
         {darkMode && (
-          <>
-            <div className="absolute inset-0 opacity-[0.1]" style={{ 
-              backgroundImage: `linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)`, 
-              backgroundSize: '40px 40px' 
-            }}></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-          </>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         )}
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -832,7 +838,7 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-zinc-50'}`}>
+      <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
@@ -944,7 +950,7 @@ export default function Home() {
               </p>
               
               <div className="space-y-6">
-                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
+                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
                   <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                     <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇩🇪</span> {t.legal.countries.germany.name}
                   </h4>
@@ -953,7 +959,7 @@ export default function Home() {
                   </p>
                 </div>
                 
-                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
+                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
                   <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                     <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇪🇸</span> {t.legal.countries.spain.name}
                   </h4>
@@ -1112,7 +1118,7 @@ export default function Home() {
       </section>
 
       {/* Modern Footer */}
-      <footer className={`py-8 sm:py-10 md:py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-zinc-50 border-zinc-200'}`}>
+      <footer className={`py-8 sm:py-10 md:py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200'}`}>
         <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
             <div className="flex items-center gap-2 sm:gap-3">
