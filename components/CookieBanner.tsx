@@ -1,8 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from '@/lib/translations/useTranslation'
 
 export default function CookieBanner() {
+  const t = useTranslation()
   const [showBanner, setShowBanner] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
 
@@ -52,15 +54,15 @@ export default function CookieBanner() {
                 <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
-                <h3 className="text-lg font-bold text-zinc-900">Cookie-Einstellungen</h3>
+                <h3 className="text-lg font-bold text-zinc-900">{t.cookies.title}</h3>
               </div>
               <p className="text-sm text-zinc-600 leading-relaxed mb-2">
-                Wir nutzen <strong>keine Tracking-Cookies</strong>. Diese Website verwendet ausschließlich essenzielle Technologien für die Funktionalität. Ihre Daten werden nicht zu Marketing- oder Analysezwecken verwendet.
+                {t.cookies.description}
               </p>
               <p className="text-xs text-zinc-500">
-                Durch die Nutzung dieser Website stimmen Sie der Verarbeitung Ihrer IP-Adresse durch unseren Hoster (Vercel) zu. Weitere Informationen finden Sie in unserer{' '}
+                {t.cookies.privacy}{' '}
                 <a href="/datenschutz" className="text-orange-500 hover:underline font-semibold">
-                  Datenschutzerklärung
+                  {t.cookies.privacyLink}
                 </a>.
               </p>
             </div>
@@ -69,13 +71,13 @@ export default function CookieBanner() {
                 onClick={handleAcceptEssential}
                 className="px-4 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-bold text-sm transition-all duration-300 whitespace-nowrap"
               >
-                Nur essenziell
+                {t.cookies.essential}
               </button>
               <button
                 onClick={handleAcceptAll}
                 className="px-6 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
               >
-                Alle erlauben
+                {t.cookies.acceptAll}
               </button>
             </div>
           </div>
@@ -87,7 +89,7 @@ export default function CookieBanner() {
         <div className="fixed inset-0 z-[101] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-black text-zinc-900">Cookie-Einstellungen</h2>
+              <h2 className="text-2xl font-black text-zinc-900">{t.cookies.settings.title}</h2>
               <button
                 onClick={handleCloseSettings}
                 className="w-10 h-10 rounded-xl bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center transition-colors"
@@ -101,21 +103,21 @@ export default function CookieBanner() {
             <div className="space-y-6">
               <div className="p-4 rounded-2xl bg-green-50 border border-green-100">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-bold text-green-800">Essenzielle Cookies</h3>
-                  <span className="px-3 py-1 rounded-full bg-green-500 text-white text-xs font-bold">Immer aktiv</span>
+                  <h3 className="font-bold text-green-800">{t.cookies.settings.essential.title}</h3>
+                  <span className="px-3 py-1 rounded-full bg-green-500 text-white text-xs font-bold">{t.cookies.settings.essential.badge}</span>
                 </div>
                 <p className="text-sm text-green-700">
-                  Diese Cookies sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden. Sie werden in der Regel nur als Reaktion auf von Ihnen getätigte Aktionen gesetzt, die einer Anfrage nach Diensten gleichkommen, wie z. B. das Festlegen Ihrer Datenschutzeinstellungen.
+                  {t.cookies.settings.essential.description}
                 </p>
               </div>
 
               <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-bold text-zinc-800">Analyse- und Marketing-Cookies</h3>
-                  <span className="px-3 py-1 rounded-full bg-zinc-300 text-zinc-600 text-xs font-bold">Nicht verwendet</span>
+                  <h3 className="font-bold text-zinc-800">{t.cookies.settings.analytics.title}</h3>
+                  <span className="px-3 py-1 rounded-full bg-zinc-300 text-zinc-600 text-xs font-bold">{t.cookies.settings.analytics.badge}</span>
                 </div>
                 <p className="text-sm text-zinc-600">
-                  Diese Website verwendet keine Analyse- oder Marketing-Cookies. Es erfolgt keine Nutzung von Google Analytics, Facebook Pixel oder ähnlichen Tracking-Tools.
+                  {t.cookies.settings.analytics.description}
                 </p>
               </div>
             </div>
@@ -125,13 +127,13 @@ export default function CookieBanner() {
                 onClick={handleCloseSettings}
                 className="flex-1 px-6 py-3 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-bold transition-all duration-300"
               >
-                Schließen
+                {t.cookies.settings.close}
               </button>
               <button
                 onClick={handleAcceptAll}
                 className="flex-1 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold transition-all duration-300 shadow-lg"
               >
-                Alle erlauben
+                {t.cookies.acceptAll}
               </button>
             </div>
           </div>

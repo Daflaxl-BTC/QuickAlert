@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import DarkModeProvider from '@/components/DarkModeProvider'
+import LanguageProvider from '@/components/LanguageProvider'
 import CookieBanner from '@/components/CookieBanner'
 
 const inter = Inter({ 
@@ -64,10 +65,12 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body className={`${inter.variable} ${poppins.variable} font-sans`}>
-        <DarkModeProvider>
-          {children}
-          <CookieBanner />
-        </DarkModeProvider>
+        <LanguageProvider>
+          <DarkModeProvider>
+            {children}
+            <CookieBanner />
+          </DarkModeProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

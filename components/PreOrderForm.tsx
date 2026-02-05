@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useDarkMode } from '@/components/DarkModeProvider'
+import { useTranslation } from '@/lib/translations/useTranslation'
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
@@ -15,6 +16,7 @@ interface FormErrors {
 
 export default function PreOrderForm() {
   const { darkMode } = useDarkMode()
+  const t = useTranslation()
   const [formState, setFormState] = useState<FormState>('idle')
   const [errors, setErrors] = useState<FormErrors>({})
   const [formData, setFormData] = useState({
@@ -56,7 +58,7 @@ export default function PreOrderForm() {
           setErrors(newErrors)
           setFormState('error')
         } else {
-          setErrors({ general: data.error || 'Ein Fehler ist aufgetreten' })
+          setErrors({ general: data.error || t.preorder.form.error })
           setFormState('error')
         }
         return
@@ -73,9 +75,9 @@ export default function PreOrderForm() {
       })
     } catch (error) {
       console.error('Error submitting form:', error)
-      const errorMessage = error instanceof Error ? error.message : 'Netzwerkfehler'
+      const errorMessage = error instanceof Error ? error.message : t.preorder.form.networkError
       setErrors({ 
-        general: `Ein Fehler ist aufgetreten: ${errorMessage}. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.` 
+        general: t.preorder.form.errorMessage.replace('{error}', errorMessage)
       })
       setFormState('error')
     }
@@ -91,10 +93,10 @@ export default function PreOrderForm() {
             </svg>
           </div>
           <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-            Vielen Dank für Ihre Anmeldung!
+            {t.preorder.form.success.title}
           </h3>
           <p className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-            Sie sind jetzt auf unserer Vorbestellungsliste. Wir informieren Sie per E-Mail, sobald QuickAlert verfügbar ist.
+            {t.preorder.form.success.message}
           </p>
         </div>
       </div>
@@ -106,7 +108,7 @@ export default function PreOrderForm() {
       {/* Name */}
       <div>
         <label htmlFor="name" className={`block text-sm font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>
-          Name <span className="text-red-500">*</span>
+          {t.preorder.form.name} <span className="text-red-500">{t.preorder.form.required}</span>
         </label>
         <input
           type="text"
@@ -129,7 +131,7 @@ export default function PreOrderForm() {
       {/* E-Mail */}
       <div>
         <label htmlFor="email" className={`block text-sm font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>
-          E-Mail-Adresse <span className="text-red-500">*</span>
+          {t.preorder.form.email} <span className="text-red-500">{t.preorder.form.required}</span>
         </label>
         <input
           type="email"
@@ -152,7 +154,7 @@ export default function PreOrderForm() {
       {/* Produktauswahl */}
       <div>
         <label className={`block text-sm font-bold mb-3 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>
-          Produkt <span className="text-red-500">*</span>
+          {t.preorder.form.product} <span className="text-red-500">{t.preorder.form.required}</span>
         </label>
         <div className="grid sm:grid-cols-3 gap-3">
           {(['BASE', 'PRO', 'BOTH'] as const).map((product) => (
@@ -171,7 +173,7 @@ export default function PreOrderForm() {
                   : 'bg-white border-zinc-300 text-zinc-700 hover:border-orange-500/50'
               }`}
             >
-              {product === 'BASE' ? 'BASE (29€)' : product === 'PRO' ? 'PRO (49€)' : 'Beide'}
+              {product === 'BASE' ? t.preorder.form.products.base : product === 'PRO' ? t.preorder.form.products.pro : t.preorder.form.products.both}
             </button>
           ))}
         </div>
@@ -181,7 +183,7 @@ export default function PreOrderForm() {
       {/* Nachricht (optional) */}
       <div>
         <label htmlFor="message" className={`block text-sm font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>
-          Nachricht (optional)
+          {t.preorder.form.message}
         </label>
         <textarea
           id="message"
@@ -209,11 +211,11 @@ export default function PreOrderForm() {
             required
           />
           <span className={`text-sm ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-            Ich stimme der{' '}
+            {t.preorder.form.privacy}{' '}
             <a href="/datenschutz" className="text-orange-500 hover:underline font-semibold">
-              Datenschutzerklärung
+              {t.preorder.form.privacyLink}
             </a>{' '}
-            zu und möchte per E-Mail über die Verfügbarkeit informiert werden. <span className="text-red-500">*</span>
+            {t.preorder.form.privacySuffix} <span className="text-red-500">{t.preorder.form.required}</span>
           </span>
         </label>
         {errors.privacyAccepted && <p className="mt-1 text-sm text-red-500">{errors.privacyAccepted}</p>}
@@ -244,10 +246,10 @@ export default function PreOrderForm() {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Wird gesendet...
+            {t.preorder.form.submitting}
           </span>
         ) : (
-          'Zur Vorbestellungsliste hinzufügen'
+          t.preorder.form.submit
         )}
       </button>
     </form>

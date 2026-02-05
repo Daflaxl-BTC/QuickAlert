@@ -1,7 +1,9 @@
 'use client'
 
 import DarkModeToggle from '@/components/DarkModeToggle'
+import LanguageSelector from '@/components/LanguageSelector'
 import { useDarkMode } from '@/components/DarkModeProvider'
+import { useTranslation } from '@/lib/translations/useTranslation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -9,6 +11,7 @@ import PreOrderForm from '@/components/PreOrderForm'
 
 export default function Home() {
   const { darkMode, setDarkMode } = useDarkMode()
+  const t = useTranslation()
   const darkBadgeRef = useRef<HTMLDivElement>(null)
   const lightBadgeRef = useRef<HTMLDivElement>(null)
   const darkHeadlineRef = useRef<HTMLHeadingElement>(null)
@@ -29,18 +32,18 @@ export default function Home() {
     }
   }
 
-  // URL-Parameter für Fehler prüfen (nur für allgemeine Fehler, keine Token-Fehler mehr)
+      // URL-Parameter für Fehler prüfen (nur für allgemeine Fehler, keine Token-Fehler mehr)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     if (params.get('error')) {
       const errorType = params.get('error')
-      let message = 'Ein Fehler ist aufgetreten.'
+      let message = t.preorder.form.error
       // Token-Fehler werden nicht mehr angezeigt, da kein Double Opt-In mehr
       setNotification({ type: 'error', message })
       window.history.replaceState({}, '', window.location.pathname)
       setTimeout(() => setNotification(null), 5000)
     }
-  }, [])
+  }, [t])
 
   // Scroll-Handler für Scroll-Indikator - nur im Hero-Bereich anzeigen
   useEffect(() => {
@@ -117,6 +120,11 @@ export default function Home() {
         </svg>
       </button>
 
+      {/* Language Selector - Oben rechts, gestaffelt nach unten */}
+      <div className="fixed right-2 sm:right-3 md:right-4 top-28 sm:top-32 md:top-36 z-50">
+        <LanguageSelector />
+      </div>
+
       {/* Dark Mode Toggle + Warndreieck Button - Rechts, weiter unten auf Mobile */}
       <div className="fixed right-2 sm:right-3 md:right-4 top-[58%] sm:top-1/2 transform -translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3">
         {/* Warndreieck/QuickAlert Button */}
@@ -134,15 +142,15 @@ export default function Home() {
           <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base' : 'text-[8px] xs:text-[9px] sm:text-xs'}`}>
             {darkMode ? (
               <>
-                <span className="hidden sm:inline text-white">Warum lieber </span>
-                <span className="text-white">Quick</span>
-                <span className="text-[#F5A623]">Alert</span>
-                <span className="text-white">?</span>
+                <span className="hidden sm:inline text-white">{t.hero.warndreieckButton.dark.prefix}</span>
+                <span className="text-white">{t.hero.warndreieckButton.dark.quick}</span>
+                <span className="text-[#F5A623]">{t.hero.warndreieckButton.dark.alert}</span>
+                <span className="text-white">{t.hero.warndreieckButton.dark.suffix}</span>
               </>
             ) : (
               <>
-                <span className="hidden sm:inline">WARUM NICHT DAS </span>
-                <span>WARNDREIECK?</span>
+                <span className="hidden sm:inline">{t.hero.warndreieckButton.light.prefix}</span>
+                <span>{t.hero.warndreieckButton.light.suffix}</span>
               </>
             )}
           </span>
@@ -158,9 +166,9 @@ export default function Home() {
         <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-12 py-1 sm:py-1.5">
           <div className="flex items-center justify-between gap-2">
             <p className={`text-center flex-1 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 leading-tight ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
-              <span className="font-bold">Pro:</span>
-              <span className="hidden sm:inline"> EU Zulassung nach IDIADA Real Decreto 2822/1998</span>
-              <span className="sm:hidden"> EU Zulassung IDIADA</span>
+              <span className="font-bold">{t.topBar.pro}</span>
+              <span className="hidden sm:inline"> {t.topBar.euApproval}</span>
+              <span className="sm:hidden"> {t.topBar.euApprovalShort}</span>
             </p>
           </div>
         </div>
@@ -192,12 +200,12 @@ export default function Home() {
 
         {/* Navigation Links Center */}
           <div className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-            <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>FEATURES</a>
-            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>PREISE</a>
-            <a href="https://wa.me/4915119784023" target="_blank" rel="noopener noreferrer" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>KONTAKT</a>
+            <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.features}</a>
+            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.pricing}</a>
+            <a href="https://wa.me/4915119784023" target="_blank" rel="noopener noreferrer" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.contact}</a>
           <div className={`flex items-center gap-6 pl-4 border-l transition-colors duration-300 ${darkMode ? 'border-[#4a4a4a]' : 'border-[#D4B896]/40'}`}>
             <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors relative ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>
-              BASE
+              {t.nav.base}
             </a>
             <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors relative inline-block pr-10 ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>
               <span 
@@ -207,9 +215,9 @@ export default function Home() {
                   boxShadow: darkMode ? '0 2px 4px rgba(0, 0, 0, 0.5)' : '0 2px 4px rgba(139, 111, 71, 0.4)'
                 }}
               >
-                Spanien
+                {t.nav.spain}
               </span>
-              PRO
+              {t.nav.pro}
             </a>
           </div>
         </div>
@@ -239,8 +247,8 @@ export default function Home() {
             className={`px-4 py-2.5 sm:px-6 sm:py-3 min-h-[44px] flex items-center justify-center rounded-lg font-bold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all shadow-lg ${darkMode ? 'bg-[#4a4a4a] text-[#e5e5e5] hover:bg-[#5a5a5a]' : 'bg-[#D4B896] text-[#6B4E3D]'}`}
             style={darkMode ? {boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)'} : {boxShadow: '0 0 20px rgba(212, 184, 150, 0.5)'}}
           >
-            <span className="hidden sm:inline">JETZT KAUFEN</span>
-            <span className="sm:hidden">KAUFEN</span>
+            <span className="hidden sm:inline">{t.nav.buyNow}</span>
+            <span className="sm:hidden">{t.nav.buyNowShort}</span>
           </a>
         </div>
       </nav>
@@ -298,13 +306,13 @@ export default function Home() {
               <div ref={darkBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
-                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#e5e5e5] tracking-wide">Seit 08.05.1968</span>
+                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#e5e5e5] tracking-wide">{t.hero.dateBadgeDark}</span>
                 </div>
               </div>
               <div ref={lightBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
-                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#F5E6D3] tracking-wide">NEU 2026</span>
+                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#F5E6D3] tracking-wide">{t.hero.dateBadgeLight}</span>
                 </div>
               </div>
             </div>
@@ -314,18 +322,18 @@ export default function Home() {
               {/* Light Mode Headline - Bestimmt die Container-Höhe */}
               <h1 ref={lightHeadlineRef} className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
-                  <div className="text-[#F5E6D3] drop-shadow-lg">Fahre sicher,</div>
+                  <div className="text-[#F5E6D3] drop-shadow-lg">{t.hero.headlineLight.line1}</div>
                   <div className="text-[#F5E6D3] drop-shadow-lg">
-                    <span className="text-[#F5A623] drop-shadow-lg">helfe</span>
-                    <span className="text-[#F5E6D3] drop-shadow-lg"> sicher</span>
+                    <span className="text-[#F5A623] drop-shadow-lg">{t.hero.headlineLight.help}</span>
+                    <span className="text-[#F5E6D3] drop-shadow-lg"> {t.hero.headlineLight.line2.split(' ')[1]}</span>
                   </div>
                 </div>
               </h1>
               {/* Dark Mode Headline - Absolut über der Light Mode Überschrift, leicht nach unten verschoben für perfekte Ausrichtung */}
               <h1 ref={darkHeadlineRef} className={`absolute top-1 left-0 right-0 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
-                  <div className="text-red-500 drop-shadow-lg">gefährlich</div>
-                  <div className="text-[#9a9a9a] drop-shadow-lg">dunkel</div>
+                  <div className="text-red-500 drop-shadow-lg">{t.hero.headlineDark.line1}</div>
+                  <div className="text-[#9a9a9a] drop-shadow-lg">{t.hero.headlineDark.line2}</div>
                 </div>
               </h1>
             </div>
@@ -333,10 +341,10 @@ export default function Home() {
             {/* Description - Mobile optimized - GRÖSSERE TEXTE */}
             <div className="grid place-items-start mb-3 sm:mb-4 md:mb-6 max-w-2xl">
               <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-100 text-[#e5e5e5]/90' : 'opacity-0 pointer-events-none'}`}>
-                Herkömmliche Warndreiecke: Ein gefährliches Risiko auf der Autobahn.
+                {t.hero.descriptionDark}
               </p>
               <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/95'}`}>
-                Das weltweit modernste magnetische LED-Warnlicht. Polizei-Qualität mit elegantem Design, das die Nacht erhellt.
+                {t.hero.descriptionLight}
               </p>
             </div>
 
@@ -353,7 +361,7 @@ export default function Home() {
                   }}
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                    Abhilfe finden
+                    {t.hero.ctaDark}
                     <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -370,7 +378,7 @@ export default function Home() {
                   }}
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    QuickAlert finden
+                    {t.hero.ctaLight}
                     <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -385,7 +393,7 @@ export default function Home() {
                     boxShadow: '0 0 20px rgba(159, 181, 115, 0.4)'
                   }}
                 >
-                  Für Händler
+                  {t.hero.ctaDealer}
                 </a>
               </div>
             </div>
@@ -397,7 +405,7 @@ export default function Home() {
           <div 
             className={`absolute left-0 right-0 bottom-16 sm:bottom-20 md:bottom-24 flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300 z-20`}
           >
-            <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>SCROLL</span>
+            <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>{t.hero.scroll}</span>
             <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
@@ -414,15 +422,20 @@ export default function Home() {
              <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
             <div className="max-w-4xl mx-auto">
                  <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-12 text-white leading-tight">
-                   Das Warndreieck-<br/>Problem.
+                   {t.darkMode.storyTitle.split('-').map((part, i) => (
+                     <span key={i}>
+                       {part}
+                       {i < t.darkMode.storyTitle.split('-').length - 1 && <><br/></>}
+                     </span>
+                   ))}
               </h1>
 
                  <div className="prose prose-xl prose-invert max-w-none">
                    <h2 className="text-3xl sm:text-4xl font-black text-orange-500 mb-8">
-                  Das vergessene Risiko: Warum das Warndreieck 2026 ein Sicherheitsrisiko ist
+                  {t.darkMode.storySubtitle}
                 </h2>
                    <p className="text-xl leading-relaxed text-zinc-300 mb-8">
-                  Jede Minute 7 Pannen auf deutschen Straßen. Über 3,6 Millionen Mal rückte allein der ADAC 2024 aus – alle 9 Sekunden ein Einsatz. Doch während Autos immer smarter werden, verlassen sich Autofahrer noch auf eine 100 Jahre alte Technologie: das Warndreieck.
+                  {t.darkMode.storyIntro}
                 </p>
                  </div>
                </div>
@@ -433,27 +446,27 @@ export default function Home() {
           <section className="py-16 bg-zinc-900/50 border-y border-zinc-800">
             <div className="container mx-auto px-6 lg:px-12">
                <div className="max-w-4xl mx-auto">
-                 <h3 className="text-2xl font-bold text-white mb-10">Die Realität in Zahlen (2024)</h3>
+                 <h3 className="text-2xl font-bold text-white mb-10">{t.darkMode.statsTitle}</h3>
                  <div className="grid sm:grid-cols-2 gap-6">
                    <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Pannen pro Tag</div>
-                     <div className="text-4xl font-black text-white">9.927</div>
-                     <div className="text-zinc-500 text-xs mt-2">Quelle: ADAC</div>
+                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">{t.darkMode.stats.breakdowns.label}</div>
+                     <div className="text-4xl font-black text-white">{t.darkMode.stats.breakdowns.value}</div>
+                     <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.breakdowns.source}</div>
                    </div>
                    <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Auffahrunfälle</div>
-                     <div className="text-4xl font-black text-red-500">42.415</div>
-                     <div className="text-zinc-500 text-xs mt-2">Deutschlandweit</div>
+                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">{t.darkMode.stats.rearEnd.label}</div>
+                     <div className="text-4xl font-black text-red-500">{t.darkMode.stats.rearEnd.value}</div>
+                     <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.rearEnd.source}</div>
                    </div>
                    <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">Autobahn NRW</div>
-                     <div className="text-4xl font-black text-white">4.243</div>
-                     <div className="text-zinc-500 text-xs mt-2">Schwerverletzte</div>
+                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">{t.darkMode.stats.highway.label}</div>
+                     <div className="text-4xl font-black text-white">{t.darkMode.stats.highway.value}</div>
+                     <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.highway.source}</div>
                    </div>
                    <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold tracking-wider mb-2">Bußgeld</div>
-                     <div className="text-4xl font-black text-white">30 €</div>
-                     <div className="text-zinc-500 text-xs mt-2">+ Haftung</div>
+                     <div className="text-zinc-500 text-sm font-bold tracking-wider mb-2">{t.darkMode.stats.fine.label}</div>
+                     <div className="text-4xl font-black text-white">{t.darkMode.stats.fine.value}</div>
+                     <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.fine.source}</div>
                    </div>
                  </div>
                </div>
@@ -465,35 +478,35 @@ export default function Home() {
             <div className="container mx-auto px-6 lg:px-12">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl sm:text-4xl font-black text-white mb-12">
-                  Warum scheitert das Warndreieck?
+                  {t.darkMode.problemsTitle}
                 </h2>
 
                 <div className="grid gap-6">
                   <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Zu spät gesehen</h3>
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.tooLate.title}</h3>
                     <p className="text-lg text-zinc-400">
-                      Auf Autobahnen muss das Warndreieck 150–400 Meter entfernt stehen. Bei 130 km/h bleiben nachfolgenden Fahrern nur 4–6 Sekunden Reaktionszeit – zu wenig bei Nebel, Regen oder Dunkelheit.
+                      {t.darkMode.problems.tooLate.text}
                     </p>
                   </div>
 
                   <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Lebensbedrohliches Aufstellen</h3>
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.dangerous.title}</h3>
                     <p className="text-lg text-zinc-400">
-                      Wer das Dreieck auf der Autobahn platziert, muss aussteigen, 200 Meter zu Fuß gehen – während der Verkehr mit 120+ km/h vorbeibrettert. Jedes Jahr werden Autofahrer dabei verletzt oder getötet.
+                      {t.darkMode.problems.dangerous.text}
                     </p>
                   </div>
 
                   <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Vergessen oder falsch platziert</h3>
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.forgotten.title}</h3>
                     <p className="text-lg text-zinc-400">
-                      OLG Hamm bestätigte: Wer das Warndreieck nicht oder falsch aufstellt, trägt 50% Mithaftung bei Auffahrunfällen – selbst bei berechtigtem Notstopp.
+                      {t.darkMode.problems.forgotten.text}
                     </p>
                   </div>
 
                   <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">❌ Unsichtbar bei Wind</h3>
+                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.wind.title}</h3>
                     <p className="text-lg text-zinc-400">
-                      Warndreiecke kippen um, werden weggeweht oder von LKWs überfahren. Keine 360°-Sichtbarkeit.
+                      {t.darkMode.problems.wind.text}
                     </p>
                   </div>
                 </div>
@@ -506,10 +519,10 @@ export default function Home() {
             <div className="container mx-auto px-6 lg:px-12">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl sm:text-4xl font-black text-white mb-8">
-                  QuickAlert: Die Lösung für 2026
+                  {t.darkMode.solutionTitle}
                 </h2>
                 <p className="text-xl leading-relaxed text-zinc-300 mb-16">
-                  Stellen Sie sich vor: Sie haben eine Panne auf der Autobahn. Während Sie das gesetzlich vorgeschriebene Warndreieck aufstellen, aktivieren Sie zusätzlich QuickAlert mit einem Knopfdruck. Sofort leuchtet ein gelber 360°-LED-Ring auf Ihrem Dach – sichtbar aus 1 km Entfernung. Nachfolgende Autos sehen Sie deutlich früher als nur mit einem Warndreieck.
+                  {t.darkMode.solutionText}
                 </p>
               </div>
             </div>
@@ -520,10 +533,10 @@ export default function Home() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
-                  Modelle
+                  {t.pricing.label}
                 </h2>
                 <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                  Wähle deine Sicherheit.
+                  {t.pricing.title}
                 </h3>
               </div>
 
@@ -534,7 +547,7 @@ export default function Home() {
                     {/* Deutschland Banner */}
                     <div className="absolute -right-8 top-6 rotate-45 z-10">
                       <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-600 text-white'}`}>
-                        Deutschland
+                        {t.pricing.base.country}
                       </div>
                     </div>
                     <div className="mb-8">
@@ -571,7 +584,7 @@ export default function Home() {
                       }}
                       className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
                     >
-                      Vorbestellen
+                      {t.pricing.base.cta}
                     </a>
                   </div>
                   
@@ -618,18 +631,18 @@ export default function Home() {
                       }}
                       className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
                     >
-                      Vorbestellen
+                      {t.pricing.base.cta}
                     </a>
                   </div>
                 </div>
 
               <div className="mt-16 p-8 rounded-3xl bg-zinc-900 border border-zinc-800 text-center max-w-5xl mx-auto">
-                <h3 className="text-2xl font-bold text-white mb-4">Von Polizisten empfohlen</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">{t.darkMode.recommended.title}</h3>
                 <p className="text-lg text-zinc-400 mb-6">
-                  Das Warndreieck stammt aus 1925. Moderne Unfallprävention braucht moderne Technologie.
+                  {t.darkMode.recommended.subtitle}
                 </p>
                 <p className="text-xl font-bold text-white">
-                  QuickAlert – weil Sekunden Leben retten.
+                  {t.darkMode.recommended.conclusion}
                 </p>
               </div>
             </div>
@@ -645,13 +658,13 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
-              Innovation
+              {t.features.label}
             </h2>
             <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-              Technologie, die Leben rettet.
+              {t.features.title}
             </h3>
             <p className={`text-lg sm:text-xl leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-              Das Warndreieck bleibt Pflicht. QuickAlert ist die intelligente Ergänzung für maximale Sicherheit.
+              {t.features.description}
             </p>
           </div>
           
@@ -662,10 +675,10 @@ export default function Home() {
                 🧲
               </div>
               <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                Fester Halt
+                {t.features.items.magnet.title}
               </h4>
               <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                Neodym-Magnetsystem, getestet bis 220 km/h. Hält bombenfest auf jedem Stahldach – auch bei Sturm und vorbeifahrenden LKWs.
+                {t.features.items.magnet.description}
               </p>
             </div>
 
@@ -675,10 +688,10 @@ export default function Home() {
                 🔋
                 </div>
               <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                Überall erhältlich
+                {t.features.items.battery.title}
               </h4>
               <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                3x AAA Standard-Batterien – überall erhältlich, sofort einsatzbereit. Keine Ladezeit, maximale Zuverlässigkeit wenn es darauf ankommt.
+                {t.features.items.battery.description}
               </p>
             </div>
 
@@ -686,17 +699,17 @@ export default function Home() {
             <div className={`group p-8 rounded-3xl border-2 relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/80 border-orange-500/30 hover:border-orange-500 hover:shadow-orange-500/20' : 'bg-white border-orange-100 hover:border-orange-500 hover:shadow-orange-500/20 shadow-lg shadow-orange-100'}`}>
               <div className="absolute top-0 right-0 p-6 opacity-50 group-hover:opacity-100 transition-opacity">
                 <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-orange-500 text-black' : 'bg-orange-100 text-orange-700'}`}>
-                        PRO
+                        {t.features.items.gps.badge}
                       </span>
                     </div>
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
                 📡
               </div>
               <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                GPS + Cloud
+                {t.features.items.gps.title}
               </h4>
               <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                Vernetzte Sicherheit. Sendet automatisch Standortdaten an die Cloud. Inklusive 13 Jahre eSIM-Konnektivität.
+                {t.features.items.gps.description}
               </p>
             </div>
           </div>
@@ -712,7 +725,7 @@ export default function Home() {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              <span>Bedienungsanleitung herunterladen (PDF)</span>
+              <span>{t.features.manual}</span>
             </a>
           </div>
         </div>
@@ -735,10 +748,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className={`${darkMode ? 'bg-zinc-900/70 border-zinc-800/80' : 'bg-white border-zinc-200'} rounded-3xl p-8 sm:p-10 shadow-xl`}>
               <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-red-500' : 'text-red-600'}`}>
-                Das Problem
+                {t.problem.label}
               </h2>
               <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-8 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                Alte Lösungen versagen.
+                {t.problem.title}
               </h3>
               
               <div className="space-y-8">
@@ -747,9 +760,9 @@ export default function Home() {
                     1
                     </div>
                   <div>
-                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>Gefährliches Aufstellen</h4>
+                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.problem.items.dangerous.title}</h4>
                     <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                      Um ein Warndreieck korrekt aufzustellen, müssen Sie 200-400m auf der Autobahn laufen. Lebensgefahr durch vorbeirasenden Verkehr.
+                      {t.problem.items.dangerous.text}
                     </p>
                   </div>
                 </div>
@@ -759,9 +772,9 @@ export default function Home() {
                     2
                     </div>
                   <div>
-                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>Schlechte Sichtbarkeit</h4>
+                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.problem.items.visibility.title}</h4>
                     <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                      Warndreiecke sind passiv. Bei Nebel, Regen oder Dunkelheit werden sie oft zu spät gesehen. 42.415 Auffahrunfälle allein 2024.
+                      {t.problem.items.visibility.text}
                     </p>
                 </div>
               </div>
@@ -771,9 +784,9 @@ export default function Home() {
                     3
                   </div>
                   <div>
-                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>Rechtliche Falle</h4>
+                    <h4 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.problem.items.legal.title}</h4>
                     <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                      Falsch aufgestellt? 30€ Bußgeld und bis zu 50% Mithaftung bei Folgeunfällen.
+                      {t.problem.items.legal.text}
                       </p>
                     </div>
                   </div>
@@ -785,7 +798,7 @@ export default function Home() {
               <div className={`relative rounded-[2rem] overflow-hidden shadow-2xl border ${darkMode ? 'border-zinc-800 bg-zinc-900' : 'border-zinc-200 bg-white'} group`}>
                 <Image
                   src="/Warndreieck.jpg"
-                  alt="Gefährliches Warndreieck"
+                  alt={t.problem.imageAlt}
                   width={600}
                   height={800}
                   className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
@@ -797,8 +810,8 @@ export default function Home() {
                       ⚠️
             </div>
                     <div>
-                      <div className="font-bold text-white text-lg">Veraltete Technik</div>
-                      <div className="text-sm text-red-400 font-mono">Stand 1968</div>
+                      <div className="font-bold text-white text-lg">{t.problem.imageCaption}</div>
+                      <div className="text-sm text-red-400 font-mono">{t.problem.imageYear}</div>
           </div>
         </div>
         </div>
@@ -830,21 +843,15 @@ export default function Home() {
                     </div>
                   </div>
               <div className="mb-8">
-                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>QuickAlert BASE</h4>
+                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>{t.pricing.base.name}</h4>
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>29€</span>
-                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                  <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.base.price}</span>
+                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}> {t.pricing.base.period}</span>
                 </div>
                     </div>
 
               <ul className="space-y-4 mb-10">
-                {[
-                  'ECE R65 zertifizierter LED-Ring',
-                  'Magnet-Halterung (220 km/h)',
-                  'IP65 Wasserdicht & Staubfest',
-                  '3x AAA Batterien – überall erhältlich',
-                  'Kompaktes Handschuhfach-Design'
-                ].map((feature, i) => (
+                {t.pricing.base.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-300' : 'bg-zinc-100 text-zinc-600'}`}>✓</div>
                     <span className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{feature}</span>
@@ -863,7 +870,7 @@ export default function Home() {
                   }}
                 className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
                 >
-                Vorbestellen
+                {t.pricing.base.cta}
                 </a>
             </div>
             
@@ -872,26 +879,20 @@ export default function Home() {
               {/* Spanien Banner */}
               <div className="absolute -right-8 top-6 rotate-45 z-10">
                 <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-                  Spanien
+                  {t.pricing.pro.country}
                 </div>
               </div>
 
               <div className="mb-8">
-                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>QuickAlert PRO</h4>
+                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.pro.name}</h4>
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>49€</span>
-                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                  <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>{t.pricing.pro.price}</span>
+                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}> {t.pricing.pro.period}</span>
                   </div>
                 </div>
 
               <ul className="space-y-4 mb-10">
-                {[
-                  'Alle Features vom BASE Modell',
-                  'Integriertes GPS-Modul',
-                  'Automatische Cloud-Alarmierung',
-                  '13 Jahre eSIM inklusive',
-                  'Leitstellen-Anbindung (optional)'
-                ].map((feature, i) => (
+                {t.pricing.pro.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
                     <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
@@ -910,7 +911,7 @@ export default function Home() {
                   }}
                 className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
                 >
-                Vorbestellen
+                {t.pricing.base.cta}
                 </a>
             </div>
           </div>
@@ -923,31 +924,31 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div>
               <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
-                Rechtssicherheit
+                {t.legal.label}
               </h2>
               <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                Offiziell zugelassen.
+                {t.legal.title}
               </h3>
               <p className={`text-lg mb-8 leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                Geprüft und zertifiziert nach den strengsten europäischen Standards. Eine Investition in Sicherheit, die anerkannt wird.
+                {t.legal.description}
               </p>
               
               <div className="space-y-6">
                 <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
                   <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇩🇪</span> Deutschland
+                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇩🇪</span> {t.legal.countries.germany.name}
                   </h4>
                   <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                    Zulässig als zusätzliche Sicherheitsmaßnahme. Ergänzt das Warndreieck (§ 53a StVZO) optimal. Empfohlen für maximale Sichtbarkeit.
+                    {t.legal.countries.germany.description}
                   </p>
                 </div>
                 
                 <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-zinc-50 border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
                   <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇪🇸</span> Spanien
+                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇪🇸</span> {t.legal.countries.spain.name}
                   </h4>
                   <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                    Offiziell zugelassen (V16 IDIADA PC21020060). Ergänzt das Warndreieck optimal für maximale Sicherheit. Zusätzliche Absicherung empfohlen.
+                    {t.legal.countries.spain.description}
                     </p>
                   </div>
                 </div>
@@ -965,16 +966,16 @@ export default function Home() {
                   </svg>
                   </div>
                 <h4 className="text-3xl font-black mb-2 text-zinc-900">IDIADA</h4>
-                <div className="font-mono text-sm mb-8 text-zinc-500 bg-zinc-100 px-4 py-1 rounded-full">No. PC21020060</div>
+                <div className="font-mono text-sm mb-8 text-zinc-500 bg-zinc-100 px-4 py-1 rounded-full">{t.legal.certificate.number}</div>
                 <p className="text-sm leading-relaxed text-zinc-600 mb-8 max-w-xs mx-auto">
-                  Dieses Produkt erfüllt alle Anforderungen des Real Decreto 2822/1998 für V-16 Warnleuchten.
+                  {t.legal.certificate.description}
                 </p>
                 <div className="w-full border-t-2 border-dashed border-zinc-200 pt-6 mt-auto">
                   <div className="flex justify-between items-center px-4">
-                    <div className="text-xs text-zinc-400 uppercase tracking-wider">Status</div>
+                    <div className="text-xs text-zinc-400 uppercase tracking-wider">{t.legal.certificate.status}</div>
                     <div className="text-xs font-bold text-green-600 uppercase tracking-wider flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                      Approved
+                      {t.legal.certificate.approved}
                     </div>
                   </div>
                 </div>
@@ -993,10 +994,15 @@ export default function Home() {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-8 tracking-tight drop-shadow-lg">
-            Nicht warten. <br/>Sicher sein.
+            {t.cta.title.split('. ').map((part, i) => (
+              <span key={i}>
+                {part}
+                {i < t.cta.title.split('. ').length - 1 && <><br/></>}
+              </span>
+            ))}
             </h2>
           <p className="text-xl sm:text-2xl text-orange-100 mb-12 max-w-2xl mx-auto font-medium">
-            Rüsten Sie Ihr Fahrzeug jetzt auf den Sicherheitsstandard von morgen auf.
+            {t.cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a 
@@ -1010,13 +1016,13 @@ export default function Home() {
               }}
               className="px-10 py-5 bg-white text-orange-600 rounded-2xl font-black text-lg shadow-2xl hover:bg-zinc-50 hover:scale-105 transition-all duration-300"
             >
-              Vorbestellen
+              {t.cta.cta1}
             </a>
               <a 
                 href="#features" 
               className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-2xl font-bold text-lg hover:bg-white/10 hover:border-white transition-all duration-300"
               >
-                Mehr erfahren
+                {t.cta.cta2}
               </a>
           </div>
         </div>
@@ -1069,13 +1075,13 @@ export default function Home() {
 
             <div className="text-center mb-12">
               <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-4 ${darkMode ? 'bg-orange-500/20 text-orange-400' : 'bg-orange-100 text-orange-600'}`}>
-                Vorbestellung
+                {t.preorder.badge}
               </span>
               <h2 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                Seien Sie dabei, wenn es losgeht
+                {t.preorder.title}
               </h2>
               <p className={`text-lg leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                Melden Sie sich für unsere Vorbestellungsliste an und erhalten Sie als Erste/r eine Benachrichtigung, sobald QuickAlert verfügbar ist.
+                {t.preorder.description}
               </p>
             </div>
 
@@ -1085,9 +1091,9 @@ export default function Home() {
 
             <div className="mt-8 text-center">
               <p className={`text-sm ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                Ihre Daten werden nur zur Benachrichtigung verwendet und nicht an Dritte weitergegeben.{' '}
+                {t.preorder.privacy}{' '}
                 <Link href="/datenschutz" className="text-orange-500 hover:underline">
-                  Mehr erfahren
+                  {t.preorder.privacyLink}
                 </Link>
               </p>
             </div>
@@ -1123,13 +1129,13 @@ export default function Home() {
             
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 text-center">
               <Link href="/impressum" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                Impressum
+                {t.footer.links.impressum}
               </Link>
               <Link href="/datenschutz" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                Datenschutz
+                {t.footer.links.privacy}
               </Link>
               <Link href="/agb" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                AGB
+                {t.footer.links.terms}
               </Link>
               <a 
                 href="/QuickAlert/QuickAlert_V16_Bedienungsanleitung.pdf"
@@ -1137,7 +1143,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}
               >
-                Bedienungsanleitung
+                {t.footer.links.manual}
               </a>
               {/* Instagram Link */}
               <a
@@ -1154,10 +1160,10 @@ export default function Home() {
                 >
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
-                <span className="hidden sm:inline">Instagram</span>
+                <span className="hidden sm:inline">{t.footer.links.instagram}</span>
               </a>
               <span className={`text-sm ${darkMode ? 'text-zinc-600' : 'text-zinc-400'}`}>
-                © 2026 QuickAlert
+                {t.footer.copyright}
               </span>
             </div>
           </div>
