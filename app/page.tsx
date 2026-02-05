@@ -260,7 +260,12 @@ export default function Home() {
             {/* Dark Mode: Warndreieck Background */}
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{backgroundImage: "url('/Warndreieck Autobahn Personen.jpg')"}}
+              style={{
+                backgroundImage: "url('/Warndreieck Autobahn Personen.jpg')",
+                backgroundSize: 'cover',
+                height: '100vh',
+                minHeight: '100vh'
+              }}
             >
               {/* Dark Overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a]/90 via-[#2d2d2d]/85 to-[#1a1a1a]/90"></div>
@@ -289,7 +294,12 @@ export default function Home() {
             {/* Light Mode: Original Background - Warm beige/weiß */}
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{backgroundImage: "url('/Autounfall.png')"}}
+              style={{
+                backgroundImage: "url('/Autounfall.png')",
+                backgroundSize: 'cover',
+                height: '100vh',
+                minHeight: '100vh'
+              }}
             >
               {/* Warmes beige/weißes Overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#D4A574]/60 via-[#C9956C]/50 to-[#D4A574]/40"></div>
