@@ -32,7 +32,7 @@ export const es = {
       help: "ayuda",
     },
     descriptionDark: "Triángulos de advertencia tradicionales: Un riesgo peligroso en la autopista.",
-    descriptionLight: "La luz de advertencia LED magnética más moderna del mundo. Calidad policial con diseño elegante que ilumina la noche.",
+    descriptionLight: "La luz de advertencia LED magnética más moderna del mundo. Máxima calidad con diseño elegante que ilumina la noche.",
     ctaDark: "Encontrar solución",
     ctaLight: "Encontrar QuickAlert",
     ctaDealer: "Para distribuidores",

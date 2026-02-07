@@ -32,7 +32,7 @@ export const de = {
       help: "helfe",
     },
     descriptionDark: "Herkömmliche Warndreiecke: Ein gefährliches Risiko auf der Autobahn.",
-    descriptionLight: "Das weltweit modernste magnetische LED-Warnlicht. Polizei-Qualität mit elegantem Design, das die Nacht erhellt.",
+    descriptionLight: "Das weltweit modernste magnetische LED-Warnlicht. Höchste Qualität mit elegantem Design, das die Nacht erhellt.",
     ctaDark: "Abhilfe finden",
     ctaLight: "QuickAlert finden",
     ctaDealer: "Für Händler",

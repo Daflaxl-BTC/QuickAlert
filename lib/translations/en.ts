@@ -32,7 +32,7 @@ export const en = {
       help: "help",
     },
     descriptionDark: "Traditional warning triangles: A dangerous risk on the highway.",
-    descriptionLight: "The world's most modern magnetic LED warning light. Police-quality with elegant design that illuminates the night.",
+    descriptionLight: "The world's most modern magnetic LED warning light. Premium quality with elegant design that illuminates the night.",
     ctaDark: "Find a solution",
     ctaLight: "Find QuickAlert",
     ctaDealer: "For dealers",
