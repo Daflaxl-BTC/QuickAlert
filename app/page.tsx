@@ -572,6 +572,21 @@ export default function Home() {
                         {t.pricing.base.country}
                       </div>
                     </div>
+                    {/* Verpackungsbild */}
+                    <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
+                      <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-zinc-800 to-zinc-900">
+                        <Image
+                          src="/Verpackungen/base.jpg"
+                          alt="QuickAlert Verpackung"
+                          width={1200}
+                          height={800}
+                          className="w-full h-full object-cover"
+                          style={{ 
+                            objectPosition: 'center center'
+                          }}
+                        />
+                      </div>
+                    </div>
                     <div className="mb-8">
                       <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>QuickAlert BASE</h4>
                       <div className="flex items-baseline gap-1">
@@ -611,19 +626,34 @@ export default function Home() {
                   </div>
                   
                   {/* PRO Model */}
-                  <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
+                  <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-gradient-to-br from-orange-950/50 via-zinc-900 to-orange-950/30 border-orange-500 shadow-[0_0_50px_rgba(249,115,22,0.2)] hover:shadow-[0_0_50px_rgba(249,115,22,0.3)]' : 'bg-gradient-to-br from-orange-50 via-white to-orange-50 border-orange-500 shadow-2xl shadow-orange-500/20'}`}>
                     {/* Spanien Banner */}
                     <div className="absolute -right-8 top-6 rotate-45 z-10">
                       <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
                         Spanien
                       </div>
                     </div>
+                    {/* Verpackungsbild */}
+                    <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
+                      <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-orange-900/40 to-orange-800/30 border-b-2 border-orange-700/50">
+                        <Image
+                          src="/Verpackungen/base.jpg"
+                          alt="QuickAlert Verpackung"
+                          width={1200}
+                          height={800}
+                          className="w-full h-full object-cover"
+                          style={{ 
+                            objectPosition: 'center center'
+                          }}
+                        />
+                      </div>
+                    </div>
 
                     <div className="mb-8">
-                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>QuickAlert PRO</h4>
+                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-orange-600'}`}>QuickAlert PRO</h4>
                       <div className="flex items-baseline gap-1">
                         <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>49€</span>
-                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-400' : 'text-orange-600'}`}>/ einmalig</span>
                       </div>
                     </div>
 
@@ -858,6 +888,22 @@ export default function Home() {
                   Deutschland
                     </div>
                   </div>
+              {/* Verpackungsbild */}
+              <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
+                <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-zinc-100 to-zinc-200">
+                  <Image
+                    src="/Verpackungen/base.jpg"
+                    alt="QuickAlert Verpackung"
+                    width={1200}
+                    height={800}
+                    className="w-full h-full object-cover"
+                    style={{ 
+                      objectPosition: 'center center'
+                    }}
+                  />
+                </div>
+              </div>
+
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>{t.pricing.base.name}</h4>
                 <div className="flex items-baseline gap-1">
@@ -891,7 +937,7 @@ export default function Home() {
             </div>
             
             {/* PRO Model */}
-            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-zinc-900 border-orange-500/50 shadow-[0_0_50px_rgba(249,115,22,0.1)] hover:shadow-[0_0_50px_rgba(249,115,22,0.2)]' : 'bg-white border-orange-500 shadow-2xl shadow-orange-500/10'}`}>
+            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-gradient-to-br from-orange-950/50 via-zinc-900 to-orange-950/30 border-orange-500 shadow-[0_0_50px_rgba(249,115,22,0.2)] hover:shadow-[0_0_50px_rgba(249,115,22,0.3)]' : 'bg-gradient-to-br from-orange-50 via-white to-orange-50 border-orange-500 shadow-2xl shadow-orange-500/20'}`}>
               {/* Spanien Banner */}
               <div className="absolute -right-8 top-6 rotate-45 z-10">
                 <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
@@ -899,11 +945,27 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Verpackungsbild */}
+              <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
+                <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-orange-100 to-orange-200 border-b-2 border-orange-300">
+                  <Image
+                    src="/Verpackungen/base.jpg"
+                    alt="QuickAlert Verpackung"
+                    width={1200}
+                    height={800}
+                    className="w-full h-full object-cover"
+                    style={{ 
+                      objectPosition: 'center center'
+                    }}
+                  />
+                </div>
+              </div>
+
               <div className="mb-8">
-                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.pro.name}</h4>
+                <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-orange-600'}`}>{t.pricing.pro.name}</h4>
                 <div className="flex items-baseline gap-1">
                   <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>{t.pricing.pro.price}</span>
-                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}> {t.pricing.pro.period}</span>
+                  <span className={`text-lg font-medium ${darkMode ? 'text-zinc-400' : 'text-orange-600'}`}> {t.pricing.pro.period}</span>
                   </div>
                 </div>
 
