@@ -16,6 +16,7 @@ export const es = {
     spain: "España",
     buyNow: "COMPRAR AHORA",
     buyNowShort: "COMPRAR",
+    instagramAria: "Síguenos en Instagram",
   },
 
   // Hero Section

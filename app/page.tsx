@@ -238,7 +238,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
             className={`p-2 sm:p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:scale-110 active:scale-95 transition-all flex-shrink-0 ${darkMode ? 'bg-transparent hover:bg-white/10' : 'bg-transparent hover:bg-[#6B4E3D]/10'}`}
-            aria-label="Folgen Sie uns auf Instagram"
+            aria-label={t.nav.instagramAria}
           >
             <svg 
               className={`w-5 h-5 sm:w-6 sm:h-6 ${darkMode ? 'text-white hover:text-orange-500' : 'text-[#6B4E3D] hover:text-orange-600'}`} 
@@ -588,21 +588,15 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="mb-8">
-                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>QuickAlert BASE</h4>
+                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>{t.pricing.base.name}</h4>
                       <div className="flex items-baseline gap-1">
-                        <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>29€</span>
-                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>/ einmalig</span>
+                        <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.base.price}</span>
+                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>{t.pricing.base.period}</span>
                       </div>
                     </div>
 
                     <ul className="space-y-4 mb-10">
-                      {[
-                        'ECE R65 zertifizierter LED-Ring',
-                        'Magnet-Halterung (220 km/h)',
-                        'IP65 Wasserdicht & Staubfest',
-                        '3x AAA Batterien – überall erhältlich',
-                        'Kompaktes Handschuhfach-Design'
-                      ].map((feature, i) => (
+                      {t.pricing.base.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
                           <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-300' : 'bg-zinc-100 text-zinc-600'}`}>✓</div>
                           <span className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{feature}</span>
@@ -630,7 +624,7 @@ export default function Home() {
                     {/* Spanien Banner */}
                     <div className="absolute -right-8 top-6 rotate-45 z-10">
                       <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-                        Spanien
+                        {t.pricing.pro.country}
                       </div>
                     </div>
                     {/* Verpackungsbild */}
@@ -650,21 +644,15 @@ export default function Home() {
                     </div>
 
                     <div className="mb-8">
-                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-orange-600'}`}>QuickAlert PRO</h4>
+                      <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-orange-600'}`}>{t.pricing.pro.name}</h4>
                       <div className="flex items-baseline gap-1">
-                        <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>49€</span>
-                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-400' : 'text-orange-600'}`}>/ einmalig</span>
+                        <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>{t.pricing.pro.price}</span>
+                        <span className={`text-lg font-medium ${darkMode ? 'text-zinc-400' : 'text-orange-600'}`}>{t.pricing.pro.period}</span>
                       </div>
                     </div>
 
                     <ul className="space-y-4 mb-10">
-                      {[
-                        'Alle Features vom BASE Modell',
-                        'Integriertes GPS-Modul',
-                        'Automatische Cloud-Alarmierung',
-                        '13 Jahre eSIM inklusive',
-                        'Leitstellen-Anbindung (optional)'
-                      ].map((feature, i) => (
+                      {t.pricing.pro.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
                           <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
                           <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
@@ -872,10 +860,10 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
-              Modelle
+              {t.pricing.label}
             </h2>
             <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-              Wähle deine Sicherheit.
+              {t.pricing.title}
             </h3>
                       </div>
 
@@ -885,7 +873,7 @@ export default function Home() {
               {/* Deutschland Banner */}
               <div className="absolute -right-8 top-6 rotate-45 z-10">
                 <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-600 text-white'}`}>
-                  Deutschland
+                  {t.pricing.base.country}
                     </div>
                   </div>
               {/* Verpackungsbild */}
@@ -1229,7 +1217,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-2 text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}
-                aria-label="Folgen Sie uns auf Instagram"
+                aria-label={t.nav.instagramAria}
               >
                 <svg 
                   className="w-4 h-4" 

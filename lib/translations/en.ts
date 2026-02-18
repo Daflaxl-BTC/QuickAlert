@@ -16,6 +16,7 @@ export const en = {
     spain: "Spain",
     buyNow: "BUY NOW",
     buyNowShort: "BUY",
+    instagramAria: "Follow us on Instagram",
   },
 
   // Hero Section
