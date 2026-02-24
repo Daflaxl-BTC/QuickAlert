@@ -188,6 +188,24 @@ export const de = {
     },
   },
 
+  // Comparison Section
+  comparison: {
+    label: "Vergleich",
+    title: "BASE VS. PRO",
+    feature: "Feature",
+    price: "Preis",
+    features: [
+      "360° LED-Warnsignal",
+      "Sichtbarkeit bis 1 km",
+      "Magnetfuß (kein Aussteigen)",
+      "IP67 Wasserdicht",
+      "IDIADA V16 Zertifikat",
+      "GPS Weitergabe bei Auslösung (in Spanien funktionabel)",
+      "eSIM integriert (13 Jahre)",
+      "App-Verbindung (IoT)",
+    ],
+  },
+
   // Legal Section
   legal: {
     label: "Rechtssicherheit",
@@ -200,11 +218,11 @@ export const de = {
       },
       spain: {
         name: "Spanien",
-        description: "Offiziell zugelassen (V16 IDIADA PC21020060). Ergänzt das Warndreieck optimal für maximale Sicherheit. Zusätzliche Absicherung empfohlen.",
+        description: "Offiziell zugelassen (V16 IDIADA PC26020115). Ergänzt das Warndreieck optimal für maximale Sicherheit. Zusätzliche Absicherung empfohlen.",
       },
     },
     certificate: {
-      number: "No. PC21020060",
+      number: "No. PC26020115",
       description: "Dieses Produkt erfüllt alle Anforderungen des Real Decreto 2822/1998 für V-16 Warnleuchten.",
       status: "Status",
       approved: "Approved",

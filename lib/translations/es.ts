@@ -188,6 +188,24 @@ export const es = {
     },
   },
 
+  // Comparison Section
+  comparison: {
+    label: "Comparación",
+    title: "BASE VS. PRO",
+    feature: "Característica",
+    price: "Precio",
+    features: [
+      "Señal LED de advertencia 360°",
+      "Visibilidad hasta 1 km",
+      "Base magnética (sin salir)",
+      "IP67 resistente al agua",
+      "Certificado IDIADA V16",
+      "Transmisión GPS al activar (funcional en España)",
+      "eSIM integrada (13 años)",
+      "Conexión de app (IoT)",
+    ],
+  },
+
   // Legal Section
   legal: {
     label: "Seguridad legal",
@@ -200,11 +218,11 @@ export const es = {
       },
       spain: {
         name: "España",
-        description: "Oficialmente aprobado (V16 IDIADA PC21020060). Complementa óptimamente el triángulo de advertencia para máxima seguridad. Se recomienda protección adicional.",
+        description: "Oficialmente aprobado (V16 IDIADA PC26020115). Complementa óptimamente el triángulo de advertencia para máxima seguridad. Se recomienda protección adicional.",
       },
     },
     certificate: {
-      number: "No. PC21020060",
+      number: "No. PC26020115",
       description: "Este producto cumple con todos los requisitos del Real Decreto 2822/1998 para luces de advertencia V-16.",
       status: "Estado",
       approved: "Aprobado",

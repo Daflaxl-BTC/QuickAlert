@@ -188,6 +188,24 @@ export const en = {
     },
   },
 
+  // Comparison Section
+  comparison: {
+    label: "Comparison",
+    title: "BASE VS. PRO",
+    feature: "Feature",
+    price: "Price",
+    features: [
+      "360° LED warning signal",
+      "Visibility up to 1 km",
+      "Magnetic mount (no exiting)",
+      "IP67 waterproof",
+      "IDIADA V16 certificate",
+      "GPS sharing on trigger (functional in Spain)",
+      "eSIM integrated (13 years)",
+      "App connection (IoT)",
+    ],
+  },
+
   // Legal Section
   legal: {
     label: "Legal security",
@@ -200,11 +218,11 @@ export const en = {
       },
       spain: {
         name: "Spain",
-        description: "Officially approved (V16 IDIADA PC21020060). Optimally complements the warning triangle for maximum safety. Additional protection recommended.",
+        description: "Officially approved (V16 IDIADA PC26020115). Optimally complements the warning triangle for maximum safety. Additional protection recommended.",
       },
     },
     certificate: {
-      number: "No. PC21020060",
+      number: "No. PC26020115",
       description: "This product meets all requirements of Real Decreto 2822/1998 for V-16 warning lights.",
       status: "Status",
       approved: "Approved",

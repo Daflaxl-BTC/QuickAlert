@@ -631,8 +631,8 @@ export default function Home() {
                     <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
                       <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-orange-900/40 to-orange-800/30 border-b-2 border-orange-700/50">
                         <Image
-                          src="/Verpackungen/base.jpg"
-                          alt="QuickAlert Verpackung"
+                          src="/3D-PRO.jpg"
+                          alt="QuickAlert PRO Verpackung"
                           width={1200}
                           height={800}
                           className="w-full h-full object-cover"
@@ -937,8 +937,8 @@ export default function Home() {
               <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
                 <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-orange-100 to-orange-200 border-b-2 border-orange-300">
                   <Image
-                    src="/Verpackungen/base.jpg"
-                    alt="QuickAlert Verpackung"
+                    src="/3D-PRO.jpg"
+                    alt="QuickAlert PRO Verpackung"
                     width={1200}
                     height={800}
                     className="w-full h-full object-cover"
@@ -979,6 +979,68 @@ export default function Home() {
                 >
                 {t.pricing.base.cta}
                 </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison Section - BASE vs PRO */}
+      <section className="py-24 sm:py-32 bg-zinc-950">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-12">
+              <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight">{t.comparison.title}</h2>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-zinc-800">
+                      <th className="text-left py-5 px-6 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">{t.comparison.feature}</th>
+                      <th className="py-5 px-6 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 text-center w-40 sm:w-48">{t.nav.base}</th>
+                      <th className="py-5 px-6 text-center w-40 sm:w-48 bg-gradient-to-b from-orange-500/20 to-transparent">
+                        <span className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">{t.nav.pro} ★</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {t.comparison.features.map((feature, i) => {
+                      // Erst gemeinsame Features (0–3), dann nur PRO (4–7)
+                      const hasBase = i < 4
+                      const hasPro = true
+                      return (
+                        <tr key={i} className={`border-b border-zinc-800/60 transition-colors hover:bg-zinc-900/50 ${i === t.comparison.features.length - 1 ? 'border-b-0' : ''}`}>
+                          <td className="py-4 px-6 text-sm text-zinc-300 font-medium">{feature}</td>
+                          <td className="py-4 px-6 text-center">
+                            {hasBase ? (
+                              <span className="text-green-400 text-lg">✓</span>
+                            ) : (
+                              <span className="text-zinc-600">—</span>
+                            )}
+                          </td>
+                          <td className="py-4 px-6 text-center bg-orange-500/[0.04]">
+                            {hasPro ? (
+                              <span className="text-green-400 text-lg">✓</span>
+                            ) : (
+                              <span className="text-zinc-600">—</span>
+                            )}
+                          </td>
+                        </tr>
+                      )
+                    })}
+                    <tr className="border-t-2 border-zinc-700 bg-zinc-900/50">
+                      <td className="py-5 px-6 text-sm font-bold text-zinc-300">{t.comparison.price}</td>
+                      <td className="py-5 px-6 text-center">
+                        <span className="text-2xl font-black text-white">{t.pricing.base.price}</span>
+                      </td>
+                      <td className="py-5 px-6 text-center bg-orange-500/[0.04]">
+                        <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">{t.pricing.pro.price}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

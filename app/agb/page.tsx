@@ -255,7 +255,7 @@ Datum: _________________
                   (2) Die Gewährleistungsfrist beträgt für Verbraucher 2 Jahre ab Lieferung der Ware. Für Unternehmer beträgt die Gewährleistungsfrist 12 Monate ab Lieferung der Ware, es sei denn, es handelt sich um einen Arglist verschwiegenen Mangel.
                 </p>
                 <p>
-                  (3) Der Verkäufer gewährleistet, dass die Ware zum Zeitpunkt der Übergabe die vereinbarte Beschaffenheit hat und frei von Sach- und Rechtsmängeln ist. Die Produkte entsprechen den angegebenen technischen Spezifikationen und Zertifizierungen (z.B. ECE R65, IDIADA PC21020060).
+                  (3) Der Verkäufer gewährleistet, dass die Ware zum Zeitpunkt der Übergabe die vereinbarte Beschaffenheit hat und frei von Sach- und Rechtsmängeln ist. Die Produkte entsprechen den angegebenen technischen Spezifikationen und Zertifizierungen (z.B. ECE R65, IDIADA PC26020115).
                 </p>
                 <p>
                   (4) Von der Gewährleistung ausgeschlossen sind Schäden, die auf normale Abnutzung, unsachgemäße Handhabung, unsachgemäße Installation oder Verwendung, mangelnde Wartung oder auf äußere Einflüsse zurückzuführen sind.
