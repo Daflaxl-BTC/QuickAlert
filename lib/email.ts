@@ -38,7 +38,7 @@ export async function sendNotificationEmail(data: PreOrderData) {
   try {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'QuickAlert <noreply@quickalert.eu>',
-      to: process.env.ADMIN_EMAIL || 'felix-bredl@gmx.de',
+      to: process.env.ADMIN_EMAIL || 'quickalert@outlook.de',
       subject: `Neue Vorbestellung: ${data.name} - ${data.product}`,
       html: `
         <!DOCTYPE html>

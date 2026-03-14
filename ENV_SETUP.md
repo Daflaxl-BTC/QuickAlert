@@ -17,7 +17,7 @@ Für die Vorbestellungsliste müssen folgende Environment Variables in Vercel ko
 ### ADMIN_EMAIL
 - **Beschreibung**: E-Mail-Adresse, an die Benachrichtigungen über neue Vorbestellungen geschickt werden (Ihre Geschäfts-E-Mail).
 - **Umstellung auf neue E-Mail**: Einfach `ADMIN_EMAIL` in Vercel und in `.env.local` auf die neue Adresse setzen – kein Code-Change nötig.
-- **Standard**, wenn nicht gesetzt: `felix-bredl@gmx.de`
+- **Standard**, wenn nicht gesetzt: `quickalert@outlook.de`
 
 ### N8N_WEBHOOK_URL
 - **Beschreibung**: n8n Webhook-URL für Automatisierungen (z.B. Google Sheets, Slack)
@@ -39,7 +39,7 @@ Für die Vorbestellungsliste müssen folgende Environment Variables in Vercel ko
 4. Fügen Sie die Variablen hinzu:
    - `RESEND_API_KEY` = Ihr Resend API Key
    - `NEXT_PUBLIC_BASE_URL` = `https://quickalert.eu`
-   - `ADMIN_EMAIL` = `felix-bredl@gmx.de` (optional)
+   - `ADMIN_EMAIL` = `quickalert@outlook.de` (optional)
    - `N8N_WEBHOOK_URL` = Ihre n8n Webhook-URL (optional)
    - `N8N_WEBHOOK_CONFIRMED` = Separate n8n Webhook-URL für Bestätigungen (optional)
 
@@ -50,7 +50,7 @@ Kopieren Sie `.env.example` nach `.env.local` und tragen Sie Ihre Werte ein (ins
 ```env
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
-ADMIN_EMAIL=felix-bredl@gmx.de
+ADMIN_EMAIL=quickalert@outlook.de
 N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/abc123
 N8N_WEBHOOK_CONFIRMED=https://your-n8n-instance.com/webhook/xyz789
 ```
