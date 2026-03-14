@@ -15,9 +15,9 @@ Für die Vorbestellungsliste müssen folgende Environment Variables in Vercel ko
 - **Hinweis**: Muss mit `NEXT_PUBLIC_` beginnen, damit es im Client verfügbar ist
 
 ### ADMIN_EMAIL
-- **Beschreibung**: E-Mail-Adresse für Benachrichtigungen über neue Vorbestellungen
-- **Standard**: `felix-bredl@gmx.de`
-- **Optional**: Kann weggelassen werden, dann wird der Standard verwendet
+- **Beschreibung**: E-Mail-Adresse, an die Benachrichtigungen über neue Vorbestellungen geschickt werden (Ihre Geschäfts-E-Mail).
+- **Umstellung auf neue E-Mail**: Einfach `ADMIN_EMAIL` in Vercel und in `.env.local` auf die neue Adresse setzen – kein Code-Change nötig.
+- **Standard**, wenn nicht gesetzt: `felix-bredl@gmx.de`
 
 ### N8N_WEBHOOK_URL
 - **Beschreibung**: n8n Webhook-URL für Automatisierungen (z.B. Google Sheets, Slack)
@@ -43,7 +43,7 @@ Für die Vorbestellungsliste müssen folgende Environment Variables in Vercel ko
 
 ## Lokale Entwicklung
 
-Erstellen Sie eine `.env.local` Datei im Projekt-Root:
+Kopieren Sie `.env.example` nach `.env.local` und tragen Sie Ihre Werte ein (insbesondere `RESEND_API_KEY` und `ADMIN_EMAIL` für Ihre Geschäfts-E-Mail). Oder erstellen Sie manuell eine `.env.local` im Projekt-Root:
 
 ```env
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx

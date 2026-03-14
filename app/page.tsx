@@ -7,10 +7,12 @@ import { useTranslation } from '@/lib/translations/useTranslation'
 import { useLanguage } from '@/components/LanguageProvider'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import PreOrderForm from '@/components/PreOrderForm'
 
 export default function Home() {
+  const pathname = usePathname()
   const { darkMode, setDarkMode } = useDarkMode()
   const t = useTranslation()
   const { language } = useLanguage()
@@ -178,8 +180,17 @@ export default function Home() {
 
       {/* Navigation - IDENTISCH für beide Modi */}
       <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-3 sm:px-4 md:px-6 lg:px-12 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-white/95 border-[#D4B896]/40'}`}>
-        {/* Logo Links */}
-        <Link href="/" className="group flex items-center gap-1.5 sm:gap-2 md:gap-3 hover:scale-105 transition-all duration-300 min-h-[44px]">
+        {/* Logo Links - immer zur Opening Page (Startseite oben) */}
+        <Link
+          href="/"
+          onClick={(e) => {
+            if (pathname === '/') {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }
+          }}
+          className="group flex items-center gap-1.5 sm:gap-2 md:gap-3 hover:scale-105 transition-all duration-300 min-h-[44px]"
+        >
           <div className="relative">
             <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex-shrink-0 drop-shadow-lg group-hover:drop-shadow-xl transition-all" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))' }}>
               {/* Strahlen */}
