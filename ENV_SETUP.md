@@ -32,9 +32,11 @@ Für die Vorbestellungsliste müssen folgende Environment Variables in Vercel ko
 
 ## Setup in Vercel
 
-1. Gehen Sie zu Ihrem Vercel-Projekt
-2. Navigieren Sie zu **Settings** → **Environment Variables**
-3. Fügen Sie die Variablen hinzu:
+1. Gehen Sie zu Ihrem Vercel-Projekt (z. B. **safewarn-munich**)
+2. **Node.js-Version (Warnung „20.x 24.x“ entfernen):**  
+   **Settings** → **General** (oder **Build & Development**) → **Node.js Version** → **20.x** auswählen (nicht 24.x). So stimmt die Einstellung mit `package.json` überein und die gelbe Warnung verschwindet.
+3. **Settings** → **Environment Variables**
+4. Fügen Sie die Variablen hinzu:
    - `RESEND_API_KEY` = Ihr Resend API Key
    - `NEXT_PUBLIC_BASE_URL` = `https://quickalert.eu`
    - `ADMIN_EMAIL` = `felix-bredl@gmx.de` (optional)

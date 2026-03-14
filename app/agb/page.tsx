@@ -1,12 +1,25 @@
+'use client'
+
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function AGB() {
+  const router = useRouter()
+
+  const handleGoToOpeningPage = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    router.push('/')
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  }
+
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900 overflow-x-hidden">
       
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-8 lg:px-12 py-6 flex items-center justify-between backdrop-blur-md bg-white/90 border-b border-zinc-200">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" onClick={handleGoToOpeningPage} className="flex items-center gap-2">
           {/* Warnleuchte Icon */}
           <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Strahlen */}
@@ -29,6 +42,7 @@ export default function AGB() {
         </Link>
         <Link 
           href="/"
+          onClick={handleGoToOpeningPage}
           className="px-6 py-2.5 rounded-xl bg-zinc-900 text-white font-bold text-sm hover:bg-zinc-800 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Zur Startseite
