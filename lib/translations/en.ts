@@ -224,6 +224,7 @@ export const en = {
     certificate: {
       number: "No. PC26020115",
       description: "This product meets all requirements of Real Decreto 2822/1998 for V-16 warning lights.",
+      download: "Download IDIADA report",
       status: "Status",
       approved: "Approved",
     },
@@ -241,8 +242,8 @@ export const en = {
   preorder: {
     badge: "Pre-order",
     title: "Be there when it starts",
-    description: "Sign up for our pre-order list and be among the first to receive a notification when QuickAlert is available.",
-    privacy: "Your data will only be used for notifications and will not be shared with third parties.",
+    description: "Join our pre-order list. Your entry is activated only after email confirmation (double opt-in).",
+    privacy: "Your data is used only for pre-order communication via a double opt-in process.",
     privacyLink: "Learn more",
     form: {
       name: "Name",
@@ -251,13 +252,13 @@ export const en = {
       message: "Message (optional)",
       privacy: "I agree to the",
       privacyLink: "Privacy Policy",
-      privacySuffix: "and would like to be informed by email about availability.",
+      privacySuffix: "and would like to be informed by email about availability (double opt-in).",
       required: "*",
       submit: "Add to pre-order list",
       submitting: "Sending...",
       success: {
-        title: "Thank you for signing up!",
-        message: "You are now on our pre-order list. We will notify you by email as soon as QuickAlert is available.",
+        title: "Please confirm your email",
+        message: "We sent you a confirmation email. Your entry becomes active only after clicking the link.",
       },
       error: "An error occurred",
       networkError: "Network error",
@@ -285,11 +286,10 @@ export const en = {
   // Cookie Banner
   cookies: {
     title: "Cookie settings",
-    description: "We do not use tracking cookies. This website uses only essential technologies for functionality. Your data is not used for marketing or analytics purposes.",
-    privacy: "By using this website, you agree to the processing of your IP address by our host (Vercel). For more information, see our",
+    description: "We do not use tracking or marketing cookies. Only technically necessary local storage values are used (e.g. language, display mode, notice status).",
+    privacy: "For more details on data processing, see our",
     privacyLink: "Privacy Policy",
-    essential: "Essential only",
-    acceptAll: "Allow all",
+    acknowledge: "Got it",
     settings: {
       title: "Cookie settings",
       essential: {

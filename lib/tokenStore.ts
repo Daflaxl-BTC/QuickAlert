@@ -1,10 +1,18 @@
 import { PreOrderData } from './email'
 
-// In-memory storage für Tokens (in Produktion sollte eine Datenbank verwendet werden)
-// Token wird nach 24 Stunden ungültig
-export const tokenStore = new Map<string, { data: PreOrderData; expiresAt: number }>()
+export interface PendingPreOrderToken {
+  data: PreOrderData
+  createdAt: number
+  expiresAt: number
+  ipAddress?: string
+  userAgent?: string
+}
 
-// Cleanup-Funktion für abgelaufene Tokens
+// In-memory storage fuer Tokens (in Produktion sollte eine Datenbank verwendet werden)
+// Token wird nach 24 Stunden ungueltig
+export const tokenStore = new Map<string, PendingPreOrderToken>()
+
+// Cleanup-Funktion fuer abgelaufene Tokens
 export function cleanupExpiredTokens() {
   const now = Date.now()
   for (const [token, value] of tokenStore.entries()) {
@@ -14,7 +22,7 @@ export function cleanupExpiredTokens() {
   }
 }
 
-// Regelmäßige Bereinigung (alle 5 Minuten)
+// Regelmaessige Bereinigung (alle 5 Minuten)
 if (typeof setInterval !== 'undefined') {
   setInterval(cleanupExpiredTokens, 5 * 60 * 1000)
 }

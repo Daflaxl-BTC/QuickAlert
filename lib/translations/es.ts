@@ -224,6 +224,7 @@ export const es = {
     certificate: {
       number: "No. PC26020115",
       description: "Este producto cumple con todos los requisitos del Real Decreto 2822/1998 para luces de advertencia V-16.",
+      download: "Descargar informe IDIADA",
       status: "Estado",
       approved: "Aprobado",
     },
@@ -241,8 +242,8 @@ export const es = {
   preorder: {
     badge: "Pre-reserva",
     title: "Esté ahí cuando comience",
-    description: "Regístrese en nuestra lista de pre-reserva y sea uno de los primeros en recibir una notificación cuando QuickAlert esté disponible.",
-    privacy: "Sus datos solo se utilizarán para notificaciones y no se compartirán con terceros.",
+    description: "Únase a nuestra lista de pre-reserva. Su registro se activa solo tras confirmar su correo (doble opt-in).",
+    privacy: "Sus datos se utilizan únicamente para comunicaciones de pre-reserva mediante doble opt-in.",
     privacyLink: "Saber más",
     form: {
       name: "Nombre",
@@ -251,13 +252,13 @@ export const es = {
       message: "Mensaje (opcional)",
       privacy: "Acepto la",
       privacyLink: "Política de Privacidad",
-      privacySuffix: "y deseo ser informado por correo electrónico sobre la disponibilidad.",
+      privacySuffix: "y deseo ser informado por correo electrónico sobre la disponibilidad (doble opt-in).",
       required: "*",
       submit: "Añadir a la lista de pre-reserva",
       submitting: "Enviando...",
       success: {
-        title: "¡Gracias por registrarse!",
-        message: "Ahora está en nuestra lista de pre-reserva. Le notificaremos por correo electrónico tan pronto como QuickAlert esté disponible.",
+        title: "Por favor, confirme su correo",
+        message: "Le enviamos un correo de confirmación. Su registro se activa solo al hacer clic en el enlace.",
       },
       error: "Ocurrió un error",
       networkError: "Error de red",
@@ -285,11 +286,10 @@ export const es = {
   // Cookie Banner
   cookies: {
     title: "Configuración de cookies",
-    description: "No utilizamos cookies de seguimiento. Este sitio web utiliza únicamente tecnologías esenciales para la funcionalidad. Sus datos no se utilizan para marketing o análisis.",
-    privacy: "Al usar este sitio web, acepta el procesamiento de su dirección IP por nuestro host (Vercel). Para más información, consulte nuestra",
+    description: "No utilizamos cookies de seguimiento ni de marketing. Solo se usan valores de almacenamiento local técnicamente necesarios (p. ej. idioma, modo visual, estado del aviso).",
+    privacy: "Para más información sobre el tratamiento de datos, consulte nuestra",
     privacyLink: "Política de Privacidad",
-    essential: "Solo esenciales",
-    acceptAll: "Permitir todo",
+    acknowledge: "Entendido",
     settings: {
       title: "Configuración de cookies",
       essential: {

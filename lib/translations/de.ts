@@ -116,7 +116,7 @@ export const de = {
     items: {
       magnet: {
         title: "Fester Halt",
-        description: "Neodym-Magnetsystem, getestet bis 220 km/h. Hält bombenfest auf jedem Stahldach – auch bei Sturm und vorbeifahrenden LKWs.",
+        description: "Neodym-Magnetsystem für sicheren Halt auf dem Stahldach. Entwickelt für den Einsatz bei Wind und im vorbeifahrenden Verkehr.",
       },
       battery: {
         title: "Überall erhältlich",
@@ -224,6 +224,7 @@ export const de = {
     certificate: {
       number: "No. PC26020115",
       description: "Dieses Produkt erfüllt alle Anforderungen des Real Decreto 2822/1998 für V-16 Warnleuchten.",
+      download: "IDIADA-Bericht herunterladen",
       status: "Status",
       approved: "Approved",
     },
@@ -241,8 +242,8 @@ export const de = {
   preorder: {
     badge: "Vorbestellung",
     title: "Seien Sie dabei, wenn es losgeht",
-    description: "Melden Sie sich für unsere Vorbestellungsliste an und erhalten Sie als Erste/r eine Benachrichtigung, sobald QuickAlert verfügbar ist.",
-    privacy: "Ihre Daten werden nur zur Benachrichtigung verwendet und nicht an Dritte weitergegeben.",
+    description: "Melden Sie sich für unsere Vorbestellungsliste an. Die Aktivierung erfolgt erst nach E-Mail-Bestätigung (Double-Opt-In).",
+    privacy: "Ihre Daten werden nur für die Vorbestellkommunikation verwendet. Es gilt das Double-Opt-In-Verfahren.",
     privacyLink: "Mehr erfahren",
     form: {
       name: "Name",
@@ -251,13 +252,13 @@ export const de = {
       message: "Nachricht (optional)",
       privacy: "Ich stimme der",
       privacyLink: "Datenschutzerklärung",
-      privacySuffix: "zu und möchte per E-Mail über die Verfügbarkeit informiert werden.",
+      privacySuffix: "zu und möchte per E-Mail über die Verfügbarkeit informiert werden (Double-Opt-In).",
       required: "*",
       submit: "Zur Vorbestellungsliste hinzufügen",
       submitting: "Wird gesendet...",
       success: {
-        title: "Vielen Dank für Ihre Anmeldung!",
-        message: "Sie sind jetzt auf unserer Vorbestellungsliste. Wir informieren Sie per E-Mail, sobald QuickAlert verfügbar ist.",
+        title: "Bitte E-Mail bestätigen",
+        message: "Wir haben Ihnen eine Bestätigungs-E-Mail gesendet. Erst nach Klick auf den Link wird Ihr Eintrag aktiviert.",
       },
       error: "Ein Fehler ist aufgetreten",
       networkError: "Netzwerkfehler",
@@ -285,11 +286,10 @@ export const de = {
   // Cookie Banner
   cookies: {
     title: "Cookie-Einstellungen",
-    description: "Wir nutzen keine Tracking-Cookies. Diese Website verwendet ausschließlich essenzielle Technologien für die Funktionalität. Ihre Daten werden nicht zu Marketing- oder Analysezwecken verwendet.",
-    privacy: "Durch die Nutzung dieser Website stimmen Sie der Verarbeitung Ihrer IP-Adresse durch unseren Hoster (Vercel) zu. Weitere Informationen finden Sie in unserer",
+    description: "Wir nutzen keine Tracking- oder Marketing-Cookies. Es werden nur technisch notwendige lokale Speicherwerte verwendet (z. B. Sprache, Darstellungsmodus, Hinweisstatus).",
+    privacy: "Weitere Informationen zur Datenverarbeitung finden Sie in unserer",
     privacyLink: "Datenschutzerklärung",
-    essential: "Nur essenziell",
-    acceptAll: "Alle erlauben",
+    acknowledge: "Verstanden",
     settings: {
       title: "Cookie-Einstellungen",
       essential: {

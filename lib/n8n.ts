@@ -65,7 +65,7 @@ export async function notifyN8NPreOrderSubmitted(data: {
       data: {
         ...data,
         timestamp: new Date().toISOString(),
-        confirmed: data.confirmed ?? true, // Standardmäßig als bestätigt markieren
+        confirmed: data.confirmed ?? false,
       },
     },
     process.env.N8N_WEBHOOK_URL

@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { sendNotificationEmail, PreOrderData } from '@/lib/email'
+import { sendDoubleOptInEmail, PreOrderData } from '@/lib/email'
 import { notifyN8NPreOrderSubmitted } from '@/lib/n8n'
+import { tokenStore } from '@/lib/tokenStore'
 
 const preOrderSchema = z.object({
   name: z.string().min(2, 'Name muss mindestens 2 Zeichen lang sein'),
@@ -15,11 +16,18 @@ const preOrderSchema = z.object({
   }),
 })
 
+function getClientIp(request: NextRequest) {
+  const forwardedFor = request.headers.get('x-forwarded-for')
+  if (forwardedFor) {
+    return forwardedFor.split(',')[0]?.trim()
+  }
+  return request.headers.get('x-real-ip') || undefined
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    
-    // Validierung
+
     const validationResult = preOrderSchema.safeParse(body)
     if (!validationResult.success) {
       return NextResponse.json(
@@ -37,26 +45,40 @@ export async function POST(request: NextRequest) {
       message,
     }
 
-    // Benachrichtigungs-E-Mail senden (an Admin)
-    console.log(`📧 Neue Vorbestellung von: ${preOrderData.email}`)
-    const notificationResult = await sendNotificationEmail(preOrderData)
+    const token = crypto.randomUUID()
+    const expiresAt = Date.now() + 24 * 60 * 60 * 1000
+    const createdAt = Date.now()
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || request.nextUrl.origin
+    const confirmationUrl = `${baseUrl}/api/preorder/confirm?token=${encodeURIComponent(token)}`
 
-    if (!notificationResult.success) {
-      console.error('❌ Failed to send notification email:', notificationResult.error)
-      // Fehler wird nicht an den Nutzer weitergegeben, da die Anmeldung trotzdem erfolgreich ist
+    tokenStore.set(token, {
+      data: preOrderData,
+      createdAt,
+      expiresAt,
+      ipAddress: getClientIp(request),
+      userAgent: request.headers.get('user-agent') || undefined,
+    })
+
+    const doiResult = await sendDoubleOptInEmail(preOrderData, confirmationUrl)
+    if (!doiResult.success) {
+      tokenStore.delete(token)
+      return NextResponse.json(
+        { error: 'Bestätigungs-E-Mail konnte nicht gesendet werden. Bitte versuchen Sie es erneut.' },
+        { status: 500 }
+      )
     }
 
-    // n8n Webhook aufrufen (als bestätigt markiert, da kein Double Opt-In mehr)
+    // Eingang der Vorbestellung an n8n melden (noch unbestaetigt)
     notifyN8NPreOrderSubmitted({
       ...preOrderData,
-      confirmed: true, // Sofort als bestätigt markieren
+      confirmed: false,
     }).catch((error) => {
       console.error('n8n webhook error (non-blocking):', error)
     })
 
     return NextResponse.json({
       success: true,
-      message: 'Vielen Dank! Sie sind jetzt auf unserer Vorbestellungsliste.',
+      message: 'Bitte bestätigen Sie Ihre E-Mail-Adresse über den Link in der Bestätigungs-E-Mail.',
     })
   } catch (error) {
     console.error('Error processing preorder:', error)

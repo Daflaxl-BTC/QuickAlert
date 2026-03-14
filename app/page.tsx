@@ -36,16 +36,35 @@ export default function Home() {
     }
   }
 
-      // URL-Parameter für Fehler prüfen (nur für allgemeine Fehler, keine Token-Fehler mehr)
+  // URL-Parameter fuer DOI-Status und Fehler pruefen
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    if (params.get('error')) {
-      const errorType = params.get('error')
+
+    if (params.get('confirmed') === 'true') {
+      setNotification({
+        type: 'success',
+        message: 'Vielen Dank! Ihre E-Mail wurde erfolgreich bestaetigt.',
+      })
+      window.history.replaceState({}, '', window.location.pathname)
+      setTimeout(() => setNotification(null), 6000)
+      return
+    }
+
+    const errorType = params.get('error')
+    if (errorType) {
       let message = t.preorder.form.error
-      // Token-Fehler werden nicht mehr angezeigt, da kein Double Opt-In mehr
+
+      if (errorType === 'missing_token' || errorType === 'invalid_token') {
+        message = 'Der Bestaetigungslink ist ungueltig. Bitte tragen Sie sich erneut ein.'
+      } else if (errorType === 'expired_token') {
+        message = 'Der Bestaetigungslink ist abgelaufen. Bitte tragen Sie sich erneut ein.'
+      } else if (errorType === 'confirm_mail_failed') {
+        message = 'Ihre Bestaetigung wurde gespeichert, aber die E-Mail-Zustellung war unvollstaendig.'
+      }
+
       setNotification({ type: 'error', message })
       window.history.replaceState({}, '', window.location.pathname)
-      setTimeout(() => setNotification(null), 5000)
+      setTimeout(() => setNotification(null), 7000)
     }
   }, [t])
 
@@ -1121,7 +1140,7 @@ export default function Home() {
 
             <div className="relative flex justify-center">
               <div className={`absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/20 blur-[100px] rounded-full`}></div>
-              <div className={`relative w-full max-w-md aspect-[3/4] rounded-[2rem] border-8 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center bg-white ${darkMode ? 'border-zinc-800' : 'border-zinc-50'}`}>
+              <div className={`relative w-full max-w-md aspect-[3/4] rounded-[2rem] border-8 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-100/70 border-zinc-200'}`}>
                 {/* Certificate Background Pattern */}
                 <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] bg-[length:20px_20px]"></div>
                 
@@ -1130,14 +1149,26 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   </div>
-                <h4 className="text-3xl font-black mb-2 text-zinc-900">IDIADA</h4>
-                <div className="font-mono text-sm mb-8 text-zinc-500 bg-zinc-100 px-4 py-1 rounded-full">{t.legal.certificate.number}</div>
-                <p className="text-sm leading-relaxed text-zinc-600 mb-8 max-w-xs mx-auto">
+                <h4 className={`text-3xl font-black mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>IDIADA</h4>
+                <div className={`font-mono text-sm mb-8 px-4 py-1 rounded-full ${darkMode ? 'text-zinc-200 bg-zinc-800' : 'text-zinc-500 bg-zinc-100'}`}>{t.legal.certificate.number}</div>
+                <p className={`text-sm leading-relaxed mb-5 max-w-xs mx-auto ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                   {t.legal.certificate.description}
                 </p>
-                <div className="w-full border-t-2 border-dashed border-zinc-200 pt-6 mt-auto">
+                <a
+                  href="/Zertifikate/Idiada%20Report.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-2 text-xs font-bold mb-6 px-4 py-2 rounded-full border transition-all duration-300 ${
+                    darkMode
+                      ? 'border-zinc-700 text-zinc-200 hover:border-orange-400 hover:text-orange-300'
+                      : 'border-zinc-300 text-zinc-700 hover:border-orange-500 hover:text-orange-600'
+                  }`}
+                >
+                  {t.legal.certificate.download}
+                </a>
+                <div className={`w-full border-t-2 border-dashed pt-6 mt-auto ${darkMode ? 'border-zinc-700' : 'border-zinc-200'}`}>
                   <div className="flex justify-between items-center px-4">
-                    <div className="text-xs text-zinc-400 uppercase tracking-wider">{t.legal.certificate.status}</div>
+                    <div className={`text-xs uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-400'}`}>{t.legal.certificate.status}</div>
                     <div className="text-xs font-bold text-green-600 uppercase tracking-wider flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-green-500"></span>
                       {t.legal.certificate.approved}
