@@ -17,10 +17,17 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   @apply bg-[#F5E6D3] text-[#3D2F1F];
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
 }
 
 /* Smooth scrolling for anchor links */

@@ -124,13 +124,13 @@ export default function Home() {
         </svg>
       </button>
 
-      {/* Language Selector - Oben rechts, gestaffelt nach unten */}
-      <div className="fixed right-2 sm:right-3 md:right-4 top-28 sm:top-32 md:top-36 z-50">
+      {/* Language Selector - auch auf Mobile fix rechts */}
+      <div className="fixed right-2 sm:right-3 md:right-4 top-[calc(6.5rem+env(safe-area-inset-top,0px))] sm:top-32 md:top-36 z-50">
         <LanguageSelector />
       </div>
 
-      {/* Dark Mode Toggle + Warndreieck Button - Rechts, weiter unten auf Mobile */}
-      <div className="fixed right-2 sm:right-3 md:right-4 top-[58%] sm:top-1/2 transform -translate-y-1/2 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3">
+      {/* Dark Mode + QuickAlert Button - nur ab Tablet/Desktop fixiert */}
+      <div className="hidden sm:flex fixed right-3 bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:bottom-auto sm:right-3 md:right-4 sm:top-1/2 sm:-translate-y-1/2 z-50 flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3">
         {/* Warndreieck/QuickAlert Button */}
         <button
           onClick={(e) => {
@@ -143,31 +143,54 @@ export default function Home() {
               : 'px-2.5 py-2 sm:px-4 sm:py-2 bg-[#F5E6D3]/90 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
           style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
         >
-          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base' : 'text-[8px] xs:text-[9px] sm:text-xs'}`}>
+          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-[11px] sm:text-xs md:text-sm lg:text-base' : 'text-[11px] sm:text-xs'}`}>
             {darkMode ? (
               <>
+                <span className="sm:hidden text-white">Quick</span>
+                <span className="sm:hidden text-[#F5A623]">Alert</span>
                 <span className="hidden sm:inline text-white">{t.hero.warndreieckButton.dark.prefix}</span>
-                <span className="text-white">{t.hero.warndreieckButton.dark.quick}</span>
-                <span className="text-[#F5A623]">{t.hero.warndreieckButton.dark.alert}</span>
-                <span className="text-white">{t.hero.warndreieckButton.dark.suffix}</span>
+                <span className="hidden sm:inline text-white">{t.hero.warndreieckButton.dark.quick}</span>
+                <span className="hidden sm:inline text-[#F5A623]">{t.hero.warndreieckButton.dark.alert}</span>
+                <span className="hidden sm:inline text-white">{t.hero.warndreieckButton.dark.suffix}</span>
               </>
             ) : (
               <>
+                <span className="sm:hidden">Warndreieck</span>
                 <span className="hidden sm:inline">{t.hero.warndreieckButton.light.prefix}</span>
-                <span>{t.hero.warndreieckButton.light.suffix}</span>
+                <span className="hidden sm:inline">{t.hero.warndreieckButton.light.suffix}</span>
               </>
             )}
           </span>
-          <svg className={`group-hover:translate-x-1 transition-transform flex-shrink-0 ${darkMode ? 'w-3 h-3 sm:w-4 sm:h-4 text-[#F5A623]' : 'w-2.5 h-2.5 sm:w-3 sm:h-3'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={`hidden sm:block group-hover:translate-x-1 transition-transform flex-shrink-0 ${darkMode ? 'sm:w-4 sm:h-4 text-[#F5A623]' : 'sm:w-3 sm:h-3'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </button>
-        <DarkModeToggle />
+        <div className="hidden sm:block">
+          <DarkModeToggle />
+        </div>
+      </div>
+
+      {/* Mobile Mode Switch - immer sichtbar unten rechts, nur Text (kein Icon) */}
+      <div className="fixed right-3 top-[62%] -translate-y-1/2 z-50 sm:hidden">
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            setDarkMode(!darkMode)
+          }}
+          className={`rounded-lg border-2 px-4 py-2 font-bold text-xs transition-all duration-300 backdrop-blur-sm ${
+            darkMode
+              ? 'bg-[#1a1a1a]/90 border-[#F5A623] text-[#F5A623]'
+              : 'bg-[#F5E6D3]/90 border-[#D4B896] text-[#6B4E3D]'
+          }`}
+          style={darkMode ? { boxShadow: '0 0 12px rgba(245, 166, 35, 0.3)' } : { boxShadow: '0 0 10px rgba(212, 184, 150, 0.3)' }}
+        >
+          {darkMode ? 'QuickAlert' : 'Warndreieck'}
+        </button>
       </div>
       
-      {/* Top Info Bar - Mobile optimized - IDENTISCH für beide Modi */}
-      <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
-        <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-12 py-1 sm:py-1.5">
+      {/* Top Info Bar - Mobile optimized, safe area for notch */}
+      <div className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-colors duration-300 pt-[env(safe-area-inset-top)] ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-[#8B6F47]/95 border-[#A0825D]/40'}`}>
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-12 py-1.5 sm:py-1.5">
           <div className="flex items-center justify-between gap-2">
             <p className={`text-center flex-1 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-medium transition-colors duration-300 leading-tight ${darkMode ? 'text-[#e5e5e5]' : 'text-[#F5E6D3]'}`}>
               <span className="font-bold">{t.topBar.pro}</span>
@@ -178,9 +201,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Navigation - IDENTISCH für beide Modi */}
-      <nav className={`fixed top-[1.25rem] sm:top-[1.75rem] md:top-[2.25rem] left-0 right-0 z-50 px-3 sm:px-4 md:px-6 lg:px-12 py-2 sm:py-2.5 md:py-3 lg:py-4 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300 ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-white/95 border-[#D4B896]/40'}`}>
-        {/* Logo Links - immer zur Opening Page (Startseite oben) */}
+      {/* Navigation - kompakter auf Mobile, safe area */}
+      <nav className={`fixed left-0 right-0 z-50 flex items-center justify-between backdrop-blur-md border-b-2 transition-colors duration-300
+        top-[calc(1.25rem+env(safe-area-inset-top,0))] sm:top-[calc(1.75rem+env(safe-area-inset-top,0))] md:top-[calc(2.25rem+env(safe-area-inset-top,0))]
+        px-3 sm:px-4 md:px-6 lg:px-12 py-2 sm:py-2.5 md:py-3 lg:py-4
+        ${darkMode ? 'bg-[#2d2d2d]/95 border-[#1a1a1a]' : 'bg-white/95 border-[#D4B896]/40'}`}>
+        {/* Logo - auf Mobile kompakter für saubere Nav-Zeile */}
         <Link
           href="/"
           onClick={(e) => {
@@ -189,10 +215,10 @@ export default function Home() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }
           }}
-          className="group flex items-center gap-1.5 sm:gap-2 md:gap-3 hover:scale-105 transition-all duration-300 min-h-[44px]"
+          className="group flex items-center gap-1 sm:gap-2 md:gap-3 hover:scale-105 transition-all duration-300 min-h-[44px] min-w-0"
         >
-          <div className="relative">
-            <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex-shrink-0 drop-shadow-lg group-hover:drop-shadow-xl transition-all" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))' }}>
+          <div className="relative flex-shrink-0">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 drop-shadow-lg group-hover:drop-shadow-xl transition-all" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))' }}>
               {/* Strahlen */}
               <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
               <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
@@ -207,7 +233,7 @@ export default function Home() {
               <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
             </svg>
           </div>
-          <span className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-black font-poppins tracking-tight ${
+          <span className={`text-base sm:text-xl md:text-2xl lg:text-3xl font-black font-poppins tracking-tight truncate ${
             darkMode 
               ? 'text-white drop-shadow-lg' 
               : 'text-zinc-900 drop-shadow-md'
@@ -327,9 +353,10 @@ export default function Home() {
           </>
         )}
 
-        {/* Hero Content - Overlaid to avoid layout shifts - Gleiche Größe für beide Modi */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-5 md:px-6 lg:px-12 pb-20 sm:pb-24 md:pb-28 lg:pb-32 pt-24 sm:pt-28 md:pt-32 lg:pt-36 xl:pt-40">
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-4 sm:px-5 md:px-6 lg:px-12 pb-24 sm:pb-24 md:pb-28 lg:pb-32 pt-28 sm:pt-28 md:pt-32 lg:pt-36 xl:pt-40 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]">
           <div className="max-w-4xl">
+            <div>
             {/* Date Badge - Mobile optimized */}
             <div className="grid place-items-start mb-4 sm:mb-5 md:mb-6">
               <div ref={darkBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
@@ -348,8 +375,8 @@ export default function Home() {
 
             {/* Main Headline - GRÖSSERE TEXTE - Perfekte Überlagerung für flüssigen Wechsel */}
             <div className="relative mb-1 sm:mb-2 md:mb-3">
-              {/* Light Mode Headline - Bestimmt die Container-Höhe */}
-              <h1 ref={lightHeadlineRef} className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              {/* Light Mode Headline - auf Mobile etwas kleiner für sauberen Umbruch */}
+              <h1 ref={lightHeadlineRef} className={`text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className="text-[#F5E6D3] drop-shadow-lg">{t.hero.headlineLight.line1}</div>
                   <div className="text-[#F5E6D3] drop-shadow-lg">
@@ -358,8 +385,8 @@ export default function Home() {
                   </div>
                 </div>
               </h1>
-              {/* Dark Mode Headline - Absolut über der Light Mode Überschrift, leicht nach unten verschoben für perfekte Ausrichtung */}
-              <h1 ref={darkHeadlineRef} className={`absolute top-1 left-0 right-0 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              {/* Dark Mode Headline */}
+              <h1 ref={darkHeadlineRef} className={`absolute top-1 left-0 right-0 text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className="text-red-500 drop-shadow-lg">{t.hero.headlineDark.line1}</div>
                   <div className="text-[#9a9a9a] drop-shadow-lg">{t.hero.headlineDark.line2}</div>
@@ -368,13 +395,14 @@ export default function Home() {
             </div>
 
             {/* Description - Mobile optimized - GRÖSSERE TEXTE */}
-            <div className="grid place-items-start mb-3 sm:mb-4 md:mb-6 max-w-2xl">
+            <div className="grid place-items-start mb-3 sm:mb-4 md:mb-6 max-w-2xl flex-shrink-0 min-h-0">
               <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-100 text-[#e5e5e5]/90' : 'opacity-0 pointer-events-none'}`}>
                 {t.hero.descriptionDark}
               </p>
               <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100 text-[#F5E6D3]/95'}`}>
                 {t.hero.descriptionLight}
               </p>
+            </div>
             </div>
 
             {/* CTA Buttons - Mobile optimized */}
@@ -426,17 +454,15 @@ export default function Home() {
                 </a>
               </div>
             </div>
+
           </div>
         </div>
 
         {/* Scroll Indicator - Integriert in Hero-Section, höher platziert */}
         {showScrollIndicator && (
           <div 
-            className={`absolute left-0 right-0 flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300 z-20 ${
-              language === 'es' 
-                ? 'bottom-20 sm:bottom-24 md:bottom-28 lg:bottom-32' 
-                : 'bottom-2 sm:bottom-4 md:bottom-6'
-            }`}
+            className="absolute left-0 right-0 flex flex-col items-center gap-1 sm:gap-2 animate-bounce pointer-events-none transition-opacity duration-300 z-20 bottom-8 sm:bottom-6 md:bottom-6"
+            style={{ paddingBottom: 'env(safe-area-inset-bottom, 0)' }}
           >
             <span className={`text-[10px] sm:text-xs font-semibold ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`}>{t.hero.scroll}</span>
             <svg className={`w-4 h-4 sm:w-5 sm:h-5 ${darkMode ? 'text-[#e5e5e5]/70' : 'text-white drop-shadow-lg'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -452,7 +478,7 @@ export default function Home() {
           {/* Story Intro Section */}
           <section className="py-24 sm:py-32 relative overflow-hidden">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]"></div>
-             <div className="container mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+             <div className="container mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
             <div className="max-w-4xl mx-auto">
                  <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-12 text-white leading-tight">
                    {t.darkMode.storyTitle.split('-').map((part, i) => (
@@ -477,8 +503,8 @@ export default function Home() {
 
           {/* Statistics Grid */}
           <section className="py-16 bg-zinc-900/50 border-y border-zinc-800">
-            <div className="container mx-auto px-6 lg:px-12">
-               <div className="max-w-4xl mx-auto">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+              <div className="max-w-4xl mx-auto">
                  <h3 className="text-2xl font-bold text-white mb-10">{t.darkMode.statsTitle}</h3>
                  <div className="grid sm:grid-cols-2 gap-6">
                    <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
@@ -508,7 +534,7 @@ export default function Home() {
 
           {/* Problems Section */}
           <section className="py-24 sm:py-32">
-            <div className="container mx-auto px-6 lg:px-12">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl sm:text-4xl font-black text-white mb-12">
                   {t.darkMode.problemsTitle}
@@ -549,7 +575,7 @@ export default function Home() {
 
           {/* Solution & Features */}
           <section className="py-24 sm:py-32 bg-zinc-900 border-t border-zinc-800">
-            <div className="container mx-auto px-6 lg:px-12">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl sm:text-4xl font-black text-white mb-8">
                   {t.darkMode.solutionTitle}
@@ -1240,8 +1266,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Modern Footer */}
-      <footer className={`py-8 sm:py-10 md:py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200'}`}>
+      {/* Modern Footer - Safe Area unten für Home-Indikator */}
+      <footer className={`py-8 sm:py-10 md:py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200'}`} style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
         <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
             <div className="flex items-center gap-2 sm:gap-3">
