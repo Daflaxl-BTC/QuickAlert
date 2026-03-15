@@ -228,6 +228,25 @@ export const es = {
       status: "Estado",
       approved: "Aprobado",
     },
+    certificatesSection: {
+      title: "Certificados y comprobantes",
+      description: "Resumen discreto de comprobantes técnicos. El contenido solo se muestra bajo demanda.",
+      toggle: "Mostrar certificados",
+      baseTitle: "BASE (No GPS)",
+      proTitle: "PRO (GPS)",
+      empty: "Sin entradas por ahora.",
+      fileLabel: "Abrir PDF",
+    },
+    certificates: [
+      {
+        name: "Informe de prueba IDIADA V16",
+        number: "No. PC26020115",
+        description: "Comprobante según el Real Decreto 2822/1998 para luces de advertencia V-16.",
+        file: "/Zertifikate/Idiada%20Report.pdf",
+        productScope: "pro",
+        sortOrder: 1,
+      },
+    ],
   },
 
   // CTA Section

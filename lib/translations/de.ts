@@ -138,7 +138,7 @@ export const de = {
     items: {
       dangerous: {
         title: "Gefährliches Aufstellen",
-        text: "Um ein Warndreieck korrekt aufzustellen, müssen Sie 200-400m auf der Autobahn laufen. Lebensgefahr durch vorbeirasenden Verkehr.",
+        text: "Auf Autobahnen wird das Warndreieck häufig in 200 bis 400 Metern Entfernung aufgestellt. Das Betreten der Fahrbahn ist dabei mit erheblicher Unfallgefahr verbunden.",
       },
       visibility: {
         title: "Schlechte Sichtbarkeit",
@@ -228,6 +228,25 @@ export const de = {
       status: "Status",
       approved: "Approved",
     },
+    certificatesSection: {
+      title: "Zertifikate und Nachweise",
+      description: "Unauffällige Übersicht der technischen Nachweise. Inhalte werden nur bei Bedarf eingeblendet.",
+      toggle: "Zertifikate anzeigen",
+      baseTitle: "BASE (No GPS)",
+      proTitle: "PRO (GPS)",
+      empty: "Aktuell keine Einträge.",
+      fileLabel: "PDF öffnen",
+    },
+    certificates: [
+      {
+        name: "IDIADA V16 Prüfbericht",
+        number: "No. PC26020115",
+        description: "Nachweis gemäß Real Decreto 2822/1998 für V-16 Warnleuchten.",
+        file: "/Zertifikate/Idiada%20Report.pdf",
+        productScope: "pro",
+        sortOrder: 1,
+      },
+    ],
   },
 
   // CTA Section

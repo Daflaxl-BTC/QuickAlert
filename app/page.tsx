@@ -22,6 +22,13 @@ export default function Home() {
   const lightHeadlineRef = useRef<HTMLHeadingElement>(null)
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
+  const sortedCertificates = [...t.legal.certificates].sort((a, b) => {
+    const orderDiff = (a.sortOrder ?? Number.MAX_SAFE_INTEGER) - (b.sortOrder ?? Number.MAX_SAFE_INTEGER)
+    if (orderDiff !== 0) return orderDiff
+    return a.name.localeCompare(b.name, language)
+  })
+  const baseCertificates = sortedCertificates.filter((certificate) => certificate.productScope === 'base' || certificate.productScope === 'both')
+  const proCertificates = sortedCertificates.filter((certificate) => certificate.productScope === 'pro' || certificate.productScope === 'both')
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     if (darkMode) {
@@ -1140,41 +1147,30 @@ export default function Home() {
 
             <div className="relative flex justify-center">
               <div className={`absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/20 blur-[100px] rounded-full`}></div>
-              <div className={`relative w-full max-w-md aspect-[3/4] rounded-[2rem] border-8 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-8 text-center backdrop-blur-sm ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-100/70 border-zinc-200'}`}>
-                {/* Certificate Background Pattern */}
-                <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#000_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-                
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-8 shadow-xl shadow-orange-500/30 text-white">
-                  <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              <div className={`relative w-full max-w-md rounded-[2rem] border-2 shadow-2xl overflow-hidden p-8 text-left backdrop-blur-sm ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-100/70 border-zinc-200'}`}>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white flex items-center justify-center shadow-lg shadow-orange-500/30">
+                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                   </div>
-                <h4 className={`text-3xl font-black mb-2 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>IDIADA</h4>
-                <div className={`font-mono text-sm mb-8 px-4 py-1 rounded-full ${darkMode ? 'text-zinc-200 bg-zinc-800' : 'text-zinc-500 bg-zinc-100'}`}>{t.legal.certificate.number}</div>
-                <p className={`text-sm leading-relaxed mb-5 max-w-xs mx-auto ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                  {t.legal.certificate.description}
+                  <h4 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                    {t.legal.certificatesSection.title}
+                  </h4>
+                </div>
+                <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
+                  {t.legal.certificatesSection.description}
                 </p>
                 <a
-                  href="/Zertifikate/Idiada%20Report.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 text-xs font-bold mb-6 px-4 py-2 rounded-full border transition-all duration-300 ${
+                  href="#zertifikate"
+                  className={`inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-full border transition-all duration-300 ${
                     darkMode
                       ? 'border-zinc-700 text-zinc-200 hover:border-orange-400 hover:text-orange-300'
                       : 'border-zinc-300 text-zinc-700 hover:border-orange-500 hover:text-orange-600'
                   }`}
                 >
-                  {t.legal.certificate.download}
+                  {t.legal.certificatesSection.toggle}
                 </a>
-                <div className={`w-full border-t-2 border-dashed pt-6 mt-auto ${darkMode ? 'border-zinc-700' : 'border-zinc-200'}`}>
-                  <div className="flex justify-between items-center px-4">
-                    <div className={`text-xs uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-400'}`}>{t.legal.certificate.status}</div>
-                    <div className="text-xs font-bold text-green-600 uppercase tracking-wider flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                      {t.legal.certificate.approved}
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -1297,6 +1293,71 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Zertifikate unauffaellig in Footer-Naehe */}
+      <section id="zertifikate" className={`py-10 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200'}`}>
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8 max-w-5xl">
+          <details className={`rounded-2xl border ${darkMode ? 'border-zinc-800 bg-zinc-900/70' : 'border-zinc-200 bg-zinc-50'}`}>
+            <summary className={`cursor-pointer list-none px-5 py-4 flex items-center justify-between text-sm font-bold ${darkMode ? 'text-zinc-200' : 'text-zinc-700'}`}>
+              <span>{t.legal.certificatesSection.toggle}</span>
+              <span className={`${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>▼</span>
+            </summary>
+            <div className="px-5 pb-5">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className={`rounded-xl border p-4 ${darkMode ? 'border-zinc-800 bg-zinc-950/60' : 'border-zinc-200 bg-white'}`}>
+                  <h4 className={`text-sm font-black mb-3 ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{t.legal.certificatesSection.baseTitle}</h4>
+                  {baseCertificates.length === 0 ? (
+                    <p className={`text-xs ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>{t.legal.certificatesSection.empty}</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {baseCertificates.map((certificate) => (
+                        <div key={`base-${certificate.name}`} className={`rounded-lg border p-3 ${darkMode ? 'border-zinc-800 bg-zinc-900/50' : 'border-zinc-200 bg-zinc-50'}`}>
+                          <p className={`text-sm font-bold ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{certificate.name}</p>
+                          <p className={`text-xs font-mono mt-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>{certificate.number}</p>
+                          <p className={`text-xs mt-2 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{certificate.description}</p>
+                          <a
+                            href={certificate.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex mt-3 text-xs font-bold underline underline-offset-2 ${darkMode ? 'text-orange-300 hover:text-orange-200' : 'text-orange-600 hover:text-orange-700'}`}
+                          >
+                            {t.legal.certificatesSection.fileLabel}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className={`rounded-xl border p-4 ${darkMode ? 'border-zinc-800 bg-zinc-950/60' : 'border-zinc-200 bg-white'}`}>
+                  <h4 className={`text-sm font-black mb-3 ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{t.legal.certificatesSection.proTitle}</h4>
+                  {proCertificates.length === 0 ? (
+                    <p className={`text-xs ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>{t.legal.certificatesSection.empty}</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {proCertificates.map((certificate) => (
+                        <div key={`pro-${certificate.name}`} className={`rounded-lg border p-3 ${darkMode ? 'border-zinc-800 bg-zinc-900/50' : 'border-zinc-200 bg-zinc-50'}`}>
+                          <p className={`text-sm font-bold ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{certificate.name}</p>
+                          <p className={`text-xs font-mono mt-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>{certificate.number}</p>
+                          <p className={`text-xs mt-2 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{certificate.description}</p>
+                          <a
+                            href={certificate.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex mt-3 text-xs font-bold underline underline-offset-2 ${darkMode ? 'text-orange-300 hover:text-orange-200' : 'text-orange-600 hover:text-orange-700'}`}
+                          >
+                            {t.legal.certificatesSection.fileLabel}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
       {/* Modern Footer - Safe Area unten für Home-Indikator */}
       <footer className={`py-8 sm:py-10 md:py-12 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200'}`} style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}>
         <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
@@ -1324,6 +1385,9 @@ export default function Home() {
             </div>
             
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 text-center">
+              <a href="#zertifikate" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                Zertifikate
+              </a>
               <Link href="/impressum" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 {t.footer.links.impressum}
               </Link>

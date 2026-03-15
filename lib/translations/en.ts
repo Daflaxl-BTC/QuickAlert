@@ -228,6 +228,25 @@ export const en = {
       status: "Status",
       approved: "Approved",
     },
+    certificatesSection: {
+      title: "Certificates and proofs",
+      description: "Low-visibility overview of technical proofs. Content is only shown on demand.",
+      toggle: "Show certificates",
+      baseTitle: "BASE (No GPS)",
+      proTitle: "PRO (GPS)",
+      empty: "No entries yet.",
+      fileLabel: "Open PDF",
+    },
+    certificates: [
+      {
+        name: "IDIADA V16 test report",
+        number: "No. PC26020115",
+        description: "Proof according to Real Decreto 2822/1998 for V-16 warning lights.",
+        file: "/Zertifikate/Idiada%20Report.pdf",
+        productScope: "pro",
+        sortOrder: 1,
+      },
+    ],
   },
 
   // CTA Section
