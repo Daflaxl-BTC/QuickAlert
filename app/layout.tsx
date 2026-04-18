@@ -39,11 +39,20 @@ export const metadata: Metadata = {
     locale: 'de_DE',
     url: 'https://quickalert.eu',
     siteName: 'QuickAlert',
+    images: [
+      {
+        url: '/QuickAlert-Logo-mit-Text.png',
+        width: 1200,
+        height: 630,
+        alt: 'QuickAlert - Magnetisches LED Warnlicht',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'QuickAlert - Magnetisches LED Warnlicht',
     description: 'Das moderne magnetische gelbe LED Warnlicht für maximale Sicherheit',
+    images: ['/QuickAlert-Logo-mit-Text.png'],
   },
   robots: {
     index: true,

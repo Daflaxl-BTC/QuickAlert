@@ -8,7 +8,7 @@ import { useLanguage } from '@/components/LanguageProvider'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PreOrderForm from '@/components/PreOrderForm'
 
 export default function Home() {
@@ -16,10 +16,6 @@ export default function Home() {
   const { darkMode, setDarkMode } = useDarkMode()
   const t = useTranslation()
   const { language } = useLanguage()
-  const darkBadgeRef = useRef<HTMLDivElement>(null)
-  const lightBadgeRef = useRef<HTMLDivElement>(null)
-  const darkHeadlineRef = useRef<HTMLHeadingElement>(null)
-  const lightHeadlineRef = useRef<HTMLHeadingElement>(null)
   const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sortedCertificates = [...t.legal.certificates].sort((a, b) => {
@@ -50,7 +46,7 @@ export default function Home() {
     if (params.get('confirmed') === 'true') {
       setNotification({
         type: 'success',
-        message: 'Vielen Dank! Ihre E-Mail wurde erfolgreich bestaetigt.',
+        message: 'Vielen Dank! Ihre E-Mail wurde erfolgreich bestätigt.',
       })
       window.history.replaceState({}, '', window.location.pathname)
       setTimeout(() => setNotification(null), 6000)
@@ -62,11 +58,11 @@ export default function Home() {
       let message = t.preorder.form.error
 
       if (errorType === 'missing_token' || errorType === 'invalid_token') {
-        message = 'Der Bestaetigungslink ist ungueltig. Bitte tragen Sie sich erneut ein.'
+        message = 'Der Bestätigungslink ist ungültig. Bitte tragen Sie sich erneut ein.'
       } else if (errorType === 'expired_token') {
-        message = 'Der Bestaetigungslink ist abgelaufen. Bitte tragen Sie sich erneut ein.'
+        message = 'Der Bestätigungslink ist abgelaufen. Bitte tragen Sie sich erneut ein.'
       } else if (errorType === 'confirm_mail_failed') {
-        message = 'Ihre Bestaetigung wurde gespeichert, aber die E-Mail-Zustellung war unvollstaendig.'
+        message = 'Ihre Bestätigung wurde gespeichert, aber die E-Mail-Zustellung war unvollständig.'
       }
 
       setNotification({ type: 'error', message })
@@ -91,51 +87,6 @@ export default function Home() {
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // #region agent log
-  useEffect(() => {
-    const measureBadgeToHeadline = () => {
-      if (darkBadgeRef.current && lightBadgeRef.current && darkHeadlineRef.current && lightHeadlineRef.current) {
-        const darkBadgeRect = darkBadgeRef.current.getBoundingClientRect()
-        const lightBadgeRect = lightBadgeRef.current.getBoundingClientRect()
-        const darkHeadlineRect = darkHeadlineRef.current.getBoundingClientRect()
-        const lightHeadlineRect = lightHeadlineRef.current.getBoundingClientRect()
-        
-        // Messung der tatsächlichen Text-Position (erste Text-Zeile)
-        const darkFirstTextLine = darkHeadlineRef.current.querySelector('div > div:first-child')
-        const lightFirstTextLine = lightHeadlineRef.current.querySelector('div > div:first-child')
-        const darkFirstTextRect = darkFirstTextLine?.getBoundingClientRect()
-        const lightFirstTextRect = lightFirstTextLine?.getBoundingClientRect()
-        
-        const darkBadgeBottom = darkBadgeRect.bottom
-        const lightBadgeBottom = lightBadgeRect.bottom
-        const darkHeadlineTop = darkHeadlineRect.top
-        const lightHeadlineTop = lightHeadlineRect.top
-        const darkTextTop = darkFirstTextRect?.top ?? darkHeadlineTop
-        const lightTextTop = lightFirstTextRect?.top ?? lightHeadlineTop
-        
-        const darkGap = darkHeadlineTop - darkBadgeBottom
-        const lightGap = lightHeadlineTop - lightBadgeBottom
-        const darkTextGap = darkTextTop - darkBadgeBottom
-        const lightTextGap = lightTextTop - lightBadgeBottom
-        
-      }
-    }
-
-    measureBadgeToHeadline()
-    const timeoutId = setTimeout(measureBadgeToHeadline, 50)
-    const timeoutId2 = setTimeout(measureBadgeToHeadline, 150)
-    const timeoutId3 = setTimeout(measureBadgeToHeadline, 300)
-    window.addEventListener('resize', measureBadgeToHeadline)
-    
-    return () => {
-      clearTimeout(timeoutId)
-      clearTimeout(timeoutId2)
-      clearTimeout(timeoutId3)
-      window.removeEventListener('resize', measureBadgeToHeadline)
-    }
-  }, [darkMode])
-  // #endregion
 
   return (
     <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-white text-[#3D2F1F]'}`}>
@@ -196,8 +147,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Mobile Mode Switch - immer sichtbar unten rechts, nur Text (kein Icon) */}
-      <div className="fixed right-3 top-[62%] -translate-y-1/2 z-50 sm:hidden">
+      {/* Mobile Mode Switch - unten rechts fixiert, überlagert keinen Content beim Scrollen */}
+      <div className="fixed right-3 bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))] z-50 sm:hidden">
         <button
           onClick={(e) => {
             e.preventDefault()
@@ -381,17 +332,18 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-4 sm:px-5 md:px-6 lg:px-12 pb-24 sm:pb-24 md:pb-28 lg:pb-32 pt-28 sm:pt-28 md:pt-32 lg:pt-36 xl:pt-40 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]">
-          <div className="max-w-4xl">
+          {/* sm:pr-52: Rechts-Puffer damit der floating Mode-Button den Hero-Text nicht überlagert */}
+          <div className="max-w-4xl sm:pr-52 lg:pr-0">
             <div>
             {/* Date Badge - Mobile optimized */}
             <div className="grid place-items-start mb-4 sm:mb-5 md:mb-6">
-              <div ref={darkBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
                   <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#e5e5e5] tracking-wide">{t.hero.dateBadgeDark}</span>
                 </div>
               </div>
-              <div ref={lightBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
                   <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
                   <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#F5E6D3] tracking-wide">{t.hero.dateBadgeLight}</span>
@@ -402,7 +354,7 @@ export default function Home() {
             {/* Main Headline - GRÖSSERE TEXTE - Perfekte Überlagerung für flüssigen Wechsel */}
             <div className="relative mb-1 sm:mb-2 md:mb-3">
               {/* Light Mode Headline - auf Mobile etwas kleiner für sauberen Umbruch */}
-              <h1 ref={lightHeadlineRef} className={`text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <h1 className={`text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className="text-[#F5E6D3] drop-shadow-lg">{t.hero.headlineLight.line1}</div>
                   <div className="text-[#F5E6D3] drop-shadow-lg">
@@ -412,7 +364,7 @@ export default function Home() {
                 </div>
               </h1>
               {/* Dark Mode Headline */}
-              <h1 ref={darkHeadlineRef} className={`absolute top-1 left-0 right-0 text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <h1 className={`absolute top-1 left-0 right-0 text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className="text-red-500 drop-shadow-lg">{t.hero.headlineDark.line1}</div>
                   <div className="text-[#9a9a9a] drop-shadow-lg">{t.hero.headlineDark.line2}</div>
