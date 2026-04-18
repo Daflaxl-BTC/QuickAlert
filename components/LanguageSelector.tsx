@@ -54,41 +54,44 @@ export default function LanguageSelector() {
   const { darkMode } = useDarkMode()
 
   return (
-    <div className="flex flex-col gap-2 sm:gap-3 items-end">
-      {languages.map((lang) => (
-        <button
-          key={lang.code}
-          onClick={() => setLanguage(lang.code)}
-          className={`
-            w-10 h-10 sm:w-12 sm:h-12
-            rounded-full
-            flex items-center justify-center
-            transition-all duration-300
-            border-2
-            hover:scale-110
-            active:scale-95
-            shadow-lg
-            backdrop-blur-md
-            overflow-hidden
-            ${
-              language === lang.code
-                ? darkMode
-                  ? 'border-[#F5A623] shadow-[0_0_20px_rgba(245,166,35,0.4)] ring-2 ring-[#F5A623]/50'
-                  : 'border-[#D4B896] shadow-[0_0_20px_rgba(212,184,150,0.4)] ring-2 ring-[#D4B896]/50'
-                : darkMode
-                ? 'bg-[#2d2d2d]/60 border-[#4a4a4a] hover:bg-[#3d3d3d] hover:border-[#5a5a5a]'
-                : 'bg-white/80 border-[#D4B896]/60 hover:bg-white hover:border-[#D4B896]'
-            }
-          `}
-          aria-label={`Switch to ${lang.name}`}
-          title={lang.name}
-        >
-          <FlagIcon 
-            code={lang.code} 
-            className={`w-full h-full ${language === lang.code ? 'opacity-100' : 'opacity-70 hover:opacity-100'}`}
-          />
-        </button>
-      ))}
+    <div className="flex flex-col gap-1.5 sm:gap-2 items-end">
+      {languages.map((lang) => {
+        const isActive = language === lang.code
+        return (
+          <button
+            key={lang.code}
+            onClick={() => setLanguage(lang.code)}
+            className={`
+              rounded-full
+              flex items-center justify-center
+              transition-all duration-300
+              border-2
+              hover:scale-110
+              active:scale-95
+              shadow-lg
+              backdrop-blur-md
+              overflow-hidden
+              ${isActive ? 'w-8 h-8 sm:w-11 sm:h-11' : 'w-6 h-6 sm:w-9 sm:h-9 opacity-60 hover:opacity-90'}
+              ${
+                isActive
+                  ? darkMode
+                    ? 'border-[#F5A623] shadow-[0_0_16px_rgba(245,166,35,0.4)] ring-2 ring-[#F5A623]/50'
+                    : 'border-[#D4B896] shadow-[0_0_16px_rgba(212,184,150,0.4)] ring-2 ring-[#D4B896]/50'
+                  : darkMode
+                  ? 'bg-[#2d2d2d]/60 border-[#4a4a4a]/60 hover:border-[#5a5a5a]'
+                  : 'bg-white/70 border-[#D4B896]/40 hover:border-[#D4B896]'
+              }
+            `}
+            aria-label={`Switch to ${lang.name}`}
+            title={lang.name}
+          >
+            <FlagIcon
+              code={lang.code}
+              className="w-full h-full"
+            />
+          </button>
+        )
+      })}
     </div>
   )
 }
