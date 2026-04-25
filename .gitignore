@@ -37,9 +37,13 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+.cursor/
 *.swp
 *.swo
 *~
+
+# Claude Code lokale Daten (worktrees, launch configs, etc.)
+.claude/
 
 # OS
 Thumbs.db
