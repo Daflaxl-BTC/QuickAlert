@@ -184,6 +184,7 @@ export const de = {
         "13 Jahre eSIM inklusive",
         "Leitstellen-Anbindung (optional)",
       ],
+      note: "Hinweis: Cloud-Alarmierung, eSIM und Leitstellen-Anbindung sind aktuell ausschließlich in Spanien verfügbar.",
       cta: "Vorbestellen",
     },
   },

@@ -184,6 +184,7 @@ export const es = {
         "13 años de eSIM incluidos",
         "Conexión a centro de control (opcional)",
       ],
+      note: "Aviso: La alerta en la nube, la eSIM y la conexión al centro de control están actualmente disponibles únicamente en España.",
       cta: "Pre-reservar",
     },
   },

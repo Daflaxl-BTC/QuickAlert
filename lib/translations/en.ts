@@ -184,6 +184,7 @@ export const en = {
         "13 years eSIM included",
         "Control center connection (optional)",
       ],
+      note: "Note: Cloud alerting, eSIM and control center connection are currently available exclusively in Spain.",
       cta: "Pre-order",
     },
   },

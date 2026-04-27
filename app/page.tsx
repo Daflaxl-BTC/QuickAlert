@@ -714,7 +714,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <ul className="space-y-4 mb-10">
+                    <ul className="space-y-4 mb-6">
                       {t.pricing.pro.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
                           <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
@@ -723,7 +723,13 @@ export default function Home() {
                       ))}
                     </ul>
 
-                    <a 
+                    {t.pricing.pro.note && (
+                      <p className={`text-xs leading-relaxed mb-8 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                        {t.pricing.pro.note}
+                      </p>
+                    )}
+
+                    <a
                       href="#preorder"
                       onClick={(e) => {
                         e.preventDefault()
@@ -1020,7 +1026,7 @@ export default function Home() {
                   </div>
                 </div>
 
-              <ul className="space-y-4 mb-10">
+              <ul className="space-y-4 mb-6">
                 {t.pricing.pro.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
@@ -1029,7 +1035,13 @@ export default function Home() {
                 ))}
                 </ul>
 
-                <a 
+                {t.pricing.pro.note && (
+                  <p className={`text-xs leading-relaxed mb-8 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    {t.pricing.pro.note}
+                  </p>
+                )}
+
+                <a
                   href="#preorder"
                   onClick={(e) => {
                     e.preventDefault()
