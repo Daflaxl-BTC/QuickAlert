@@ -62,7 +62,7 @@ export default function Datenschutz() {
             <h1 className="text-5xl sm:text-6xl font-black text-zinc-900 mb-4 tracking-tight">Datenschutzerklärung</h1>
             <div className="w-24 h-1.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
             <p className="text-zinc-600 mt-4 text-sm">
-              Stand: 14.03.2026
+              Stand: 28.04.2026
             </p>
           </div>
 
@@ -84,7 +84,7 @@ export default function Datenschutz() {
                   <p className="mt-3">
                     <span className="font-semibold text-zinc-800">Kontakt:</span><br />
                     Telefon: +49 151 19784023<br />
-                    E-Mail: felix-bredl@gmx.de
+                    E-Mail: kontakt@quickalert.eu
                   </p>
                 </div>
               </div>
@@ -133,13 +133,15 @@ export default function Datenschutz() {
                     <strong className="text-zinc-800">Hosting:</strong><br />
                     Vercel Inc.<br />
                     340 S Lemon Ave #4133<br />
-                    Walnut, CA 91789, USA
+                    Walnut, CA 91789, USA<br />
+                    <span className="text-zinc-500">DPF-zertifiziert (EU-US Data Privacy Framework, Adequacy Decision der EU-Kommission vom 10.07.2023).</span>
                   </p>
                 </div>
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
                   <p className="text-sm">
                     <strong className="text-zinc-800">E-Mail-Versand (Double-Opt-In und Benachrichtigungen):</strong><br />
-                    Resend, Inc., USA
+                    Resend, Inc., USA<br />
+                    <span className="text-zinc-500">DPF-zertifiziert (EU-US Data Privacy Framework, Adequacy Decision der EU-Kommission vom 10.07.2023).</span>
                   </p>
                 </div>
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
@@ -149,8 +151,8 @@ export default function Datenschutz() {
                   </p>
                 </div>
                 <p className="text-sm">
-                  Mit diesen Dienstleistern werden Auftragsverarbeitungsverträge geschlossen, soweit gesetzlich
-                  erforderlich.
+                  Mit Vercel Inc. und Resend Inc. wurden Auftragsverarbeitungsverträge gemäß Art. 28 DSGVO
+                  geschlossen.
                 </p>
               </div>
             </div>

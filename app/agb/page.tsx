@@ -52,7 +52,7 @@ export default function AGB() {
             <h1 className="text-5xl sm:text-6xl font-black text-zinc-900 mb-4 tracking-tight">Allgemeine Geschäftsbedingungen</h1>
             <div className="w-24 h-1.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
             <p className="text-zinc-600 mt-4 text-sm">
-              Stand: 14.03.2026
+              Stand: 28.04.2026
             </p>
           </div>
 
@@ -178,7 +178,7 @@ export default function AGB() {
                     <strong className="text-zinc-800">Felix Bredl, Einzelunternehmen (QuickAlert)</strong><br />
                     Scharnhorststr. 46<br />
                     80992 München, Deutschland<br />
-                    E-Mail: felix-bredl@gmx.de<br />
+                    E-Mail: kontakt@quickalert.eu<br />
                     Telefon: +49 151 19784023
                   </p>
                 </div>

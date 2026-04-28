@@ -86,7 +86,7 @@ export default function Impressum() {
                   <br />
                   Telefon: +49 151 19784023
                   <br />
-                  E-Mail: felix-bredl@gmx.de
+                  E-Mail: kontakt@quickalert.eu
                 </p>
                 <p>
                   <span className="font-semibold text-zinc-800">Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:</span>
@@ -99,6 +99,23 @@ export default function Impressum() {
                   DE3081127852576
                 </p>
               </div>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
+              <h2 className="text-2xl font-black text-zinc-900 mb-6">
+                Verantwortliche Person in der EU (Art. 4 EU-VO 2023/988 — GPSR)
+              </h2>
+              <p className="text-zinc-600 leading-relaxed">
+                Felix Bredl, Einzelunternehmen (QuickAlert)
+                <br />
+                Scharnhorststr. 46
+                <br />
+                80992 München
+                <br />
+                Deutschland
+                <br />
+                E-Mail: kontakt@quickalert.eu
+              </p>
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
