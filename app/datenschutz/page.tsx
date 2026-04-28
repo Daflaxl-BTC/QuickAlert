@@ -84,7 +84,7 @@ export default function Datenschutz() {
                   <p className="mt-3">
                     <span className="font-semibold text-zinc-800">Kontakt:</span><br />
                     Telefon: +49 151 19784023<br />
-                    E-Mail: kontakt@quickalert.eu
+                    E-Mail: QuickAlert@Outlook.de
                   </p>
                 </div>
               </div>
@@ -117,9 +117,16 @@ export default function Datenschutz() {
                     Eintragung, den Zeitpunkt der Bestätigung sowie technische Nachweisdaten (z. B. IP-Adresse und
                     User-Agent).
                   </p>
-                  <p className="text-zinc-600 text-sm leading-relaxed">
+                  <p className="text-zinc-600 text-sm leading-relaxed mb-2">
                     Rechtsgrundlagen: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), Art. 6 Abs. 1 lit. f DSGVO
                     (Nachweis der Einwilligung und Missbrauchsprävention).
+                  </p>
+                  <p className="text-zinc-600 text-sm leading-relaxed">
+                    <strong className="text-zinc-800">Widerruf der Einwilligung:</strong> Sie können Ihre
+                    Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, ohne dass die Rechtmäßigkeit der
+                    aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung berührt wird (Art. 7 Abs. 3
+                    DSGVO). Der Widerruf ist formlos möglich, z. B. per E-Mail an QuickAlert@Outlook.de oder über
+                    den Abmeldelink in jeder Bestätigungs- bzw. Benachrichtigungs-E-Mail.
                   </p>
                 </div>
               </div>

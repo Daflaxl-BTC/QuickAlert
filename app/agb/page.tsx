@@ -133,6 +133,16 @@ export default function AGB() {
                   (2) Bei leichter Fahrlässigkeit haften wir nur bei Verletzung wesentlicher Vertragspflichten
                   (Kardinalpflichten) und begrenzt auf den vertragstypisch vorhersehbaren Schaden.
                 </p>
+                <p>
+                  (3) Für den Verlust von Daten haften wir im Rahmen der vorstehenden Absätze nur insoweit, als der
+                  Verlust auch bei einer regelmäßigen und der Bedeutung der Daten angemessenen Anfertigung von
+                  Sicherungskopien durch den Nutzer eingetreten wäre. Die Haftung ist auf den typischen
+                  Wiederherstellungsaufwand begrenzt.
+                </p>
+                <p>
+                  (4) Die vorstehenden Haftungsbeschränkungen gelten nicht bei Ansprüchen aus dem
+                  Produkthaftungsgesetz, bei Übernahme einer Garantie oder bei arglistig verschwiegenen Mängeln.
+                </p>
               </div>
             </div>
 
@@ -178,7 +188,7 @@ export default function AGB() {
                     <strong className="text-zinc-800">Felix Bredl, Einzelunternehmen (QuickAlert)</strong><br />
                     Scharnhorststr. 46<br />
                     80992 München, Deutschland<br />
-                    E-Mail: kontakt@quickalert.eu<br />
+                    E-Mail: QuickAlert@Outlook.de<br />
                     Telefon: +49 151 19784023
                   </p>
                 </div>

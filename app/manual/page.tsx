@@ -58,8 +58,8 @@ export default function Manual() {
 
           <p className="text-sm text-zinc-500 mt-8">
             Bei Fragen zur Bedienung erreichen Sie uns unter{' '}
-            <a href="mailto:kontakt@quickalert.eu" className="text-orange-500 hover:underline">
-              kontakt@quickalert.eu
+            <a href="mailto:QuickAlert@Outlook.de" className="text-orange-500 hover:underline">
+              QuickAlert@Outlook.de
             </a>
             .
           </p>
