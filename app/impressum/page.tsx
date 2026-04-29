@@ -86,12 +86,12 @@ export default function Impressum() {
                   <br />
                   Telefon: +49 151 19784023
                   <br />
-                  E-Mail: kontakt@quickalert.eu
+                  E-Mail: QuickAlert@Outlook.de
                 </p>
                 <p>
                   <span className="font-semibold text-zinc-800">Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:</span>
                   <br />
-                  Derzeit noch nicht erteilt.
+                  DE461810782
                 </p>
                 <p>
                   <span className="font-semibold text-zinc-800">LUCID-Verpackungsregister:</span>
@@ -114,7 +114,29 @@ export default function Impressum() {
                 <br />
                 Deutschland
                 <br />
-                E-Mail: kontakt@quickalert.eu
+                E-Mail: QuickAlert@Outlook.de
+              </p>
+            </div>
+
+            <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
+              <h2 className="text-2xl font-black text-zinc-900 mb-6">
+                Sicherheits- und Reklamationskontakt (Art. 9 Abs. 7 GPSR)
+              </h2>
+              <p className="text-zinc-600 leading-relaxed mb-4">
+                Verbraucher können Sicherheitsbedenken, Reklamationen und Beschwerden zu unseren Produkten
+                jederzeit über die folgenden Kanäle melden:
+              </p>
+              <p className="text-zinc-600 leading-relaxed">
+                <span className="font-semibold text-zinc-800">E-Mail:</span> QuickAlert@Outlook.de
+                <br />
+                <span className="font-semibold text-zinc-800">Telefon:</span> +49 151 19784023
+                <br />
+                <span className="font-semibold text-zinc-800">Postanschrift:</span> Felix Bredl, Einzelunternehmen
+                (QuickAlert), Scharnhorststr. 46, 80992 München, Deutschland
+              </p>
+              <p className="text-zinc-600 leading-relaxed mt-4 text-sm">
+                Vorfälle, die ein Sicherheitsrisiko begründen können, melden wir gemäß Art. 20 GPSR unverzüglich
+                über das EU-Schnellwarnsystem (Safety Gate / Safety Business Gateway).
               </p>
             </div>
 

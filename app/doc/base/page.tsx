@@ -42,7 +42,7 @@ export default function DocBase() {
               <br />
               Felix Bredl, Einzelunternehmen (QuickAlert), Scharnhorststr. 46, 80992 München, Deutschland
               <br />
-              E-Mail: kontakt@quickalert.eu
+              E-Mail: QuickAlert@Outlook.de
             </p>
             <a
               href={PDF_HREF}
