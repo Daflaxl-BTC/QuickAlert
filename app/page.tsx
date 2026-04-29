@@ -9,7 +9,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import PreOrderForm from '@/components/PreOrderForm'
 
 export default function Home() {
   const pathname = usePathname()
@@ -20,7 +19,6 @@ export default function Home() {
   const lightBadgeRef = useRef<HTMLDivElement>(null)
   const darkHeadlineRef = useRef<HTMLHeadingElement>(null)
   const lightHeadlineRef = useRef<HTMLHeadingElement>(null)
-  const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sortedCertificates = [...t.legal.certificates].sort((a, b) => {
     const orderDiff = (a.sortOrder ?? Number.MAX_SAFE_INTEGER) - (b.sortOrder ?? Number.MAX_SAFE_INTEGER)
@@ -42,38 +40,6 @@ export default function Home() {
       }, 100)
     }
   }
-
-  // URL-Parameter fuer DOI-Status und Fehler pruefen
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-
-    if (params.get('confirmed') === 'true') {
-      setNotification({
-        type: 'success',
-        message: 'Vielen Dank! Ihre E-Mail wurde erfolgreich bestaetigt.',
-      })
-      window.history.replaceState({}, '', window.location.pathname)
-      setTimeout(() => setNotification(null), 6000)
-      return
-    }
-
-    const errorType = params.get('error')
-    if (errorType) {
-      let message = t.preorder.form.error
-
-      if (errorType === 'missing_token' || errorType === 'invalid_token') {
-        message = 'Der Bestaetigungslink ist ungueltig. Bitte tragen Sie sich erneut ein.'
-      } else if (errorType === 'expired_token') {
-        message = 'Der Bestaetigungslink ist abgelaufen. Bitte tragen Sie sich erneut ein.'
-      } else if (errorType === 'confirm_mail_failed') {
-        message = 'Ihre Bestaetigung wurde gespeichert, aber die E-Mail-Zustellung war unvollstaendig.'
-      }
-
-      setNotification({ type: 'error', message })
-      window.history.replaceState({}, '', window.location.pathname)
-      setTimeout(() => setNotification(null), 7000)
-    }
-  }, [t])
 
   // Scroll-Handler für Scroll-Indikator - nur im Hero-Bereich anzeigen
   useEffect(() => {
@@ -667,15 +633,10 @@ export default function Home() {
                       ))}
                     </ul>
 
-                    <a 
-                      href="#preorder"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        const element = document.getElementById('preorder')
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth' })
-                        }
-                      }}
+                    <a
+                      href="https://www.amazon.de/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
                     >
                       {t.pricing.base.cta}
@@ -730,14 +691,9 @@ export default function Home() {
                     )}
 
                     <a
-                      href="#preorder"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        const element = document.getElementById('preorder')
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth' })
-                        }
-                      }}
+                      href="https://www.amazon.de/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
                     >
                       {t.pricing.base.cta}
@@ -978,15 +934,10 @@ export default function Home() {
                 ))}
                 </ul>
 
-                <a 
-                  href="#preorder"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const element = document.getElementById('preorder')
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' })
-                    }
-                  }}
+                <a
+                  href="https://www.amazon.de/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
                 >
                 {t.pricing.base.cta}
@@ -1042,14 +993,9 @@ export default function Home() {
                 )}
 
                 <a
-                  href="#preorder"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    const element = document.getElementById('preorder')
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' })
-                    }
-                  }}
+                  href="https://www.amazon.de/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
                 >
                 {t.pricing.base.cta}
@@ -1209,15 +1155,10 @@ export default function Home() {
             {t.cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a 
-              href="#preorder"
-              onClick={(e) => {
-                e.preventDefault()
-                const element = document.getElementById('preorder')
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
+            <a
+              href="https://www.amazon.de/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-10 py-5 bg-white text-orange-600 rounded-2xl font-black text-lg shadow-2xl hover:bg-zinc-50 hover:scale-105 transition-all duration-300"
             >
               {t.cta.cta1}
@@ -1234,76 +1175,6 @@ export default function Home() {
 
       </>
       )}
-
-      {/* Pre-Order Section */}
-      <section id="preorder" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            {/* Notification Banner */}
-            {notification && (
-              <div
-                className={`mb-8 p-4 rounded-2xl border-2 ${
-                  notification.type === 'success'
-                    ? darkMode
-                      ? 'bg-green-900/20 border-green-500/50'
-                      : 'bg-green-50 border-green-200'
-                    : darkMode
-                    ? 'bg-red-900/20 border-red-500/50'
-                    : 'bg-red-50 border-red-200'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  {notification.type === 'success' ? (
-                    <svg className="w-6 h-6 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : (
-                    <svg className="w-6 h-6 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  )}
-                  <p className={`text-sm font-medium ${notification.type === 'success' ? 'text-green-700' : 'text-red-700'}`}>
-                    {notification.message}
-                  </p>
-                  <button
-                    onClick={() => setNotification(null)}
-                    className="ml-auto text-zinc-500 hover:text-zinc-700"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            )}
-
-            <div className="text-center mb-12">
-              <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-4 ${darkMode ? 'bg-orange-500/20 text-orange-400' : 'bg-orange-100 text-orange-600'}`}>
-                {t.preorder.badge}
-              </span>
-              <h2 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                {t.preorder.title}
-              </h2>
-              <p className={`text-lg leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                {t.preorder.description}
-              </p>
-            </div>
-
-            <div className={`p-8 sm:p-12 rounded-3xl border ${darkMode ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50'}`}>
-              <PreOrderForm />
-            </div>
-
-            <div className="mt-8 text-center">
-              <p className={`text-sm ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                {t.preorder.privacy}{' '}
-                <Link href="/datenschutz" className="text-orange-500 hover:underline">
-                  {t.preorder.privacyLink}
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Zertifikate unauffaellig in Footer-Naehe */}
       <section id="zertifikate" className={`py-10 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200'}`}>
