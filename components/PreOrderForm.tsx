@@ -232,12 +232,10 @@ export default function PreOrderForm() {
       <button
         type="submit"
         disabled={formState === 'loading'}
-        className={`w-full py-4 px-6 rounded-2xl font-black text-lg transition-all duration-300 shadow-xl ${
+        className={`qa-btn w-full py-4 px-6 text-lg ${
           formState === 'loading'
-            ? 'bg-zinc-400 cursor-not-allowed'
-            : darkMode
-            ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:shadow-orange-500/40 hover:scale-[1.02]'
-            : 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:shadow-orange-500/40 hover:scale-[1.02]'
+            ? 'bg-zinc-400 text-white cursor-not-allowed'
+            : 'bg-orange-500 text-white [--qa-btn-fill:#0b0d0f]'
         }`}
       >
         {formState === 'loading' ? (

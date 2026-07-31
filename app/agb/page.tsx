@@ -65,8 +65,8 @@ export default function AGB() {
                   Eintragung in die Vorbestell-/Interessentenliste von QuickAlert.
                 </p>
                 <p>
-                  (2) Betreiber der Website ist Felix Bredl, Einzelunternehmen (QuickAlert), Scharnhorststr. 46, 80992
-                  München, Deutschland.
+                  (2) Betreiber der Website ist Felix Ventures, Felix Georg Bredl, c/o Autorenglück #43669,
+                  Albert-Einstein-Str. 47, 02977 Hoyerswerda, Deutschland.
                 </p>
               </div>
             </div>
@@ -185,9 +185,10 @@ export default function AGB() {
                 </p>
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
                   <p className="text-sm">
-                    <strong className="text-zinc-800">Felix Bredl, Einzelunternehmen (QuickAlert)</strong><br />
-                    Scharnhorststr. 46<br />
-                    80992 München, Deutschland<br />
+                    <strong className="text-zinc-800">Felix Ventures, Felix Georg Bredl</strong><br />
+                    c/o Autorenglück #43669<br />
+                    Albert-Einstein-Str. 47<br />
+                    02977 Hoyerswerda, Deutschland<br />
                     E-Mail: QuickAlert@Outlook.de<br />
                     Telefon: +49 151 19784023
                   </p>

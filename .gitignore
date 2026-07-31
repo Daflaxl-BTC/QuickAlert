@@ -51,3 +51,19 @@ Thumbs.db
 
 # Executable files (installers)
 *.exe
+# Kommerzielle Schriftart – nicht ins Repo!
+assets/fonts/Gilroy*
+
+# Interne Geschäftsunterlagen – Repo ist öffentlich!
+/00_ÜBERSICHT/
+/Amazon/
+/Amazon Markenfreischaltung/
+/Bedienungsanleitung/
+/Cixi Challux/
+/Marketing/
+/Verpackung : Archiv/
+/Zertifikate + Rechtliches/
+/finale Versand-Bedienungsanleitung an JSON/
+
+# Abgespaltene Landing-Arbeitskopie (Änderungen sind ins Root gemergt)
+/Landing/
