@@ -58,23 +58,38 @@ brand-assets/  → Logo-Dateien (SVG, PDF)
 
 ## Produkt-Informationen
 
-### QuickAlert BASE (29€)
-- ECE R65 zertifizierter LED-Ring
-- Magnet-Halterung (220 km/h)
-- IP65 Wasserdicht & Staubfest
-- **3x AAA Batterien** (NICHT USB-C/Akku!)
+### QuickAlert BASE (29€) — DE-Markt, KEIN V16
+- Erfüllt ECE R65 Lichtparameter (laut IDIADA-Tests)
+- Neodym-Magnetfuß
+- IP54 Wasser- & Staubschutz (laut IDIADA)
+- **3x AA Batterien (LR6, Alkaline)** (NICHT AAA, NICHT USB-C/Akku!)
 - Kompaktes Handschuhfach-Design
+- Modell CH-019, EAN 4270005258300
+- ⚠️ Darf NICHT als „V16" oder „homologada" beworben werden (kein DGT-Listing)
 
-### QuickAlert PRO (49€)
+### QuickAlert PRO (49€) — ES-Markt, V16 conectada
 - Alle BASE Features
-- GPS-Modul
-- Cloud-Alarmierung
-- 13 Jahre eSIM inklusive
+- Integriertes GPS-Modul
+- Automatische Cloud-Alarmierung an DGT 3.0
+- **12 Jahre eSIM** inklusive (Telefónica IoT-Vertrag)
+- IDIADA PC26020115 (vom 12.02.2026)
+- Modell CH-019, EAN 4270005258317
 
-### Zertifizierungen
-- IDIADA PC26020115 (V16 Spanien)
-- ECE R65
-- Spanien: Pflicht ab 01.01.2026
+### Zertifizierungen (alle vom Hersteller Ningbo Chakesi)
+- IDIADA PC26020115 (V16 Spanien) — nur PRO
+- UCA-Zertifikat E1 61522401 (Fertigungskontrolle, Pflicht für DGT)
+- DGT 3.0 Connection Test bestanden (26.06.2025)
+- Telefónica IoT Telco-Vertrag (12 Jahre Konnektivität, NICHT 13!)
+- CE/RED/RoHS/EMV (von PTC, China)
+- Spanien: V16 conectada Pflicht ab 01.01.2026
+
+### Pflicht-Specs
+- Stromversorgung: 3× AA Alkaline LR6 (NICHT AAA!)
+- IP-Klasse: IP54 (laut IDIADA — falls Hersteller höhere Klasse zertifiziert, Datenblatt prüfen)
+- Wind-Stabilität: 180 Pa getestet (220 km/h Marketing-Claim ohne separaten Test → vermeiden)
+- Sichtbarkeit: niemals konkrete km-Angaben ohne Beleg → „auch aus großer Entfernung sichtbar"
+- Betriebstemperatur: −10 °C bis +50 °C
+- Gewicht: ~250 g
 
 ## Dark Mode vs Light Mode
 
