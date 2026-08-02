@@ -8,17 +8,16 @@ import { useLanguage } from '@/components/LanguageProvider'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import Reveal from '@/components/Reveal'
+import ScrollProgress from '@/components/ScrollProgress'
+import { AlertTriangleIcon, BatteryIcon, CheckIcon, MagnetIcon, SatelliteIcon } from '@/components/QaIcons'
 
 export default function Home() {
   const pathname = usePathname()
   const { darkMode, setDarkMode } = useDarkMode()
   const t = useTranslation()
   const { language } = useLanguage()
-  const darkBadgeRef = useRef<HTMLDivElement>(null)
-  const lightBadgeRef = useRef<HTMLDivElement>(null)
-  const darkHeadlineRef = useRef<HTMLHeadingElement>(null)
-  const lightHeadlineRef = useRef<HTMLHeadingElement>(null)
   const [showScrollIndicator, setShowScrollIndicator] = useState(true)
   const sortedCertificates = [...t.legal.certificates].sort((a, b) => {
     const orderDiff = (a.sortOrder ?? Number.MAX_SAFE_INTEGER) - (b.sortOrder ?? Number.MAX_SAFE_INTEGER)
@@ -58,61 +57,17 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // #region agent log
-  useEffect(() => {
-    const measureBadgeToHeadline = () => {
-      if (darkBadgeRef.current && lightBadgeRef.current && darkHeadlineRef.current && lightHeadlineRef.current) {
-        const darkBadgeRect = darkBadgeRef.current.getBoundingClientRect()
-        const lightBadgeRect = lightBadgeRef.current.getBoundingClientRect()
-        const darkHeadlineRect = darkHeadlineRef.current.getBoundingClientRect()
-        const lightHeadlineRect = lightHeadlineRef.current.getBoundingClientRect()
-        
-        // Messung der tatsächlichen Text-Position (erste Text-Zeile)
-        const darkFirstTextLine = darkHeadlineRef.current.querySelector('div > div:first-child')
-        const lightFirstTextLine = lightHeadlineRef.current.querySelector('div > div:first-child')
-        const darkFirstTextRect = darkFirstTextLine?.getBoundingClientRect()
-        const lightFirstTextRect = lightFirstTextLine?.getBoundingClientRect()
-        
-        const darkBadgeBottom = darkBadgeRect.bottom
-        const lightBadgeBottom = lightBadgeRect.bottom
-        const darkHeadlineTop = darkHeadlineRect.top
-        const lightHeadlineTop = lightHeadlineRect.top
-        const darkTextTop = darkFirstTextRect?.top ?? darkHeadlineTop
-        const lightTextTop = lightFirstTextRect?.top ?? lightHeadlineTop
-        
-        const darkGap = darkHeadlineTop - darkBadgeBottom
-        const lightGap = lightHeadlineTop - lightBadgeBottom
-        const darkTextGap = darkTextTop - darkBadgeBottom
-        const lightTextGap = lightTextTop - lightBadgeBottom
-        
-      }
-    }
-
-    measureBadgeToHeadline()
-    const timeoutId = setTimeout(measureBadgeToHeadline, 50)
-    const timeoutId2 = setTimeout(measureBadgeToHeadline, 150)
-    const timeoutId3 = setTimeout(measureBadgeToHeadline, 300)
-    window.addEventListener('resize', measureBadgeToHeadline)
-    
-    return () => {
-      clearTimeout(timeoutId)
-      clearTimeout(timeoutId2)
-      clearTimeout(timeoutId3)
-      window.removeEventListener('resize', measureBadgeToHeadline)
-    }
-  }, [darkMode])
-  // #endregion
-
   return (
-    <main className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-white text-[#3D2F1F]'}`}>
+    <main className={`min-h-screen overflow-x-clip transition-colors duration-300 ${darkMode ? 'bg-[#1a1a1a] text-[#e5e5e5]' : 'bg-white text-[#3D2F1F]'}`}>
+      <ScrollProgress />
       {/* Back to Top Arrow - Hidden on mobile, visible on desktop */}
-      <button 
+      <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full backdrop-blur-md border-2 transition-all duration-300 shadow-xl group hover:scale-110 ${darkMode ? 'bg-[#2d2d2d]/80 border-[#4a4a4a] text-[#e5e5e5] hover:bg-[#3d3d3d]' : 'bg-[#F5E6D3]/80 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
-        style={darkMode ? {boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'} : {boxShadow: '0 0 20px rgba(212, 184, 150, 0.3)'}}
+        aria-label="Nach oben"
+        className={`hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full backdrop-blur-md border transition-all duration-500 shadow-sm group ${showScrollIndicator ? 'opacity-0 pointer-events-none translate-x-[-8px]' : 'opacity-100'} ${darkMode ? 'bg-[#2d2d2d]/70 border-[#4a4a4a] text-[#e5e5e5] hover:bg-[#3d3d3d]' : 'bg-white/80 border-zinc-200 text-zinc-700 hover:border-orange-400 hover:text-orange-600'}`}
       >
-        <svg className="w-6 h-6 transform rotate-180 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        <svg className="w-5 h-5 transform rotate-180 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
       </button>
 
@@ -122,20 +77,19 @@ export default function Home() {
       </div>
 
       {/* Dark Mode + QuickAlert Button - nur ab Tablet/Desktop fixiert */}
-      <div className="hidden sm:flex fixed right-3 bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] sm:bottom-auto sm:right-3 md:right-4 sm:top-1/2 sm:-translate-y-1/2 z-50 flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3">
+      <div className="hidden sm:flex fixed right-4 md:right-6 bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] z-50 flex-row items-center gap-3">
         {/* Warndreieck/QuickAlert Button */}
         <button
           onClick={(e) => {
             e.preventDefault()
             setDarkMode(!darkMode)
           }}
-          className={`group flex items-center gap-1.5 sm:gap-2 rounded-lg backdrop-blur-md border-2 transition-all duration-300 cursor-pointer min-h-[44px] active:scale-95
-            ${darkMode 
-              ? 'px-3 py-2 sm:px-4 md:px-5 sm:py-2.5 bg-[#1a1a1a]/90 border-[#F5A623] hover:bg-[#2d2d2d]' 
-              : 'px-2.5 py-2 sm:px-4 sm:py-2 bg-[#F5E6D3]/90 border-[#D4B896] text-[#6B4E3D] hover:bg-[#E8D5C4]'}`}
-          style={darkMode ? {boxShadow: '0 0 20px rgba(245, 166, 35, 0.3)'} : {boxShadow: '0 0 15px rgba(212, 184, 150, 0.3)'}}
+          className={`group flex items-center gap-2 rounded-full backdrop-blur-md border shadow-lg transition-colors duration-300 cursor-pointer min-h-[44px] active:scale-95 px-4 py-2.5
+            ${darkMode
+              ? 'bg-[#1a1a1a]/90 border-[#F5A623]/60 hover:bg-[#2d2d2d]'
+              : 'bg-white/90 border-zinc-200 text-[#6B4E3D] hover:border-[#D4B896]'}`}
         >
-          <span className={`font-bold whitespace-nowrap ${darkMode ? 'text-[11px] sm:text-xs md:text-sm lg:text-base' : 'text-[11px] sm:text-xs'}`}>
+          <span className={`font-semibold whitespace-nowrap ${darkMode ? 'text-xs md:text-sm' : 'text-xs'}`}>
             {darkMode ? (
               <>
                 <span className="sm:hidden text-white">Quick</span>
@@ -207,10 +161,10 @@ export default function Home() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }
           }}
-          className="group flex items-center gap-1 sm:gap-2 md:gap-3 hover:scale-105 transition-all duration-300 min-h-[44px] min-w-0"
+          className="group flex items-center gap-1 sm:gap-2 md:gap-3 transition-opacity duration-300 hover:opacity-80 min-h-[44px] min-w-0"
         >
           <div className="relative flex-shrink-0">
-            <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 drop-shadow-lg group-hover:drop-shadow-xl transition-all" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0 0 8px rgba(249, 115, 22, 0.5))' }}>
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               {/* Strahlen */}
               <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round"/>
               <path d="M32 4V12" stroke="#F97316" strokeWidth="3" strokeLinecap="round" transform="rotate(45 32 32)"/>
@@ -225,36 +179,28 @@ export default function Home() {
               <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
             </svg>
           </div>
-          <span className={`text-base sm:text-xl md:text-2xl lg:text-3xl font-black font-poppins tracking-tight truncate ${
-            darkMode 
-              ? 'text-white drop-shadow-lg' 
-              : 'text-zinc-900 drop-shadow-md'
-          }`} style={darkMode ? { filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5))' } : { filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))' }}>
+          <span className={`text-base sm:text-xl md:text-2xl lg:text-3xl font-bold font-poppins tracking-[-0.02em] truncate ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
             <span className={darkMode ? 'text-white' : 'text-zinc-900'}>Quick</span>
-            <span className="text-[#F5A623] drop-shadow-lg" style={{ filter: 'drop-shadow(0 0 8px rgba(245, 166, 35, 0.6))' }}>Alert</span>
+            <span className="text-[#F5A623]">Alert</span>
           </span>
         </Link>
 
         {/* Navigation Links Center */}
           <div className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-            <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.features}</a>
-            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.pricing}</a>
-            <a href="https://wa.me/4915119784023" target="_blank" rel="noopener noreferrer" className={`text-sm font-semibold transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.contact}</a>
+            <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className={`qa-link text-sm font-medium transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-white' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.features}</a>
+            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`qa-link text-sm font-medium transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-white' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.pricing}</a>
+            <a href="https://wa.me/4915119784023" target="_blank" rel="noopener noreferrer" className={`qa-link text-sm font-medium transition-colors ${darkMode ? 'text-[#e5e5e5] hover:text-white' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>{t.nav.contact}</a>
           <div className={`flex items-center gap-6 pl-4 border-l transition-colors duration-300 ${darkMode ? 'border-[#4a4a4a]' : 'border-[#D4B896]/40'}`}>
-            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors relative ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>
+            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`qa-link text-sm font-medium transition-colors relative ${darkMode ? 'text-[#e5e5e5] hover:text-white' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>
               {t.nav.base}
             </a>
-            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-semibold transition-colors relative inline-block pr-10 ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>
-              <span 
-                className={`absolute -top-4 right-0 px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider whitespace-nowrap transition-colors duration-300 ${darkMode ? 'bg-[#4a4a4a] text-[#e5e5e5]' : 'bg-[#8B6F47] text-[#F5E6D3]'}`}
-                style={{
-                  transform: 'rotate(12deg)',
-                  boxShadow: darkMode ? '0 2px 4px rgba(0, 0, 0, 0.5)' : '0 2px 4px rgba(139, 111, 71, 0.4)'
-                }}
+            <a href="#pricing" onClick={(e) => handleNavClick(e, 'pricing')} className={`text-sm font-medium transition-colors inline-flex items-center gap-2 ${darkMode ? 'text-[#e5e5e5] hover:text-[#b0b0b0]' : 'text-[#6B4E3D] hover:text-[#A0825D]'}`}>
+              <span className="qa-link">{t.nav.pro}</span>
+              <span
+                className={`rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] whitespace-nowrap transition-colors duration-300 ${darkMode ? 'bg-[#3a3a3a] text-[#e5e5e5]' : 'bg-[#8B6F47] text-[#F5E6D3]'}`}
               >
                 {t.nav.spain}
               </span>
-              {t.nav.pro}
             </a>
           </div>
         </div>
@@ -266,7 +212,7 @@ export default function Home() {
             href="https://www.instagram.com/quickalert_germany?igsh=MTh4ZnJiZHV1a2l3dA%3D%3D&utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
-            className={`p-2 sm:p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:scale-110 active:scale-95 transition-all flex-shrink-0 ${darkMode ? 'bg-transparent hover:bg-white/10' : 'bg-transparent hover:bg-[#6B4E3D]/10'}`}
+            className={`p-2 sm:p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg active:scale-95 transition-colors flex-shrink-0 ${darkMode ? 'bg-transparent hover:bg-white/10' : 'bg-transparent hover:bg-[#6B4E3D]/10'}`}
             aria-label={t.nav.instagramAria}
           >
             <svg 
@@ -281,8 +227,7 @@ export default function Home() {
             href="https://www.amazon.de/" 
             target="_blank"
             rel="noopener noreferrer"
-            className={`px-4 py-2.5 sm:px-6 sm:py-3 min-h-[44px] flex items-center justify-center rounded-lg font-bold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all shadow-lg ${darkMode ? 'bg-[#4a4a4a] text-[#e5e5e5] hover:bg-[#5a5a5a]' : 'bg-[#D4B896] text-[#6B4E3D]'}`}
-            style={darkMode ? {boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)'} : {boxShadow: '0 0 20px rgba(212, 184, 150, 0.5)'}}
+            className={`qa-btn px-4 py-2.5 sm:px-6 sm:py-3 min-h-[44px] text-xs sm:text-sm ${darkMode ? 'bg-[#3a3a3a] text-[#e5e5e5] [--qa-btn-fill:#e5e5e5] hover:text-[#1a1a1a]' : 'bg-[#8B6F47] text-[#F5E6D3] [--qa-btn-fill:#3d2d20] hover:text-[#F5E6D3]'}`}
           >
             <span className="hidden sm:inline">{t.nav.buyNow}</span>
             <span className="sm:hidden">{t.nav.buyNowShort}</span>
@@ -350,25 +295,25 @@ export default function Home() {
           <div className="max-w-4xl">
             <div>
             {/* Date Badge - Mobile optimized */}
-            <div className="grid place-items-start mb-4 sm:mb-5 md:mb-6">
-              <div ref={darkBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#4a4a4a] bg-[#2d2d2d]/60 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(0, 0, 0, 0.4)'}}>
-                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 animate-pulse" style={{boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'}}></div>
-                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#e5e5e5] tracking-wide">{t.hero.dateBadgeDark}</span>
+            <div className="grid place-items-start mb-4 sm:mb-5 md:mb-6 qa-enter">
+              <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border border-white/20 bg-black/35 backdrop-blur-md">
+                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-red-500 qa-beacon"></div>
+                  <span className="w-full text-center text-xs sm:text-sm md:text-base font-semibold uppercase tracking-[0.14em] text-[#e5e5e5]">{t.hero.dateBadgeDark}</span>
                 </div>
               </div>
-              <div ref={lightBadgeRef} className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-                <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border-2 border-[#D4B896] bg-[#6B4E3D]/40 backdrop-blur-md shadow-lg" style={{boxShadow: '0 0 20px rgba(212, 184, 150, 0.4)'}}>
-                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#F5A623] animate-pulse" style={{boxShadow: '0 0 10px rgba(159, 181, 115, 0.8)'}}></div>
-                  <span className="w-full text-center text-sm sm:text-base md:text-lg font-black text-[#F5E6D3] tracking-wide">{t.hero.dateBadgeLight}</span>
+              <div className={`col-start-1 row-start-1 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <div className="relative inline-flex items-center justify-center w-[220px] sm:w-[280px] md:w-[300px] h-9 sm:h-11 md:h-12 px-4 sm:px-8 rounded-full border border-white/25 bg-black/25 backdrop-blur-md">
+                  <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#F5A623] qa-beacon"></div>
+                  <span className="w-full text-center text-xs sm:text-sm md:text-base font-semibold uppercase tracking-[0.14em] text-[#F5E6D3]">{t.hero.dateBadgeLight}</span>
                 </div>
               </div>
             </div>
 
             {/* Main Headline - GRÖSSERE TEXTE - Perfekte Überlagerung für flüssigen Wechsel */}
-            <div className="relative mb-1 sm:mb-2 md:mb-3">
+            <div className="relative mb-1 sm:mb-2 md:mb-3 qa-enter" style={{ '--qa-delay': '90ms' } as React.CSSProperties}>
               {/* Light Mode Headline - auf Mobile etwas kleiner für sauberen Umbruch */}
-              <h1 ref={lightHeadlineRef} className={`text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+              <h1 className={`text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className="text-[#F5E6D3] drop-shadow-lg">{t.hero.headlineLight.line1}</div>
                   <div className="text-[#F5E6D3] drop-shadow-lg">
@@ -378,7 +323,7 @@ export default function Home() {
                 </div>
               </h1>
               {/* Dark Mode Headline */}
-              <h1 ref={darkHeadlineRef} className={`absolute top-1 left-0 right-0 text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <h1 className={`absolute top-1 left-0 right-0 text-3xl min-[400px]:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] sm:leading-[0.9] transition-opacity duration-200 ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <div className="space-y-1 sm:space-y-2 md:space-y-3">
                   <div className="text-red-500 drop-shadow-lg">{t.hero.headlineDark.line1}</div>
                   <div className="text-[#9a9a9a] drop-shadow-lg">{t.hero.headlineDark.line2}</div>
@@ -387,7 +332,7 @@ export default function Home() {
             </div>
 
             {/* Description - Mobile optimized - GRÖSSERE TEXTE */}
-            <div className="grid place-items-start mb-3 sm:mb-4 md:mb-6 max-w-2xl flex-shrink-0 min-h-0">
+            <div className="grid place-items-start mb-3 sm:mb-4 md:mb-6 max-w-2xl flex-shrink-0 min-h-0 qa-enter" style={{ '--qa-delay': '180ms' } as React.CSSProperties}>
               <p className={`col-start-1 row-start-1 text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed transition-none drop-shadow-md ${darkMode ? 'opacity-100 text-[#e5e5e5]/90' : 'opacity-0 pointer-events-none'}`}>
                 {t.hero.descriptionDark}
               </p>
@@ -398,49 +343,36 @@ export default function Home() {
             </div>
 
             {/* CTA Buttons - Mobile optimized */}
-            <div className="grid place-items-start">
+            <div className="grid place-items-start qa-enter" style={{ '--qa-delay': '280ms' } as React.CSSProperties}>
               {/* Dark Mode Buttons */}
               <div className={`col-start-1 row-start-1 flex flex-col gap-2.5 sm:gap-3 md:gap-4 transition-none w-full ${darkMode ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                 <a 
                   href="#pricing"
                   onClick={(e) => handleNavClick(e, 'pricing')}
-                  className="group relative w-full sm:w-auto px-6 py-3.5 sm:px-10 sm:py-5 min-h-[48px] sm:min-h-[56px] flex items-center justify-center rounded-xl bg-[#8b0000] hover:bg-[#a00000] active:bg-[#700000] border-2 border-[#ff4444] font-bold text-sm sm:text-base md:text-lg overflow-hidden transition-all duration-300 text-[#ffffff] text-center"
-                  style={{
-                    boxShadow: '0 0 30px rgba(139, 0, 0, 0.6)'
-                  }}
+                  className="qa-btn w-full sm:w-auto px-6 py-3.5 sm:px-10 sm:py-5 min-h-[48px] sm:min-h-[56px] bg-[#8b0000] [--qa-btn-fill:#ffffff] border border-[#ff4444]/70 text-sm sm:text-base md:text-lg text-[#ffffff] hover:text-[#8b0000] hover:border-[#ffffff]"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
-                    {t.hero.ctaDark}
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </span>
+                  {t.hero.ctaDark}
+                  <svg className="qa-btn-arrow w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </a>
               </div>
               {/* Light Mode Buttons */}
               <div className={`col-start-1 row-start-1 flex flex-col items-start gap-2 sm:gap-2.5 md:gap-3 transition-none ${darkMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                 <a 
                   href="#pricing"
-                  className="group relative px-5 py-3 sm:px-6 sm:py-3.5 min-h-[48px] sm:min-h-[52px] flex items-center justify-center rounded-xl bg-[#6B4E3D]/80 backdrop-blur-sm border-2 border-[#D4B896] font-bold text-sm sm:text-base overflow-hidden hover:bg-[#D4B896] hover:text-[#6B4E3D] active:bg-[#5a4230] transition-all duration-300 text-[#F5E6D3]"
-                  style={{
-                    boxShadow: '0 0 30px rgba(212, 184, 150, 0.4)'
-                  }}
+                  className="qa-btn px-5 py-3 sm:px-6 sm:py-3.5 min-h-[48px] sm:min-h-[52px] bg-[#6B4E3D] [--qa-btn-fill:#D4B896] border border-[#D4B896]/80 text-sm sm:text-base text-[#F5E6D3] hover:text-[#4a3527]"
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    {t.hero.ctaLight}
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </span>
+                  {t.hero.ctaLight}
+                  <svg className="qa-btn-arrow w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </a>
                 <a 
                   href="https://wa.me/4915119784023"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-gradient-to-r from-[#E09000] to-[#CC8000] border-2 border-[#F5A623]/50 font-bold text-sm sm:text-base hover:scale-105 transition-transform backdrop-blur-sm text-[#F5E6D3]"
-                  style={{
-                    boxShadow: '0 0 20px rgba(159, 181, 115, 0.4)'
-                  }}
+                  className="qa-btn px-5 py-2.5 sm:px-6 sm:py-3 bg-transparent [--qa-btn-fill:#D4B896] border border-[#D4B896]/50 text-sm sm:text-base text-[#F5E6D3] hover:text-[#4a3527] hover:border-[#D4B896]"
                 >
                   {t.hero.ctaDealer}
                 </a>
@@ -469,10 +401,10 @@ export default function Home() {
         <div className="bg-black text-zinc-300">
           {/* Story Intro Section */}
           <section className="py-24 sm:py-32 relative overflow-hidden">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]"></div>
+             <div className="qa-grid absolute inset-0" aria-hidden />
              <div className="container mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
             <div className="max-w-4xl mx-auto">
-                 <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-12 text-white leading-tight">
+                 <h1 className="qa-enter text-hero font-bold mb-12 text-white">
                    {t.darkMode.storyTitle.split('-').map((part, i) => (
                      <span key={i}>
                        {part}
@@ -482,10 +414,10 @@ export default function Home() {
               </h1>
 
                  <div className="prose prose-xl prose-invert max-w-none">
-                   <h2 className="text-3xl sm:text-4xl font-black text-orange-500 mb-8">
+                   <h2 className="qa-enter text-section font-bold text-orange-500 mb-8" style={{ '--qa-delay': '110ms' } as React.CSSProperties}>
                   {t.darkMode.storySubtitle}
                 </h2>
-                   <p className="text-xl leading-relaxed text-zinc-300 mb-8">
+                   <p className="qa-enter text-xl leading-relaxed text-zinc-300 mb-8" style={{ '--qa-delay': '200ms' } as React.CSSProperties}>
                   {t.darkMode.storyIntro}
                 </p>
                  </div>
@@ -497,28 +429,28 @@ export default function Home() {
           <section className="py-16 bg-zinc-900/50 border-y border-zinc-800">
             <div className="container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-4xl mx-auto">
-                 <h3 className="text-2xl font-bold text-white mb-10">{t.darkMode.statsTitle}</h3>
+                 <Reveal as="h3" className="text-2xl font-semibold text-white mb-10">{t.darkMode.statsTitle}</Reveal>
                  <div className="grid sm:grid-cols-2 gap-6">
-                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">{t.darkMode.stats.breakdowns.label}</div>
-                     <div className="text-4xl font-black text-white">{t.darkMode.stats.breakdowns.value}</div>
+                   <Reveal className="qa-card p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700">
+                     <div className="text-zinc-500 text-eyebrow font-semibold uppercase mb-3">{t.darkMode.stats.breakdowns.label}</div>
+                     <div className="text-4xl font-bold text-white tracking-[-0.02em]">{t.darkMode.stats.breakdowns.value}</div>
                      <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.breakdowns.source}</div>
-                   </div>
-                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">{t.darkMode.stats.rearEnd.label}</div>
-                     <div className="text-4xl font-black text-red-500">{t.darkMode.stats.rearEnd.value}</div>
+                   </Reveal>
+                   <Reveal delay={80} className="qa-card p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-red-500/40">
+                     <div className="text-zinc-500 text-eyebrow font-semibold uppercase mb-3">{t.darkMode.stats.rearEnd.label}</div>
+                     <div className="text-4xl font-bold text-red-500 tracking-[-0.02em]">{t.darkMode.stats.rearEnd.value}</div>
                      <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.rearEnd.source}</div>
-                   </div>
-                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold uppercase tracking-wider mb-2">{t.darkMode.stats.highway.label}</div>
-                     <div className="text-4xl font-black text-white">{t.darkMode.stats.highway.value}</div>
+                   </Reveal>
+                   <Reveal delay={160} className="qa-card p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700">
+                     <div className="text-zinc-500 text-eyebrow font-semibold uppercase mb-3">{t.darkMode.stats.highway.label}</div>
+                     <div className="text-4xl font-bold text-white tracking-[-0.02em]">{t.darkMode.stats.highway.value}</div>
                      <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.highway.source}</div>
-                   </div>
-                   <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800">
-                     <div className="text-zinc-500 text-sm font-bold tracking-wider mb-2">{t.darkMode.stats.fine.label}</div>
-                     <div className="text-4xl font-black text-white">{t.darkMode.stats.fine.value}</div>
+                   </Reveal>
+                   <Reveal delay={240} className="qa-card p-6 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700">
+                     <div className="text-zinc-500 text-eyebrow font-semibold uppercase mb-3">{t.darkMode.stats.fine.label}</div>
+                     <div className="text-4xl font-bold text-white tracking-[-0.02em]">{t.darkMode.stats.fine.value}</div>
                      <div className="text-zinc-500 text-xs mt-2">{t.darkMode.stats.fine.source}</div>
-                   </div>
+                   </Reveal>
                  </div>
                </div>
             </div>
@@ -528,38 +460,24 @@ export default function Home() {
           <section className="py-24 sm:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl sm:text-4xl font-black text-white mb-12">
-                  {t.darkMode.problemsTitle}
-                </h2>
+                <Reveal>
+                  <span className="qa-beacon inline-block w-2 h-2 rounded-full bg-red-500 mb-5" />
+                  <h2 className="text-section font-bold text-white mb-12">
+                    {t.darkMode.problemsTitle}
+                  </h2>
+                </Reveal>
 
-                <div className="grid gap-6">
-                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.tooLate.title}</h3>
-                    <p className="text-lg text-zinc-400">
-                      {t.darkMode.problems.tooLate.text}
-                    </p>
-                  </div>
-
-                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.dangerous.title}</h3>
-                    <p className="text-lg text-zinc-400">
-                      {t.darkMode.problems.dangerous.text}
-                    </p>
-                  </div>
-
-                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.forgotten.title}</h3>
-                    <p className="text-lg text-zinc-400">
-                      {t.darkMode.problems.forgotten.text}
-                    </p>
-                  </div>
-
-                  <div className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-colors group">
-                    <h3 className="text-xl font-bold text-red-500 mb-3 group-hover:text-red-400">{t.darkMode.problems.wind.title}</h3>
-                    <p className="text-lg text-zinc-400">
-                      {t.darkMode.problems.wind.text}
-                    </p>
-                  </div>
+                <div className="grid gap-4">
+                  {[t.darkMode.problems.tooLate, t.darkMode.problems.dangerous, t.darkMode.problems.forgotten, t.darkMode.problems.wind].map((problem, i) => (
+                    <Reveal
+                      key={problem.title}
+                      delay={i * 80}
+                      className="qa-card group p-8 rounded-2xl bg-zinc-900/50 border border-zinc-800 hover:border-red-500/40"
+                    >
+                      <h3 className="text-xl font-semibold text-red-500 mb-3 transition-colors group-hover:text-red-400">{problem.title}</h3>
+                      <p className="text-lg text-zinc-400 leading-relaxed">{problem.text}</p>
+                    </Reveal>
+                  ))}
                 </div>
                 </div>
             </div>
@@ -569,41 +487,51 @@ export default function Home() {
           <section className="py-24 sm:py-32 bg-zinc-900 border-t border-zinc-800">
             <div className="container mx-auto px-4 sm:px-6 lg:px-12">
               <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl sm:text-4xl font-black text-white mb-8">
-                  {t.darkMode.solutionTitle}
-                </h2>
-                <p className="text-xl leading-relaxed text-zinc-300 mb-16">
-                  {t.darkMode.solutionText}
-                </p>
+                <Reveal>
+                  <p className="text-eyebrow font-semibold uppercase text-orange-500 mb-5 flex items-center gap-2">
+                    <span className="qa-beacon inline-block w-1.5 h-1.5 rounded-full bg-orange-500" />
+                    QuickAlert
+                  </p>
+                  <h2 className="text-section font-bold text-white mb-8">
+                    {t.darkMode.solutionTitle}
+                  </h2>
+                </Reveal>
+                <Reveal delay={100}>
+                  <p className="text-xl leading-relaxed text-zinc-300 mb-16">
+                    {t.darkMode.solutionText}
+                  </p>
+                </Reveal>
               </div>
             </div>
           </section>
 
           {/* Pricing Section - Dark Mode - Identisch zum Light Mode */}
-          <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+          <section id="pricing" className={`relative py-24 sm:py-32 overflow-hidden ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
+            <div className="qa-grid absolute inset-0" aria-hidden />
+            <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+              <Reveal className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className={`text-eyebrow font-semibold uppercase mb-5 inline-flex items-center gap-2 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+                  <span className="qa-beacon inline-block w-1.5 h-1.5 rounded-full bg-current" />
                   {t.pricing.label}
                 </h2>
-                <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                <h3 className={`text-section font-bold mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                   {t.pricing.title}
                 </h3>
-              </div>
+              </Reveal>
 
               {/* Pricing Cards Dark Mode - Identisch zum Light Mode */}
                 <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
                   {/* BASE Model */}
-                  <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border transition-all duration-300 overflow-hidden ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700 shadow-xl shadow-zinc-900/50' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50 hover:shadow-2xl'}`}>
-                    {/* Deutschland Banner */}
-                    <div className="absolute -right-8 top-6 rotate-45 z-10">
-                      <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-600 text-white'}`}>
+                  <Reveal className={`qa-card relative p-8 sm:p-12 rounded-3xl border overflow-hidden ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-sm hover:border-zinc-300'}`}>
+                    {/* Deutschland Label */}
+                    <div className="absolute right-5 top-5 z-10">
+                      <div className="px-2.5 py-1 rounded-[2px] text-[10px] font-semibold uppercase tracking-[0.14em] bg-black/60 text-white backdrop-blur-sm">
                         {t.pricing.base.country}
                       </div>
                     </div>
                     {/* Verpackungsbild */}
                     <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
-                      <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-zinc-800 to-zinc-900">
+                      <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-3xl bg-gradient-to-br from-zinc-800 to-zinc-900">
                         <Image
                           src="/Verpackungen/base.jpg"
                           alt="QuickAlert Verpackung"
@@ -619,7 +547,7 @@ export default function Home() {
                     <div className="mb-8">
                       <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>{t.pricing.base.name}</h4>
                       <div className="flex items-baseline gap-1">
-                        <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.base.price}</span>
+                        <span className={`text-5xl font-bold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.base.price}</span>
                         <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>{t.pricing.base.period}</span>
                       </div>
                     </div>
@@ -627,33 +555,33 @@ export default function Home() {
                     <ul className="space-y-4 mb-10">
                       {t.pricing.base.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-300' : 'bg-zinc-100 text-zinc-600'}`}>✓</div>
+                          <div className={`w-5 h-5 rounded-[2px] flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-400' : 'bg-zinc-100 text-zinc-500'}`}><CheckIcon /></div>
                           <span className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{feature}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <a
+                    <a 
                       href="https://www.amazon.de/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
+                      className={`qa-btn w-full py-4 px-6 border ${darkMode ? 'bg-transparent border-zinc-700 text-zinc-100 [--qa-btn-fill:#f4f4f5] hover:text-zinc-900 hover:border-zinc-100' : 'bg-transparent border-zinc-300 text-zinc-900 [--qa-btn-fill:#0b0d0f] hover:text-white hover:border-[#0b0d0f]'}`}
                     >
                       {t.pricing.base.cta}
                     </a>
-                  </div>
-                  
+                  </Reveal>
+
                   {/* PRO Model */}
-                  <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-gradient-to-br from-orange-950/50 via-zinc-900 to-orange-950/30 border-orange-500 shadow-[0_0_50px_rgba(249,115,22,0.2)] hover:shadow-[0_0_50px_rgba(249,115,22,0.3)]' : 'bg-gradient-to-br from-orange-50 via-white to-orange-50 border-orange-500 shadow-2xl shadow-orange-500/20'}`}>
+                  <Reveal delay={110} className={`qa-card relative p-8 sm:p-12 rounded-3xl border md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-zinc-900 border-orange-500/50' : 'bg-white border-orange-400/70 shadow-sm'}`}>
                     {/* Spanien Banner */}
-                    <div className="absolute -right-8 top-6 rotate-45 z-10">
-                      <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+                    <div className="absolute right-5 top-5 z-10">
+                      <div className="px-2.5 py-1 rounded-[2px] text-[10px] font-semibold uppercase tracking-[0.14em] bg-orange-500 text-white">
                         {t.pricing.pro.country}
                       </div>
                     </div>
                     {/* Verpackungsbild */}
                     <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
-                      <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-orange-900/40 to-orange-800/30 border-b-2 border-orange-700/50">
+                      <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-3xl bg-gradient-to-br from-orange-900/40 to-orange-800/30 border-b-2 border-orange-700/50">
                         <Image
                           src="/3D-PRO.jpg"
                           alt="QuickAlert PRO Verpackung"
@@ -670,7 +598,7 @@ export default function Home() {
                     <div className="mb-8">
                       <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-orange-600'}`}>{t.pricing.pro.name}</h4>
                       <div className="flex items-baseline gap-1">
-                        <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>{t.pricing.pro.price}</span>
+                        <span className={`qa-num text-6xl font-bold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.pro.price}</span>
                         <span className={`text-lg font-medium ${darkMode ? 'text-zinc-400' : 'text-orange-600'}`}>{t.pricing.pro.period}</span>
                       </div>
                     </div>
@@ -678,8 +606,8 @@ export default function Home() {
                     <ul className="space-y-4 mb-6">
                       {t.pricing.pro.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
-                          <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
+                          <div className={`w-5 h-5 rounded-[2px] flex items-center justify-center flex-shrink-0 bg-orange-500 text-white`}><CheckIcon /></div>
+                          <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-medium`}>{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -690,26 +618,26 @@ export default function Home() {
                       </p>
                     )}
 
-                    <a
+                    <a 
                       href="https://www.amazon.de/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
+                      className={`qa-btn w-full py-4 px-6 text-lg bg-orange-500 text-white [--qa-btn-fill:#0b0d0f]`}
                     >
                       {t.pricing.base.cta}
                     </a>
-                  </div>
+                  </Reveal>
                 </div>
 
-              <div className="mt-16 p-8 rounded-3xl bg-zinc-900 border border-zinc-800 text-center max-w-5xl mx-auto">
-                <h3 className="text-2xl font-bold text-white mb-4">{t.darkMode.recommended.title}</h3>
-                <p className="text-lg text-zinc-400 mb-6">
+              <Reveal delay={180} className="qa-card mt-16 p-8 sm:p-10 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-center max-w-5xl mx-auto">
+                <h3 className="text-2xl font-semibold text-white mb-4">{t.darkMode.recommended.title}</h3>
+                <p className="text-lg text-zinc-400 mb-6 leading-relaxed">
                   {t.darkMode.recommended.subtitle}
                 </p>
-                <p className="text-xl font-bold text-white">
+                <p className="text-xl font-semibold text-white">
                   {t.darkMode.recommended.conclusion}
                 </p>
-              </div>
+              </Reveal>
             </div>
           </section>
         </div>
@@ -719,80 +647,82 @@ export default function Home() {
       {!darkMode && (
       <>
       {/* Features Section - Tech Grid */}
-      <section id="features" className={`py-24 sm:py-32 bg-white`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-            <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+      <section id="features" className="relative py-24 sm:py-32 bg-white overflow-hidden">
+        <div className="qa-grid absolute inset-0 -z-0" aria-hidden />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <Reveal className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+            <h2 className="text-eyebrow font-semibold uppercase text-orange-600 mb-5">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 align-middle qa-beacon" />
               {t.features.label}
             </h2>
-            <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+            <h3 className="text-section font-bold text-zinc-900 mb-6">
               {t.features.title}
             </h3>
-            <p className={`text-lg sm:text-xl leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+            <p className="text-lg sm:text-xl leading-relaxed text-zinc-600">
               {t.features.description}
             </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {/* Feature 1 - Magnet */}
-            <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-orange-500/50 hover:shadow-orange-500/10' : 'bg-white border-zinc-200 hover:border-orange-500/30 hover:shadow-orange-500/10 shadow-lg shadow-zinc-200/50'}`}>
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
-                🧲
+            <Reveal delay={0} className="group qa-card p-8 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-8 bg-orange-50 text-orange-600 border border-orange-100 transition-colors duration-300 group-hover:bg-orange-500 group-hover:text-white">
+                <MagnetIcon />
               </div>
-              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+              <h4 className="text-xl font-semibold tracking-[-0.01em] mb-3 text-zinc-900">
                 {t.features.items.magnet.title}
               </h4>
-              <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              <p className="leading-relaxed text-zinc-600">
                 {t.features.items.magnet.description}
               </p>
-            </div>
+            </Reveal>
 
             {/* Feature 2 - Battery */}
-            <div className={`group p-8 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-orange-500/50 hover:shadow-orange-500/10' : 'bg-white border-zinc-200 hover:border-orange-500/30 hover:shadow-orange-500/10 shadow-lg shadow-zinc-200/50'}`}>
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
-                🔋
-                </div>
-              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+            <Reveal delay={90} className="group qa-card p-8 rounded-2xl border border-zinc-200 bg-white hover:border-zinc-400">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-8 bg-orange-50 text-orange-600 border border-orange-100 transition-colors duration-300 group-hover:bg-orange-500 group-hover:text-white">
+                <BatteryIcon />
+              </div>
+              <h4 className="text-xl font-semibold tracking-[-0.01em] mb-3 text-zinc-900">
                 {t.features.items.battery.title}
               </h4>
-              <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              <p className="leading-relaxed text-zinc-600">
                 {t.features.items.battery.description}
               </p>
-            </div>
+            </Reveal>
 
             {/* Feature 3 - GPS (Pro) */}
-            <div className={`group p-8 rounded-3xl border-2 relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900/80 border-orange-500/30 hover:border-orange-500 hover:shadow-orange-500/20' : 'bg-white border-orange-100 hover:border-orange-500 hover:shadow-orange-500/20 shadow-lg shadow-orange-100'}`}>
-              <div className="absolute top-0 right-0 p-6 opacity-50 group-hover:opacity-100 transition-opacity">
-                <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${darkMode ? 'bg-orange-500 text-black' : 'bg-orange-100 text-orange-700'}`}>
-                        {t.features.items.gps.badge}
-                      </span>
-                    </div>
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-4xl mb-8 transition-transform group-hover:scale-110 duration-300 ${darkMode ? 'bg-zinc-800 text-orange-500 shadow-inner' : 'bg-orange-50 text-orange-600'}`}>
-                📡
+            <Reveal delay={180} className="group qa-card relative p-8 rounded-2xl border border-orange-200 bg-white hover:border-orange-500">
+              <div className="absolute top-6 right-6">
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.12em] bg-orange-50 text-orange-700 border border-orange-200">
+                  {t.features.items.gps.badge}
+                </span>
               </div>
-              <h4 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-8 bg-orange-50 text-orange-600 border border-orange-100 transition-colors duration-300 group-hover:bg-orange-500 group-hover:text-white">
+                <SatelliteIcon />
+              </div>
+              <h4 className="text-xl font-semibold tracking-[-0.01em] mb-3 text-zinc-900">
                 {t.features.items.gps.title}
               </h4>
-              <p className={`leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              <p className="leading-relaxed text-zinc-600">
                 {t.features.items.gps.description}
               </p>
-            </div>
+            </Reveal>
           </div>
 
           {/* Bedienungsanleitung Download */}
-          <div className="max-w-2xl mx-auto mt-12">
-            <a 
+          <Reveal className="max-w-2xl mx-auto mt-12">
+            <a
               href="/QuickAlert/QuickAlert_V16_Bedienungsanleitung.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-3 p-6 rounded-2xl bg-zinc-200 border border-zinc-300 text-zinc-700 font-bold shadow-lg shadow-zinc-200/50 hover:shadow-xl hover:bg-zinc-300 hover:scale-105 transition-all duration-300"
+              className="group qa-card flex items-center justify-center gap-3 p-6 rounded-2xl bg-white border border-zinc-200 text-zinc-700 font-semibold hover:border-orange-400 hover:text-orange-600"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <span>{t.features.manual}</span>
             </a>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -805,11 +735,12 @@ export default function Home() {
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className={`${darkMode ? 'bg-zinc-900/70 border-zinc-800/80' : 'bg-white border-zinc-200'} rounded-3xl p-8 sm:p-10 shadow-xl`}>
-              <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-red-500' : 'text-red-600'}`}>
+            <Reveal className={`${darkMode ? 'bg-zinc-900/70 border-zinc-800/80' : 'bg-white border border-zinc-200'} rounded-2xl p-8 sm:p-10 shadow-sm`}>
+              <h2 className={`text-eyebrow font-semibold uppercase mb-5 ${darkMode ? 'text-red-500' : 'text-red-600'}`}>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-500 mr-2 align-middle qa-beacon" />
                 {t.problem.label}
               </h2>
-              <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-8 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+              <h3 className={`text-section font-bold mb-8 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 {t.problem.title}
               </h3>
               
@@ -850,11 +781,11 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
 
-            <div className="relative lg:ml-auto w-full max-w-lg">
-              <div className={`absolute inset-0 rounded-[2rem] transform rotate-3 scale-105 blur-3xl ${darkMode ? 'bg-red-500/20' : 'bg-orange-500/10'}`}></div>
-              <div className={`relative rounded-[2rem] overflow-hidden shadow-2xl border ${darkMode ? 'border-zinc-800 bg-zinc-900' : 'border-zinc-200 bg-white'} group`}>
+            <Reveal delay={120} className="relative lg:ml-auto w-full max-w-lg">
+              <div className={`absolute inset-0 rounded-[2rem] scale-105 blur-3xl ${darkMode ? 'bg-red-500/15' : 'bg-orange-500/10'}`}></div>
+              <div className={`relative rounded-2xl overflow-hidden shadow-xl border ${darkMode ? 'border-zinc-800 bg-zinc-900' : 'border-zinc-200 bg-white'} group`}>
                 <Image
                   src="/Warndreieck.jpg"
                   alt={t.problem.imageAlt}
@@ -865,45 +796,47 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center text-3xl shadow-lg shadow-red-900/50">
-                      ⚠️
+                    <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-red-900/40">
+                      <AlertTriangleIcon className="w-6 h-6" />
             </div>
                     <div>
-                      <div className="font-bold text-white text-lg">{t.problem.imageCaption}</div>
+                      <div className="font-semibold text-white text-lg">{t.problem.imageCaption}</div>
                       <div className="text-sm text-red-400 font-mono">{t.problem.imageYear}</div>
           </div>
         </div>
         </div>
         </div>
-          </div>
+          </Reveal>
                   </div>
                 </div>
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className={`py-24 sm:py-32 ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+      <section id="pricing" className={`relative py-24 sm:py-32 overflow-hidden ${darkMode ? 'bg-zinc-950' : 'bg-white'}`}>
+        <div className="qa-grid absolute inset-0" aria-hidden />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <Reveal className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className={`text-eyebrow font-semibold uppercase mb-5 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 align-middle qa-beacon" />
               {t.pricing.label}
             </h2>
-            <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+            <h3 className={`text-section font-bold mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
               {t.pricing.title}
             </h3>
-                      </div>
+                      </Reveal>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
             {/* BASE Model */}
-            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border transition-all duration-300 overflow-hidden ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-xl shadow-zinc-200/50 hover:shadow-2xl'}`}>
-              {/* Deutschland Banner */}
-              <div className="absolute -right-8 top-6 rotate-45 z-10">
-                <div className={`px-10 py-1.5 text-xs font-black tracking-wider shadow-lg ${darkMode ? 'bg-zinc-700 text-white' : 'bg-zinc-600 text-white'}`}>
+            <Reveal className={`qa-card relative p-8 sm:p-12 rounded-3xl border overflow-hidden ${darkMode ? 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-lg shadow-zinc-200/40 hover:shadow-xl'}`}>
+              {/* Deutschland Label */}
+              <div className="absolute right-5 top-5 z-10">
+                <div className="px-2.5 py-1 rounded-[2px] text-[10px] font-semibold uppercase tracking-[0.14em] bg-black/60 text-white backdrop-blur-sm">
                   {t.pricing.base.country}
                     </div>
                   </div>
               {/* Verpackungsbild */}
               <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
-                <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-zinc-100 to-zinc-200">
+                <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-3xl bg-gradient-to-br from-zinc-100 to-zinc-200">
                   <Image
                     src="/Verpackungen/base.jpg"
                     alt="QuickAlert Verpackung"
@@ -920,7 +853,7 @@ export default function Home() {
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>{t.pricing.base.name}</h4>
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-5xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.base.price}</span>
+                  <span className={`text-5xl font-bold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.base.price}</span>
                   <span className={`text-lg font-medium ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}> {t.pricing.base.period}</span>
                 </div>
                     </div>
@@ -928,34 +861,34 @@ export default function Home() {
               <ul className="space-y-4 mb-10">
                 {t.pricing.base.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-300' : 'bg-zinc-100 text-zinc-600'}`}>✓</div>
+                    <div className={`w-5 h-5 rounded-[2px] flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-zinc-800 text-zinc-400' : 'bg-zinc-100 text-zinc-500'}`}><CheckIcon /></div>
                     <span className={`${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>{feature}</span>
                   </li>
                 ))}
                 </ul>
 
-                <a
+                <a 
                   href="https://www.amazon.de/"
                   target="_blank"
                   rel="noopener noreferrer"
-                className={`block w-full py-4 px-6 rounded-2xl font-bold text-center transition-all duration-300 ${darkMode ? 'bg-zinc-800 hover:bg-zinc-700 text-white' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900'}`}
+                className={`qa-btn w-full py-4 px-6 border ${darkMode ? 'bg-transparent border-zinc-700 text-zinc-100 [--qa-btn-fill:#f4f4f5] hover:text-zinc-900 hover:border-zinc-100' : 'bg-transparent border-zinc-300 text-zinc-900 [--qa-btn-fill:#0b0d0f] hover:text-white hover:border-[#0b0d0f]'}`}
                 >
                 {t.pricing.base.cta}
                 </a>
-            </div>
-            
+            </Reveal>
+
             {/* PRO Model */}
-            <div className={`relative p-8 sm:p-12 rounded-[2.5rem] border-2 transition-all duration-300 transform md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-gradient-to-br from-orange-950/50 via-zinc-900 to-orange-950/30 border-orange-500 shadow-[0_0_50px_rgba(249,115,22,0.2)] hover:shadow-[0_0_50px_rgba(249,115,22,0.3)]' : 'bg-gradient-to-br from-orange-50 via-white to-orange-50 border-orange-500 shadow-2xl shadow-orange-500/20'}`}>
+            <Reveal delay={110} className={`qa-card relative p-8 sm:p-12 rounded-3xl border md:-translate-y-4 overflow-hidden ${darkMode ? 'bg-zinc-900 border-orange-500/50' : 'bg-white border-orange-400/70 shadow-sm'}`}>
               {/* Spanien Banner */}
-              <div className="absolute -right-8 top-6 rotate-45 z-10">
-                <div className="px-10 py-1.5 text-xs font-black tracking-wider shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+              <div className="absolute right-5 top-5 z-10">
+                <div className="px-2.5 py-1 rounded-[2px] text-[10px] font-semibold uppercase tracking-[0.14em] bg-orange-500 text-white">
                   {t.pricing.pro.country}
                 </div>
               </div>
 
               {/* Verpackungsbild */}
               <div className="mb-6 -mx-8 sm:-mx-12 -mt-8 sm:-mt-12">
-                <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-[2.5rem] bg-gradient-to-br from-orange-100 to-orange-200 border-b-2 border-orange-300">
+                <div className="relative w-full h-48 sm:h-64 overflow-hidden rounded-t-3xl bg-gradient-to-br from-orange-100 to-orange-200 border-b-2 border-orange-300">
                   <Image
                     src="/3D-PRO.jpg"
                     alt="QuickAlert PRO Verpackung"
@@ -972,7 +905,7 @@ export default function Home() {
               <div className="mb-8">
                 <h4 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-orange-600'}`}>{t.pricing.pro.name}</h4>
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-600`}>{t.pricing.pro.price}</span>
+                  <span className={`qa-num text-6xl font-bold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>{t.pricing.pro.price}</span>
                   <span className={`text-lg font-medium ${darkMode ? 'text-zinc-400' : 'text-orange-600'}`}> {t.pricing.pro.period}</span>
                   </div>
                 </div>
@@ -980,8 +913,8 @@ export default function Home() {
               <ul className="space-y-4 mb-6">
                 {t.pricing.pro.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm`}>✓</div>
-                    <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-bold`}>{feature}</span>
+                    <div className={`w-5 h-5 rounded-[2px] flex items-center justify-center flex-shrink-0 bg-orange-500 text-white`}><CheckIcon /></div>
+                    <span className={`${darkMode ? 'text-zinc-200' : 'text-zinc-800'} font-medium`}>{feature}</span>
                   </li>
                 ))}
                 </ul>
@@ -992,36 +925,41 @@ export default function Home() {
                   </p>
                 )}
 
-                <a
+                <a 
                   href="https://www.amazon.de/"
                   target="_blank"
                   rel="noopener noreferrer"
-                className={`block w-full py-4 px-6 rounded-2xl font-black text-center text-lg transition-all duration-300 shadow-xl shadow-orange-500/20 hover:shadow-orange-500/40 hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 text-white`}
+                className={`qa-btn w-full py-4 px-6 text-lg bg-orange-500 text-white [--qa-btn-fill:#0b0d0f]`}
                 >
                 {t.pricing.base.cta}
                 </a>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* Comparison Section - BASE vs PRO */}
-      <section className="py-24 sm:py-32 bg-zinc-950">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 sm:py-32 bg-zinc-950 overflow-hidden">
+        <div className="qa-grid absolute inset-0" aria-hidden />
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-12">
-              <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight">{t.comparison.title}</h2>
-            </div>
+            <Reveal className="mb-12">
+              <p className="text-eyebrow font-semibold uppercase text-orange-500 mb-5 flex items-center gap-2">
+                <span className="qa-beacon inline-block w-1.5 h-1.5 rounded-full bg-orange-500" />
+                {t.nav.base} / {t.nav.pro}
+              </p>
+              <h2 className="text-section font-bold text-white">{t.comparison.title}</h2>
+            </Reveal>
 
-            <div className="rounded-2xl border border-zinc-800 overflow-hidden">
+            <Reveal delay={90} className="rounded-2xl border border-zinc-800 overflow-hidden bg-zinc-950/60 backdrop-blur-sm">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-zinc-800">
-                      <th className="text-left py-5 px-6 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">{t.comparison.feature}</th>
-                      <th className="py-5 px-6 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 text-center w-40 sm:w-48">{t.nav.base}</th>
-                      <th className="py-5 px-6 text-center w-40 sm:w-48 bg-gradient-to-b from-orange-500/20 to-transparent">
-                        <span className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">{t.nav.pro} ★</span>
+                      <th className="text-left py-5 px-6 text-eyebrow font-semibold uppercase text-zinc-400">{t.comparison.feature}</th>
+                      <th className="py-5 px-6 text-eyebrow font-semibold uppercase text-zinc-400 text-center w-40 sm:w-48">{t.nav.base}</th>
+                      <th className="py-5 px-6 text-center w-40 sm:w-48 bg-orange-500/[0.07] border-b border-orange-500/40">
+                        <span className="text-eyebrow font-semibold uppercase text-orange-400">{t.nav.pro}</span>
                       </th>
                     </tr>
                   </thead>
@@ -1035,14 +973,14 @@ export default function Home() {
                           <td className="py-4 px-6 text-sm text-zinc-300 font-medium">{feature}</td>
                           <td className="py-4 px-6 text-center">
                             {hasBase ? (
-                              <span className="text-green-400 text-lg">✓</span>
+                              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-400"><CheckIcon /></span>
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
                           </td>
                           <td className="py-4 px-6 text-center bg-orange-500/[0.04]">
                             {hasPro ? (
-                              <span className="text-green-400 text-lg">✓</span>
+                              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/10 text-emerald-400"><CheckIcon /></span>
                             ) : (
                               <span className="text-zinc-600">—</span>
                             )}
@@ -1050,19 +988,19 @@ export default function Home() {
                         </tr>
                       )
                     })}
-                    <tr className="border-t-2 border-zinc-700 bg-zinc-900/50">
-                      <td className="py-5 px-6 text-sm font-bold text-zinc-300">{t.comparison.price}</td>
+                    <tr className="border-t border-zinc-700 bg-zinc-900/50">
+                      <td className="py-5 px-6 text-eyebrow font-semibold uppercase text-zinc-400">{t.comparison.price}</td>
                       <td className="py-5 px-6 text-center">
-                        <span className="text-2xl font-black text-white">{t.pricing.base.price}</span>
+                        <span className="qa-num text-2xl font-semibold text-white">{t.pricing.base.price}</span>
                       </td>
                       <td className="py-5 px-6 text-center bg-orange-500/[0.04]">
-                        <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">{t.pricing.pro.price}</span>
+                        <span className="qa-num text-2xl font-semibold text-orange-400">{t.pricing.pro.price}</span>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -1071,48 +1009,48 @@ export default function Home() {
       <section className={`py-24 sm:py-32 ${darkMode ? 'bg-black' : 'bg-white'}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <div>
-              <h2 className={`text-sm font-bold tracking-[0.2em] uppercase mb-4 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+            <Reveal>
+              <h2 className={`text-eyebrow font-semibold uppercase mb-5 flex items-center gap-2 ${darkMode ? 'text-orange-500' : 'text-orange-600'}`}>
+                <span className="qa-beacon inline-block w-1.5 h-1.5 rounded-full bg-current" />
                 {t.legal.label}
               </h2>
-              <h3 className={`text-4xl sm:text-5xl font-black tracking-tight mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+              <h3 className={`text-section font-bold mb-6 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 {t.legal.title}
               </h3>
               <p className={`text-lg mb-8 leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 {t.legal.description}
               </p>
               
-              <div className="space-y-6">
-                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
-                  <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇩🇪</span> {t.legal.countries.germany.name}
+              <div className="space-y-4">
+                <div className={`qa-card p-6 rounded-2xl border ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 hover:border-zinc-300 shadow-sm'}`}>
+                  <h4 className={`text-lg font-semibold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                    <span className="text-xl">🇩🇪</span> {t.legal.countries.germany.name}
                   </h4>
-                  <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  <p className={`text-sm leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     {t.legal.countries.germany.description}
                   </p>
                 </div>
-                
-                <div className={`p-6 rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 hover:border-zinc-300 shadow-lg'}`}>
-                  <h4 className={`text-lg font-bold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
-                    <span className="text-2xl shadow-sm rounded-full bg-white/10 p-1">🇪🇸</span> {t.legal.countries.spain.name}
+
+                <div className={`qa-card p-6 rounded-2xl border ${darkMode ? 'bg-zinc-900 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 hover:border-zinc-300 shadow-sm'}`}>
+                  <h4 className={`text-lg font-semibold mb-2 flex items-center gap-3 ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                    <span className="text-xl">🇪🇸</span> {t.legal.countries.spain.name}
                   </h4>
-                  <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  <p className={`text-sm leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     {t.legal.countries.spain.description}
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
+            </Reveal>
 
-            <div className="relative flex justify-center">
-              <div className={`absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/20 blur-[100px] rounded-full`}></div>
-              <div className={`relative w-full max-w-md rounded-[2rem] border-2 shadow-2xl overflow-hidden p-8 text-left backdrop-blur-sm ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-100/70 border-zinc-200'}`}>
+            <Reveal delay={120} className="relative flex justify-center">
+              <div className={`qa-card relative w-full max-w-md rounded-2xl border overflow-hidden p-8 text-left ${darkMode ? 'bg-zinc-900/60 border-zinc-800 hover:border-zinc-700' : 'bg-white border-zinc-200 shadow-sm hover:border-zinc-300'}`}>
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white flex items-center justify-center shadow-lg shadow-orange-500/30">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${darkMode ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' : 'bg-orange-50 text-orange-600 border-orange-100'}`}>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.6} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h4 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+                  <h4 className={`text-xl font-semibold ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                     {t.legal.certificatesSection.title}
                   </h4>
                 </div>
@@ -1121,7 +1059,7 @@ export default function Home() {
                 </p>
                 <a
                   href="#zertifikate"
-                  className={`inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-full border transition-all duration-300 ${
+                  className={`inline-flex items-center gap-2 text-eyebrow font-semibold uppercase px-4 py-2.5 rounded-full border transition-colors duration-300 ${
                     darkMode
                       ? 'border-zinc-700 text-zinc-200 hover:border-orange-400 hover:text-orange-300'
                       : 'border-zinc-300 text-zinc-700 hover:border-orange-500 hover:text-orange-600'
@@ -1130,46 +1068,53 @@ export default function Home() {
                   {t.legal.certificatesSection.toggle}
                 </a>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section id="cta" className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600">
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%,transparent_100%)] bg-[length:40px_40px]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.2)_100%)]"></div>
+        <div className="absolute inset-0 bg-[#0b0d0f] border-t-2 border-orange-500">
+          <div className="qa-noise absolute inset-0 opacity-[0.25]" aria-hidden />
+          <div className="qa-grid qa-grid-invert absolute inset-0" aria-hidden />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-8 tracking-tight drop-shadow-lg">
-            {t.cta.title.split('. ').map((part, i) => (
-              <span key={i}>
-                {part}
-                {i < t.cta.title.split('. ').length - 1 && <><br/></>}
-              </span>
-            ))}
+          <Reveal>
+            <h2 className="text-hero font-bold text-white mb-8">
+              {t.cta.title.split('. ').map((part, i) => (
+                <span key={i}>
+                  {part}
+                  {i < t.cta.title.split('. ').length - 1 && <><br/></>}
+                </span>
+              ))}
             </h2>
-          <p className="text-xl sm:text-2xl text-orange-100 mb-12 max-w-2xl mx-auto font-medium">
-            {t.cta.subtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          </Reveal>
+          <Reveal delay={90}>
+            <p className="text-xl sm:text-2xl text-zinc-400 mb-12 max-w-2xl mx-auto">
+              {t.cta.subtitle}
+            </p>
+          </Reveal>
+          <Reveal delay={180} className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href="https://www.amazon.de/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-10 py-5 bg-white text-orange-600 rounded-2xl font-black text-lg shadow-2xl hover:bg-zinc-50 hover:scale-105 transition-all duration-300"
+              className="qa-btn px-10 py-5 bg-orange-500 text-white text-lg [--qa-btn-fill:#ffffff] hover:text-[#0b0d0f]"
             >
               {t.cta.cta1}
+              <svg className="qa-btn-arrow w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </a>
-              <a 
-                href="#features" 
-              className="px-10 py-5 bg-transparent border-2 border-white/30 text-white rounded-2xl font-bold text-lg hover:bg-white/10 hover:border-white transition-all duration-300"
-              >
-                {t.cta.cta2}
-              </a>
-          </div>
+            <a
+              href="#features"
+              className="qa-btn px-10 py-5 bg-transparent border border-white/30 text-white text-lg [--qa-btn-fill:#ffffff] hover:text-[#0b0d0f] hover:border-white"
+            >
+              {t.cta.cta2}
+            </a>
+          </Reveal>
         </div>
       </section>
 
@@ -1180,14 +1125,16 @@ export default function Home() {
       <section id="zertifikate" className={`py-10 border-t ${darkMode ? 'bg-zinc-950 border-zinc-900' : 'bg-white border-zinc-200'}`}>
         <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8 max-w-5xl">
           <details className={`rounded-2xl border ${darkMode ? 'border-zinc-800 bg-zinc-900/70' : 'border-zinc-200 bg-zinc-50'}`}>
-            <summary className={`cursor-pointer list-none px-5 py-4 flex items-center justify-between text-sm font-bold ${darkMode ? 'text-zinc-200' : 'text-zinc-700'}`}>
+            <summary className={`cursor-pointer list-none px-5 py-4 flex items-center justify-between text-eyebrow font-semibold uppercase transition-colors ${darkMode ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}>
               <span>{t.legal.certificatesSection.toggle}</span>
-              <span className={`${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>▼</span>
+              <svg className={`w-4 h-4 transition-transform duration-300 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </summary>
             <div className="px-5 pb-5">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className={`rounded-xl border p-4 ${darkMode ? 'border-zinc-800 bg-zinc-950/60' : 'border-zinc-200 bg-white'}`}>
-                  <h4 className={`text-sm font-black mb-3 ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{t.legal.certificatesSection.baseTitle}</h4>
+                  <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{t.legal.certificatesSection.baseTitle}</h4>
                   {baseCertificates.length === 0 ? (
                     <p className={`text-xs ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>{t.legal.certificatesSection.empty}</p>
                   ) : (
@@ -1212,7 +1159,7 @@ export default function Home() {
                 </div>
 
                 <div className={`rounded-xl border p-4 ${darkMode ? 'border-zinc-800 bg-zinc-950/60' : 'border-zinc-200 bg-white'}`}>
-                  <h4 className={`text-sm font-black mb-3 ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{t.legal.certificatesSection.proTitle}</h4>
+                  <h4 className={`text-sm font-bold mb-3 ${darkMode ? 'text-zinc-100' : 'text-zinc-800'}`}>{t.legal.certificatesSection.proTitle}</h4>
                   {proCertificates.length === 0 ? (
                     <p className={`text-xs ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>{t.legal.certificatesSection.empty}</p>
                   ) : (
@@ -1261,30 +1208,30 @@ export default function Home() {
                 <ellipse cx="32" cy="42" rx="16" ry="6" fill="#3F3F46"/>
                 <ellipse cx="32" cy="40" rx="14" ry="4" fill="#52525B"/>
               </svg>
-              <span className={`text-xl sm:text-2xl font-black font-poppins tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
+              <span className={`text-xl sm:text-2xl font-bold font-poppins tracking-tight ${darkMode ? 'text-white' : 'text-zinc-900'}`}>
                 <span className={darkMode ? 'text-white' : 'text-zinc-900'}>Quick</span>
                 <span className="text-orange-500">Alert</span>
               </span>
             </div>
             
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 text-center">
-              <a href="#zertifikate" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              <a href="#zertifikate" className={`qa-link text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 Zertifikate
               </a>
-              <Link href="/impressum" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              <Link href="/impressum" className={`qa-link text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 {t.footer.links.impressum}
               </Link>
-              <Link href="/datenschutz" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              <Link href="/datenschutz" className={`qa-link text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 {t.footer.links.privacy}
               </Link>
-              <Link href="/agb" className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              <Link href="/agb" className={`qa-link text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 {t.footer.links.terms}
               </Link>
               <a 
                 href="/QuickAlert/QuickAlert_V16_Bedienungsanleitung.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}
+                className={`qa-link text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}
               >
                 {t.footer.links.manual}
               </a>
@@ -1293,7 +1240,7 @@ export default function Home() {
                 href="https://www.instagram.com/quickalert_germany?igsh=MTh4ZnJiZHV1a2l3dA%3D%3D&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}
+                className={`qa-link inline-flex items-center gap-2 text-sm font-medium hover:text-orange-500 transition-colors ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}
                 aria-label={t.nav.instagramAria}
               >
                 <svg 

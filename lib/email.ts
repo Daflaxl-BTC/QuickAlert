@@ -66,7 +66,7 @@ export async function sendDoubleOptInEmail(data: PreOrderData, confirmationUrl: 
               <p class="hint">Dieser Bestätigungslink ist 24 Stunden gültig.</p>
             </div>
             <div class="footer">
-              QuickAlert | Felix Bredl, Scharnhorststr. 46, 80992 München |
+              QuickAlert | Felix Ventures, Felix Georg Bredl, c/o Autorenglück #43669, Albert-Einstein-Str. 47, 02977 Hoyerswerda |
               <a href="https://quickalert.eu/datenschutz" style="color: #F97316;">Datenschutz</a>
             </div>
           </div>
@@ -190,7 +190,7 @@ export async function sendConfirmedEmail(data: PreOrderData) {
               </p>
             </div>
             <div class="footer">
-              <p>Felix Bredl (QuickAlert) | Scharnhorststr. 46, 80992 Muenchen | <a href="https://quickalert.eu/datenschutz" style="color: #F97316;">Datenschutz</a></p>
+              <p>Felix Ventures, Felix Georg Bredl (QuickAlert) | c/o Autorenglueck #43669, Albert-Einstein-Str. 47, 02977 Hoyerswerda | <a href="https://quickalert.eu/datenschutz" style="color: #F97316;">Datenschutz</a></p>
             </div>
           </div>
         </body>

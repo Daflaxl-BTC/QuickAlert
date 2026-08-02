@@ -71,15 +71,16 @@ export default function Datenschutz() {
               <h2 className="text-2xl font-black text-zinc-900 mb-6">1. Verantwortlicher</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed">
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
-                  <p className="font-bold text-zinc-900 text-lg mb-2">Felix Bredl, Einzelunternehmen (QuickAlert)</p>
+                  <p className="font-bold text-zinc-900 text-lg mb-2">Felix Ventures, Felix Georg Bredl</p>
                   <p>
-                    Scharnhorststr. 46<br />
-                    80992 München<br />
+                    c/o Autorenglück #43669<br />
+                    Albert-Einstein-Str. 47<br />
+                    02977 Hoyerswerda<br />
                     Deutschland
                   </p>
                   <p className="mt-3">
                     <span className="font-semibold text-zinc-800">Inhaber:</span><br />
-                    Felix Bredl
+                    Felix Georg Bredl
                   </p>
                   <p className="mt-3">
                     <span className="font-semibold text-zinc-800">Kontakt:</span><br />

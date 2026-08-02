@@ -68,18 +68,20 @@ export default function Impressum() {
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
               <h2 className="text-2xl font-black text-zinc-900 mb-6">Angaben gemäß § 5 DDG</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed">
-                <p className="font-bold text-zinc-900 text-lg">Felix Bredl, Einzelunternehmen (QuickAlert)</p>
+                <p className="font-bold text-zinc-900 text-lg">Felix Ventures, Felix Georg Bredl</p>
                 <p>
-                  Scharnhorststr. 46
+                  c/o Autorenglück #43669
                   <br />
-                  80992 München
+                  Albert-Einstein-Str. 47
+                  <br />
+                  02977 Hoyerswerda
                   <br />
                   Deutschland
                 </p>
                 <p>
                   <span className="font-semibold text-zinc-800">Inhaber:</span>
                   <br />
-                  Felix Bredl
+                  Felix Georg Bredl
                 </p>
                 <p>
                   <span className="font-semibold text-zinc-800">Kontakt:</span>
@@ -106,11 +108,13 @@ export default function Impressum() {
                 Verantwortliche Person in der EU (Art. 4 EU-VO 2023/988 — GPSR)
               </h2>
               <p className="text-zinc-600 leading-relaxed">
-                Felix Bredl, Einzelunternehmen (QuickAlert)
+                Felix Ventures, Felix Georg Bredl
                 <br />
-                Scharnhorststr. 46
+                c/o Autorenglück #43669
                 <br />
-                80992 München
+                Albert-Einstein-Str. 47
+                <br />
+                02977 Hoyerswerda
                 <br />
                 Deutschland
                 <br />
@@ -131,8 +135,8 @@ export default function Impressum() {
                 <br />
                 <span className="font-semibold text-zinc-800">Telefon:</span> +49 151 19784023
                 <br />
-                <span className="font-semibold text-zinc-800">Postanschrift:</span> Felix Bredl, Einzelunternehmen
-                (QuickAlert), Scharnhorststr. 46, 80992 München, Deutschland
+                <span className="font-semibold text-zinc-800">Postanschrift:</span> Felix Ventures, Felix Georg
+                Bredl, c/o Autorenglück #43669, Albert-Einstein-Str. 47, 02977 Hoyerswerda, Deutschland
               </p>
               <p className="text-zinc-600 leading-relaxed mt-4 text-sm">
                 Vorfälle, die ein Sicherheitsrisiko begründen können, melden wir gemäß Art. 20 GPSR unverzüglich
@@ -143,11 +147,13 @@ export default function Impressum() {
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
               <h2 className="text-2xl font-black text-zinc-900 mb-6">Verantwortlich für journalistisch-redaktionelle Inhalte (§ 18 Abs. 2 MStV)</h2>
               <p className="text-zinc-600 leading-relaxed">
-                Felix Bredl
+                Felix Georg Bredl
                 <br />
-                Scharnhorststr. 46
+                c/o Autorenglück #43669
                 <br />
-                80992 München
+                Albert-Einstein-Str. 47
+                <br />
+                02977 Hoyerswerda
                 <br />
                 Deutschland
               </p>
