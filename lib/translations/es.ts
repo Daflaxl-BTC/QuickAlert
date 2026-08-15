@@ -102,7 +102,7 @@ export const es = {
     solutionTitle: "QuickAlert: La solución para 2026",
     solutionText: "Imagine: Tiene una avería en la autopista. Mientras coloca el triángulo de advertencia legalmente requerido, también activa QuickAlert con un botón. Inmediatamente, un anillo LED amarillo de 360° se ilumina en su techo – visible desde 1 km de distancia. Los coches que siguen lo ven mucho antes que solo con un triángulo de advertencia.",
     recommended: {
-      title: "Recomendado por la policía",
+      title: "Un complemento moderno al triángulo de advertencia",
       subtitle: "El triángulo de advertencia data de 1925. La prevención moderna de accidentes necesita tecnología moderna.",
       conclusion: "QuickAlert – porque los segundos salvan vidas.",
     },

@@ -102,7 +102,7 @@ export const de = {
     solutionTitle: "QuickAlert: Die Lösung für 2026",
     solutionText: "Stellen Sie sich vor: Sie haben eine Panne auf der Autobahn. Während Sie das gesetzlich vorgeschriebene Warndreieck aufstellen, aktivieren Sie zusätzlich QuickAlert mit einem Knopfdruck. Sofort leuchtet ein gelber 360°-LED-Ring auf Ihrem Dach – sichtbar aus 1 km Entfernung. Nachfolgende Autos sehen Sie deutlich früher als nur mit einem Warndreieck.",
     recommended: {
-      title: "Von Polizisten empfohlen",
+      title: "Moderne Ergänzung zum Warndreieck",
       subtitle: "Das Warndreieck stammt aus 1925. Moderne Unfallprävention braucht moderne Technologie.",
       conclusion: "QuickAlert – weil Sekunden Leben retten.",
     },

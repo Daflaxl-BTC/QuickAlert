@@ -102,7 +102,7 @@ export const en = {
     solutionTitle: "QuickAlert: The solution for 2026",
     solutionText: "Imagine: You have a breakdown on the highway. While setting up the legally required warning triangle, you also activate QuickAlert with one button press. Immediately, a yellow 360° LED ring lights up on your roof – visible from 1 km away. Following cars see you much earlier than with just a warning triangle.",
     recommended: {
-      title: "Recommended by police",
+      title: "A modern addition to the warning triangle",
       subtitle: "The warning triangle dates from 1925. Modern accident prevention needs modern technology.",
       conclusion: "QuickAlert – because seconds save lives.",
     },
