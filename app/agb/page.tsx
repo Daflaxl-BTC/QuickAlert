@@ -52,7 +52,7 @@ export default function AGB() {
             <h1 className="text-5xl sm:text-6xl font-black text-zinc-900 mb-4 tracking-tight">Allgemeine Geschäftsbedingungen</h1>
             <div className="w-24 h-1.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
             <p className="text-zinc-600 mt-4 text-sm">
-              Stand: 28.04.2026
+              Stand: 05.09.2026
             </p>
           </div>
 
@@ -61,8 +61,7 @@ export default function AGB() {
               <h2 className="text-2xl font-black text-zinc-900 mb-6">1. Geltungsbereich</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
                 <p>
-                  (1) Diese Bedingungen gelten für die Nutzung der Website quickalert.eu und für die unverbindliche
-                  Eintragung in die Vorbestell-/Interessentenliste von QuickAlert.
+                  (1) Diese Bedingungen gelten für die Nutzung der Website quickalert.eu.
                 </p>
                 <p>
                   (2) Betreiber der Website ist Felix Ventures, Felix Georg Bredl, c/o Autorenglück #43669,
@@ -75,8 +74,8 @@ export default function AGB() {
               <h2 className="text-2xl font-black text-zinc-900 mb-6">2. Kein Vertragsschluss über diese Website</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
                 <p>
-                  (1) Über diese Website werden aktuell keine Kaufverträge geschlossen. Die Eintragung in die
-                  Vorbestellliste ist unverbindlich.
+                  (1) Über diese Website werden keine Kaufverträge geschlossen. Die Website informiert über
+                  die Produkte und verweist zum Kauf auf Amazon Marketplace.
                 </p>
                 <p>
                   (2) Ein verbindlicher Kaufvertrag kommt ausschließlich über Amazon Marketplace zustande.
@@ -89,28 +88,7 @@ export default function AGB() {
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
-              <h2 className="text-2xl font-black text-zinc-900 mb-6">3. Vorbestellliste und Kommunikation</h2>
-              <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
-                <p>
-                  (1) Mit der Eintragung in die Vorbestellliste erklären Sie Ihr Interesse an Informationen zur
-                  Verfügbarkeit von QuickAlert.
-                </p>
-                <p>
-                  (2) Die Eintragung erfolgt per Double-Opt-In: Erst nach Bestätigung Ihrer E-Mail-Adresse wird Ihr
-                  Eintrag aktiv.
-                </p>
-                <p>
-                  (3) Aus der Eintragung entsteht kein Anspruch auf Lieferung, Reservierung oder einen bestimmten
-                  Verkaufspreis.
-                </p>
-                <p>
-                  (4) Weitere Informationen zur Verarbeitung Ihrer Daten finden Sie in der Datenschutzerklärung.
-                </p>
-              </div>
-            </div>
-
-            <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
-              <h2 className="text-2xl font-black text-zinc-900 mb-6">4. Inhalte der Website</h2>
+              <h2 className="text-2xl font-black text-zinc-900 mb-6">3. Inhalte der Website</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
                 <p>
                   (1) Alle Angaben auf dieser Website erfolgen mit größtmöglicher Sorgfalt, jedoch ohne Gewähr auf
@@ -123,7 +101,7 @@ export default function AGB() {
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
-              <h2 className="text-2xl font-black text-zinc-900 mb-6">5. Haftung</h2>
+              <h2 className="text-2xl font-black text-zinc-900 mb-6">4. Haftung</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
                 <p>
                   (1) Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie bei Schäden aus der
@@ -147,7 +125,7 @@ export default function AGB() {
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
-              <h2 className="text-2xl font-black text-zinc-900 mb-6">6. Datenschutz</h2>
+              <h2 className="text-2xl font-black text-zinc-900 mb-6">5. Datenschutz</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
                 <p>
                   Es gilt unsere{' '}
@@ -160,7 +138,7 @@ export default function AGB() {
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
-              <h2 className="text-2xl font-black text-zinc-900 mb-6">7. Verbraucherstreitbeilegung</h2>
+              <h2 className="text-2xl font-black text-zinc-900 mb-6">6. Verbraucherstreitbeilegung</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
                 <p>
                   Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer
@@ -170,7 +148,7 @@ export default function AGB() {
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-zinc-200 shadow-xl shadow-zinc-200/50">
-              <h2 className="text-2xl font-black text-zinc-900 mb-6">8. Schlussbestimmungen</h2>
+              <h2 className="text-2xl font-black text-zinc-900 mb-6">7. Schlussbestimmungen</h2>
               <div className="space-y-4 text-zinc-600 leading-relaxed text-sm">
                 <p>
                   (1) Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts, soweit dem keine zwingenden

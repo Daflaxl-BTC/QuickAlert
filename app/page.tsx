@@ -5,6 +5,7 @@ import LanguageSelector from '@/components/LanguageSelector'
 import { useDarkMode } from '@/components/DarkModeProvider'
 import { useTranslation } from '@/lib/translations/useTranslation'
 import { useLanguage } from '@/components/LanguageProvider'
+import { amazonUrl } from '@/lib/amazon'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -224,7 +225,7 @@ export default function Home() {
             </svg>
           </a>
           <a 
-            href="https://www.amazon.de/" 
+            href={amazonUrl('store')}
             target="_blank"
             rel="noopener noreferrer"
             className={`qa-btn px-4 py-2.5 sm:px-6 sm:py-3 min-h-[44px] text-xs sm:text-sm ${darkMode ? 'bg-[#3a3a3a] text-[#e5e5e5] [--qa-btn-fill:#e5e5e5] hover:text-[#1a1a1a]' : 'bg-[#8B6F47] text-[#F5E6D3] [--qa-btn-fill:#3d2d20] hover:text-[#F5E6D3]'}`}
@@ -561,8 +562,8 @@ export default function Home() {
                       ))}
                     </ul>
 
-                    <a 
-                      href="https://www.amazon.de/"
+                    <a
+                      href={amazonUrl('base')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`qa-btn w-full py-4 px-6 border ${darkMode ? 'bg-transparent border-zinc-700 text-zinc-100 [--qa-btn-fill:#f4f4f5] hover:text-zinc-900 hover:border-zinc-100' : 'bg-transparent border-zinc-300 text-zinc-900 [--qa-btn-fill:#0b0d0f] hover:text-white hover:border-[#0b0d0f]'}`}
@@ -618,8 +619,8 @@ export default function Home() {
                       </p>
                     )}
 
-                    <a 
-                      href="https://www.amazon.de/"
+                    <a
+                      href={amazonUrl('pro')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`qa-btn w-full py-4 px-6 text-lg bg-orange-500 text-white [--qa-btn-fill:#0b0d0f]`}
@@ -867,8 +868,8 @@ export default function Home() {
                 ))}
                 </ul>
 
-                <a 
-                  href="https://www.amazon.de/"
+                <a
+                  href={amazonUrl('base')}
                   target="_blank"
                   rel="noopener noreferrer"
                 className={`qa-btn w-full py-4 px-6 border ${darkMode ? 'bg-transparent border-zinc-700 text-zinc-100 [--qa-btn-fill:#f4f4f5] hover:text-zinc-900 hover:border-zinc-100' : 'bg-transparent border-zinc-300 text-zinc-900 [--qa-btn-fill:#0b0d0f] hover:text-white hover:border-[#0b0d0f]'}`}
@@ -925,8 +926,8 @@ export default function Home() {
                   </p>
                 )}
 
-                <a 
-                  href="https://www.amazon.de/"
+                <a
+                  href={amazonUrl('pro')}
                   target="_blank"
                   rel="noopener noreferrer"
                 className={`qa-btn w-full py-4 px-6 text-lg bg-orange-500 text-white [--qa-btn-fill:#0b0d0f]`}
@@ -1098,7 +1099,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={180} className="flex flex-col sm:flex-row justify-center gap-4">
             <a
-              href="https://www.amazon.de/"
+              href={amazonUrl('store')}
               target="_blank"
               rel="noopener noreferrer"
               className="qa-btn px-10 py-5 bg-orange-500 text-white text-lg [--qa-btn-fill:#ffffff] hover:text-[#0b0d0f]"

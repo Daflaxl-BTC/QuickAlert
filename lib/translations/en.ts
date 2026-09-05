@@ -161,7 +161,7 @@ export const en = {
     base: {
       country: "Germany",
       name: "QuickAlert BASE",
-      price: "€29",
+      price: "€26.99",
       period: "/ one-time",
       features: [
         "ECE R65 certified LED ring",
@@ -170,12 +170,12 @@ export const en = {
         "3x AAA batteries – available everywhere",
         "Compact glove compartment design",
       ],
-      cta: "Pre-order",
+      cta: "Buy on Amazon",
     },
     pro: {
       country: "Spain",
       name: "QuickAlert PRO",
-      price: "€49",
+      price: "€39.99",
       period: "/ one-time",
       features: [
         "All features from BASE model",
@@ -185,7 +185,7 @@ export const en = {
         "Control center connection (optional)",
       ],
       note: "Note: Cloud alerting, eSIM and control center connection are currently available exclusively in Spain.",
-      cta: "Pre-order",
+      cta: "Buy on Amazon",
     },
   },
 
@@ -326,7 +326,7 @@ export const en = {
   cta: {
     title: "Don't wait. Be safe.",
     subtitle: "Upgrade your vehicle now to tomorrow's safety standard.",
-    cta1: "Pre-order",
+    cta1: "Buy on Amazon",
     cta2: "Learn more",
   },
 
@@ -356,8 +356,8 @@ export const en = {
       networkError: "Network error",
       errorMessage: "An error occurred: {error}. Please check your internet connection and try again.",
       products: {
-        base: "BASE (€29)",
-        pro: "PRO (€49)",
+        base: "BASE (€26.99)",
+        pro: "PRO (€39.99)",
         both: "Both",
       },
     },

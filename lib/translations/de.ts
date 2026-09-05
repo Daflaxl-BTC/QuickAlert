@@ -161,7 +161,7 @@ export const de = {
     base: {
       country: "Deutschland",
       name: "QuickAlert BASE",
-      price: "29€",
+      price: "26,99€",
       period: "/ einmalig",
       features: [
         "ECE R65 zertifizierter LED-Ring",
@@ -170,12 +170,12 @@ export const de = {
         "3x AAA Batterien – überall erhältlich",
         "Kompaktes Handschuhfach-Design",
       ],
-      cta: "Vorbestellen",
+      cta: "Jetzt bei Amazon kaufen",
     },
     pro: {
       country: "Spanien",
       name: "QuickAlert PRO",
-      price: "49€",
+      price: "39,99€",
       period: "/ einmalig",
       features: [
         "Alle Features vom BASE Modell",
@@ -185,7 +185,7 @@ export const de = {
         "Leitstellen-Anbindung (optional)",
       ],
       note: "Hinweis: Cloud-Alarmierung, eSIM und Leitstellen-Anbindung sind aktuell ausschließlich in Spanien verfügbar.",
-      cta: "Vorbestellen",
+      cta: "Jetzt bei Amazon kaufen",
     },
   },
 
@@ -326,7 +326,7 @@ export const de = {
   cta: {
     title: "Nicht warten. Sicher sein.",
     subtitle: "Rüsten Sie Ihr Fahrzeug jetzt auf den Sicherheitsstandard von morgen auf.",
-    cta1: "Vorbestellen",
+    cta1: "Jetzt bei Amazon kaufen",
     cta2: "Mehr erfahren",
   },
 
@@ -356,8 +356,8 @@ export const de = {
       networkError: "Netzwerkfehler",
       errorMessage: "Ein Fehler ist aufgetreten: {error}. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
       products: {
-        base: "BASE (29€)",
-        pro: "PRO (49€)",
+        base: "BASE (26,99€)",
+        pro: "PRO (39,99€)",
         both: "Beide",
       },
     },

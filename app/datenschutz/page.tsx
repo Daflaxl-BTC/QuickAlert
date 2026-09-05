@@ -62,7 +62,7 @@ export default function Datenschutz() {
             <h1 className="text-5xl sm:text-6xl font-black text-zinc-900 mb-4 tracking-tight">Datenschutzerklärung</h1>
             <div className="w-24 h-1.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
             <p className="text-zinc-600 mt-4 text-sm">
-              Stand: 28.04.2026
+              Stand: 05.09.2026
             </p>
           </div>
 
@@ -107,27 +107,25 @@ export default function Datenschutz() {
                 </div>
 
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
-                  <h3 className="font-bold text-zinc-800 mb-2">Vorbestellung / Interessentenliste (Double-Opt-In)</h3>
+                  <h3 className="font-bold text-zinc-800 mb-2">Vorbestellung / Interessentenliste (eingestellt)</h3>
                   <p className="text-zinc-600 text-sm leading-relaxed mb-2">
-                    Wenn Sie sich über das Vorbestellformular eintragen, verarbeiten wir die von Ihnen angegebenen
-                    Daten (Name, E-Mail-Adresse, gewünschtes Produkt, optionale Nachricht), um Ihre Anfrage zu
-                    bearbeiten und den Double-Opt-In-Prozess durchzuführen.
+                    Das Vorbestellformular wurde entfernt. Über diese Website werden keine Namen,
+                    E-Mail-Adressen oder sonstigen Kontaktdaten mehr erhoben. QuickAlert ist über Amazon
+                    Marketplace erhältlich; für Ihren Einkauf dort gelten die Datenschutzhinweise von Amazon.
                   </p>
                   <p className="text-zinc-600 text-sm leading-relaxed mb-2">
-                    Zur rechtssicheren Dokumentation Ihrer Einwilligung speichern wir zusätzlich den Zeitpunkt der
-                    Eintragung, den Zeitpunkt der Bestätigung sowie technische Nachweisdaten (z. B. IP-Adresse und
-                    User-Agent).
-                  </p>
-                  <p className="text-zinc-600 text-sm leading-relaxed mb-2">
-                    Rechtsgrundlagen: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), Art. 6 Abs. 1 lit. f DSGVO
-                    (Nachweis der Einwilligung und Missbrauchsprävention).
+                    Soweit wir in der Vergangenheit Daten über das Vorbestellformular erhoben haben (Name,
+                    E-Mail-Adresse, gewünschtes Produkt, optionale Nachricht sowie Zeitpunkt der Eintragung
+                    und der Bestätigung, IP-Adresse und User-Agent), erfolgte dies auf Grundlage Ihrer
+                    Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie unseres berechtigten Interesses an der
+                    Nachweisbarkeit dieser Einwilligung (Art. 6 Abs. 1 lit. f DSGVO). Diese Daten werden nicht
+                    mehr für Benachrichtigungen genutzt und nach der unter Ziffer 5 genannten Frist gelöscht.
                   </p>
                   <p className="text-zinc-600 text-sm leading-relaxed">
-                    <strong className="text-zinc-800">Widerruf der Einwilligung:</strong> Sie können Ihre
-                    Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, ohne dass die Rechtmäßigkeit der
-                    aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung berührt wird (Art. 7 Abs. 3
-                    DSGVO). Der Widerruf ist formlos möglich, z. B. per E-Mail an QuickAlert@Outlook.de oder über
-                    den Abmeldelink in jeder Bestätigungs- bzw. Benachrichtigungs-E-Mail.
+                    <strong className="text-zinc-800">Widerruf und Löschung:</strong> Sie können eine erteilte
+                    Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen und die Löschung Ihrer Daten
+                    verlangen – formlos, z. B. per E-Mail an QuickAlert@Outlook.de. Die Rechtmäßigkeit der bis
+                    zum Widerruf erfolgten Verarbeitung bleibt unberührt (Art. 7 Abs. 3 DSGVO).
                   </p>
                 </div>
               </div>
@@ -145,22 +143,8 @@ export default function Datenschutz() {
                     <span className="text-zinc-500">DPF-zertifiziert (EU-US Data Privacy Framework, Adequacy Decision der EU-Kommission vom 10.07.2023).</span>
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
-                  <p className="text-sm">
-                    <strong className="text-zinc-800">E-Mail-Versand (Double-Opt-In und Benachrichtigungen):</strong><br />
-                    Resend, Inc., USA<br />
-                    <span className="text-zinc-500">DPF-zertifiziert (EU-US Data Privacy Framework, Adequacy Decision der EU-Kommission vom 10.07.2023).</span>
-                  </p>
-                </div>
-                <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
-                  <p className="text-sm">
-                    <strong className="text-zinc-800">Automatisierung (nur falls konfiguriert):</strong><br />
-                    n8n (Webhook-Verarbeitung)
-                  </p>
-                </div>
                 <p className="text-sm">
-                  Mit Vercel Inc. und Resend Inc. wurden Auftragsverarbeitungsverträge gemäß Art. 28 DSGVO
-                  geschlossen.
+                  Mit Vercel Inc. wurde ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO geschlossen.
                 </p>
               </div>
             </div>
@@ -191,18 +175,11 @@ export default function Datenschutz() {
                 </div>
 
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
-                  <h3 className="font-bold text-zinc-800 mb-2">Unbestätigte Vorbestellungen (Double-Opt-In offen)</h3>
+                  <h3 className="font-bold text-zinc-800 mb-2">Frühere Vorbestellungen</h3>
                   <p className="text-zinc-600 text-sm leading-relaxed">
-                    Daten, die nicht bestätigt werden, löschen wir regelmäßig, spätestens nach 30 Tagen.
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
-                  <h3 className="font-bold text-zinc-800 mb-2">Bestätigte Vorbestellungen</h3>
-                  <p className="text-zinc-600 text-sm leading-relaxed">
-                    Bestätigte Einträge speichern wir bis zum Widerruf Ihrer Einwilligung oder bis der Zweck entfällt
-                    (z. B. Abschluss der Produkteinführung), spätestens jedoch nach 24 Monaten ohne aktive
-                    Kundenbeziehung.
+                    Das Vorbestellformular ist eingestellt. Bereits erhobene Einträge werden nicht weiter
+                    genutzt und spätestens 24 Monate nach der Eintragung gelöscht. Auf Wunsch löschen wir
+                    sie jederzeit vorab.
                   </p>
                 </div>
               </div>

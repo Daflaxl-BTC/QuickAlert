@@ -161,7 +161,7 @@ export const es = {
     base: {
       country: "Alemania",
       name: "QuickAlert BASE",
-      price: "29€",
+      price: "26,99€",
       period: "/ única vez",
       features: [
         "Anillo LED certificado ECE R65",
@@ -170,12 +170,12 @@ export const es = {
         "3x pilas AAA – disponibles en todas partes",
         "Diseño compacto para guantera",
       ],
-      cta: "Pre-reservar",
+      cta: "Comprar en Amazon",
     },
     pro: {
       country: "España",
       name: "QuickAlert PRO",
-      price: "49€",
+      price: "39,99€",
       period: "/ única vez",
       features: [
         "Todas las características del modelo BASE",
@@ -185,7 +185,7 @@ export const es = {
         "Conexión a centro de control (opcional)",
       ],
       note: "Aviso: La alerta en la nube, la eSIM y la conexión al centro de control están actualmente disponibles únicamente en España.",
-      cta: "Pre-reservar",
+      cta: "Comprar en Amazon",
     },
   },
 
@@ -326,7 +326,7 @@ export const es = {
   cta: {
     title: "No esperes. Estar seguro.",
     subtitle: "Actualiza tu vehículo ahora al estándar de seguridad del mañana.",
-    cta1: "Pre-reservar",
+    cta1: "Comprar en Amazon",
     cta2: "Saber más",
   },
 
@@ -356,8 +356,8 @@ export const es = {
       networkError: "Error de red",
       errorMessage: "Ocurrió un error: {error}. Por favor, verifique su conexión a Internet e intente nuevamente.",
       products: {
-        base: "BASE (29€)",
-        pro: "PRO (49€)",
+        base: "BASE (26,99€)",
+        pro: "PRO (39,99€)",
         both: "Ambos",
       },
     },
