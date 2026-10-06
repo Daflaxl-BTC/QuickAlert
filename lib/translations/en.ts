@@ -1,4 +1,7 @@
+import { landing } from './landing/en'
+
 export const en = {
+  landing,
   // Top Info Bar
   topBar: {
     pro: "Pro:",
