@@ -71,15 +71,58 @@ html.dark body {
 @layer utilities {
   .qa-reveal {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 700ms var(--qa-ease), transform 700ms var(--qa-ease);
+    transform: translateY(18px);
+    filter: blur(8px);
+    transition: opacity 900ms var(--qa-ease), transform 900ms var(--qa-ease), filter 900ms var(--qa-ease);
     transition-delay: var(--qa-delay, 0ms);
-    will-change: opacity, transform;
+    will-change: opacity, transform, filter;
   }
 
   .qa-reveal[data-visible='true'] {
     opacity: 1;
     transform: none;
+    filter: none;
+  }
+
+  /* Landingpage: Hintergrund-Raster fuer dunkle Flaechen */
+  .qa-darkgrid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 60% 40%, #000 10%, transparent 75%);
+    mask-image: radial-gradient(ellipse 90% 70% at 60% 40%, #000 10%, transparent 75%);
+  }
+
+  /* Weicher Bildrand, damit Produktfotos mit dem Hintergrund verschmelzen */
+  .qa-fade-edges {
+    -webkit-mask-image: radial-gradient(ellipse 66% 74% at 50% 46%, #000 62%, transparent 100%);
+    mask-image: radial-gradient(ellipse 66% 74% at 50% 46%, #000 62%, transparent 100%);
+  }
+
+  .qa-ripple {
+    animation: qa-ripple 3.3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+
+  .qa-glow-pulse {
+    animation: qa-glow-pulse 3.2s ease-in-out infinite;
+  }
+
+  .qa-spin-slow {
+    animation: qa-spin 60s linear infinite;
+  }
+
+  .qa-float {
+    animation: qa-float 7s ease-in-out infinite;
+  }
+
+  .qa-marquee {
+    animation: qa-marquee 38s linear infinite;
+  }
+
+  .qa-marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
   }
 
   .qa-enter {
@@ -231,6 +274,54 @@ html.dark body {
   }
 }
 
+@keyframes qa-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes qa-ripple {
+  from {
+    opacity: 0.9;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3.4);
+  }
+}
+
+@keyframes qa-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes qa-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes qa-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes qa-beacon {
   0%,
   100% {
@@ -286,5 +377,6 @@ html.dark ::-webkit-scrollbar-thumb {
   .qa-reveal {
     opacity: 1;
     transform: none;
+    filter: none;
   }
 }
