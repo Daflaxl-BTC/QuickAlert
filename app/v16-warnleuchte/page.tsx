@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import JsonLd from '@/components/JsonLd'
-import { AnswerBox, BulletList, FaqList, GuideShell, ProductCta, Section } from '@/components/seo/GuideShell'
+import { AnswerBox, BulletList, FaqList, GuideShell, GuideVideo, ProductCta, Section } from '@/components/seo/GuideShell'
 import { SITE_URL, breadcrumbJsonLd, faqJsonLd, productJsonLd } from '@/lib/seo'
+import { videoJsonLd } from '@/lib/videos'
+import { availableVideos } from '@/lib/videos.server'
 
 const PATH = '/v16-warnleuchte'
 const UPDATED = '18.11.2026'
@@ -50,6 +52,7 @@ const FAQ = [
 ] as const
 
 export default function Page() {
+  const video = availableVideos().find((v) => v.id === 'pro')
   return (
     <>
       <JsonLd
@@ -73,6 +76,7 @@ export default function Page() {
             publisher: { '@id': `${SITE_URL}/#organization` },
           },
           productJsonLd('pro'),
+          ...(video ? [videoJsonLd(video)] : []),
           faqJsonLd(FAQ),
         ]}
       />
@@ -138,6 +142,8 @@ export default function Page() {
             className="h-auto w-full"
           />
         </div>
+
+        <GuideVideo video={video} />
 
         <Section id="spanien" title="V16 conectada: Pflicht in Spanien seit 2026">
           <p>

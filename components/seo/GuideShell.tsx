@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { AMAZON_LINK_REL, amazonUrl } from '@/lib/amazon'
 import type { AmazonProduct } from '@/lib/amazon'
 import { GUIDES } from '@/lib/guides'
+import type { SiteVideo } from '@/lib/videos'
 
 /* Gemeinsames Geruest fuer statische Ratgeber-/Keyword-Seiten (Server Components). */
 
@@ -208,5 +209,28 @@ export function FaqList({ items }: { items: readonly { q: string; a: string }[] 
         </details>
       ))}
     </div>
+  )
+}
+
+export function GuideVideo({ video }: { video?: SiteVideo }) {
+  if (!video) return null
+  return (
+    <figure className="overflow-hidden rounded-3xl border border-white/10 bg-[#0f1015]">
+      <video
+        className="aspect-video w-full object-cover"
+        controls
+        playsInline
+        muted
+        preload="none"
+        poster={video.poster}
+        aria-label={video.title}
+      >
+        <source src={video.file} type="video/mp4" />
+      </video>
+      <figcaption className="px-5 py-4">
+        <p className="font-semibold text-white">{video.title}</p>
+        <p className="mt-1 text-sm leading-relaxed text-zinc-400">{video.description}</p>
+      </figcaption>
+    </figure>
   )
 }

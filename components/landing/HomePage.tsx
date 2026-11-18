@@ -1031,6 +1031,7 @@ function CompareMark({ on }: { on: boolean }) {
 
 function VideoSection({ videos }: { videos: SiteVideo[] }) {
   const v = useTranslation().landing.videos
+  const hasPortrait = videos.some((video) => video.orientation === 'portrait')
   return (
     <section id="videos" className="scroll-mt-24 border-t border-white/[0.06] py-24 sm:py-32">
       <Container>
@@ -1039,12 +1040,18 @@ function VideoSection({ videos }: { videos: SiteVideo[] }) {
           <h2 className="text-[clamp(30px,3.8vw,48px)] font-semibold leading-[1.06] tracking-[-0.035em] text-white">{v.title}</h2>
           <p className="mt-5 max-w-lg leading-relaxed text-zinc-400">{v.text}</p>
         </Reveal>
-        <div className="mt-12 grid items-start gap-6 lg:grid-cols-3">
+        <div className={`mt-12 grid items-start gap-6 ${hasPortrait ? 'lg:grid-cols-3' : 'md:grid-cols-2'}`}>
           {videos.map((video, i) => (
             <Reveal
               key={video.id}
               delay={i * 80}
-              className={video.orientation === 'portrait' ? 'mx-auto w-full max-w-[360px] lg:row-span-2' : 'lg:col-span-2'}
+              className={
+                video.orientation === 'portrait'
+                  ? 'mx-auto w-full max-w-[360px] lg:row-span-2'
+                  : hasPortrait
+                    ? 'lg:col-span-2'
+                    : ''
+              }
             >
               <figure className="overflow-hidden rounded-[28px] border border-white/10 bg-[#0f1015]">
                 <video
