@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import JsonLd from '@/components/JsonLd'
-import { AnswerBox, BulletList, FaqList, GuideShell, ProductCta, Section } from '@/components/seo/GuideShell'
+import { AnswerBox, BulletList, FaqList, GuideShell, GuideVideo, ProductCta, Section } from '@/components/seo/GuideShell'
 import { SITE_URL, breadcrumbJsonLd, faqJsonLd, productJsonLd } from '@/lib/seo'
+import { videoJsonLd } from '@/lib/videos'
+import { availableVideos } from '@/lib/videos.server'
 
 const PATH = '/warnleuchte-auto'
 const UPDATED = '18.11.2026'
@@ -50,6 +52,7 @@ const FAQ = [
 ] as const
 
 export default function Page() {
+  const video = availableVideos().find((v) => v.id === 'base')
   return (
     <>
       <JsonLd
@@ -73,6 +76,7 @@ export default function Page() {
             publisher: { '@id': `${SITE_URL}/#organization` },
           },
           productJsonLd('base'),
+          ...(video ? [videoJsonLd(video)] : []),
           faqJsonLd(FAQ),
         ]}
       />
@@ -115,6 +119,8 @@ export default function Page() {
             className="h-auto w-full"
           />
         </div>
+
+        <GuideVideo video={video} />
 
         <Section title="Worauf du beim Kauf einer LED-Warnleuchte achten solltest">
           <BulletList

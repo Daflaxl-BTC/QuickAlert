@@ -29,9 +29,9 @@ export const VIDEO_CATALOG: SiteVideo[] = [
     id: 'base',
     file: '/videos/quickalert-base.mp4',
     poster: '/videos/quickalert-base.jpg',
-    title: 'QuickAlert BASE: 360° LED-Warnleuchte mit Magnetfuß',
+    title: 'QuickAlert BASE: 360° Warnlicht mit Magnetfuß',
     description:
-      'So funktioniert die magnetische LED-Warnleuchte fürs Auto: aus dem Handschuhfach greifen, aufs Dach setzen, einschalten. 360° Amber-LED-Ring, Neodym-Magnetfuß, IP54.',
+      'Die magnetische LED-Warnleuchte fürs Auto im Überblick: 360°-Warnlicht in Amber, weiße Taschenlampe, starker Magnetfuß. Aus der Tür greifen, aufs Dach setzen, einschalten.',
     duration: 'PT24S',
     uploadDate: '2026-11-15',
     orientation: 'landscape',
@@ -41,9 +41,9 @@ export const VIDEO_CATALOG: SiteVideo[] = [
     id: 'pro',
     file: '/videos/quickalert-pro.mp4',
     poster: '/videos/quickalert-pro.jpg',
-    title: 'QuickAlert PRO: V16-Warnleuchte mit GPS für Spanien',
+    title: 'QuickAlert PRO: V16-Warnleuchte mit GPS',
     description:
-      'Die vernetzte V16-Warnleuchte (V16 conectada) für Spanien: meldet den Pannenort per GPS automatisch an die DGT 3.0, 12 Jahre eSIM inklusive.',
+      'Die vernetzte V16-Warnleuchte für Spanien im Überblick: V16 nach DGT 3.0, GPS und Mobilfunk (NB-IoT), ein Knopf, sofort aktiv. Zertifiziert nach IDIADA PC26020115.',
     duration: 'PT24S',
     uploadDate: '2026-11-15',
     orientation: 'landscape',
