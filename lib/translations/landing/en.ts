@@ -272,5 +272,8 @@ export const landing: LandingTranslation = {
   footer: {
     tagline: 'Magnetic LED warning light. Seen before it’s too late.',
     certificates: 'Certificates',
+    guideV16: 'Guide: V16 warning light',
+    guideCar: 'Car warning light',
+    partnerNote: 'As an Amazon Associate we earn from qualifying purchases.',
   },
 }

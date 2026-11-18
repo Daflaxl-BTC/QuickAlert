@@ -272,5 +272,8 @@ export const landing: LandingTranslation = {
   footer: {
     tagline: 'Luz de emergencia LED magnética. Visible antes de que sea demasiado tarde.',
     certificates: 'Certificados',
+    guideV16: 'Guía: baliza V16',
+    guideCar: 'Luz de emergencia para coche',
+    partnerNote: 'Como afiliado de Amazon, obtenemos ingresos por las compras adscritas que cumplen los requisitos aplicables.',
   },
 }

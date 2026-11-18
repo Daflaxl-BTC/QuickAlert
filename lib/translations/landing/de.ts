@@ -19,12 +19,12 @@ export const landing = {
     titleAccent: 'zu spät',
     // Fuehrendes Leerzeichen ist Absicht (EN endet direkt mit Punkt)
     titleB: ' ist.',
-    text: 'Die magnetische LED-Warnleuchte fürs Autodach. Aus dem Fenster greifen, aufsetzen, einschalten – und der Verkehr hinter dir sieht die Gefahr, ohne dass du die Fahrbahn betrittst.',
+    text: 'Die magnetische LED-Warnleuchte fürs Auto – direkt aufs Dach. Aus dem Fenster greifen, aufsetzen, einschalten – und der Verkehr hinter dir sieht die Gefahr, ohne dass du die Fahrbahn betrittst.',
     ctaPrimary: 'BASE bei Amazon',
     ctaSecondary: 'Modelle vergleichen',
     trust: ['Neodym-Magnetfuß', '360° LED-Ring', 'IP54 wetterfest'],
-    imageAlt: 'QuickAlert BASE mit Verpackung und leuchtendem LED-Ring',
-    imageAltPro: 'QuickAlert PRO mit automatischer GPS-Standortmeldung',
+    imageAlt: 'QuickAlert BASE: magnetische LED-Warnleuchte fürs Auto mit Verpackung und leuchtendem LED-Ring',
+    imageAltPro: 'QuickAlert PRO: vernetzte V16-Warnleuchte mit automatischer GPS-Standortmeldung für Spanien',
   },
 
   marquee: {
@@ -132,7 +132,7 @@ export const landing = {
       name: 'QuickAlert BASE',
       tagline: 'Die schnelle Absicherung – noch bevor das Warndreieck steht.',
       price: '26,99 €',
-      imageAlt: 'QuickAlert BASE Warnleuchte',
+      imageAlt: 'QuickAlert BASE – LED-Warnleuchte fürs Auto mit Magnetfuß',
       features: [
         '360° Amber-LED-Ring (ECE R65, laut IDIADA-Tests)',
         'Neodym-Magnetfuß – haftet sofort',
@@ -148,7 +148,7 @@ export const landing = {
       name: 'QuickAlert PRO',
       tagline: 'V16 conectada – ersetzt in Spanien das Warndreieck.',
       price: '39,99 €',
-      imageAlt: 'QuickAlert PRO mit Verpackung',
+      imageAlt: 'QuickAlert PRO – V16-Warnleuchte für Spanien mit Verpackung',
       features: [
         'Alle Funktionen der BASE',
         'Integriertes GPS-Modul',
@@ -272,6 +272,9 @@ export const landing = {
   footer: {
     tagline: 'Magnetische LED-Warnleuchte. Sichtbar, bevor es zu spät ist.',
     certificates: 'Zertifikate',
+    guideV16: 'Ratgeber: V16-Warnleuchte',
+    guideCar: 'Warnleuchte fürs Auto',
+    partnerNote: 'Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.',
   },
 }
 
