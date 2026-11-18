@@ -23,7 +23,8 @@ import {
 
 const WHATSAPP_URL = 'https://wa.me/4915119784023'
 const INSTAGRAM_URL = 'https://www.instagram.com/quickalert_germany/'
-const MANUAL_URL = '/QuickAlert/QuickAlert_V16_Bedienungsanleitung.pdf'
+// Uebersichtsseite mit den freigegebenen Anleitungen je Modell und Sprache
+const MANUAL_URL = '/manual'
 const LANGUAGES: Language[] = ['de', 'en', 'es']
 
 /* ---------- kleine Bausteine ---------- */
@@ -477,8 +478,6 @@ export default function Home({ videos = [] }: { videos?: SiteVideo[] }) {
             </dl>
             <a
               href={MANUAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white"
             >
               <svg className="h-4 w-4 text-[#F5A623]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden>
@@ -827,7 +826,7 @@ export default function Home({ videos = [] }: { videos?: SiteVideo[] }) {
             <Link href="/impressum" className="qa-link hover:text-white">{t.footer.links.impressum}</Link>
             <Link href="/datenschutz" className="qa-link hover:text-white">{t.footer.links.privacy}</Link>
             <Link href="/agb" className="qa-link hover:text-white">{t.footer.links.terms}</Link>
-            <a href={MANUAL_URL} target="_blank" rel="noopener noreferrer" className="qa-link hover:text-white">{t.footer.links.manual}</a>
+            <Link href={MANUAL_URL} className="qa-link hover:text-white">{t.footer.links.manual}</Link>
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={t.nav.instagramAria} className="qa-link hover:text-white">
               {t.footer.links.instagram}
             </a>
