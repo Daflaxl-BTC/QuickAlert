@@ -107,6 +107,22 @@ export default function Datenschutz() {
                 </div>
 
                 <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
+                  <h3 className="font-bold text-zinc-800 mb-2">Links zu Amazon (Amazon Attribution)</h3>
+                  <p className="text-zinc-600 text-sm leading-relaxed mb-2">
+                    Die Kauf-Links zu Amazon enthalten Kampagnenparameter des Dienstes Amazon Attribution.
+                    Darüber erkennt Amazon, dass Sie über unsere Website zum Angebot gelangt sind, und stellt
+                    uns ausschließlich zusammengefasste Kennzahlen bereit (etwa Anzahl der Seitenaufrufe und
+                    Käufe). Personenbezogene Daten erhalten wir dabei nicht.
+                  </p>
+                  <p className="text-zinc-600 text-sm leading-relaxed">
+                    Auf unserer Website selbst werden dafür keine Cookies gesetzt. Erst nach dem Klick auf einen
+                    Amazon-Link verarbeitet Amazon (Amazon Europe Core S.à r.l., 38 avenue John F. Kennedy,
+                    L-1855 Luxemburg) Daten in eigener Verantwortung; es gelten die Datenschutzhinweise von
+                    Amazon.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
                   <h3 className="font-bold text-zinc-800 mb-2">Vorbestellung / Interessentenliste (eingestellt)</h3>
                   <p className="text-zinc-600 text-sm leading-relaxed mb-2">
                     Das Vorbestellformular wurde entfernt. Über diese Website werden keine Namen,

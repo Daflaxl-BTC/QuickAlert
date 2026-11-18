@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Bedienungsanleitung — QuickAlert',
+  title: 'Bedienungsanleitung',
   description:
     'Bedienungsanleitungen für QuickAlert BASE und PRO in Deutsch, Spanisch und Englisch zum Download.',
-  alternates: { canonical: 'https://quickalert.eu/manual' },
+  alternates: { canonical: '/manual' },
 }
 
 const manuals = [

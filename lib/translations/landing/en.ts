@@ -14,6 +14,7 @@ export const landing: LandingTranslation = {
   },
 
   hero: {
+    seoTitle: 'Magnetic LED warning light for cars',
     status: 'Now available on Amazon',
     statusSub: 'BASE & PRO',
     titleA: 'Seen before it’s',
@@ -126,12 +127,12 @@ export const landing: LandingTranslation = {
     titleA: 'Two models.',
     titleB: 'One goal: being seen.',
     intro: 'BASE as extra protection for Germany. PRO as the connected V16 warning light for Spain.',
-    priceNote: 'One-off · current price on Amazon',
+    priceNote: 'One-off purchase · no subscription · price changes on Amazon',
+    priceLabel: 'Current price on Amazon',
     base: {
       country: 'Germany',
       name: 'QuickAlert BASE',
       tagline: 'Instant protection – before the warning triangle is even set up.',
-      price: '€26.99',
       imageAlt: 'QuickAlert BASE warning light',
       features: [
         '360° amber LED ring (ECE R65, according to IDIADA tests)',
@@ -147,7 +148,6 @@ export const landing: LandingTranslation = {
       country: 'Spain',
       name: 'QuickAlert PRO',
       tagline: 'V16 conectada – replaces the warning triangle in Spain.',
-      price: '€39.99',
       imageAlt: 'QuickAlert PRO with packaging',
       features: [
         'Everything in BASE',
@@ -167,6 +167,7 @@ export const landing: LandingTranslation = {
     feature: 'Feature',
     market: 'Market',
     price: 'Price',
+    priceLink: 'See price',
     rows: [
       { feature: '360° amber LED ring', base: true, pro: true },
       { feature: 'Light parameters per ECE R65 (IDIADA tests)', base: true, pro: true },
@@ -221,6 +222,14 @@ export const landing: LandingTranslation = {
         a: 'No. The eSIM is included for 12 years. When activated, your location is sent to the DGT 3.0 platform automatically – no smartphone, no contract.',
       },
       {
+        q: 'Is QuickAlert BASE a V16 warning light?',
+        a: 'No. BASE is a magnetic LED warning light for Germany without GPS or DGT connection. Only QuickAlert PRO is a V16 light under the Spanish requirement.',
+      },
+      {
+        q: 'Do I need a V16 light on holiday in Spain?',
+        a: 'Not with a German registration: the Spanish V16 requirement applies to vehicles registered in Spain. Cars registered in Spain need the connected V16, i.e. QuickAlert PRO.',
+      },
+      {
         q: 'Where can I buy QuickAlert?',
         a: 'Directly on Amazon – both BASE and PRO. Dealers and fleets can reach us on WhatsApp.',
       },
@@ -241,23 +250,19 @@ export const landing: LandingTranslation = {
     buyPro: 'View PRO on Amazon',
     base: [
       { title: 'QuickAlert BASE', text: 'The emergency warning light with its packaging – compact, magnetic and ready to use.' },
-      { title: 'Seen before it’s too late', text: 'The amber LED ring lights up all around. The heart of the BASE – additional protection in Germany.' },
       { title: 'Tested safety', text: 'Test report PC21020060, CE marking, IP54 and RoHS – independently tested and properly documented.' },
       { title: 'Compact. Within reach.', text: 'Small enough for the door pocket or glovebox. With a strong magnet base for the steel roof.' },
       { title: 'Ready in seconds', text: 'Grab it, put it on the roof, switch it on. No setting up, no walking, no waiting.' },
       { title: 'Warning triangle vs. QuickAlert', text: 'Instead of walking into the danger zone: on the roof in seconds and visible all around. The triangle is still mandatory in Germany.' },
-      { title: 'German brand', text: 'German customer service, German manual and clearly documented tests.' },
     ],
     pro: [
       { title: 'QuickAlert PRO', text: 'The connected V16 warning light for Spain – with its packaging.' },
-      { title: 'Seen before it’s too late', text: '360° LED warning light with integrated GPS and eSIM.' },
       { title: 'One light. Every direction.', text: '360° LED light band, one-button operation, strong magnet base – GPS and eSIM built in.' },
       { title: 'Tested safety', text: 'IDIADA PC26020115, certified for DGT 3.0. Plus IP54 and CE conformity.' },
       { title: 'Compact. Within reach.', text: 'Fits in any glovebox – always with you when it matters.' },
       { title: 'Ready in seconds', text: 'Grab it, put it on the roof, switch it on. No setting up, no walking.' },
       { title: 'Reports your breakdown automatically', text: 'GPS location reporting to DGT 3.0 – no app, no smartphone. 12 years of eSIM included.' },
       { title: 'One button. Instantly visible.', text: 'Red on/off button, engraved IDIADA test number and QuickAlert branding on top.' },
-      { title: 'German brand', text: 'German customer service and clearly documented tests – for the Spanish market too.' },
     ],
   },
 
@@ -269,8 +274,30 @@ export const landing: LandingTranslation = {
     secondary: 'For dealers & fleets',
   },
 
+  videos: {
+    label: 'Video',
+    title: 'Ready in seconds.',
+    text: 'See how QuickAlert works: grab it, place it, switch it on.',
+  },
+
+  guides: {
+    label: 'Guides',
+    title: 'Know what to do.',
+    intro: 'Short guides (in German) on the legal situation, breakdown safety and choosing a warning light.',
+    read: 'Read more',
+    items: [
+      { href: '/v16-warnleuchte', title: 'V16 warning light: mandatory in Spain, rules in Germany', text: 'What a V16 light is, who the Spanish rule applies to and what applies in Germany.' },
+      { href: '/warnleuchte-auto', title: 'Car warning light: buyer’s guide', text: 'What matters when buying and how to use a warning light correctly.' },
+      { href: '/warndreieck-abstand', title: 'Warning triangle: correct distance', text: 'How far the warning triangle must be placed in town, on country roads and on the motorway.' },
+      { href: '/panne-autobahn', title: 'Breakdown on the motorway: what to do', text: 'Step by step: hazard lights, safety vest, securing the scene, emergency call.' },
+    ],
+  },
+
   footer: {
     tagline: 'Magnetic LED warning light. Seen before it’s too late.',
     certificates: 'Certificates',
+    guideV16: 'Guide: V16 warning light',
+    guides: 'All guides',
+    guideCar: 'Car warning light',
   },
 }

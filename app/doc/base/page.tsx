@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'EU-Konformitätserklärung — QuickAlert BASE',
   description:
     'EU-Konformitätserklärung (Declaration of Conformity) für QuickAlert BASE gemäß den anwendbaren EU-Richtlinien und -Verordnungen.',
-  alternates: { canonical: 'https://quickalert.eu/doc/base' },
+  alternates: { canonical: '/doc/base' },
 }
 
 const PDF_HREF = '/compliance/doc-base.pdf'

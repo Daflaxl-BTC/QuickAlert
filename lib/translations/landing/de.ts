@@ -13,18 +13,19 @@ export const landing = {
   },
 
   hero: {
+    seoTitle: 'Magnetische LED-Warnleuchte fürs Auto',
     status: 'Jetzt bei Amazon erhältlich',
     statusSub: 'BASE & PRO',
     titleA: 'Sichtbar, bevor es',
     titleAccent: 'zu spät',
     // Fuehrendes Leerzeichen ist Absicht (EN endet direkt mit Punkt)
     titleB: ' ist.',
-    text: 'Die magnetische LED-Warnleuchte fürs Autodach. Aus dem Fenster greifen, aufsetzen, einschalten – und der Verkehr hinter dir sieht die Gefahr, ohne dass du die Fahrbahn betrittst.',
+    text: 'Die magnetische LED-Warnleuchte fürs Auto – direkt aufs Dach. Aus dem Fenster greifen, aufsetzen, einschalten – und der Verkehr hinter dir sieht die Gefahr, ohne dass du die Fahrbahn betrittst.',
     ctaPrimary: 'BASE bei Amazon',
     ctaSecondary: 'Modelle vergleichen',
     trust: ['Neodym-Magnetfuß', '360° LED-Ring', 'IP54 wetterfest'],
-    imageAlt: 'QuickAlert BASE mit Verpackung und leuchtendem LED-Ring',
-    imageAltPro: 'QuickAlert PRO mit automatischer GPS-Standortmeldung',
+    imageAlt: 'QuickAlert BASE: magnetische LED-Warnleuchte fürs Auto mit Verpackung und leuchtendem LED-Ring',
+    imageAltPro: 'QuickAlert PRO: vernetzte V16-Warnleuchte mit automatischer GPS-Standortmeldung für Spanien',
   },
 
   marquee: {
@@ -126,13 +127,13 @@ export const landing = {
     titleA: 'Zwei Modelle.',
     titleB: 'Ein Ziel: gesehen werden.',
     intro: 'BASE als zusätzliche Absicherung für Deutschland. PRO als vernetzte V16-Warnleuchte für Spanien.',
-    priceNote: 'Einmalig · aktueller Preis bei Amazon',
+    priceNote: 'Einmalkauf · kein Abo · Preis ändert sich bei Amazon laufend',
+    priceLabel: 'Aktueller Preis bei Amazon',
     base: {
       country: 'Deutschland',
       name: 'QuickAlert BASE',
       tagline: 'Die schnelle Absicherung – noch bevor das Warndreieck steht.',
-      price: '26,99 €',
-      imageAlt: 'QuickAlert BASE Warnleuchte',
+      imageAlt: 'QuickAlert BASE – LED-Warnleuchte fürs Auto mit Magnetfuß',
       features: [
         '360° Amber-LED-Ring (ECE R65, laut IDIADA-Tests)',
         'Neodym-Magnetfuß – haftet sofort',
@@ -147,8 +148,7 @@ export const landing = {
       country: 'Spanien',
       name: 'QuickAlert PRO',
       tagline: 'V16 conectada – ersetzt in Spanien das Warndreieck.',
-      price: '39,99 €',
-      imageAlt: 'QuickAlert PRO mit Verpackung',
+      imageAlt: 'QuickAlert PRO – V16-Warnleuchte für Spanien mit Verpackung',
       features: [
         'Alle Funktionen der BASE',
         'Integriertes GPS-Modul',
@@ -167,6 +167,7 @@ export const landing = {
     feature: 'Funktion',
     market: 'Markt',
     price: 'Preis',
+    priceLink: 'Preis ansehen',
     rows: [
       { feature: '360° Amber-LED-Ring', base: true, pro: true },
       { feature: 'Lichtparameter nach ECE R65 (laut IDIADA)', base: true, pro: true },
@@ -221,6 +222,14 @@ export const landing = {
         a: 'Nein. Die eSIM ist für 12 Jahre inklusive. Bei Aktivierung wird der Standort automatisch an die DGT-3.0-Plattform übermittelt – ohne Smartphone, ohne Vertrag.',
       },
       {
+        q: 'Ist QuickAlert BASE eine V16-Warnleuchte?',
+        a: 'Nein. Die BASE ist eine magnetische LED-Warnleuchte für Deutschland ohne GPS und ohne DGT-Anbindung. V16-Warnleuchte im Sinne der spanischen Pflicht ist nur die QuickAlert PRO.',
+      },
+      {
+        q: 'Brauche ich im Spanien-Urlaub eine V16-Warnleuchte?',
+        a: 'Mit deutschem Kennzeichen nicht: Die spanische V16-Pflicht gilt für in Spanien zugelassene Fahrzeuge. Für Autos mit spanischer Zulassung ist die vernetzte V16, also die QuickAlert PRO, vorgeschrieben.',
+      },
+      {
         q: 'Wo kann ich QuickAlert kaufen?',
         a: 'Direkt bei Amazon – BASE und PRO. Händler und Flotten erreichen uns per WhatsApp.',
       },
@@ -241,23 +250,19 @@ export const landing = {
     buyPro: 'PRO bei Amazon ansehen',
     base: [
       { title: 'QuickAlert BASE', text: 'Die Notfall-Warnleuchte mit Verpackung – kompakt, magnetisch und sofort einsatzbereit.' },
-      { title: 'Sichtbar, bevor es zu spät ist', text: 'Der Amber-LED-Ring leuchtet rundum. Das Herzstück der BASE – in Deutschland als zusätzliche Absicherung.' },
       { title: 'Geprüfte Sicherheit', text: 'Prüfbericht PC21020060, CE-Kennzeichnung, IP54 und RoHS – unabhängig getestet und sauber dokumentiert.' },
       { title: 'Kompakt. Griffbereit.', text: 'Klein genug für Tür- oder Handschuhfach. Mit starkem Magnetfuß für das Stahldach.' },
       { title: 'In Sekunden einsatzbereit', text: 'Aus der Tür greifen, aufs Dach setzen, einschalten. Kein Aufstellen, kein Fußweg, keine Wartezeit.' },
       { title: 'Warndreieck vs. QuickAlert', text: 'Statt Fußweg in der Gefahrenzone: in Sekunden auf dem Dach und rundum sichtbar. Das Warndreieck bleibt in Deutschland trotzdem Pflicht.' },
-      { title: 'Deutsche Marke', text: 'Deutscher Kundenservice, Anleitung auf Deutsch und klar dokumentierte Prüfungen.' },
     ],
     pro: [
       { title: 'QuickAlert PRO', text: 'Die vernetzte V16-Warnleuchte für Spanien – mit Verpackung.' },
-      { title: 'Sichtbar, bevor es zu spät ist', text: '360°-LED-Warnlicht mit integriertem GPS und eSIM.' },
       { title: 'Ein Licht. Alle Richtungen.', text: '360°-LED-Lichtband, Ein-Knopf-Bedienung, starker Magnetfuß – GPS und eSIM sind integriert.' },
       { title: 'Geprüfte Sicherheit', text: 'IDIADA PC26020115, zertifiziert nach DGT 3.0. Dazu IP54 und CE-Konformität.' },
       { title: 'Kompakt. Griffbereit.', text: 'Passt in jedes Handschuhfach – immer dabei, wenn es darauf ankommt.' },
       { title: 'In Sekunden einsatzbereit', text: 'Aus der Tür greifen, aufs Dach setzen, einschalten. Kein Aufstellen, kein Fußweg.' },
       { title: 'Meldet die Panne automatisch', text: 'GPS-Standortmeldung an die DGT 3.0 – ohne App, ohne Smartphone. 12 Jahre eSIM inklusive.' },
       { title: 'Ein Knopf. Sofort sichtbar.', text: 'Roter Ein-/Aus-Taster, eingravierte IDIADA-Prüfnummer und QuickAlert-Branding auf der Oberseite.' },
-      { title: 'Deutsche Marke', text: 'Deutscher Kundenservice und klar dokumentierte Prüfungen – auch für den spanischen Markt.' },
     ],
   },
 
@@ -269,9 +274,31 @@ export const landing = {
     secondary: 'Für Händler & Flotten',
   },
 
+  videos: {
+    label: 'Video',
+    title: 'In Sekunden einsatzbereit.',
+    text: 'Sieh selbst, wie QuickAlert funktioniert: greifen, aufsetzen, einschalten.',
+  },
+
+  guides: {
+    label: 'Ratgeber',
+    title: 'Wissen für den Ernstfall.',
+    intro: 'Kompakt erklärt: Rechtslage, richtiges Verhalten bei einer Panne und worauf es bei einer Warnleuchte ankommt.',
+    read: 'Weiterlesen',
+    items: [
+      { href: '/v16-warnleuchte', title: 'V16-Warnleuchte: Pflicht in Spanien, Regeln in Deutschland', text: 'Was eine V16-Leuchte ist, wen die spanische Pflicht betrifft und was in Deutschland gilt.' },
+      { href: '/warnleuchte-auto', title: 'Warnleuchte fürs Auto: Kaufberatung', text: 'Worauf es beim Kauf ankommt und wie du die Warnleuchte richtig einsetzt.' },
+      { href: '/warndreieck-abstand', title: 'Warndreieck: richtiger Abstand', text: 'Wie weit das Warndreieck innerorts, auf der Landstraße und auf der Autobahn stehen muss.' },
+      { href: '/panne-autobahn', title: 'Panne auf der Autobahn: richtig verhalten', text: 'Schritt für Schritt: Warnblinker, Warnweste, Absichern, Notruf.' },
+    ],
+  },
+
   footer: {
     tagline: 'Magnetische LED-Warnleuchte. Sichtbar, bevor es zu spät ist.',
     certificates: 'Zertifikate',
+    guideV16: 'Ratgeber: V16-Warnleuchte',
+    guides: 'Alle Ratgeber',
+    guideCar: 'Warnleuchte fürs Auto',
   },
 }
 

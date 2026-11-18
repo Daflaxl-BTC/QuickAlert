@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'EU-Konformitätserklärung — QuickAlert PRO',
   description:
     'EU-Konformitätserklärung (Declaration of Conformity) für QuickAlert PRO gemäß den anwendbaren EU-Richtlinien und -Verordnungen.',
-  alternates: { canonical: 'https://quickalert.eu/doc/pro' },
+  alternates: { canonical: '/doc/pro' },
 }
 
 const PDF_HREF = '/compliance/doc-pro.pdf'

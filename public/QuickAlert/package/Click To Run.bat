@@ -1,1 +1,0 @@
-setup /configure configuration.xml
