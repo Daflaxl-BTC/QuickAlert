@@ -10,7 +10,7 @@ const PAGES: { path: string; lastModified: string; changeFrequency: MetadataRout
   { path: '/ratgeber', lastModified: '2026-11-18', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/warndreieck-abstand', lastModified: '2026-11-18', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/panne-autobahn', lastModified: '2026-11-18', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/manual', lastModified: '2026-06-18', changeFrequency: 'yearly', priority: 0.4 },
+  { path: '/manual', lastModified: '2026-11-18', changeFrequency: 'yearly', priority: 0.4 },
   { path: '/doc/base', lastModified: '2026-06-18', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/doc/pro', lastModified: '2026-06-18', changeFrequency: 'yearly', priority: 0.3 },
   { path: '/impressum', lastModified: '2026-11-18', changeFrequency: 'yearly', priority: 0.2 },

@@ -131,7 +131,7 @@ export const es = {
         badge: "PRO",
       },
     },
-    manual: "Descargar manual de usuario (PDF)",
+    manual: "Manuales de usuario (PDF)",
   },
 
   // Problem Section

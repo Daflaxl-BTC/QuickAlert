@@ -62,9 +62,12 @@ brand-assets/  → Logo-Dateien (SVG, PDF)
 - Erfüllt ECE R65 Lichtparameter (laut IDIADA-Tests)
 - Neodym-Magnetfuß
 - IP54 Wasser- & Staubschutz (laut IDIADA)
-- **3x AA Batterien (LR6, Alkaline)** (NICHT AAA, NICHT USB-C/Akku!)
+- **3x AAA Batterien (LR03, Alkaline)** (BASE = AAA! Nur die PRO nutzt 3x AA)
+- Weiße Taschenlampe (zweite Taste), zwei Tasten: Blinken / Weißlicht
+- Gewicht ca. 120 g, Maße laut Proforma 90 x 90 x 42 mm
 - Kompaktes Handschuhfach-Design
-- Modell CH-019, EAN 4270005258300
+- Modell CH-400-2, EAN 4270005258300, Hersteller Ningbo Tianqi
+- Quelle: freigegebene Bedienungsanleitung BASE-DE (Stand 18.06.2026)
 - ⚠️ Darf NICHT als „V16" oder „homologada" beworben werden (kein DGT-Listing)
 
 ### QuickAlert PRO (49€) — ES-Markt, V16 conectada
@@ -84,12 +87,12 @@ brand-assets/  → Logo-Dateien (SVG, PDF)
 - Spanien: V16 conectada Pflicht ab 01.01.2026
 
 ### Pflicht-Specs
-- Stromversorgung: 3× AA Alkaline LR6 (NICHT AAA!)
+- Stromversorgung: BASE 3× AAA (LR03), PRO 3× AA (LR6)
 - IP-Klasse: IP54 (laut IDIADA — falls Hersteller höhere Klasse zertifiziert, Datenblatt prüfen)
 - Wind-Stabilität: 180 Pa getestet (220 km/h Marketing-Claim ohne separaten Test → vermeiden)
 - Sichtbarkeit: niemals konkrete km-Angaben ohne Beleg → „auch aus großer Entfernung sichtbar"
 - Betriebstemperatur: −10 °C bis +50 °C
-- Gewicht: ~250 g
+- Gewicht: BASE ~120 g, PRO ~210 g (laut Amazon-Bildern; vor Verwendung pruefen)
 
 ## Dark Mode vs Light Mode
 

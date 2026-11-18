@@ -1,0 +1,43 @@
+/**
+ * Freigegebene Bedienungsanleitungen (Stand 18.06.2026, Notion:
+ * „Bedienungsanleitungen freigegeben – BASE-DE, PRO-DE, PRO-ES“).
+ *
+ * Ablage: public/manuals/<file>. Eine Anleitung erscheint auf /manual erst, wenn die
+ * Datei beim Build vorhanden ist. Nie die alte Fassung „QuickAlert V16 Warnleuchte“
+ * verwenden (falsche IDIADA-Nummer, 220 km/h, >1 km, IP64, AA fuer BASE).
+ */
+export type Manual = {
+  product: 'base' | 'pro'
+  lang: string
+  langCode: 'DE' | 'ES' | 'EN'
+  file: string
+  pages: number
+  facts: string
+}
+
+export const MANUAL_CATALOG: Manual[] = [
+  {
+    product: 'base',
+    lang: 'Deutsch',
+    langCode: 'DE',
+    file: '/manuals/QuickAlert-BASE-Bedienungsanleitung-DE.pdf',
+    pages: 4,
+    facts: 'Modell CH-400-2 · 3× AAA (LR03) · IP54 · weiße Taschenlampe',
+  },
+  {
+    product: 'pro',
+    lang: 'Deutsch',
+    langCode: 'DE',
+    file: '/manuals/QuickAlert-PRO-Bedienungsanleitung-DE.pdf',
+    pages: 5,
+    facts: 'Modell CH-019 · 3× AA (LR6) · IP54 · IDIADA PC26020115',
+  },
+  {
+    product: 'pro',
+    lang: 'Español',
+    langCode: 'ES',
+    file: '/manuals/QuickAlert-PRO-Manual-ES.pdf',
+    pages: 5,
+    facts: 'Modelo CH-019 · 3× AA (LR6) · IP54 · IDIADA PC26020115',
+  },
+]
