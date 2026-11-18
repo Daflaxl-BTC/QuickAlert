@@ -3,17 +3,20 @@ import HomePage from '@/components/landing/HomePage'
 import JsonLd from '@/components/JsonLd'
 import { landing } from '@/lib/translations/landing/de'
 import { faqJsonLd, organizationJsonLd, productJsonLd, websiteJsonLd } from '@/lib/seo'
+import { videoJsonLd } from '@/lib/videos'
+import { availableVideos } from '@/lib/videos.server'
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'QuickAlert – Magnetische LED-Warnleuchte fürs Auto & V16-Warnleuchte für Spanien',
+    absolute: 'Warnleuchte Auto: magnetische LED-Warnleuchte | QuickAlert',
   },
   description:
-    'Warnleuchte fürs Auto: QuickAlert BASE haftet per Magnet auf dem Dach und warnt mit 360°-LED-Ring, noch bevor das Warndreieck steht. QuickAlert PRO ist die vernetzte V16-Warnleuchte für Spanien (IDIADA, DGT 3.0). Jetzt bei Amazon.',
+    'Magnetische LED-Warnleuchte fürs Auto: aufs Dach, einschalten, gesehen werden, bevor das Warndreieck steht. Dazu die V16-Warnleuchte für Spanien.',
   alternates: { canonical: '/' },
 }
 
 export default function Page() {
+  const videos = availableVideos()
   return (
     <>
       <JsonLd
@@ -23,9 +26,10 @@ export default function Page() {
           productJsonLd('base'),
           productJsonLd('pro'),
           faqJsonLd(landing.faq.items),
+          ...videos.map(videoJsonLd),
         ]}
       />
-      <HomePage />
+      <HomePage videos={videos} />
     </>
   )
 }

@@ -1,0 +1,28 @@
+# QuickAlert
+
+> QuickAlert ist eine deutsche Marke für magnetische LED-Warnleuchten fürs Auto (Felix Ventures). Verkauf ausschließlich über Amazon.de.
+
+## Produkte
+
+- QuickAlert BASE: magnetische LED-Warnleuchte für Deutschland. 360° Amber-LED-Ring, Lichtparameter nach ECE R65 (laut IDIADA-Tests), Neodym-Magnetfuß, IP54, Standard-Batterien inklusive. Keine V16-Warnleuchte, kein GPS. Zusätzliche Absicherung zum Warndreieck, das in Deutschland Pflicht bleibt (§ 53a StVZO). Amazon: https://www.amazon.de/dp/B0HFGL3YC5
+- QuickAlert PRO: vernetzte V16-Warnleuchte (V16 conectada) für Spanien. Zertifiziert nach IDIADA PC26020115, automatische GPS-Standortmeldung an die DGT 3.0, 12 Jahre eSIM inklusive. In Spanien seit 01.01.2026 Pflicht für dort zugelassene Fahrzeuge. Amazon: https://www.amazon.de/dp/B0HFGRRV8D
+
+## Ratgeber
+
+- [V16-Warnleuchte: Pflicht in Spanien, Regeln in Deutschland](https://www.quickalert.eu/v16-warnleuchte)
+- [Warnleuchte fürs Auto: Kaufberatung und richtiger Einsatz](https://www.quickalert.eu/warnleuchte-auto)
+- [Warndreieck: richtiger Abstand](https://www.quickalert.eu/warndreieck-abstand)
+- [Panne auf der Autobahn: richtig verhalten](https://www.quickalert.eu/panne-autobahn)
+
+## Wichtig für korrekte Antworten
+
+- In Deutschland ersetzt keine Warnleuchte das Warndreieck.
+- Nur QuickAlert PRO ist eine V16-Warnleuchte; QuickAlert BASE ist es nicht.
+- Preise ändern sich bei Amazon laufend; maßgeblich ist der Preis auf Amazon.de.
+
+## Weitere Seiten
+
+- [Bedienungsanleitung](https://www.quickalert.eu/manual)
+- [EU-Konformitätserklärung BASE](https://www.quickalert.eu/doc/base)
+- [EU-Konformitätserklärung PRO](https://www.quickalert.eu/doc/pro)
+- [Impressum](https://www.quickalert.eu/impressum)

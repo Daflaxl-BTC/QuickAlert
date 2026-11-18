@@ -8,8 +8,9 @@ import Reveal from '@/components/Reveal'
 import ScrollProgress from '@/components/ScrollProgress'
 import { useLanguage } from '@/components/LanguageProvider'
 import type { Language } from '@/components/LanguageProvider'
+import type { SiteVideo } from '@/lib/videos'
 import { useTranslation } from '@/lib/translations/useTranslation'
-import { AMAZON_LINK_REL, HAS_AMAZON_PARTNER_TAG, amazonUrl } from '@/lib/amazon'
+import { AMAZON_LINK_REL, amazonUrl } from '@/lib/amazon'
 import {
   BatteryIcon,
   BoxIcon,
@@ -21,7 +22,7 @@ import {
 } from '@/components/QaIcons'
 
 const WHATSAPP_URL = 'https://wa.me/4915119784023'
-const INSTAGRAM_URL = 'https://www.instagram.com/quickalert_germany?igsh=MTh4ZnJiZHV1a2l3dA%3D%3D&utm_source=qr'
+const INSTAGRAM_URL = 'https://www.instagram.com/quickalert_germany/'
 const MANUAL_URL = '/QuickAlert/QuickAlert_V16_Bedienungsanleitung.pdf'
 const LANGUAGES: Language[] = ['de', 'en', 'es']
 
@@ -71,7 +72,7 @@ function Logo({ className = '' }: { className?: string }) {
 
 /* ---------- Seite ---------- */
 
-export default function Home() {
+export default function Home({ videos = [] }: { videos?: SiteVideo[] }) {
   const t = useTranslation()
   const l = t.landing
   const { language, setLanguage } = useLanguage()
@@ -172,6 +173,12 @@ export default function Home() {
             </div>
 
             <h1
+              className="qa-enter mb-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#F5A623] sm:text-base"
+              style={{ '--qa-delay': '60ms' } as React.CSSProperties}
+            >
+              {l.hero.seoTitle}
+            </h1>
+            <p
               className="qa-enter text-[clamp(44px,7.4vw,92px)] font-semibold leading-[0.98] tracking-[-0.045em] text-white"
               style={{ '--qa-delay': '90ms' } as React.CSSProperties}
             >
@@ -180,7 +187,7 @@ export default function Home() {
                 {l.hero.titleAccent}
               </span>
               {l.hero.titleB}
-            </h1>
+            </p>
 
             <p
               className="qa-enter mt-7 max-w-xl text-lg leading-relaxed text-zinc-400 sm:text-xl"
@@ -197,7 +204,6 @@ export default function Home() {
                 className="qa-btn min-h-[54px] !rounded-full bg-[#F5A623] px-7 text-base font-semibold text-[#0b0c0f] shadow-[0_14px_40px_-10px_rgba(245,166,35,0.65)] [--qa-btn-fill:#ffffff]"
               >
                 {l.hero.ctaPrimary}
-                <span className="font-normal opacity-70">· {l.models.base.price}</span>
                 <ArrowIcon />
               </a>
               <a
@@ -243,7 +249,7 @@ export default function Home() {
               <div className="qa-float absolute bottom-0 left-0 w-[74%]">
                 <div className="-rotate-[3deg] overflow-hidden rounded-[28px] border border-white/15 shadow-[0_50px_100px_-30px_rgba(0,0,0,0.95),0_0_80px_-20px_rgba(245,166,35,0.35)]">
                   <Image
-                    src="/landing/amazon/base-09.jpg"
+                    src="/landing/amazon/base-01.jpg"
                     alt={l.hero.imageAlt}
                     width={1400}
                     height={1400}
@@ -348,7 +354,7 @@ export default function Home() {
               <div className="relative overflow-hidden rounded-[32px] border border-white/10 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)]">
                 <Image
                   src="/landing/amazon/base-06.jpg"
-                  alt={l.gallery.base[4].title}
+                  alt={l.gallery.base[3].title}
                   width={1400}
                   height={1400}
                   sizes="(min-width: 1024px) 600px, 100vw"
@@ -359,6 +365,9 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      {/* ---------- Videos (nur wenn Dateien vorhanden) ---------- */}
+      {videos.length > 0 && <VideoSection videos={videos} />}
 
       {/* ---------- Technik (Bento, hell) ---------- */}
       <section id="features" className="scroll-mt-24 bg-[#f3eee4] py-24 text-[#16171b] sm:py-32">
@@ -507,7 +516,7 @@ export default function Home() {
                 <h3 className="text-2xl font-semibold tracking-[-0.02em]">{l.models.base.name}</h3>
                 <p className="mt-1 text-zinc-600">{l.models.base.tagline}</p>
                 <div className="mt-6 flex items-baseline gap-2">
-                  <span className="qa-num text-5xl font-semibold tracking-[-0.04em]">{l.models.base.price}</span>
+                  <span className="text-2xl font-semibold tracking-[-0.03em]">{l.models.priceLabel}</span>
                 </div>
                 <p className="mt-1 text-xs text-zinc-500">{l.models.priceNote}</p>
                 <ul className="mb-8 mt-7 space-y-3">
@@ -547,7 +556,7 @@ export default function Home() {
                 <h3 className="text-2xl font-semibold tracking-[-0.02em]">{l.models.pro.name}</h3>
                 <p className="mt-1 text-zinc-400">{l.models.pro.tagline}</p>
                 <div className="mt-6 flex items-baseline gap-2">
-                  <span className="qa-num text-5xl font-semibold tracking-[-0.04em]">{l.models.pro.price}</span>
+                  <span className="text-2xl font-semibold tracking-[-0.03em]">{l.models.priceLabel}</span>
                 </div>
                 <p className="mt-1 text-xs text-zinc-500">{l.models.priceNote}</p>
                 <ul className="mb-6 mt-7 space-y-3">
@@ -610,13 +619,13 @@ export default function Home() {
                   <tr>
                     <th scope="row" className="px-4 py-5 text-sm font-normal text-zinc-500 sm:px-6">{l.compare.price}</th>
                     <td className="px-4 py-5 text-center">
-                      <a href={amazonUrl('base')} target="_blank" rel={AMAZON_LINK_REL} className="qa-num text-base font-semibold sm:text-xl text-white underline-offset-4 hover:underline">
-                        {l.models.base.price}
+                      <a href={amazonUrl('base')} target="_blank" rel={AMAZON_LINK_REL} className="text-sm font-semibold sm:text-base text-white underline underline-offset-4">
+                        {l.compare.priceLink}
                       </a>
                     </td>
                     <td className="bg-[#F5A623]/[0.04] px-4 py-5 text-center">
-                      <a href={amazonUrl('pro')} target="_blank" rel={AMAZON_LINK_REL} className="qa-num text-base font-semibold sm:text-xl text-[#F5A623] underline-offset-4 hover:underline">
-                        {l.models.pro.price}
+                      <a href={amazonUrl('pro')} target="_blank" rel={AMAZON_LINK_REL} className="text-sm font-semibold sm:text-base text-[#F5A623] underline underline-offset-4">
+                        {l.compare.priceLink}
                       </a>
                     </td>
                   </tr>
@@ -653,6 +662,34 @@ export default function Home() {
                 <p className="text-3xl" aria-hidden>{country.flag}</p>
                 <h3 className="mt-4 text-xl font-semibold text-white">{country.name}</h3>
                 <p className="mt-2 leading-relaxed text-zinc-400">{country.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ---------- Ratgeber (interne Verlinkung) ---------- */}
+      <section id="ratgeber" className="scroll-mt-24 border-t border-white/[0.06] py-24 sm:py-32">
+        <Container>
+          <Reveal className="max-w-2xl">
+            <Eyebrow>{l.guides.label}</Eyebrow>
+            <h2 className="text-[clamp(30px,3.8vw,48px)] font-semibold leading-[1.06] tracking-[-0.035em] text-white">{l.guides.title}</h2>
+            <p className="mt-5 max-w-lg leading-relaxed text-zinc-400">{l.guides.intro}</p>
+          </Reveal>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            {l.guides.items.map((g, i) => (
+              <Reveal key={g.href} delay={i * 80}>
+                <Link
+                  href={g.href}
+                  className="qa-card group flex h-full flex-col rounded-[28px] border border-white/[0.08] bg-[#111216] p-7 hover:border-[#F5A623]/50"
+                >
+                  <h3 className="text-xl font-semibold tracking-[-0.02em] text-white">{g.title}</h3>
+                  <p className="mt-2 flex-1 leading-relaxed text-zinc-400">{g.text}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F5A623]">
+                    {l.guides.read}
+                    <ArrowIcon />
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -782,9 +819,10 @@ export default function Home() {
             <span className="text-white"><Logo /></span>
             <p className="mt-3 text-sm leading-relaxed text-zinc-500">{l.footer.tagline}</p>
           </div>
-          <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-zinc-400">
+          <nav className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-zinc-400 [&>a]:inline-flex [&>a]:min-h-[32px] [&>a]:items-center">
             <Link href="/v16-warnleuchte" className="qa-link hover:text-white">{l.footer.guideV16}</Link>
             <Link href="/warnleuchte-auto" className="qa-link hover:text-white">{l.footer.guideCar}</Link>
+            <Link href="/ratgeber" className="qa-link hover:text-white">{l.footer.guides}</Link>
             <a href="#zertifikate" className="qa-link hover:text-white">{l.footer.certificates}</a>
             <Link href="/impressum" className="qa-link hover:text-white">{t.footer.links.impressum}</Link>
             <Link href="/datenschutz" className="qa-link hover:text-white">{t.footer.links.privacy}</Link>
@@ -797,7 +835,6 @@ export default function Home() {
         </Container>
         <Container className="mt-10 border-t border-white/[0.06] pt-6">
           <p className="text-xs text-zinc-600">{t.footer.copyright}</p>
-          {HAS_AMAZON_PARTNER_TAG && <p className="mt-2 text-xs text-zinc-600">{l.footer.partnerNote}</p>}
         </Container>
       </footer>
 
@@ -820,9 +857,10 @@ export default function Home() {
 
 // Reihenfolge muss zu landing.gallery.base / .pro passen.
 // BASE 03 + 08 bewusst nicht dabei: enthalten "sichtbar bis 1 km" (kein Beleg, siehe .cursorrules).
+// BASE 02/09 und PRO 02/09 nicht dabei: Hinweis "Neu · Launch September 2026" ist veraltet.
 const GALLERY_IMAGES = {
-  base: ['base-01', 'base-02', 'base-04', 'base-05', 'base-06', 'base-07', 'base-09'],
-  pro: ['pro-01', 'pro-02', 'pro-03', 'pro-04', 'pro-05', 'pro-06', 'pro-07', 'pro-08', 'pro-09'],
+  base: ['base-01', 'base-04', 'base-05', 'base-06', 'base-07'],
+  pro: ['pro-01', 'pro-03', 'pro-04', 'pro-05', 'pro-06', 'pro-07', 'pro-08'],
 } as const
 
 type GalleryModel = keyof typeof GALLERY_IMAGES
@@ -988,5 +1026,47 @@ function CompareMark({ on }: { on: boolean }) {
     </span>
   ) : (
     <span className="text-zinc-600" aria-label="–">—</span>
+  )
+}
+
+function VideoSection({ videos }: { videos: SiteVideo[] }) {
+  const v = useTranslation().landing.videos
+  return (
+    <section id="videos" className="scroll-mt-24 border-t border-white/[0.06] py-24 sm:py-32">
+      <Container>
+        <Reveal className="max-w-2xl">
+          <Eyebrow>{v.label}</Eyebrow>
+          <h2 className="text-[clamp(30px,3.8vw,48px)] font-semibold leading-[1.06] tracking-[-0.035em] text-white">{v.title}</h2>
+          <p className="mt-5 max-w-lg leading-relaxed text-zinc-400">{v.text}</p>
+        </Reveal>
+        <div className="mt-12 grid items-start gap-6 lg:grid-cols-3">
+          {videos.map((video, i) => (
+            <Reveal
+              key={video.id}
+              delay={i * 80}
+              className={video.orientation === 'portrait' ? 'mx-auto w-full max-w-[360px] lg:row-span-2' : 'lg:col-span-2'}
+            >
+              <figure className="overflow-hidden rounded-[28px] border border-white/10 bg-[#0f1015]">
+                <video
+                  className={`w-full ${video.orientation === 'portrait' ? 'aspect-[9/16]' : 'aspect-video'} object-cover`}
+                  controls
+                  playsInline
+                  muted
+                  preload="none"
+                  poster={video.poster}
+                  aria-label={video.title}
+                >
+                  <source src={video.file} type="video/mp4" />
+                </video>
+                <figcaption className="px-5 py-4">
+                  <p className="font-semibold text-white">{video.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-zinc-400">{video.description}</p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </section>
   )
 }

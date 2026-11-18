@@ -9,7 +9,7 @@ const PATH = '/v16-warnleuchte'
 const UPDATED = '18.11.2026'
 const UPDATED_ISO = '2026-11-18'
 
-const TITLE = 'V16-Warnleuchte: Pflicht in Spanien, Rechtslage in Deutschland'
+const TITLE = 'V16-Warnleuchte: Pflicht, Regeln & Kaufhilfe'
 const DESCRIPTION =
   'Was ist eine V16-Warnleuchte, wo ist sie Pflicht und was gilt in Deutschland? Der Überblick zu V16 conectada, DGT 3.0 und Warndreieck, mit QuickAlert PRO für Spanien.'
 
@@ -56,6 +56,7 @@ export default function Page() {
         data={[
           breadcrumbJsonLd([
             { name: 'Startseite', path: '/' },
+            { name: 'Ratgeber', path: '/ratgeber' },
             { name: 'V16-Warnleuchte', path: PATH },
           ]),
           {
@@ -76,7 +77,9 @@ export default function Page() {
         ]}
       />
       <GuideShell
+        path={PATH}
         breadcrumb="V16-Warnleuchte"
+        parent={{ name: 'Ratgeber', href: '/ratgeber' }}
         eyebrow="Ratgeber"
         title="V16-Warnleuchte: Was sie kann, wo sie Pflicht ist und was in Deutschland gilt"
         lead="Seit dem 1. Januar 2026 ersetzt in Spanien die vernetzte V16-Warnleuchte das Warndreieck. Hier steht kompakt, was eine V16-Leuchte ausmacht, wen die Pflicht betrifft und welche Regeln in Deutschland gelten."
@@ -89,6 +92,25 @@ export default function Page() {
           GPS-Meldung an die DGT 3.0 Pflicht. In <strong>Deutschland</strong> bleibt das Warndreieck vorgeschrieben;
           eine Warnleuchte ist dort eine zusätzliche Absicherung.
         </AnswerBox>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-3xl border border-white/10 bg-[#121318] p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Auto mit deutschem Kennzeichen</p>
+            <p className="mt-2 text-lg font-semibold text-white">Keine V16 nötig</p>
+            <p className="mt-2 text-[15px] leading-relaxed text-zinc-400">
+              Warndreieck bleibt Pflicht, auch im Spanien-Urlaub. Zusätzlich schnell sichtbar mit QuickAlert BASE.
+            </p>
+            <a href="#deutschland" className="mt-4 inline-block text-sm font-semibold text-[#F5A623] underline underline-offset-4">Zur BASE</a>
+          </div>
+          <div className="rounded-3xl border border-[#F5A623]/30 bg-[#121318] p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Auto mit spanischer Zulassung</p>
+            <p className="mt-2 text-lg font-semibold text-white">V16 conectada Pflicht</p>
+            <p className="mt-2 text-[15px] leading-relaxed text-zinc-400">
+              Seit 01.01.2026 ersetzt sie dort das Warndreieck. Dafür ist QuickAlert PRO mit GPS und eSIM.
+            </p>
+            <a href="#spanien" className="mt-4 inline-block text-sm font-semibold text-[#F5A623] underline underline-offset-4">Zur PRO</a>
+          </div>
+        </div>
 
         <Section title="Was ist eine V16-Warnleuchte?">
           <p>
@@ -117,7 +139,7 @@ export default function Page() {
           />
         </div>
 
-        <Section title="V16 conectada: Pflicht in Spanien seit 2026">
+        <Section id="spanien" title="V16 conectada: Pflicht in Spanien seit 2026">
           <p>
             Spanien hat die vernetzte V16-Warnleuchte zum 01.01.2026 verbindlich gemacht. Sie ersetzt dort die
             Warndreiecke. Zulässig ist nur noch die <strong>V16 conectada</strong>: Beim Einschalten übermittelt sie
@@ -138,7 +160,7 @@ export default function Page() {
           />
         </Section>
 
-        <Section title="Und in Deutschland?">
+        <Section id="deutschland" title="V16-Warnleuchte in Deutschland: was gilt?">
           <p>
             In Deutschland ändert sich nichts an der Ausrüstungspflicht: <strong>Warndreieck und Warnweste</strong>{' '}
             bleiben vorgeschrieben (§ 53a StVZO). Eine V16- oder LED-Warnleuchte ersetzt das Warndreieck nicht. Wer

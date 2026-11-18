@@ -9,7 +9,7 @@ const PATH = '/warnleuchte-auto'
 const UPDATED = '18.11.2026'
 const UPDATED_ISO = '2026-11-18'
 
-const TITLE = 'Warnleuchte fürs Auto: magnetische LED-Pannenleuchte'
+const TITLE = 'Warnleuchte fürs Auto: Kaufberatung & Einsatz'
 const DESCRIPTION =
   'LED-Warnleuchte fürs Auto: worauf es beim Kauf ankommt, wie du sie bei einer Panne richtig einsetzt und warum sie das Warndreieck sinnvoll ergänzt. Mit QuickAlert BASE.'
 
@@ -56,6 +56,7 @@ export default function Page() {
         data={[
           breadcrumbJsonLd([
             { name: 'Startseite', path: '/' },
+            { name: 'Ratgeber', path: '/ratgeber' },
             { name: 'Warnleuchte fürs Auto', path: PATH },
           ]),
           {
@@ -76,7 +77,9 @@ export default function Page() {
         ]}
       />
       <GuideShell
+        path={PATH}
         breadcrumb="Warnleuchte fürs Auto"
+        parent={{ name: 'Ratgeber', href: '/ratgeber' }}
         eyebrow="Kaufberatung"
         title="Warnleuchte fürs Auto: sofort sichtbar, ohne Fußweg in die Gefahrenzone"
         lead="Eine magnetische LED-Warnleuchte sitzt in Sekunden auf dem Dach und warnt den nachfolgenden Verkehr, noch bevor das Warndreieck steht. Worauf es beim Kauf ankommt und wie du sie richtig einsetzt."

@@ -41,10 +41,14 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME }],
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [{ url: '/icons/apple-touch-icon.png', sizes: '180x180' }],
   },
+  formatDetection: { telephone: false },
+  category: 'automotive',
   // Bewusst KEIN globaler canonical: er wuerde sich auf alle Unterseiten vererben
   // und sie als Dublette der Startseite markieren. Jede Seite setzt ihren eigenen.
   openGraph: {
@@ -76,6 +80,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
+  themeColor: '#0b0c0f',
 }
 
 export default function RootLayout({

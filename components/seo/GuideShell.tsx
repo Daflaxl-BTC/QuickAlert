@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { AMAZON_LINK_REL, HAS_AMAZON_PARTNER_TAG, amazonUrl } from '@/lib/amazon'
+import { AMAZON_LINK_REL, amazonUrl } from '@/lib/amazon'
 import type { AmazonProduct } from '@/lib/amazon'
+import { GUIDES } from '@/lib/guides'
 
 /* Gemeinsames Geruest fuer statische Ratgeber-/Keyword-Seiten (Server Components). */
 
@@ -23,14 +24,19 @@ function Logo() {
 }
 
 export function GuideShell({
+  path,
   breadcrumb,
+  parent,
   eyebrow,
   title,
   lead,
   updated,
   children,
 }: {
+  /** Pfad der Seite; steuert die Liste "Weitere Ratgeber". */
+  path?: string
   breadcrumb: string
+  parent?: { name: string; href: string }
   eyebrow: string
   title: string
   lead: string
@@ -57,11 +63,19 @@ export function GuideShell({
 
       <article className="mx-auto w-full max-w-3xl px-4 pb-20 pt-10 sm:px-6 sm:pt-14">
         <nav aria-label="Brotkrumen" className="mb-8 text-sm text-zinc-500">
-          <ol className="flex flex-wrap items-center gap-2">
+          <ol className="flex flex-wrap items-center gap-2 [&_a]:inline-flex [&_a]:min-h-[28px] [&_a]:items-center">
             <li>
               <Link href="/" className="hover:text-white">Startseite</Link>
             </li>
             <li aria-hidden>/</li>
+            {parent && (
+              <>
+                <li>
+                  <Link href={parent.href} className="hover:text-white">{parent.name}</Link>
+                </li>
+                <li aria-hidden>/</li>
+              </>
+            )}
             <li aria-current="page" className="text-zinc-300">{breadcrumb}</li>
           </ol>
         </nav>
@@ -72,25 +86,44 @@ export function GuideShell({
         </p>
         <h1 className="text-[clamp(34px,5.4vw,56px)] font-semibold leading-[1.04] tracking-[-0.04em] text-white">{title}</h1>
         <p className="mt-6 text-lg leading-relaxed text-zinc-400 sm:text-xl">{lead}</p>
-        <p className="mt-4 text-xs text-zinc-600">Stand: {updated}</p>
+        <p className="mt-4 text-xs text-zinc-600">
+          Stand: <time dateTime={updated.split('.').reverse().join('-')}>{updated}</time> · Felix Ventures, Inhaber der Marke QuickAlert
+        </p>
 
         <div className="mt-12 space-y-14">{children}</div>
+
+        {path && (
+          <aside className="mt-16 border-t border-white/[0.08] pt-10" aria-label="Weitere Ratgeber">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-500">Weitere Ratgeber</p>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {GUIDES.filter((g) => g.path !== path).map((g) => (
+                <li key={g.path}>
+                  <Link
+                    href={g.path}
+                    className="block h-full rounded-2xl border border-white/[0.08] bg-[#111216] p-5 transition-colors hover:border-[#F5A623]/50"
+                  >
+                    <span className="block font-semibold text-white">{g.title}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-zinc-400">{g.text}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
       </article>
 
       <footer className="border-t border-white/[0.06] py-10">
         <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-4 px-4 text-sm text-zinc-500 sm:px-6 lg:px-8">
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+          <nav className="flex flex-wrap gap-x-6 gap-y-1 [&>a]:inline-flex [&>a]:min-h-[32px] [&>a]:items-center">
             <Link href="/" className="hover:text-white">Startseite</Link>
-            <Link href="/v16-warnleuchte" className="hover:text-white">Ratgeber: V16-Warnleuchte</Link>
+            <Link href="/ratgeber" className="hover:text-white">Ratgeber</Link>
+            <Link href="/v16-warnleuchte" className="hover:text-white">V16-Warnleuchte</Link>
             <Link href="/warnleuchte-auto" className="hover:text-white">Warnleuchte fürs Auto</Link>
             <Link href="/manual" className="hover:text-white">Bedienungsanleitung</Link>
             <Link href="/impressum" className="hover:text-white">Impressum</Link>
             <Link href="/datenschutz" className="hover:text-white">Datenschutz</Link>
           </nav>
           <p className="text-xs text-zinc-600">© 2026 QuickAlert</p>
-          {HAS_AMAZON_PARTNER_TAG && (
-            <p className="text-xs text-zinc-600">Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.</p>
-          )}
         </div>
       </footer>
     </main>

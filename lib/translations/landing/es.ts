@@ -14,6 +14,7 @@ export const landing: LandingTranslation = {
   },
 
   hero: {
+    seoTitle: 'Luz de emergencia LED magnética para coche',
     status: 'Ya disponible en Amazon',
     statusSub: 'BASE y PRO',
     titleA: 'Visible antes de que sea',
@@ -126,12 +127,12 @@ export const landing: LandingTranslation = {
     titleA: 'Dos modelos.',
     titleB: 'Un objetivo: que te vean.',
     intro: 'BASE como protección adicional para Alemania. PRO como baliza V16 conectada para España.',
-    priceNote: 'Pago único · precio actual en Amazon',
+    priceNote: 'Compra única · sin suscripción · el precio varía en Amazon',
+    priceLabel: 'Precio actual en Amazon',
     base: {
       country: 'Alemania',
       name: 'QuickAlert BASE',
       tagline: 'Protección inmediata – antes incluso de colocar el triángulo.',
-      price: '26,99 €',
       imageAlt: 'Luz de emergencia QuickAlert BASE',
       features: [
         'Anillo LED ámbar 360° (ECE R65, según ensayos IDIADA)',
@@ -147,7 +148,6 @@ export const landing: LandingTranslation = {
       country: 'España',
       name: 'QuickAlert PRO',
       tagline: 'V16 conectada – sustituye al triángulo en España.',
-      price: '39,99 €',
       imageAlt: 'QuickAlert PRO con embalaje',
       features: [
         'Todas las funciones de BASE',
@@ -167,6 +167,7 @@ export const landing: LandingTranslation = {
     feature: 'Función',
     market: 'Mercado',
     price: 'Precio',
+    priceLink: 'Ver precio',
     rows: [
       { feature: 'Anillo LED ámbar 360°', base: true, pro: true },
       { feature: 'Parámetros lumínicos ECE R65 (ensayos IDIADA)', base: true, pro: true },
@@ -221,6 +222,14 @@ export const landing: LandingTranslation = {
         a: 'No. La eSIM está incluida durante 12 años. Al activarla, tu ubicación se envía automáticamente a la plataforma DGT 3.0 – sin smartphone, sin contrato.',
       },
       {
+        q: '¿QuickAlert BASE es una baliza V16?',
+        a: 'No. La BASE es una luz de emergencia LED magnética para Alemania, sin GPS ni conexión con la DGT. Solo QuickAlert PRO es una baliza V16 conforme a la obligación española.',
+      },
+      {
+        q: '¿Necesito una baliza V16 si viajo a España con un coche alemán?',
+        a: 'Con matrícula alemana, no: la obligación de la V16 se aplica a los vehículos matriculados en España. Para coches matriculados en España es obligatoria la V16 conectada, es decir, QuickAlert PRO.',
+      },
+      {
         q: '¿Dónde puedo comprar QuickAlert?',
         a: 'Directamente en Amazon – BASE y PRO. Distribuidores y flotas pueden contactarnos por WhatsApp.',
       },
@@ -241,23 +250,19 @@ export const landing: LandingTranslation = {
     buyPro: 'Ver PRO en Amazon',
     base: [
       { title: 'QuickAlert BASE', text: 'La luz de emergencia con su embalaje – compacta, magnética y lista para usar.' },
-      { title: 'Visible antes de que sea tarde', text: 'El anillo LED ámbar ilumina en todas direcciones. El corazón de la BASE – protección adicional en Alemania.' },
       { title: 'Seguridad comprobada', text: 'Informe PC21020060, marcado CE, IP54 y RoHS – ensayada de forma independiente y bien documentada.' },
       { title: 'Compacta. A mano.', text: 'Cabe en la puerta o en la guantera. Con base magnética potente para el techo de acero.' },
       { title: 'Lista en segundos', text: 'Cogerla, ponerla en el techo, encenderla. Sin montaje, sin caminar, sin esperas.' },
       { title: 'Triángulo vs. QuickAlert', text: 'En lugar de caminar por la zona de peligro: en el techo en segundos y visible en todas direcciones. En Alemania el triángulo sigue siendo obligatorio.' },
-      { title: 'Marca alemana', text: 'Atención al cliente alemana, manual en alemán y ensayos claramente documentados.' },
     ],
     pro: [
       { title: 'QuickAlert PRO', text: 'La baliza V16 conectada para España – con su embalaje.' },
-      { title: 'Visible antes de que sea tarde', text: 'Luz de advertencia LED 360° con GPS y eSIM integrados.' },
       { title: 'Una luz. Todas las direcciones.', text: 'Banda LED 360°, manejo con un solo botón, base magnética potente – GPS y eSIM integrados.' },
       { title: 'Seguridad comprobada', text: 'IDIADA PC26020115, certificada para la DGT 3.0. Además IP54 y conformidad CE.' },
       { title: 'Compacta. A mano.', text: 'Cabe en cualquier guantera – siempre contigo cuando importa.' },
       { title: 'Lista en segundos', text: 'Cogerla, ponerla en el techo, encenderla. Sin montaje, sin caminar.' },
       { title: 'Avisa de la avería automáticamente', text: 'Ubicación GPS a la DGT 3.0 – sin app, sin smartphone. 12 años de eSIM incluidos.' },
       { title: 'Un botón. Visible al instante.', text: 'Pulsador rojo de encendido, número IDIADA grabado y logo QuickAlert en la parte superior.' },
-      { title: 'Marca alemana', text: 'Atención al cliente alemana y ensayos claramente documentados – también para el mercado español.' },
     ],
   },
 
@@ -269,11 +274,30 @@ export const landing: LandingTranslation = {
     secondary: 'Para distribuidores y flotas',
   },
 
+  videos: {
+    label: 'Vídeo',
+    title: 'Lista en segundos.',
+    text: 'Mira cómo funciona QuickAlert: cogerla, colocarla, encenderla.',
+  },
+
+  guides: {
+    label: 'Guías',
+    title: 'Saber qué hacer.',
+    intro: 'Guías breves (en alemán) sobre la normativa, cómo actuar ante una avería y cómo elegir una luz de emergencia.',
+    read: 'Leer más',
+    items: [
+      { href: '/v16-warnleuchte', title: 'Baliza V16: obligatoria en España, normas en Alemania', text: 'Qué es una baliza V16, a quién afecta la obligación española y qué rige en Alemania.' },
+      { href: '/warnleuchte-auto', title: 'Luz de emergencia para coche: guía de compra', text: 'Qué tener en cuenta al comprarla y cómo usarla correctamente.' },
+      { href: '/warndreieck-abstand', title: 'Triángulo de emergencia: distancia correcta', text: 'A qué distancia colocar el triángulo en ciudad, en carretera y en autopista en Alemania.' },
+      { href: '/panne-autobahn', title: 'Avería en la autopista: cómo actuar', text: 'Paso a paso: luces de emergencia, chaleco, señalizar, llamada de emergencia.' },
+    ],
+  },
+
   footer: {
     tagline: 'Luz de emergencia LED magnética. Visible antes de que sea demasiado tarde.',
     certificates: 'Certificados',
     guideV16: 'Guía: baliza V16',
+    guides: 'Todas las guías',
     guideCar: 'Luz de emergencia para coche',
-    partnerNote: 'Como afiliado de Amazon, obtenemos ingresos por las compras adscritas que cumplen los requisitos aplicables.',
   },
 }

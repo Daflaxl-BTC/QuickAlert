@@ -8,15 +8,17 @@
  *    beworben, niemals als V16 oder homologiert.
  */
 
-import { amazonUrl } from '@/lib/amazon'
+import { amazonProductUrl } from '@/lib/amazon'
 
-export const SITE_URL = 'https://quickalert.eu'
+// Kanonische Domain = Vercel-Primaerdomain. quickalert.eu leitet bei Vercel auf www weiter;
+// Canonicals, Sitemap und Schema muessen deshalb auf www zeigen, sonst widersprechen sie sich.
+export const SITE_URL = 'https://www.quickalert.eu'
 export const SITE_NAME = 'QuickAlert'
 
 export const OG_IMAGE = {
-  url: '/landing/amazon/base-09.jpg',
-  width: 1400,
-  height: 1400,
+  url: '/og/quickalert-og.jpg',
+  width: 1200,
+  height: 630,
   alt: 'QuickAlert magnetische LED-Warnleuchte fürs Auto mit leuchtendem 360°-LED-Ring',
 }
 
@@ -27,10 +29,10 @@ export const PRODUCTS = {
     name: 'QuickAlert BASE – magnetische LED-Warnleuchte fürs Auto',
     description:
       'Magnetische LED-Warnleuchte fürs Autodach mit 360° Amber-LED-Ring. Lichtparameter nach ECE R65 (laut IDIADA-Tests), Neodym-Magnetfuß, IP54, Standard-Batterien inklusive. Zusätzliche Absicherung zum Warndreieck in Deutschland.',
-    image: [`${SITE_URL}/landing/amazon/base-01.jpg`, `${SITE_URL}/landing/amazon/base-09.jpg`],
+    image: [`${SITE_URL}/landing/amazon/base-01.jpg`, `${SITE_URL}/landing/amazon/base-04.jpg`],
     gtin13: '4270005258300',
-    price: '26.99',
-    url: () => amazonUrl('base'),
+    asin: 'B0HFGL3YC5',
+    url: () => amazonProductUrl('base'),
   },
   pro: {
     name: 'QuickAlert PRO – V16-Warnleuchte (V16 conectada) mit GPS für Spanien',
@@ -38,8 +40,8 @@ export const PRODUCTS = {
       'Vernetzte V16-Warnleuchte für Spanien: zertifiziert nach IDIADA PC26020115, automatische GPS-Standortmeldung an die DGT 3.0, 12 Jahre eSIM inklusive, magnetisch, IP54.',
     image: [`${SITE_URL}/landing/amazon/pro-01.jpg`, `${SITE_URL}/landing/amazon/pro-07.jpg`],
     gtin13: '4270005258317',
-    price: '39.99',
-    url: () => amazonUrl('pro'),
+    asin: 'B0HFGRRV8D',
+    url: () => amazonProductUrl('pro'),
   },
 } as const
 
@@ -78,15 +80,12 @@ export function productJsonLd(key: keyof typeof PRODUCTS) {
     image: p.image,
     gtin13: p.gtin13,
     brand: { '@type': 'Brand', name: SITE_NAME },
+    sku: p.asin,
     category: 'Auto & Motorrad > Pannenhilfe > Warnleuchten',
-    offers: {
-      '@type': 'Offer',
-      url: p.url(),
-      price: p.price,
-      priceCurrency: 'EUR',
-      availability: 'https://schema.org/InStock',
-      itemCondition: 'https://schema.org/NewCondition',
-    },
+    // Bewusst ohne Offer/Preis: Der Preis wird bei Amazon laufend angepasst (Preisregel,
+    // Coupons, Aktionen). Ein fester Preis in den Daten waere sofort falsch und widerspraeche
+    // der Seite, die keinen Preis nennt (Google-Richtlinie: Daten = sichtbarer Inhalt).
+    url: p.url(),
   }
 }
 
@@ -112,5 +111,35 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       name: item.name,
       item: `${SITE_URL}${item.path}`,
     })),
+  }
+}
+
+export function articleJsonLd({
+  path,
+  title,
+  description,
+  image,
+  published = '2026-11-18',
+  modified = '2026-11-18',
+}: {
+  path: string
+  title: string
+  description: string
+  image: string
+  published?: string
+  modified?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    inLanguage: 'de-DE',
+    datePublished: published,
+    dateModified: modified,
+    mainEntityOfPage: `${SITE_URL}${path}`,
+    image: `${SITE_URL}${image}`,
+    author: { '@id': `${SITE_URL}/#organization` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
   }
 }
