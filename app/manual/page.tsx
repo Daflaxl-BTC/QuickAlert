@@ -54,7 +54,7 @@ export default function Page() {
                           <span className="block font-semibold text-white">
                             {m.lang} <span className="font-normal text-zinc-500">({m.langCode})</span>
                           </span>
-                          <span className="mt-1 block text-sm text-zinc-400">{m.facts} · {m.pages} Seiten</span>
+                          <span className="mt-1 block text-sm text-zinc-400">{m.facts} · {m.format}</span>
                         </span>
                         <span className="flex-shrink-0 text-sm font-semibold text-[#F5A623]">PDF öffnen</span>
                       </a>
